@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="test">
+    <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="LEGGERE README&#10;creazione file uml per future progettazioni">
+      <change afterPath="$PROJECT_DIR$/doc/UMLdiagram.drawio" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/doc/uml_example_export.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/README.md" afterDir="false" />
     </list>
@@ -108,7 +110,7 @@
       <workItem from="1712866304921" duration="505000" />
       <workItem from="1712866861917" duration="762000" />
       <workItem from="1712867644093" duration="212000" />
-      <workItem from="1712867870076" duration="478000" />
+      <workItem from="1712867870076" duration="831000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />
@@ -150,7 +152,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712866908252</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="LEGGERE README&#10;creazione file uml per future progettazioni">
+      <option name="closed" value="true" />
+      <created>1712868700102</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1712868700102</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -171,7 +181,8 @@
     <MESSAGE value="Created repository of the project" />
     <MESSAGE value="Test di push da intellij e creazione di directory per documenti generali" />
     <MESSAGE value="test" />
-    <option name="LAST_COMMIT_MESSAGE" value="test" />
+    <MESSAGE value="LEGGERE README&#10;creazione file uml per future progettazioni" />
+    <option name="LAST_COMMIT_MESSAGE" value="LEGGERE README&#10;creazione file uml per future progettazioni" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
