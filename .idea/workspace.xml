@@ -4,15 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Created repository of the project">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Model.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/HelloApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/HelloController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controller.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/hello-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/structure.fxml" afterDir="false" />
-    </list>
+    <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Test di push da intellij e creazione di directory per documenti generali" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,6 +20,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -35,11 +30,13 @@
       </MavenGeneralSettings>
     </option>
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2exihuwl45dPAJEuOVVXBZOSfoh" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -58,7 +55,13 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
+  },
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "RELAX-NG"
+    ]
   }
 }]]></component>
   <component name="RunManager">
@@ -70,13 +73,6 @@
       </method>
     </configuration>
   </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-19.0.2-azul-19.0.2-4caba194b151-3b9f6195" />
-      </set>
-    </attachedChunks>
-  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -86,6 +82,7 @@
       <option name="presentableId" value="Default" />
       <updated>1712852754129</updated>
       <workItem from="1712852755230" duration="1257000" />
+      <workItem from="1712866304921" duration="344000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />
@@ -95,14 +92,42 @@
       <option name="project" value="LOCAL" />
       <updated>1712852795525</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Created repository of the project">
+      <option name="closed" value="true" />
+      <created>1712866456942</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1712866456942</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Test di push da intellij e creazione di directory per documenti generali">
+      <option name="closed" value="true" />
+      <created>1712866516611</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1712866516611</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Created repository of the project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created repository of the project" />
+    <MESSAGE value="Test di push da intellij e creazione di directory per documenti generali" />
+    <option name="LAST_COMMIT_MESSAGE" value="Test di push da intellij e creazione di directory per documenti generali" />
   </component>
 </project>
