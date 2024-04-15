@@ -4,11 +4,5 @@ Ricordarsi ad ogni modello, un volta definito lo style del nodo salvarlo sullo s
 
 Dubbio Optional, Color, Dipendente e gerarchia auto
 
-Donny: Optional in questo momento, essendo legato ad una macchina, rappresenta gli optional
-disponibili per quella macchina. 
-Infatti, macchina rappresenta un modello di una macchina. E' solamente nel preventivo che la
-macchina viene "istanziata". Possiamo infatti ad esempio avere 2 preventivi diversi per lo stesso
-modello di macchina, con appunto però optional diversi tra di loro. Questo non è al momento
-rappresentabile nel nostro diagramma UML. 
-
-Penso sia necessario aggiungere una relazione tra il preventivo e gli optional. 
+Donny: nell'UML manca da rappresentare lo sconto, mese per mese (dovrebbe essere legato ad autonuova)
+       - Aggiungere una sorta di elenco, simile a catalogo, ma per i preventivi

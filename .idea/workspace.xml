@@ -6,6 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="LEGGERE README&#10;creazione file uml per future progettazioni">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/UMLdiagram.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/doc/UMLdiagram.drawio" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +33,7 @@
   <component name="GithubPullRequestsUISettings">
     <option name="selectedUrlAndAccountId">
       <UrlAndAccount>
-        <option name="accountId" value="8f74b8ff-2796-40e0-8781-7ea0b9f5618f" />
+        <option name="accountId" value="a7a9b428-ca91-4bdf-bc60-f1f92cb6a37c" />
         <option name="url" value="https://github.com/446f6e6e79/ConfiguratoreAuto.git" />
       </UrlAndAccount>
     </option>
@@ -112,7 +113,8 @@
       <workItem from="1712920547021" duration="4685000" />
       <workItem from="1712951335954" duration="1390000" />
       <workItem from="1713124922614" duration="1729000" />
-      <workItem from="1713127272670" duration="2376000" />
+      <workItem from="1713127272670" duration="2501000" />
+      <workItem from="1713207188022" duration="3755000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />
@@ -173,7 +175,13 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
