@@ -1,0 +1,7 @@
+--------------------------
+RICHIESTA PREVENTIVO
+Attore: Cliente
+Precondizioni: Il cliente dev'essere autenticato
+Passi:
+
+Postcondizioni:
