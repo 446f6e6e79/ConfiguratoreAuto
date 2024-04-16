@@ -3,5 +3,73 @@ RICHIESTA PREVENTIVO
 Attore: Cliente
 Precondizioni: Il cliente dev'essere autenticato
 Passi:
+    1.Il cliente consulta il catalogo
+    2.Il cliente sceglie il modello
+    3.Il cliente seleziona gli optional desiderati
+    4.Il cliente effettua l'autenticazione
+        a) nel caso fosse un utente già registrato, viene effettuato il login
+        b) nel caso fosse un utente nuovo, è richiesta la registrazione
+    5.Il cliente può inserire un auto usata
+        a)nel caso inserisca un'auto il cliente deve allegare le immagini e i dettagli dell'auto
+    6.Il cliente invia, successivamente al riepilogo del preventivo, la richiesta di esso
+Postcondizioni: Viene generato un nuovo preventivo
 
-Postcondizioni:
+--------------------------
+CONFERMA PREVENTIVO
+
+Attore: Cliente
+Precondizioni: il cliente deve avere un preventivo finalizzato a suo nome
+Passi:
+    1.Il cliente visualizza i preventivi a suo nome
+    2.Il cliente seleziona il preventivo
+        a)se sono passati meno di 20 giorni e il preventivo è stato finalizzato, può essere selezionato
+        b)se sono passati più di 20 giorni e il preventivo è stato finalizzato, non può essere selezionato
+    3.
+        a)Il cliente può confermare il preventivo, pagando inoltre l'acconto
+        b)Il cliente può rifiutare il preventivo
+
+Postcondizioni: Viene modificato lo stato del preventivo, a seconda della scelta effettuata dal cliente
+
+--------------------------
+GESTISCI PREVENTIVI
+Attore: Impiegato
+Precondizioni: devono esserci presenti preventivi confermati
+Passi:
+    1.L'impiegato consulta la lista dei preventivi
+    2.L'impiegato seleziona un preventivo specifico
+    3.L'impiegato può modificare lo stato del preventivo a seconda della situazione. Lo stato si può definire:
+        a)pagato
+        b)disponibile
+        c)ritirato
+    4.L'impiegato conferma la modifica
+    5.L'impiegato ha la possibilità di notificare al cliente lo stato del preventivo
+Postcondizioni: Viene modificato lo stato del preventivo
+
+--------------------------
+FINALIZZA PREVENTIVO
+Attore: Impiegato
+Precondizioni: devono essere presenti delle richieste di preventivo
+Passi:
+    1.L'impiegato consulta la lista delle richieste di preventivi
+    2.L'impiegato seleziona un preventivo specifico
+    3.L'impiegato visualizza le informazioni del preventivo:
+        a)se presenta un auto usata deve visualizzarne i dettagli e fornisce una valutazione, aggiornado il preventivo
+        b)altrimenti finalizza il preventivo notificando ed attendendo una risposta dal cliente
+Postcondizioni: viene generata un preventivo in risposta al cliente
+
+-------------------------
+VISUALIZZA PREVENTIVO
+
+Attore: Segretario
+Precondizioni: devono essere presenti nel sistema dei preventivi
+Passi:
+    1.Il segretario consulta la lista dei preventivi per marca, cliente e per negozio di consegna richiesto
+
+-------------------------
+INSERISCI MODELLO
+
+Attore: Segretario
+Precondizioni: devono essere presenti le vetture
+Passi:
+    1.Il segretario deve inserire le informazioni sui modelli e optional di ogni marca all'interno del catalogo
+Postcondizioni: Vengono inseriti i modelli di auto nel sistema con le rispettive informazioni sui modelli e optional

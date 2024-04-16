@@ -4,13 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="LEGGERE README&#10;creazione file uml per future progettazioni">
+    <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Update UseCase">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/UMLdiagram.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/doc/UMLdiagram.drawio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/img.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/uml_example_export.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/schede_di_specifica.txt" beforeDir="false" afterPath="$PROJECT_DIR$/doc/schede_di_specifica.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/uml_v2.png" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/useCase.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/doc/useCase.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/usecase_v1.png" beforeDir="false" />
     </list>
+    <list id="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" name="Changes by donny" comment="" />
+    <list id="5a1389f8-12cf-4977-adb2-8318a932ec48" name="Changes by Victo" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -164,7 +167,15 @@
       <option name="project" value="LOCAL" />
       <updated>1712868700102</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Update UseCase">
+      <option name="closed" value="true" />
+      <created>1713295652293</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1713295652294</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -192,7 +203,8 @@
     <MESSAGE value="Test di push da intellij e creazione di directory per documenti generali" />
     <MESSAGE value="test" />
     <MESSAGE value="LEGGERE README&#10;creazione file uml per future progettazioni" />
-    <option name="LAST_COMMIT_MESSAGE" value="LEGGERE README&#10;creazione file uml per future progettazioni" />
+    <MESSAGE value="Update UseCase" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update UseCase" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
