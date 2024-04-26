@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Davide",
+    "surname": "Donà",
+    "email": "davidedona@gmail.com",
+    "password": "1234",
+    "userType": "cliente"
+  },
+  {
+    "name": "Andrea",
+    "surname": "Blushi",
+    "email": "andreablushi@gmail.com",
+    "password": "1234",
+    "userType": "cliente"
+  },
+  {
+    "name": "Victor",
+    "surname": "Ojog",
+    "email": "victorojog@gmail.com",
+    "password": "1234",
+    "userType": "cliente"
+  },
+  {
+    "email": "impiegato@gmail.com",
+    "password": "1234",
+    "userType": "impiegato"
+  },
+  {
+    "name": "Prova",
+    "surname": "Prova",
+    "email": "guest",
+    "password": "guest",
+    "userType": "cliente"
+  }
+]

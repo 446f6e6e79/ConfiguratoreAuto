@@ -6,10 +6,12 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Utenti.Cliente;
+import org.example.configuratoreauto.Utenti.Impiegato;
 import org.example.configuratoreauto.Utenti.Persona;
+import org.example.configuratoreauto.Utenti.UserModel;
 
 public class Main extends Application {
-
+    static UserModel userModel;
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("structure.fxml"));
@@ -18,10 +20,20 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
-        //Model.getInstance();
+        userModel = UserModel.getInstance();
     }
 
     public static void main(String[] args) {
         launch(args);
+        //Once the program is closed, whole the data, saved locally, is saved to the files
+        closeModels();
+    }
+
+    /*
+        DA SPOSTARE IN UNA CLASSE MODEL GENERICA
+    *   Metodo che aggiorna le istanze di tutti i modelli, prima della effettiva terminazione del programma
+    * */
+    private static void closeModels(){
+        userModel.uploadUserUpdates();
     }
 }
