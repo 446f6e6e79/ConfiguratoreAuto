@@ -5,12 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Update UseCase">
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Utenti/Cliente.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Utenti/Impiegato.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Utenti/Persona.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Utenti/Segretario.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_04_24,_23_33_[Changes]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_04_24__23_33__Changes_.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/UMLdiagram.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/doc/UMLdiagram.drawio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/schede_di_specifica.txt" beforeDir="false" afterPath="$PROJECT_DIR$/doc/schede_di_specifica.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/uml_v2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/useCase.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/doc/useCase.drawio" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/doc/usecase_v1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Main.java" afterDir="false" />
     </list>
     <list id="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" name="Changes by donny" comment="" />
     <list id="5a1389f8-12cf-4977-adb2-8318a932ec48" name="Changes by Victo" comment="" />
@@ -23,6 +26,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -99,6 +103,13 @@
       </method>
     </configuration>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-19.0.2-azul-19.0.2-4caba194b151-3b9f6195" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -118,6 +129,9 @@
       <workItem from="1713127272670" duration="2501000" />
       <workItem from="1713207188022" duration="4450000" />
       <workItem from="1713256732538" duration="1879000" />
+      <workItem from="1713527777373" duration="700000" />
+      <workItem from="1713987238398" duration="664000" />
+      <workItem from="1714117165684" duration="1635000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />

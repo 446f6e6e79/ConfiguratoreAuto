@@ -5,4 +5,6 @@ module org.example.configuratoreauto {
 
     opens org.example.configuratoreauto to javafx.fxml;
     exports org.example.configuratoreauto;
+    exports org.example.configuratoreauto.Utenti;
+    opens org.example.configuratoreauto.Utenti to javafx.fxml;
 }
