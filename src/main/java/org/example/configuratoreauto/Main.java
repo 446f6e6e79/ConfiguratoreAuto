@@ -5,13 +5,11 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import org.example.configuratoreauto.Utenti.Cliente;
-import org.example.configuratoreauto.Utenti.Impiegato;
-import org.example.configuratoreauto.Utenti.Persona;
-import org.example.configuratoreauto.Utenti.UserModel;
+import org.example.configuratoreauto.Utenti.*;
 
 public class Main extends Application {
     static UserModel userModel;
+    private static Stage stage;
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("structure.fxml"));
@@ -25,10 +23,21 @@ public class Main extends Application {
 
     public static void main(String[] args) {
         launch(args);
+
         //Once the program is closed, whole the data, saved locally, is saved to the files
         closeModels();
     }
 
+    private static void setPage(String pageName) {
+        String fxmlFile = pageName + ".fxml";
+        try {
+            Parent root = FXMLLoader.load(Main.class.getResource(fxmlFile));
+            Scene scene = new Scene(root);
+            stage.setScene(scene);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     /*
         DA SPOSTARE IN UNA CLASSE MODEL GENERICA
     *   Metodo che aggiorna le istanze di tutti i modelli, prima della effettiva terminazione del programma

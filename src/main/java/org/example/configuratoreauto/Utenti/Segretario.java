@@ -1,9 +1,9 @@
 package org.example.configuratoreauto.Utenti;
 
-public class Segretario extends Persona {
+import java.io.Serializable;
 
+public class Segretario extends Persona implements Serializable {
     public Segretario(String email, String password){
         super(email, password);
-        super.userType = TipoUtente.segretario;
     }
 }

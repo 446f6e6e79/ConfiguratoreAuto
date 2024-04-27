@@ -1,30 +1,20 @@
 package org.example.configuratoreauto.Utenti;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.lang.reflect.Type;
-import java.nio.file.Files;
-import java.nio.file.Paths;
+import java.io.*;
 import java.util.HashSet;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.reflect.TypeToken;
-
 public class UserModel{
-
-    //
-    private static Gson gson;
     //Definiamo un unica istanza di Model, condivisa da tutti gli oggetti della classe UserModel
     private static UserModel instance;
-    private static final String USER_PATH = "src/main/resources/data/userData.json";
+    //Percorso al file contenete le informazioni riguardanti gli utenti
+    private static final String USER_PATH = "src/main/resources/data/userData.ser";
     //Hash set che conterrà l'elenco di tutte le utenze
     private HashSet<Persona> usersSet;
     //Variabile currentUser, memorizza l'utente che ha eseguito il login
     private Persona currentUser = null;
 
     /*
-        Ritorna l'istanza del modello:
+        getInstance: Ritorna l'istanza del modello:
             - alla prima chiamata il modello non è istanziato, viene generato dal costruttore
             - alle chiamate successive, viene restituita la prima istanza generata
     */
@@ -37,7 +27,7 @@ public class UserModel{
 
     //Costruttore della classe UserModel, genera l'oggetto per la lettura del file.json e carica gli utenti
     private UserModel(){
-        gson = new GsonBuilder().setPrettyPrinting().create();
+        usersSet = new HashSet<>();
         loadUsers();
     }
 
@@ -47,31 +37,39 @@ public class UserModel{
     *       -
     * */
     private void loadUsers(){
-        try {
-            String jsonString = new String(Files.readAllBytes(Paths.get(USER_PATH)));
-            Type personaListType = new TypeToken<HashSet<Persona>>() {}.getType();
-            usersSet = gson.fromJson(jsonString, personaListType);
-        } catch (IOException e) {
+        try (ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(USER_PATH))){
+            //Oggetto temporaneo, rappresenta il singolo oggetto, letto dal file
+            Object tempObj;
+            while ((tempObj = objectInput.readObject()) != null) {
+                usersSet.add((Persona) tempObj);
+            }
+        }
+        //Terminata la lettura dal file. Stampa la lista degli utenti a video, per debug
+        catch (EOFException e){
+            printUsers();
+        }
+        catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
         }
-        printUsers();
     }
 
     /*
      *  La funzione uploadUserUpdates riscrive il file di testo, aggiornando i dati al suo interno.
      * */
     public void uploadUserUpdates() {
-        try (FileWriter writer = new FileWriter(USER_PATH)) {
-            String usrJson = gson.toJson(usersSet);
-            writer.write(usrJson);
-        } catch (IOException e) {
+        try (ObjectOutputStream objectOutput = new ObjectOutputStream(new FileOutputStream(USER_PATH))) {
+            for(Persona p: usersSet){
+                objectOutput.writeObject(p);
+            }
+        }
+        catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     /*
     *   La funzione register aggiunge un cliente alla lista degli utenti.
-    *   - Ritorna TRUE, se il cliente non era presente nella lista
+    *   - Ritorna TRUE, se il cliente non era presente nella lista (la sua email era già presente tra quelle registrate)
     *   - Ritorna FALSE, se era già presente un cliente con uguale mail
     *
     * */
@@ -103,5 +101,9 @@ public class UserModel{
         for(Persona p: usersSet){
             System.out.println(p);
         }
+    }
+
+    public void addGenericUser(Persona p){
+        usersSet.add(p);
     }
 }

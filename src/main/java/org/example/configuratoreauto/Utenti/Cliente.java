@@ -1,10 +1,17 @@
 package org.example.configuratoreauto.Utenti;
 
-public class Cliente extends Persona{
+import java.io.Serializable;
+
+public class Cliente extends Persona implements Serializable {
     private String name;
     private String surname;
-    public Cliente(String email, String password){
+    public Cliente(String email, String password, String name, String surname){
         super(email, password);
-        super.userType = TipoUtente.cliente;
+        this.name = name;
+        this.surname = surname;
+    }
+
+    public String toString(){
+        return super.toString() + ", nome: "+name;
     }
 }
