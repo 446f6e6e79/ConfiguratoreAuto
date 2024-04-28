@@ -1,23 +1,20 @@
 package org.example.configuratoreauto;
 
-import org.example.configuratoreauto.Utenti.Cliente;
-import org.example.configuratoreauto.Utenti.Impiegato;
-import org.example.configuratoreauto.Utenti.Segretario;
-import org.example.configuratoreauto.Utenti.UserModel;
+import org.example.configuratoreauto.Utenti.*;
 
 import java.util.EnumMap;
 
 public class MainTests {
     public static void main(String[] args) {
-        UserModel u1 = UserModel.getInstance();
+        UserModelTest u1 = (UserModelTest) UserModelTest.getInstance();
 
-        u1.addGenericUser(new Cliente("guest", "guest", "Prova", "Prova"));
-        u1.addGenericUser(new Cliente("davidedona@gmail.com", "1234", "Davide", "Donà"));
-        u1.addGenericUser(new Cliente("andreablushi@gmail.com", "1234", "Andrea", "Blushi"));
-        u1.addGenericUser(new Cliente("ojogvictor@gmail.com", "1234", "Victor", "Ojog"));
-        u1.addGenericUser(new Segretario("provaSegretario@gmail.com", "1234"));
-        u1.addGenericUser(new Impiegato("provaImpiegato@gmail.com", "1234"));
-        u1.uploadUserUpdates();
+        u1.addData(new Cliente("guest", "guest", "Prova", "Prova"));
+        u1.addData(new Cliente("davidedona@gmail.com", "1234", "Davide", "Donà"));
+        u1.addData(new Cliente("andreablushi@gmail.com", "1234", "Andrea", "Blushi"));
+        u1.addData(new Cliente("ojogvictor@gmail.com", "1234", "Victor", "Ojog"));
+        u1.addData(new Segretario("provaSegretario@gmail.com", "1234"));
+        u1.addData(new Impiegato("provaImpiegato@gmail.com", "1234"));
+        u1.uploadData();
 
         System.out.println("TESTING FOR THE USER MODEL:" +
                 "\n\tTRUE: user logged in / registered" +
