@@ -8,20 +8,21 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="293.0" prefWidth="368.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/21" fx:controller="org.example.configuratoreauto.Controller">
+<?import javafx.scene.control.PasswordField?>
+<VBox alignment="CENTER" prefHeight="293.0" prefWidth="368.0" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controller">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-    <Label text="Concessionario Auto">
+    <Label text="Benvenuto">
         <font>
             <Font size="21.0" />
         </font>
     </Label>
-    <TextField fx:id="email" promptText="Inserisci l'email" />
-    <TextField fx:id="password" promptText="Inserisci la password" />
+    <TextField fx:id="email" promptText="Email" />
+    <PasswordField fx:id="password" promptText="Password" />
     <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
-            <Button onAction="#onLoginClick" mnemonicParsing="false" prefHeight="26.0" prefWidth="224.0" text="Login" />
+            <Button mnemonicParsing="false" onAction="#logIn" prefHeight="26.0" prefWidth="224.0" text="Login" />
             <Button onAction="#onGuestClick" text="Login Ospite" textAlignment="CENTER" />
         </buttons>
     </ButtonBar>
