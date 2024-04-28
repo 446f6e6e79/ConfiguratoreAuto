@@ -2,6 +2,17 @@
 
     import org.example.configuratoreauto.AbstractModel;
 
+    /*
+    *   Classe UserModel: rappresenta il MODELLO per quanto riguarda gli utenti e l'accesso.
+    *   Oltre ai metodi già definiti nella superclasse AbstractModel, la seguente classe definisce i seguenti metodi:
+    *       - getInstance() -> ritorna un'istana della classe, implementando il design pattern SINGLETON
+    *       - getPathToData() -> resituisce il path al file, contenente i dati serializzati
+    *       - registraCliente() -> registra un nuovo cliente, solamente se non già presente
+    *       - login(String email, String Password) -> verifica che esista nei dati salvati delle credenziali combacianti
+    *           con quelle inserite
+    *       - getCurrentUser() -> restituisce l'utente che ha effettuato il login
+    *
+    * */
     public class UserModel extends AbstractModel<Persona> {
 
         private static UserModel instance;
@@ -28,7 +39,7 @@
         }
 
         //Controlla che il cliente sia presente nella lista, altrimenti lo aggiunge
-        public boolean register(Cliente newCliente){
+        public boolean registraCliente(Cliente newCliente){
             if(data.contains(newCliente)){
                 return false;
             }

@@ -43,6 +43,6 @@ public class Main extends Application {
     *   Metodo che aggiorna le istanze di tutti i modelli, prima della effettiva terminazione del programma
     * */
     private static void closeModels(){
-        userModel.uploadUserUpdates();
+        userModel.uploadData();
     }
 }

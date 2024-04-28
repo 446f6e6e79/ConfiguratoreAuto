@@ -35,7 +35,7 @@ public class MainTests {
         r = u1.login("guest", "Guest");
         System.out.println("TEST: login with existing mail, but wrong password: " + r);
 
-        r = u1.register(new Cliente("provaSegretario@gmail.com", "4321", "", ""));
+        r = u1.addData(new Cliente("provaSegretario@gmail.com", "4321", "", ""));
         System.out.println("TEST: registering a new user, with elready existing mail: " + r);
 
     }

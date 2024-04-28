@@ -3,6 +3,7 @@ package org.example.configuratoreauto;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import org.example.configuratoreauto.Utenti.UserModel;
 
 public class Controller {
     UserModel userModel = UserModel.getInstance();
