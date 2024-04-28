@@ -2,11 +2,9 @@ package org.example.configuratoreauto;
 
 import org.example.configuratoreauto.Utenti.*;
 
-import java.util.EnumMap;
-
 public class MainTests {
     public static void main(String[] args) {
-        UserModelTest u1 = (UserModelTest) UserModelTest.getInstance();
+        UserModel u1 = (UserModel) UserModel.getInstance();
 
         u1.addData(new Cliente("guest", "guest", "Prova", "Prova"));
         u1.addData(new Cliente("davidedona@gmail.com", "1234", "Davide", "Donà"));
