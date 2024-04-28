@@ -1,0 +1,296 @@
+Index: doc/README.md
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>NOTE:\\n\nAggiunto un file di tipo .drawio, scaricare estensione Diagrams.net Integration\\n\nRicordarsi ad ogni modello, un volta definito lo style del nodo salvarlo sullo scratchpad\\n\n\nDubbio Optional, Color, Dipendente e gerarchia auto\n\nDonny: nell'UML manca da rappresentare lo sconto, mese per mese (dovrebbe essere legato ad autonuova)\n       - Aggiungere una sorta di elenco, simile a catalogo, ma per i preventivi
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/doc/README.md b/doc/README.md
+--- a/doc/README.md	(revision e5b3f6891ef9393001cf76e4744a9fe9e79dcacd)
++++ b/doc/README.md	(date 1714132757788)
+@@ -1,8 +1,1 @@
+ NOTE:\n
+-Aggiunto un file di tipo .drawio, scaricare estensione Diagrams.net Integration\n
+-Ricordarsi ad ogni modello, un volta definito lo style del nodo salvarlo sullo scratchpad\n
+-
+-Dubbio Optional, Color, Dipendente e gerarchia auto
+-
+-Donny: nell'UML manca da rappresentare lo sconto, mese per mese (dovrebbe essere legato ad autonuova)
+-       - Aggiungere una sorta di elenco, simile a catalogo, ma per i preventivi
+\ No newline at end of file
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_15_04_24,_23_33_[Changes]/shelved.patch
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_15_04_24,_23_33_[Changes]/shelved.patch b/.idea/shelf/Uncommitted_changes_before_Update_at_15_04_24,_23_33_[Changes]/shelved.patch
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_15_04_24,_23_33_[Changes]/shelved.patch	(revision e5b3f6891ef9393001cf76e4744a9fe9e79dcacd)
++++ /dev/null	(revision e5b3f6891ef9393001cf76e4744a9fe9e79dcacd)
+@@ -1,133 +0,0 @@
+-Index: .idea/workspace.xml
+-IDEA additional info:
+-Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+-<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"64212ea7-4dba-458d-912e-a2c9965aa8b9\" name=\"Changes\" comment=\"LEGGERE README&#10;creazione file uml per future progettazioni\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/doc/README.md\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/doc/README.md\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/doc/UMLdiagram.drawio\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/doc/UMLdiagram.drawio\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;andreablushi&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">\n    <option name=\"selectedUrlAndAccountId\">\n      <UrlAndAccount>\n        <option name=\"accountId\" value=\"8f74b8ff-2796-40e0-8781-7ea0b9f5618f\" />\n        <option name=\"url\" value=\"https://github.com/446f6e6e79/ConfiguratoreAuto.git\" />\n      </UrlAndAccount>\n    </option>\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"MavenImportPreferences\">\n    <option name=\"generalSettings\">\n      <MavenGeneralSettings>\n        <option name=\"mavenHomeTypeForPersistence\" value=\"WRAPPER\" />\n      </MavenGeneralSettings>\n    </option>\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 3\n}</component>\n  <component name=\"ProjectId\" id=\"2exihuwl45dPAJEuOVVXBZOSfoh\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\n    <ConfirmationsSetting value=\"1\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;Application.Default.executor&quot;: &quot;Run&quot;,\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\n    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;azul-19&quot;,\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/home/blushi/IdeaProjects/ConfiguratoreAuto/doc&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  },\n  &quot;keyToStringList&quot;: {\n    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [\n      &quot;RELAX-NG&quot;\n    ]\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/doc\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"Default\" type=\"Application\" factoryName=\"Application\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.example.configuratoreauto.Main\" />\n      <module name=\"ConfiguratoreAuto\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"64212ea7-4dba-458d-912e-a2c9965aa8b9\" name=\"Changes\" comment=\"\" />\n      <created>1712852754129</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1712852754129</updated>\n      <workItem from=\"1712852755230\" duration=\"1257000\" />\n      <workItem from=\"1712866304921\" duration=\"505000\" />\n      <workItem from=\"1712866861917\" duration=\"762000\" />\n      <workItem from=\"1712867644093\" duration=\"212000\" />\n      <workItem from=\"1712867870076\" duration=\"831000\" />\n      <workItem from=\"1712920547021\" duration=\"4685000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"Created repository of the project\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1712852795525</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1712852795525</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Created repository of the project\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1712866456942</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1712866456942</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Test di push da intellij e creazione di directory per documenti generali\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1712866516611</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1712866516611</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"test\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1712866695310</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1712866695310</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"test\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1712866908252</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1712866908252</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"LEGGERE README&#10;creazione file uml per future progettazioni\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1712868700102</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1712868700102</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"7\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"Created repository of the project\" />\n    <MESSAGE value=\"Test di push da intellij e creazione di directory per documenti generali\" />\n    <MESSAGE value=\"test\" />\n    <MESSAGE value=\"LEGGERE README&#10;creazione file uml per future progettazioni\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"LEGGERE README&#10;creazione file uml per future progettazioni\" />\n  </component>\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\n    <expand />\n    <select />\n  </component>\n</project>
+-Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+-<+>UTF-8
+-===================================================================
+-diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+---- a/.idea/workspace.xml	(revision 15dd366b307d966ce426f7dd70733c0e01397de3)
+-+++ b/.idea/workspace.xml	(date 1713216700128)
+-@@ -4,10 +4,8 @@
+-     <option name="autoReloadType" value="SELECTIVE" />
+-   </component>
+-   <component name="ChangeListManager">
+--    <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="LEGGERE README&#10;creazione file uml per future progettazioni">
+-+    <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="UML VERSION 1">
+-       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/doc/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/README.md" afterDir="false" />
+--      <change beforePath="$PROJECT_DIR$/doc/UMLdiagram.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/doc/UMLdiagram.drawio" afterDir="false" />
+-     </list>
+-     <option name="SHOW_DIALOG" value="false" />
+-     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+-@@ -24,12 +22,16 @@
+-   <component name="Git.Settings">
+-     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+-   </component>
+--  <component name="GitHubPullRequestSearchHistory">{
+--  &quot;lastFilter&quot;: {
+--    &quot;state&quot;: &quot;OPEN&quot;,
+--    &quot;assignee&quot;: &quot;andreablushi&quot;
+-+  <component name="GitHubPullRequestSearchHistory"><![CDATA[{
+-+  "history": [
+-+    {
+-+      "assignee": "andreablushi"
+-+    }
+-+  ],
+-+  "lastFilter": {
+-+    "assignee": "andreablushi"
+-   }
+--}</component>
+-+}]]></component>
+-   <component name="GithubPullRequestsUISettings">
+-     <option name="selectedUrlAndAccountId">
+-       <UrlAndAccount>
+-@@ -59,30 +61,30 @@
+-     <option name="hideEmptyMiddlePackages" value="true" />
+-     <option name="showLibraryContents" value="true" />
+-   </component>
+--  <component name="PropertiesComponent">{
+--  &quot;keyToString&quot;: {
+--    &quot;Application.Default.executor&quot;: &quot;Run&quot;,
+--    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+--    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+--    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+--    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+--    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;azul-19&quot;,
+--    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+--    &quot;last_opened_file_path&quot;: &quot;/home/blushi/IdeaProjects/ConfiguratoreAuto/doc&quot;,
+--    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+--    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+--    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+--    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+--    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+--    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+--    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+-+  <component name="PropertiesComponent"><![CDATA[{
+-+  "keyToString": {
+-+    "Application.Default.executor": "Run",
+-+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+-+    "RunOnceActivity.ShowReadmeOnStart": "true",
+-+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-+    "git-widget-placeholder": "main",
+-+    "jdk.selected.JAVA_MODULE": "azul-19",
+-+    "kotlin-language-version-configured": "true",
+-+    "last_opened_file_path": "/home/blushi/IdeaProjects/ConfiguratoreAuto/doc",
+-+    "node.js.detected.package.eslint": "true",
+-+    "node.js.detected.package.tslint": "true",
+-+    "node.js.selected.package.eslint": "(autodetect)",
+-+    "node.js.selected.package.tslint": "(autodetect)",
+-+    "nodejs_package_manager_path": "npm",
+-+    "settings.editor.selected.configurable": "settings.sync",
+-+    "vue.rearranger.settings.migration": "true"
+-   },
+--  &quot;keyToStringList&quot;: {
+--    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+--      &quot;RELAX-NG&quot;
+-+  "keyToStringList": {
+-+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+-+      "RELAX-NG"
+-     ]
+-   }
+--}</component>
+-+}]]></component>
+-   <component name="RecentsManager">
+-     <key name="MoveFile.RECENT_KEYS">
+-       <recent name="$PROJECT_DIR$/doc" />
+-@@ -110,7 +112,8 @@
+-       <workItem from="1712866861917" duration="762000" />
+-       <workItem from="1712867644093" duration="212000" />
+-       <workItem from="1712867870076" duration="831000" />
+--      <workItem from="1712920547021" duration="4685000" />
+-+      <workItem from="1712920547021" duration="4875000" />
+-+      <workItem from="1713216493604" duration="207000" />
+-     </task>
+-     <task id="LOCAL-00001" summary="Created repository of the project">
+-       <option name="closed" value="true" />
+-@@ -160,7 +163,15 @@
+-       <option name="project" value="LOCAL" />
+-       <updated>1712868700102</updated>
+-     </task>
+--    <option name="localTasksCounter" value="7" />
+-+    <task id="LOCAL-00007" summary="UML VERSION 1">
+-+      <option name="closed" value="true" />
+-+      <created>1712926208434</created>
+-+      <option name="number" value="00007" />
+-+      <option name="presentableId" value="LOCAL-00007" />
+-+      <option name="project" value="LOCAL" />
+-+      <updated>1712926208434</updated>
+-+    </task>
+-+    <option name="localTasksCounter" value="8" />
+-     <servers />
+-   </component>
+-   <component name="TypeScriptGeneratedFilesManager">
+-@@ -182,7 +193,8 @@
+-     <MESSAGE value="Test di push da intellij e creazione di directory per documenti generali" />
+-     <MESSAGE value="test" />
+-     <MESSAGE value="LEGGERE README&#10;creazione file uml per future progettazioni" />
+--    <option name="LAST_COMMIT_MESSAGE" value="LEGGERE README&#10;creazione file uml per future progettazioni" />
+-+    <MESSAGE value="UML VERSION 1" />
+-+    <option name="LAST_COMMIT_MESSAGE" value="UML VERSION 1" />
+-   </component>
+-   <component name="XSLT-Support.FileAssociations.UIState">
+-     <expand />
+Index: .idea/shelf/Uncommitted_changes_before_Update_at_15_04_24__23_33__Changes_.xml
+===================================================================
+diff --git a/.idea/shelf/Uncommitted_changes_before_Update_at_15_04_24__23_33__Changes_.xml b/.idea/shelf/Uncommitted_changes_before_Update_at_15_04_24__23_33__Changes_.xml
+deleted file mode 100644
+--- a/.idea/shelf/Uncommitted_changes_before_Update_at_15_04_24__23_33__Changes_.xml	(revision e5b3f6891ef9393001cf76e4744a9fe9e79dcacd)
++++ /dev/null	(revision e5b3f6891ef9393001cf76e4744a9fe9e79dcacd)
+@@ -1,4 +0,0 @@
+-<changelist name="Uncommitted_changes_before_Update_at_15_04_24,_23_33_[Changes]" date="1713216822559" recycled="true" deleted="true">
+-  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_04_24,_23_33_[Changes]/shelved.patch" />
+-  <option name="DESCRIPTION" value="Uncommitted changes before Update at 15/04/24, 23:33 [Changes]" />
+-</changelist>
+\ No newline at end of file
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"64212ea7-4dba-458d-912e-a2c9965aa8b9\" name=\"Changes\" comment=\"Update UseCase\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/doc/UMLdiagram.drawio\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/doc/UMLdiagram.drawio\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/doc/schede_di_specifica.txt\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/doc/schede_di_specifica.txt\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/doc/uml_v2.png\" beforeDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/doc/useCase.drawio\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/doc/useCase.drawio\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/doc/usecase_v1.png\" beforeDir=\"false\" />\n    </list>\n    <list id=\"6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2\" name=\"Changes by donny\" comment=\"\" />\n    <list id=\"5a1389f8-12cf-4977-adb2-8318a932ec48\" name=\"Changes by Victo\" comment=\"\" />\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n    <option name=\"UPDATE_TYPE\" value=\"REBASE\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;andreablushi&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">\n    <option name=\"selectedUrlAndAccountId\">\n      <UrlAndAccount>\n        <option name=\"accountId\" value=\"8f74b8ff-2796-40e0-8781-7ea0b9f5618f\" />\n        <option name=\"url\" value=\"https://github.com/446f6e6e79/ConfiguratoreAuto.git\" />\n      </UrlAndAccount>\n    </option>\n  </component>\n  <component name=\"MarkdownSettingsMigration\">\n    <option name=\"stateVersion\" value=\"1\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 3\n}</component>\n  <component name=\"ProjectId\" id=\"2exihuwl45dPAJEuOVVXBZOSfoh\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\n    <ConfirmationsSetting value=\"1\" id=\"Add\" />\n  </component>\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;Application.Default.executor&quot;: &quot;Run&quot;,\n    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,\n    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,\n    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\n    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;azul-19&quot;,\n    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/Users/donny/Documents/GitHub/ConfiguratoreAuto/doc&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,\n    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  },\n  &quot;keyToStringList&quot;: {\n    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [\n      &quot;RELAX-NG&quot;\n    ]\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/doc\" />\n    </key>\n    <key name=\"MoveFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$/doc\" />\n    </key>\n  </component>\n  <component name=\"RunManager\">\n    <configuration name=\"Default\" type=\"Application\" factoryName=\"Application\">\n      <option name=\"MAIN_CLASS_NAME\" value=\"org.example.configuratoreauto.Main\" />\n      <module name=\"ConfiguratoreAuto\" />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"64212ea7-4dba-458d-912e-a2c9965aa8b9\" name=\"Changes\" comment=\"\" />\n      <created>1712852754129</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1712852754129</updated>\n      <workItem from=\"1712852755230\" duration=\"1257000\" />\n      <workItem from=\"1712866304921\" duration=\"505000\" />\n      <workItem from=\"1712866861917\" duration=\"762000\" />\n      <workItem from=\"1712867644093\" duration=\"212000\" />\n      <workItem from=\"1712867870076\" duration=\"831000\" />\n      <workItem from=\"1712920547021\" duration=\"4685000\" />\n      <workItem from=\"1712951335954\" duration=\"1390000\" />\n      <workItem from=\"1713124922614\" duration=\"1729000\" />\n      <workItem from=\"1713127272670\" duration=\"2501000\" />\n      <workItem from=\"1713207188022\" duration=\"4450000\" />\n      <workItem from=\"1713256732538\" duration=\"1879000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"Created repository of the project\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1712852795525</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1712852795525</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Created repository of the project\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1712866456942</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1712866456942</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Test di push da intellij e creazione di directory per documenti generali\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1712866516611</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1712866516611</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"test\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1712866695310</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1712866695310</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"test\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1712866908252</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1712866908252</updated>\n    </task>\n    <task id=\"LOCAL-00006\" summary=\"LEGGERE README&#10;creazione file uml per future progettazioni\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1712868700102</created>\n      <option name=\"number\" value=\"00006\" />\n      <option name=\"presentableId\" value=\"LOCAL-00006\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1712868700102</updated>\n    </task>\n    <task id=\"LOCAL-00007\" summary=\"Update UseCase\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1713295652293</created>\n      <option name=\"number\" value=\"00007\" />\n      <option name=\"presentableId\" value=\"LOCAL-00007\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1713295652294</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"8\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State>\n              <option name=\"CUSTOM_BOOLEAN_PROPERTIES\">\n                <map>\n                  <entry key=\"Show.Git.Branches\" value=\"true\" />\n                </map>\n              </option>\n            </State>\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"Created repository of the project\" />\n    <MESSAGE value=\"Test di push da intellij e creazione di directory per documenti generali\" />\n    <MESSAGE value=\"test\" />\n    <MESSAGE value=\"LEGGERE README&#10;creazione file uml per future progettazioni\" />\n    <MESSAGE value=\"Update UseCase\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Update UseCase\" />\n  </component>\n  <component name=\"XSLT-Support.FileAssociations.UIState\">\n    <expand />\n    <select />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision e5b3f6891ef9393001cf76e4744a9fe9e79dcacd)
++++ b/.idea/workspace.xml	(date 1714132701692)
+@@ -4,16 +4,12 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Update UseCase">
++    <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="New Schede di Specifiche">
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_04_24,_23_33_[Changes]/shelved.patch" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/.idea/shelf/Uncommitted_changes_before_Update_at_15_04_24__23_33__Changes_.xml" beforeDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/doc/UMLdiagram.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/doc/UMLdiagram.drawio" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/doc/schede_di_specifica.txt" beforeDir="false" afterPath="$PROJECT_DIR$/doc/schede_di_specifica.txt" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/doc/uml_v2.png" beforeDir="false" />
+-      <change beforePath="$PROJECT_DIR$/doc/useCase.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/doc/useCase.drawio" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/doc/usecase_v1.png" beforeDir="false" />
+     </list>
+     <list id="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" name="Changes by donny" comment="" />
+-    <list id="5a1389f8-12cf-4977-adb2-8318a932ec48" name="Changes by Victo" comment="" />
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+@@ -58,35 +54,37 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;Application.Default.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;azul-19&quot;,
+-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;/Users/donny/Documents/GitHub/ConfiguratoreAuto/doc&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "Application.Default.executor": "Run",
++    "RunOnceActivity.OpenProjectViewOnStart": "true",
++    "RunOnceActivity.ShowReadmeOnStart": "true",
++    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
++    "git-widget-placeholder": "main",
++    "jdk.selected.JAVA_MODULE": "azul-19",
++    "kotlin-language-version-configured": "true",
++    "last_opened_file_path": "/home/blushi/IdeaProjects/ConfiguratoreAuto/doc/consegna",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "nodejs_package_manager_path": "npm",
++    "settings.editor.selected.configurable": "preferences.pluginManager",
++    "vue.rearranger.settings.migration": "true"
+   },
+-  &quot;keyToStringList&quot;: {
+-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+-      &quot;RELAX-NG&quot;
++  "keyToStringList": {
++    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
++      "RELAX-NG"
+     ]
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
++      <recent name="$PROJECT_DIR$/doc/consegna" />
+       <recent name="$PROJECT_DIR$/doc" />
+     </key>
+     <key name="MoveFile.RECENT_KEYS">
++      <recent name="$PROJECT_DIR$/doc/consegna" />
+       <recent name="$PROJECT_DIR$/doc" />
+     </key>
+   </component>
+@@ -118,6 +116,7 @@
+       <workItem from="1713127272670" duration="2501000" />
+       <workItem from="1713207188022" duration="4450000" />
+       <workItem from="1713256732538" duration="1879000" />
++      <workItem from="1714132401330" duration="301000" />
+     </task>
+     <task id="LOCAL-00001" summary="Created repository of the project">
+       <option name="closed" value="true" />
+@@ -175,7 +174,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1713295652294</updated>
+     </task>
+-    <option name="localTasksCounter" value="8" />
++    <task id="LOCAL-00008" summary="New Schede di Specifiche">
++      <option name="closed" value="true" />
++      <created>1713299366335</created>
++      <option name="number" value="00008" />
++      <option name="presentableId" value="LOCAL-00008" />
++      <option name="project" value="LOCAL" />
++      <updated>1713299366335</updated>
++    </task>
++    <option name="localTasksCounter" value="9" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -204,7 +211,8 @@
+     <MESSAGE value="test" />
+     <MESSAGE value="LEGGERE README&#10;creazione file uml per future progettazioni" />
+     <MESSAGE value="Update UseCase" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Update UseCase" />
++    <MESSAGE value="New Schede di Specifiche" />
++    <option name="LAST_COMMIT_MESSAGE" value="New Schede di Specifiche" />
+   </component>
+   <component name="XSLT-Support.FileAssociations.UIState">
+     <expand />
