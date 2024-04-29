@@ -21,6 +21,7 @@ public class Preventivo implements Serializable {
     private Sede sede;
     private Cliente cliente;
     private Impiegato impiegato;
+    private double valutazione;
     public Preventivo(Date data, Date consegna, StatoPreventivo stato, AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente, Impiegato impiegato){
         this.data = data;
         this.consegna = consegna;
@@ -60,6 +61,10 @@ public class Preventivo implements Serializable {
         return cliente;
     }
 
+    public void setValutazione(double valutazione) {
+        this.valutazione = valutazione;
+    }
+
     public Impiegato getImpiegato() {
         return impiegato;
     }
@@ -78,7 +83,7 @@ public class Preventivo implements Serializable {
             tot += optional.getCosto();
         }
         if(usata!=null && stato!=StatoPreventivo.RICHIESTO){
-            //tot-= valutazione impiegato
+            tot-=valutazione;
         }
         return tot-(tot*acquisto.getScontoPerMese()[data.getMonth()]);
     }
