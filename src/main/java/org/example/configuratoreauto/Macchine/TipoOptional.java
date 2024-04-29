@@ -1,5 +1,7 @@
 package org.example.configuratoreauto.Macchine;
 
-public enum TipoOptional {
+import java.io.Serializable;
+
+public enum TipoOptional implements Serializable {
     colore, interni, vetri, cerchi
 }

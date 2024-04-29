@@ -1,5 +1,7 @@
 package org.example.configuratoreauto.Macchine;
 
-public enum Alimentazione {
+import java.io.Serializable;
+
+public enum Alimentazione implements Serializable{
     DIESEL, BENZINA, IBRIDA, ELETTRICA, METANO, GPL
 }

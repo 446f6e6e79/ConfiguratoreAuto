@@ -1,8 +1,9 @@
 package org.example.configuratoreauto.Macchine;
 
+import java.io.Serializable;
 import java.util.Objects;
 
-public class Dimensione {
+public class Dimensione implements Serializable {
     private double larghezza;
     private double altezza;
     private double lunghezza;

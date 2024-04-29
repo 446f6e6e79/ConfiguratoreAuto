@@ -1,22 +1,25 @@
 package org.example.configuratoreauto.Macchine;
 
+import java.io.Serializable;
 import java.util.HashSet;
 
-public class AutoNuova extends Auto {
+public class AutoNuova extends Auto implements Serializable {
 
     private String descrizione;
     private double costoBase;
-    private double scontoPerMese;
-    private HashSet<Optional> optionals;
-    public AutoNuova(Marca marca, String id, Dimensione dimensione, Motore motore, String descrizione, double costoBase, double scontoPerMese) {
-        super(marca, id, dimensione, motore);
+    //Array di 12 double, rappresentano ogni mese lo scontoApplicato
+    private double [] scontoPerMese;
+    private HashSet<Optional> optionalDisponibili;
+
+    public AutoNuova(Marca marca, String modello, Dimensione dimensione, Motore motore, String descrizione, double costoBase, double [] scontoPerMese) {
+        super(marca, modello, dimensione, motore);
         this.descrizione = descrizione;
         this.costoBase = costoBase;
         this.scontoPerMese = scontoPerMese;
-        this.optionals = new HashSet<>();
+        this.optionalDisponibili = new HashSet<>();
     }
 
     public void addOptional(Optional optional){
-        optionals.add(optional);
+        optionalDisponibili.add(optional);
     }
 }

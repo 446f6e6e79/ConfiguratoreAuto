@@ -1,6 +1,8 @@
 package org.example.configuratoreauto.Macchine;
 
-public class Optional {
+import java.io.Serializable;
+
+public class Optional implements Serializable {
 
     private TipoOptional categoria;
     private String descrizione;

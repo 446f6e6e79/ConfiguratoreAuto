@@ -1,6 +1,8 @@
 package org.example.configuratoreauto.Macchine;
 
-public class Immagine {
+import java.io.Serializable;
+
+public class Immagine implements Serializable{
 
     String path;
     public Immagine(String path){

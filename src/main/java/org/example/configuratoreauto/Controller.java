@@ -55,7 +55,7 @@ public class Controller {
         email.clear();
         password.clear();
 
-        if(userModel.login(emailText, passText)){
+        if(userModel.validation(emailText, passText)){
             responseText.setText("Benvenuto "+ userModel.getCurrentUser().toString());
         }
         else{

@@ -1,6 +1,8 @@
 package org.example.configuratoreauto.Macchine;
 
-public class AutoUsata extends Auto{
+import java.io.Serializable;
+
+public class AutoUsata extends Auto implements Serializable {
 
     private String targa;
     private int km;
