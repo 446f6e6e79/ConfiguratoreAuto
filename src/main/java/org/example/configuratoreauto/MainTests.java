@@ -59,7 +59,6 @@ public class MainTests {
 
         System.out.println("Get auto by brand: brand = Porche" +catalogo.getAutoByBrand(Marca.Porsche));
         System.out.println("Get auto by brand: brand = BMW" +catalogo.getAutoByBrand(Marca.BMW));
-        System.out.println("Get auto by brand: brand = Porche" +catalogo.(Marca.Porsche));
 
 
     }

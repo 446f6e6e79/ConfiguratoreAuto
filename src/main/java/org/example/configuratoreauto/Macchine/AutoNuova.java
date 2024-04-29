@@ -19,6 +19,14 @@ public class AutoNuova extends Auto implements Serializable {
         this.optionalDisponibili = new HashSet<>();
     }
 
+    public double getCostoBase() {
+        return costoBase;
+    }
+
+    public double[] getScontoPerMese() {
+        return scontoPerMese;
+    }
+
     public void addOptional(Optional optional){
         optionalDisponibili.add(optional);
     }
