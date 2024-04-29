@@ -46,7 +46,7 @@
             return super.addData(newCliente);
         }
 
-        public boolean login(String email, String password){
+        public boolean validation(String email, String password){
             Persona loginData = new Persona(email, password);
 
             for(Persona p: data){

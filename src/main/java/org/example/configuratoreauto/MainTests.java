@@ -20,23 +20,23 @@ public class MainTests {
 
         boolean r;
         //test login
-        r = u1.login("", "");
+        r = u1.validation("", "");
         System.out.println("TEST: login with empty string: " + r);
 
         //r = u1.login(null, null);
         //System.out.println("TEST: login with null:" + r);
 
-        r = u1.login("guest", "guest");
+        r = u1.validation("guest", "guest");
         System.out.println("TEST: login with existing user: " + r);
 
         r = (u1.getCurrentUser() instanceof Cliente);
         System.out.println("TEST: user logged in is of type Cliente: "+r);
 
-        r = u1.login("guest", "Guest");
+        r = u1.validation("guest", "Guest");
         System.out.println("TEST: login with existing mail, but wrong password: " + r);
 
         r = u1.addData(new Cliente("provaSegretario@gmail.com", "4321", "", ""));
-        System.out.println("TEST: registering a new user, with elready existing mail: " + r);
+        System.out.println("TEST: registering a new user, with already existing mail: " + r);
 
     }
 }
