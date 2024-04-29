@@ -24,4 +24,17 @@ public class Optional implements Serializable {
     public String getDescrizione() {
         return descrizione;
     }
+
+    @Override
+    public int hashCode(){
+        return categoria.hashCode() ^ descrizione.hashCode() ^ (int)costo;
+    }
+
+    @Override
+    public boolean equals(Object o){
+        return o instanceof Optional opt &&
+                this.categoria == opt.categoria &&
+                this.costo == opt.costo &&
+                this.descrizione.equals(opt.descrizione);
+    }
 }

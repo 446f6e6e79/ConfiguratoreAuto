@@ -22,10 +22,9 @@ public class Sede implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Sede sede = (Sede) o;
-        return Objects.equals(nome, sede.nome) && Objects.equals(indirizzo, sede.indirizzo);
+        return o instanceof Sede s &&
+                this.indirizzo.equals(s.indirizzo) &&
+                this.nome.equals(s.nome);
     }
 
     @Override

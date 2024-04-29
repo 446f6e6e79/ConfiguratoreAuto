@@ -4,14 +4,14 @@ import org.example.configuratoreauto.Macchine.AutoNuova;
 import org.example.configuratoreauto.Macchine.AutoUsata;
 import org.example.configuratoreauto.Macchine.Optional;
 import org.example.configuratoreauto.Utenti.Cliente;
-import org.example.configuratoreauto.Utenti.Impiegato;
 
 import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 
 public class Preventivo implements Serializable {
-
     private Date data;
     private Date consegna;
     private StatoPreventivo stato;
@@ -20,31 +20,53 @@ public class Preventivo implements Serializable {
     private HashSet<Optional> optionals;
     private Sede sede;
     private Cliente cliente;
-    private Impiegato impiegato;
     private double valutazione;
-    public Preventivo(Date data, Date consegna, StatoPreventivo stato, AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente, Impiegato impiegato){
-        this.data = data;
-        this.consegna = consegna;
-        this.stato = stato;
+    public Preventivo(AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente){
+        this.data = new Date(); //Recupera la data attuale
+        //Se non è inserita un auto usata, il preventivo è già finalizzato
+        if(usata == null){
+            this.stato = StatoPreventivo.FINALIZZATO;
+        }
+        else{
+            //Altrimenti il preventivo dovrà essere finalizzato da un impiegato
+            this.stato = StatoPreventivo.RICHIESTO;
+        }
         this.usata = usata;
         this.acquisto = acquisto;
         this.sede = sede;
-        this.impiegato = impiegato;
         this.cliente = cliente;
+        setConsegna();
     }
 
 
     public void checkOptional(){
 
     }
-    public Date getConsegna() {
-        return consegna;
+    /*
+    *  Calcola la data di consegna effettiva della macchina.
+    *  La data è calcolata come:
+    *     - data base + 1 mese + (10 giorni * numeroOptional)
+    * */
+    public void setConsegna() {
+        Calendar dataDiConsegna = Calendar.getInstance();
+        dataDiConsegna.setTime(data);
+        dataDiConsegna.add(Calendar.MONTH, 1);
+        dataDiConsegna.add(Calendar.DAY_OF_MONTH, 10 * optionals.size());
+        this.consegna = dataDiConsegna.getTime();
     }
 
-    public Date getData() {
-        return data;
+    //Ritorna la data nel formato DD/MM/YYYY
+    private String getDataAsString(Date d){
+        return new SimpleDateFormat("dd-MM-yyyy").format(new Date());
     }
 
+    public String getDataPreventivoAsString(){
+        return getDataAsString(this.data);
+    }
+
+    public String getDataConsegnaAsString(){
+        return getDataAsString(this.consegna);
+    }
     public StatoPreventivo getStato() {
         return stato;
     }
@@ -65,10 +87,6 @@ public class Preventivo implements Serializable {
         this.valutazione = valutazione;
     }
 
-    public Impiegato getImpiegato() {
-        return impiegato;
-    }
-
     public Sede getSede() {
         return sede;
     }
@@ -77,6 +95,10 @@ public class Preventivo implements Serializable {
         this.stato = stato;
     }
 
+    /*Calcola il costo Totale del Preventivo
+    * Il costo è calcolato come:
+    *   - costo di base + costo Optional - valutazione usato - sconto
+    *   - */
     public double costoTotale(){
         double tot = acquisto.getCostoBase();
         for(Optional optional : this.optionals){

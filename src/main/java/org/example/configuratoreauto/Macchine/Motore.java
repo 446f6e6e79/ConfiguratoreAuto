@@ -21,10 +21,11 @@ public class Motore implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Motore motore = (Motore) o;
-        return potenzaKW == motore.potenzaKW && cilindrata == motore.cilindrata && Double.compare(consumi, motore.consumi) == 0 && alimentazione == motore.alimentazione;
+        return o instanceof Motore other &&
+                this.alimentazione == other.alimentazione &&
+                this.potenzaKW == other.potenzaKW &&
+                this.consumi == other.consumi &&
+                this.cilindrata == other.cilindrata;
     }
 
     @Override

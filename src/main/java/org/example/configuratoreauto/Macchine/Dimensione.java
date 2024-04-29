@@ -48,10 +48,12 @@ public class Dimensione implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Dimensione that = (Dimensione) o;
-        return Double.compare(larghezza, that.larghezza) == 0 && Double.compare(altezza, that.altezza) == 0 && Double.compare(lunghezza, that.lunghezza) == 0 && Double.compare(peso, that.peso) == 0 && Double.compare(volumeBagagliaglio, that.volumeBagagliaglio) == 0;
+        return o instanceof Dimensione other &&
+                this.larghezza == other.larghezza &&
+                this.altezza == other.larghezza &&
+                this.peso == other.peso &&
+                this.volumeBagagliaglio == other.volumeBagagliaglio;
+
     }
 
     @Override

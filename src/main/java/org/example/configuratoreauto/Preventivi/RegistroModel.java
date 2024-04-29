@@ -15,12 +15,13 @@ public class RegistroModel extends AbstractModel<Preventivo> {
 
     private static RegistroModel instance;
 
-    //Percorso al file contenete le informazioni riguardanti gli utenti
+    //Percorso al file contenete le informazioni riguardanti i preventivi
     private static final String REGISTRO_PATH = "src/main/resources/data/registro.ser";
 
     private RegistroModel() {
         super();
     }
+
     public static RegistroModel getInstance() {
         if (instance == null) {
             instance = new RegistroModel();
@@ -33,31 +34,31 @@ public class RegistroModel extends AbstractModel<Preventivo> {
         return REGISTRO_PATH;
     }
 
-    public ArrayList<Preventivo> getAllPreventivo(){
+    public ArrayList<Preventivo> getAllPreventivi(){
         return super.data;
     }
 
-    public ArrayList<Preventivo> getPreventivoByBrand(Marca brand){
+    public ArrayList<Preventivo> getPreventiviByBrand(Marca brand){
         return super.data.stream()
                 .filter(t -> t.getAcquisto().getMarca() == brand)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public ArrayList<Preventivo> getPreventivoByCliente(Cliente cliente){
+    public ArrayList<Preventivo> getPreventiviByCliente(Cliente cliente){
         return super.data.stream()
                 .filter(t -> t.getCliente().equals(cliente))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public ArrayList<Preventivo> getPreventivoByImpiegato(Impiegato impiegato){
+    public ArrayList<Preventivo> getPreventiviBySede(Sede sede){
         return super.data.stream()
-                .filter(t -> t.getImpiegato().equals(impiegato))
+                .filter(t -> t.getSede().equals(sede))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public ArrayList<Preventivo> getPreventivoBySede(Sede sede){
+    public ArrayList<Preventivo> getPreventiviByStato(StatoPreventivo stato){
         return super.data.stream()
-                .filter(t -> t.getSede().equals(sede))
+                .filter(t -> t.getStato() == stato)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 }

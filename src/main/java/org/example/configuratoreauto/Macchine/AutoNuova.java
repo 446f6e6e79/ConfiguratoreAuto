@@ -27,6 +27,9 @@ public class AutoNuova extends Auto implements Serializable {
         return scontoPerMese;
     }
 
+    public boolean equals(Object o){
+        return super.equals(o);
+    }
     public void addOptional(Optional optional){
         optionalDisponibili.add(optional);
     }

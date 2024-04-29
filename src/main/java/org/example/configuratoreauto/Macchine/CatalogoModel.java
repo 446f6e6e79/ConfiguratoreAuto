@@ -9,7 +9,7 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
 
     private static CatalogoModel instance;
 
-    //Percorso al file contenete le informazioni riguardanti gli utenti
+    //Percorso al file contenete le informazioni riguardante il catalogo
     private static final String CATATLOGO_PATH = "src/main/resources/data/catalogo.ser";
 
     private CatalogoModel() {

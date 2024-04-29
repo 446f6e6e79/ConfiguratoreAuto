@@ -54,9 +54,7 @@ public class MainTests {
         AutoNuova a1 = new AutoNuova(Marca.Porsche, "911 GT3 RS", dim911, motore911, descrizione911, 258536, scontoPerMese);
 
         catalogo.addData(a1);
-        catalogo.uploadData();
-
-
+        
         System.out.println("Get auto by brand: brand = Porche" +catalogo.getAutoByBrand(Marca.Porsche));
         System.out.println("Get auto by brand: brand = BMW" +catalogo.getAutoByBrand(Marca.BMW));
 
