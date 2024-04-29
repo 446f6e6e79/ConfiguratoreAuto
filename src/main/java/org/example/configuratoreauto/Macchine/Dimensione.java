@@ -1,5 +1,7 @@
 package org.example.configuratoreauto.Macchine;
 
+import java.util.Objects;
+
 public class Dimensione {
     private double larghezza;
     private double altezza;
@@ -41,6 +43,19 @@ public class Dimensione {
 
     public double getVolumeBagagliaglio() {
         return volumeBagagliaglio;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Dimensione that = (Dimensione) o;
+        return Double.compare(larghezza, that.larghezza) == 0 && Double.compare(altezza, that.altezza) == 0 && Double.compare(lunghezza, that.lunghezza) == 0 && Double.compare(peso, that.peso) == 0 && Double.compare(volumeBagagliaglio, that.volumeBagagliaglio) == 0;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(larghezza, altezza, lunghezza, peso, volumeBagagliaglio);
     }
 
     public String toString() {

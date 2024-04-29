@@ -1,19 +1,22 @@
 package org.example.configuratoreauto.Macchine;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.util.ArrayList;
+
+
 
 public abstract class Auto implements Serializable{
     private Marca marca;
-    private String id;
+    private String modello;
     private Dimensione dimensione;
     private Motore motore;
-    private HashSet<Immagine> immagini;
-    public Auto(Marca marca, String id, Dimensione dimensione, Motore motore){
+    private ArrayList<Immagine> immagini;
+    public Auto(Marca marca, String modello, Dimensione dimensione, Motore motore){
         this.marca = marca;
-        this.id = id;
+        this.modello = modello;
         this.dimensione = dimensione;
         this.motore = motore;
+        this.immagini = new ArrayList<>();
     }
 
     protected void addImage(Immagine img){
@@ -22,18 +25,21 @@ public abstract class Auto implements Serializable{
     /*
     *   Due oggetti della classe auto sono considerabili equals se condividono stesso id
     * */
-    @Override
+
     public boolean equals(Object o){
         return o instanceof Auto other &&
-                this.id.equals(other.id);
+                this.marca.equals(other.marca) &&
+                this.modello.equals(other.modello) &&
+                this.dimensione.equals(other.dimensione) &&
+                this.motore.equals(other.motore);
     }
 
     public Marca getMarca() {
         return marca;
     }
 
-    public String getId() {
-        return id;
+    public String getModello() {
+        return modello;
     }
 
     public Dimensione getDimensione() {
@@ -47,11 +53,11 @@ public abstract class Auto implements Serializable{
     //Ridefiniamo il metodo hashCode, coerente con il metodo equals, in modo da poter inserire gli oggetti persona in un hashSet
     @Override
     public int hashCode(){
-        return id.hashCode();
+        return motore.hashCode()+ dimensione.hashCode() + marca.hashCode() + modello.hashCode();
     }
 
     public String toString(){
-        return this.id;
+        return this.modello;
     }
 
 }

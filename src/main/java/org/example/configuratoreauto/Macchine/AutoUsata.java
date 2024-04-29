@@ -10,4 +10,9 @@ public class AutoUsata extends Auto{
         this.targa=targa;
         this.km=km;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o) && this.targa.equals(((AutoUsata) o).targa);
+    }
 }
