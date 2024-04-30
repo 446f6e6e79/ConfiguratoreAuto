@@ -34,6 +34,25 @@ public class RegistroModel extends AbstractModel<Preventivo> {
         return REGISTRO_PATH;
     }
 
+    /*
+    *   Override del metodo addData della classe AbstractModel:
+    *       Il seguente metodo permette di gestire, durante la fase di caricamento del model
+    *       l'aggiornamento dello stato del preventivo autonomamente
+    * */
+    @Override
+    protected boolean addData(Preventivo newPreventivo){
+        if(!data.contains(newPreventivo)){
+            if(newPreventivo.isScaduto()){
+                newPreventivo.changeStato(StatoPreventivo.SCADUTO);
+            }
+            if(newPreventivo.isDisponibileAlRitiro()){
+                newPreventivo.changeStato(StatoPreventivo.DISPONIBILE_AL_RITIRO);
+            }
+            return data.add(newPreventivo);
+        }
+        return false;
+    }
+
     public ArrayList<Preventivo> getAllPreventivi(){
         return super.data;
     }
@@ -61,20 +80,4 @@ public class RegistroModel extends AbstractModel<Preventivo> {
                 .filter(t -> t.getStato() == stato)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
-
-    /*
-    Questo metodo permette ad ogni lettura nel registro di aggiornare lo stato di scadenza
-     */
-    @Override
-    protected boolean addData(Preventivo newPreventivo){
-        if(!data.contains(newPreventivo)){
-            if(newPreventivo.isScaduto()){
-                newPreventivo.changeStato(StatoPreventivo.SCADUTO);
-            }
-            return data.add(newPreventivo);
-        }
-        return false;
-    }
-
-
 }

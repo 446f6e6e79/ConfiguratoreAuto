@@ -49,7 +49,7 @@ public class LoginController {
 
     @FXML
     protected void onGuestClick() {
-        setPage("clienteView/homepage");
+        setPage("clienteView/homepageCliente");
     }
 
     @FXML
@@ -59,19 +59,19 @@ public class LoginController {
         email.clear();
         password.clear();
         if(userModel.validation(emailText, passText)){
-            responseText.setText("Benvenuto "+ userModel.getCurrentUser().toString());
-            if(userModel.getCurrentUser() instanceof Cliente){
-                setPage("clienteView/homepage");
+            if (userModel.getCurrentUser() instanceof Cliente) {
+                setPage("clienteView/homepageCliente");
             }
-            if(userModel.getCurrentUser() instanceof Impiegato){
+            if (userModel.getCurrentUser() instanceof Impiegato) {
                 setPage("impiegatoView/homepage");
             }
-            if(userModel.getCurrentUser() instanceof Segretario){
+            if (userModel.getCurrentUser() instanceof Segretario) {
                 setPage("segretarioView/homepage");
             }
         }
         else{
             responseText.setText("Email o Password errate");
+
         }
     }
 }

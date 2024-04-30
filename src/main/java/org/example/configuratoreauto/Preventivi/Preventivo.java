@@ -24,10 +24,12 @@ public class Preventivo implements Serializable {
     private double valutazione;
     public Preventivo(AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente){
         this.data = new Date(); //Recupera la data attuale
+
         //Se non è inserita un auto usata, il preventivo è già finalizzato
         if(usata == null){
             this.stato = StatoPreventivo.FINALIZZATO;
-            setScadenza();//Se finalizzato allora setta la scadenza
+            //Setta la data di consegna a 20 giorni dalla richiesta
+            setScadenza();
         }
         else{
             //Altrimenti il preventivo dovrà essere finalizzato da un impiegato
@@ -62,7 +64,7 @@ public class Preventivo implements Serializable {
     }
 
     /*
-    Verifica che il preventivo non sia scaduto. Si ritiene scaduto da 20 giorni dalla finalizzazione
+        Verifica che il preventivo non sia scaduto. Un preventivo è scaduto dopo 20 giorni dalla finalizzazione
      */
     public boolean isScaduto(){
         if((new Date()).after(scadenza)){
@@ -71,7 +73,15 @@ public class Preventivo implements Serializable {
         return false;
     }
 
-
+    /*
+    *   Verifica se la data di consena è passata. In tal caso dovrà essere cambiato lo stato del preventivo
+    * */
+    public boolean isDisponibileAlRitiro(){
+        if((new Date()).after(scadenza)){
+            return true;
+        }
+        return false;
+    }
     //Ritorna la data nel formato DD/MM/YYYY
     private String getDataAsString(Date d){
         return new SimpleDateFormat("dd-MM-yyyy").format(new Date());
@@ -83,6 +93,10 @@ public class Preventivo implements Serializable {
 
     public String getDataConsegnaAsString(){
         return getDataAsString(this.consegna);
+    }
+
+    public String getDataScadenzaAsString(){
+        return getDataAsString(this.scadenza);
     }
     public StatoPreventivo getStato() {
         return stato;
@@ -112,7 +126,8 @@ public class Preventivo implements Serializable {
     Modifica lo stato del preventivo, attuandone alcune verifiche
      */
     public void changeStato(StatoPreventivo stato) {
-        if(stato.equals(StatoPreventivo.FINALIZZATO)){//Se il preventivo viene finalizzato viene impostata la scadenza
+        if(stato.equals(StatoPreventivo.FINALIZZATO)){
+            //Se il preventivo viene finalizzato viene impostata la scadenza a 20 giorni dalla data attuale
             setScadenza();
         }
         this.stato = stato;
@@ -121,7 +136,7 @@ public class Preventivo implements Serializable {
     /*Calcola il costo Totale del Preventivo
     * Il costo è calcolato come:
     *   - costo di base + costo Optional - valutazione usato - sconto
-    *   - */
+    */
     public double costoTotale(){
         double tot = acquisto.getCostoBase();
         for(Optional optional : this.optionals){

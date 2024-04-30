@@ -14,4 +14,8 @@ public class Cliente extends Persona implements Serializable {
     public String toString(){
         return super.toString() + ", nome: "+name;
     }
+
+    public String getName(){
+        return this.name;
+    }
 }
