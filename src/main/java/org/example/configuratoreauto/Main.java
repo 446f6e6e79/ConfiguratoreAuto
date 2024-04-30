@@ -12,23 +12,20 @@ public class Main extends Application {
     private static Stage stage;
     @Override
     public void start(Stage primaryStage) throws Exception {
-        Parent root = FXMLLoader.load(getClass().getResource("structure.fxml"));
-        primaryStage.setTitle("JavaFX App with FXML and CSS");
-        Scene scene = new Scene(root);
-        scene.getStylesheets().add(getClass().getResource("style.css").toExternalForm());
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        userModel = UserModel.getInstance();
+
+        UserModel model = UserModel.getInstance();
+        stage = primaryStage;
+        setPage("loginPage");
+        stage.show();
     }
 
     public static void main(String[] args) {
         launch(args);
-
         //Once the program is closed, whole the data, saved locally, is saved to the files
         closeModels();
     }
 
-    private static void setPage(String pageName) {
+    public static void setPage(String pageName) {
         String fxmlFile = pageName + ".fxml";
         try {
             Parent root = FXMLLoader.load(Main.class.getResource(fxmlFile));

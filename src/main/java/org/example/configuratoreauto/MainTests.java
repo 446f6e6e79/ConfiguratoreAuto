@@ -13,8 +13,8 @@ public class MainTests {
         u1.registraCliente(new Cliente("davidedona@gmail.com", "1234", "Davide", "Donà"));
         u1.registraCliente(new Cliente("andreablushi@gmail.com", "1234", "Andrea", "Blushi"));
         u1.registraCliente(new Cliente("ojogvictor@gmail.com", "1234", "Victor", "Ojog"));
-        u1.addData(new Segretario("provaSegretario@gmail.com", "1234"));
-        u1.addData(new Impiegato("provaImpiegato@gmail.com", "1234"));
+        u1.addData(new Segretario("segretario@gmail.com", "1234"));
+        u1.addData(new Impiegato("impiegato@gmail.com", "1234"));
         u1.uploadData();
 
         System.out.println("TESTING FOR THE USER MODEL:" +
