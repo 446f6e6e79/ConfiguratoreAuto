@@ -40,7 +40,7 @@ public abstract class AbstractModel<T1> {
             //Oggetto temporaneo, rappresenta il singolo oggetto, letto dal file
             Object tempObj;
             while ((tempObj = objectInput.readObject()) != null) {
-                data.add((T1) tempObj);
+                this.addData((T1) tempObj);
             }
         }
         //Terminata la lettura dal file. Stampa la lista degli utenti a video, per debug

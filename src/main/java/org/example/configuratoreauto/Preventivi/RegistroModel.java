@@ -61,4 +61,20 @@ public class RegistroModel extends AbstractModel<Preventivo> {
                 .filter(t -> t.getStato() == stato)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
+
+    /*
+    Questo metodo permette ad ogni lettura nel registro di aggiornare lo stato di scadenza
+     */
+    @Override
+    protected boolean addData(Preventivo newPreventivo){
+        if(!data.contains(newPreventivo)){
+            if(newPreventivo.isScaduto()){
+                newPreventivo.changeStato(StatoPreventivo.SCADUTO);
+            }
+            return data.add(newPreventivo);
+        }
+        return false;
+    }
+
+
 }

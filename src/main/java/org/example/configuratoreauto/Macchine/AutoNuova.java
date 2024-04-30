@@ -23,10 +23,14 @@ public class AutoNuova extends Auto implements Serializable {
         return costoBase;
     }
 
+    public HashSet<Optional> getOptionalDisponibili() {
+        return optionalDisponibili;
+    }
     public double[] getScontoPerMese() {
         return scontoPerMese;
     }
 
+    @Override
     public boolean equals(Object o){
         return super.equals(o);
     }

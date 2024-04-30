@@ -20,12 +20,14 @@ public class Preventivo implements Serializable {
     private HashSet<Optional> optionals;
     private Sede sede;
     private Cliente cliente;
+    private Date scadenza;
     private double valutazione;
     public Preventivo(AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente){
         this.data = new Date(); //Recupera la data attuale
         //Se non è inserita un auto usata, il preventivo è già finalizzato
         if(usata == null){
             this.stato = StatoPreventivo.FINALIZZATO;
+            setScadenza();//Se finalizzato allora setta la scadenza
         }
         else{
             //Altrimenti il preventivo dovrà essere finalizzato da un impiegato
@@ -38,10 +40,6 @@ public class Preventivo implements Serializable {
         setConsegna();
     }
 
-
-    public void checkOptional(){
-
-    }
     /*
     *  Calcola la data di consegna effettiva della macchina.
     *  La data è calcolata come:
@@ -54,6 +52,25 @@ public class Preventivo implements Serializable {
         dataDiConsegna.add(Calendar.DAY_OF_MONTH, 10 * optionals.size());
         this.consegna = dataDiConsegna.getTime();
     }
+
+    //Imposta la data di scadenza effettiva dalla data attuale
+    public void setScadenza() {
+        Calendar scadenza = Calendar.getInstance();
+        scadenza.setTime(new Date());
+        scadenza.add(Calendar.DAY_OF_MONTH, 20);
+        this.scadenza = scadenza.getTime();
+    }
+
+    /*
+    Verifica che il preventivo non sia scaduto. Si ritiene scaduto da 20 giorni dalla finalizzazione
+     */
+    public boolean isScaduto(){
+        if((new Date()).after(scadenza)){
+            return true;
+        }
+        return false;
+    }
+
 
     //Ritorna la data nel formato DD/MM/YYYY
     private String getDataAsString(Date d){
@@ -91,7 +108,13 @@ public class Preventivo implements Serializable {
         return sede;
     }
 
+    /*
+    Modifica lo stato del preventivo, attuandone alcune verifiche
+     */
     public void changeStato(StatoPreventivo stato) {
+        if(stato.equals(StatoPreventivo.FINALIZZATO)){//Se il preventivo viene finalizzato viene impostata la scadenza
+            setScadenza();
+        }
         this.stato = stato;
     }
 
