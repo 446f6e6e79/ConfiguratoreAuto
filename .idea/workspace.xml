@@ -6,11 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/AbstractModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/AbstractModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoNuova.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoNuova.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/RegistroModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/RegistroModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/doc/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/Marca.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/Marca.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/MainTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/MainTests.java" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
     <list id="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" name="Changes by donny" comment="" />
@@ -184,7 +182,7 @@
       <workItem from="1714381056387" duration="3338000" />
       <workItem from="1714387227397" duration="457000" />
       <workItem from="1714421649018" duration="2710000" />
-      <workItem from="1714456943889" duration="2762000" />
+      <workItem from="1714456943889" duration="4724000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />
