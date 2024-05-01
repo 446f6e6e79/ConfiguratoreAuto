@@ -73,7 +73,7 @@ public abstract class AbstractModel<T1> {
         }
         return false;
     }
-    private void printData() {
+    public void printData() {
         for(T1 elem: data){
             System.out.println(elem);
         }

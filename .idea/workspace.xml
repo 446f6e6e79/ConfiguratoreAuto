@@ -6,15 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/ClienteController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/ClienteController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/RegistroModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/RegistroModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/StatoPreventivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/StatoPreventivo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Utenti/Cliente.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Utenti/Cliente.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Utenti/Persona.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Utenti/Persona.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/userData.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/userData.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/homepage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/homepageCliente.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/AbstractModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/AbstractModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/MainTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/MainTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Utenti/UserModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Utenti/UserModel.java" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
     <list id="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" name="Changes by donny" comment="" />
@@ -29,6 +23,7 @@
         <option value="editable-svg" />
         <option value="Class" />
         <option value="Enum" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -72,39 +67,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.Default.executor&quot;: &quot;Run&quot;,
-    &quot;Application.MainTests.executor&quot;: &quot;Run&quot;,
-    &quot;Application.TestOfModels.executor&quot;: &quot;Run&quot;,
-    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
-    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
-    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;azul-19&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/home/blushi/IdeaProjects/ConfiguratoreAuto/src/main/resources/org/example/configuratoreauto/clienteView&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;MavenSettings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.Default.executor": "Run",
+    "Application.MainTests.executor": "Run",
+    "Application.TestOfModels.executor": "Run",
+    "Downloaded.Files.Path.Enabled": "true",
+    "JUnit.ALLTests.executor": "Run",
+    "JUnit.FullTest.executor": "Run",
+    "JUnit.TestUsers.executor": "Run",
+    "JUnit.UserModelTest.getCurrentUser.executor": "Run",
+    "Repository.Attach.Annotations": "false",
+    "Repository.Attach.JavaDocs": "false",
+    "Repository.Attach.Sources": "false",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "git-widget-placeholder": "main",
+    "jdk.selected.JAVA_MODULE": "azul-19",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/home/blushi/IdeaProjects/ConfiguratoreAuto/src/main/resources/org/example/configuratoreauto/clienteView",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
-      &quot;RELAX-NG&quot;
+  "keyToStringList": {
+    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
+      "RELAX-NG"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView" />
@@ -119,16 +120,23 @@
       <recent name="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto" />
       <recent name="$PROJECT_DIR$/doc" />
     </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="org" />
       <recent name="org.example.configuratoreauto" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="org.example.configuratoreauto.Utenti" />
+      <recent name="org.example.configuratoreauto.Preventivi" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="org.example.configuratoreauto.Controllers" />
       <recent name="org.example.configuratoreauto.Macchine" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Default">
+  <component name="RunManager" selected="JUnit.PreventiviTest">
     <configuration name="Default" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.example.configuratoreauto.Main" />
       <module name="ConfiguratoreAuto" />
@@ -136,16 +144,33 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestOfModels" type="Application" factoryName="Application">
-      <option name="MAIN_CLASS_NAME" value="org.example.configuratoreauto.MainTests" />
+    <configuration name="PreventiviTest" type="JUnit" factoryName="JUnit" activateToolWindowBeforeRun="false">
       <module name="ConfiguratoreAuto" />
+      <option name="PACKAGE_NAME" value="org.example.configuratoreauto.Preventivi" />
+      <option name="MAIN_CLASS_NAME" value="org.example.configuratoreauto.Preventivi.PreventiviTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="wholeProject" />
+      </option>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="TestUsers" type="JUnit" factoryName="JUnit">
+      <module name="ConfiguratoreAuto" />
+      <option name="PACKAGE_NAME" value="org.example.configuratoreauto.Utenti" />
+      <option name="MAIN_CLASS_NAME" value="org.example.configuratoreauto.Utenti.UserModelTest" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <list>
       <item itemvalue="Application.Default" />
-      <item itemvalue="Application.TestOfModels" />
+      <item itemvalue="JUnit.TestUsers" />
+      <item itemvalue="JUnit.PreventiviTest" />
     </list>
   </component>
   <component name="SharedIndexes">
@@ -193,7 +218,8 @@
       <workItem from="1714387227397" duration="457000" />
       <workItem from="1714421649018" duration="2710000" />
       <workItem from="1714456943889" duration="7474000" />
-      <workItem from="1714466158831" duration="1672000" />
+      <workItem from="1714466158831" duration="2221000" />
+      <workItem from="1714546872904" duration="4152000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />

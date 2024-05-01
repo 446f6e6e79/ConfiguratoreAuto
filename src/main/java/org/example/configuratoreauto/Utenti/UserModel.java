@@ -47,12 +47,14 @@
         }
 
         public boolean validation(String email, String password){
-            Persona loginData = new Persona(email, password);
+            if(email != null && password != null) {
 
-            for(Persona p: data){
-                if(p.controlloCredenziali(loginData)){
-                    currentUser = p;
-                    return true;
+                Persona loginData = new Persona(email, password);
+                for (Persona p : data) {
+                    if (p.controlloCredenziali(loginData)) {
+                        currentUser = p;
+                        return true;
+                    }
                 }
             }
             //Non è stato trovato alcun utente con quelle credenziali

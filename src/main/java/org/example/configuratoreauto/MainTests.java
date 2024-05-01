@@ -1,6 +1,8 @@
 package org.example.configuratoreauto;
 
 import org.example.configuratoreauto.Macchine.*;
+import org.example.configuratoreauto.Preventivi.Preventivo;
+import org.example.configuratoreauto.Preventivi.RegistroModel;
 import org.example.configuratoreauto.Utenti.*;
 
 import java.util.ArrayList;
@@ -8,45 +10,14 @@ import java.util.ArrayList;
 public class MainTests {
     public static void main(String[] args) {
         UserModel u1 = (UserModel) UserModel.getInstance();
+        RegistroModel r = RegistroModel.getInstance();
+        CatalogoModel catalogo = CatalogoModel.getInstance();
 
-        u1.registraCliente(new Cliente("guest", "guest", "Prova", "Prova"));
-        u1.registraCliente(new Cliente("davidedona@gmail.com", "1234", "Davide", "Donà"));
-        u1.registraCliente(new Cliente("andreablushi@gmail.com", "1234", "Andrea", "Blushi"));
-        u1.registraCliente(new Cliente("ojogvictor@gmail.com", "1234", "Victor", "Ojog"));
-        u1.addData(new Segretario("segretario@gmail.com", "1234"));
-        u1.addData(new Impiegato("impiegato@gmail.com", "1234"));
-        u1.uploadData();
-
-        System.out.println("TESTING FOR THE USER MODEL:" +
-                "\n\tTRUE: user logged in / registered" +
-                "\n\tFALSE:user not logged in/ not registered\n");
-
-        boolean r;
-        //test login
-
-        r = u1.validation("", "");
-        System.out.println("TEST: login with empty string: " + r +" -EXPECTED FALSE");
-
-        //r = u1.login(null, null);
-        //System.out.println("TEST: login with null:" + r);
-
-        r = u1.validation("guest", "guest");
-        System.out.println("TEST: login with existing user: " + r +" -EXPECTED FALSE");
-
-
-        r = (u1.getCurrentUser() instanceof Cliente);
-        System.out.println("TEST: user logged in is of type Cliente: "+r);
-
-        r = u1.validation("guest", "Guest");
-        System.out.println("TEST: login with existing mail, but wrong password: " + r);
-
-        r = u1.addData(new Cliente("provaSegretario@gmail.com", "4321", "", ""));
-        System.out.println("TEST: registering a new user, with already existing mail: " + r);
-
-
+        u1.validation("davidedona@gmail.com", "1234");
+        //Manca la sede
+        //r.addData(new Preventivo(null, catalogo.getAllAuto().get(0), , u1.getCurrentUser()));
 
         /*Test for the CATALOGO*/
-        CatalogoModel catalogo = CatalogoModel.getInstance();
         Dimensione dim911 = new Dimensione(1.90, 1.32, 4.57, 1525, 0);
         Motore motore911 = new Motore(Alimentazione.BENZINA, 386, 3966,13.4);
         String descrizione911 = "Macchina molto bella";
