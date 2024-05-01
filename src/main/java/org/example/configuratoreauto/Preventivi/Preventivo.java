@@ -28,7 +28,7 @@ public class Preventivo implements Serializable {
         //Se non è inserita un auto usata, il preventivo è già finalizzato
         if(usata == null){
             this.stato = StatoPreventivo.FINALIZZATO;
-            //Setta la data di consegna a 20 giorni dalla richiesta
+            //Setta la data di scadenza a 20 giorni dalla richiesta
             setScadenza();
         }
         else{
@@ -86,7 +86,7 @@ public class Preventivo implements Serializable {
     }
     //Ritorna la data nel formato DD/MM/YYYY
     private String getDataAsString(Date d){
-        return new SimpleDateFormat("dd-MM-yyyy").format(new Date());
+        return new SimpleDateFormat("dd-MM-yyyy").format(d);
     }
 
     public String getDataPreventivoAsString(){
@@ -148,5 +148,13 @@ public class Preventivo implements Serializable {
             tot-=valutazione;
         }
         return tot-(tot*acquisto.getScontoPerMese()[data.getMonth()]);
+    }
+
+    public String toString(){
+        return "AUTO: "+this.acquisto.toString()+"\n"+
+                "Data effettuato: " +getDataPreventivoAsString() +"\n"+
+                "Data scadenza: " +getDataScadenzaAsString() +"\n"+
+                "Data consegna: " +getDataConsegnaAsString() +"\n"+
+                "STATO:" +getStato();
     }
 }

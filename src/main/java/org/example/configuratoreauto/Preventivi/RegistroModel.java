@@ -39,6 +39,7 @@ public class RegistroModel extends AbstractModel<Preventivo> {
     *       Il seguente metodo permette di gestire, durante la fase di caricamento del model
     *       l'aggiornamento dello stato del preventivo autonomamente
     * */
+
     @Override
     public boolean addData(Preventivo newPreventivo){
         if(!data.contains(newPreventivo)){

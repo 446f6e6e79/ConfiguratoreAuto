@@ -15,14 +15,14 @@ public class MainTests {
         CatalogoModel catalogo = CatalogoModel.getInstance();
 
         SediModel sedi = SediModel.getInstance();
-        
+
         u1.validation("davidedona@gmail.com", "1234");
         sedi.addData(new Sede("AutoVerona", "Str. le Grazie, 15, 37134 Verona VR"));
-        sedi.uploadData();
-        r.addData(new Preventivo(null, catalogo.getAllData().get(0), sedi.getAllData().get(0), (Cliente) u1.getCurrentUser()));
-        r.uploadData();
 
-        /*Test for the CATALOGO*/
+        //r.addData(new Preventivo(null, catalogo.getAllData().get(0), sedi.getAllData().get(0), (Cliente) u1.getCurrentUser()));
+        //r.uploadData();
+
+        /*Test for the CATALOGO
         Dimensione dim911 = new Dimensione(1.90, 1.32, 4.57, 1525, 0);
         Motore motore911 = new Motore(Alimentazione.BENZINA, 386, 3966,13.4);
         String descrizione911 = "Macchina molto bella";
@@ -71,9 +71,7 @@ public class MainTests {
         double[] scontoPerMeseFord = {0, 8, 8, 5, 5, 10, 10, 10, 5, 0, 0, 0};
         AutoNuova ford = new AutoNuova(Marca.Ford, "Mustang GT", dimFord, motoreFord, descrizioneFord, 55000, scontoPerMeseFord);
         catalogo.addData(ford);
-
-        catalogo.uploadData();;
-
+        */
         System.out.println("Get auto by brand: brand = Porche " +catalogo.getAutoByBrand(Marca.Porsche));
         System.out.println("Get all auto" +catalogo.getAllData());
 
