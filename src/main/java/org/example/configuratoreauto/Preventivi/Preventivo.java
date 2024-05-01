@@ -22,9 +22,9 @@ public class Preventivo implements Serializable {
     private Cliente cliente;
     private Date scadenza;
     private double valutazione;
-    public Preventivo(AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente){
-        this.data = new Date(); //Recupera la data attuale
 
+    public Preventivo(AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente, Date d){
+        this.data = d;
         //Se non è inserita un auto usata, il preventivo è già finalizzato
         if(usata == null){
             this.stato = StatoPreventivo.FINALIZZATO;
@@ -41,6 +41,14 @@ public class Preventivo implements Serializable {
         this.cliente = cliente;
         setConsegna();
     }
+
+    /*
+    *   Costruttore Preventivo, setta la data di esecuzione del preventivo, alla data attuale
+    * */
+    public Preventivo(AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente){
+        this(usata, acquisto, sede, cliente, new Date());
+    }
+
 
     /*
     *  Calcola la data di consegna effettiva della macchina.
@@ -119,13 +127,12 @@ public class Preventivo implements Serializable {
     public void setValutazione(double valutazione) {
         this.valutazione = valutazione;
     }
-
     public Sede getSede() {
         return sede;
     }
 
     /*
-    Modifica lo stato del preventivo, attuandone alcune verifiche
+        Modifica lo stato del preventivo, effettuando alcune verifiche
      */
     public void changeStato(StatoPreventivo stato) {
         if(stato.equals(StatoPreventivo.FINALIZZATO)){
@@ -133,6 +140,22 @@ public class Preventivo implements Serializable {
             setScadenza();
         }
         this.stato = stato;
+    }
+
+    /*
+     *   Aggiorna automaticamente lo stato del preventivo:
+     *      -Se il preventivo risulta SCADUTO, verrà aggiornato lo stato;
+     *      -Se è stata superata la data del RITIRO, verrà aggiornato lo stato
+     *
+     *   Tale funzione sarà chiamata ogni qualvolta viene caricato il RegistroModel, tenendo aggiornati i dati
+     * */
+    public void setValutazioneAutomatica(){
+        if(isScaduto()){
+            changeStato(StatoPreventivo.SCADUTO);
+        }
+        if(isDisponibileAlRitiro()){
+            changeStato(StatoPreventivo.DISPONIBILE_AL_RITIRO);
+        }
     }
 
     /*Calcola il costo Totale del Preventivo

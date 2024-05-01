@@ -74,7 +74,7 @@ public abstract class AbstractModel<T1> {
         return false;
     }
 
-    protected ArrayList<T1> getAllData(){
+    public ArrayList<T1> getAllData(){
         return data;
     }
     public void printData() {

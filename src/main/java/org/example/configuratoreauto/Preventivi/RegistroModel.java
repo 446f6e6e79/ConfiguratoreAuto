@@ -43,12 +43,7 @@ public class RegistroModel extends AbstractModel<Preventivo> {
     @Override
     public boolean addData(Preventivo newPreventivo){
         if(!data.contains(newPreventivo)){
-            if(newPreventivo.isScaduto()){
-                newPreventivo.changeStato(StatoPreventivo.SCADUTO);
-            }
-            if(newPreventivo.isDisponibileAlRitiro()){
-                newPreventivo.changeStato(StatoPreventivo.DISPONIBILE_AL_RITIRO);
-            }
+            newPreventivo.setValutazioneAutomatica();
             return data.add(newPreventivo);
         }
         return false;
