@@ -180,4 +180,13 @@ public class Preventivo implements Serializable {
                 "Data consegna: " +getDataConsegnaAsString() +"\n"+
                 "STATO:" +getStato();
     }
+    @Override
+    public boolean equals(Object o){
+        return o instanceof Preventivo other &&
+                this.acquisto.equals(other.acquisto) &&
+                ((this.usata == null && other.usata == null) || this.usata.equals(other.usata) ) &&
+                this.cliente.equals(other.cliente) &&
+                ((this.optionals == null && other.optionals == null) || this.usata.equals(other.usata) ) &&
+                this.sede.equals(other.sede);
+    }
 }

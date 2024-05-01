@@ -45,7 +45,7 @@ public abstract class AbstractModel<T1> {
         }
         //Terminata la lettura dal file. Stampa la lista degli utenti a video, per debug
         catch (EOFException e){
-            printData();
+            //printData();
         }
         catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

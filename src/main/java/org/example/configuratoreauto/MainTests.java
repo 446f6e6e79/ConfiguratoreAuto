@@ -19,8 +19,9 @@ public class MainTests {
         u1.validation("davidedona@gmail.com", "1234");
         sedi.addData(new Sede("AutoVerona", "Str. le Grazie, 15, 37134 Verona VR"));
 
-        //r.addData(new Preventivo(null, catalogo.getAllData().get(0), sedi.getAllData().get(0), (Cliente) u1.getCurrentUser()));
-        //r.uploadData();
+        r.addData(new Preventivo(null, catalogo.getAllData().get(0), sedi.getAllData().get(0), (Cliente) u1.getCurrentUser()));
+        r.uploadData();
+        System.out.println(r.getAllData());
 
         /*Test for the CATALOGO
         Dimensione dim911 = new Dimensione(1.90, 1.32, 4.57, 1525, 0);

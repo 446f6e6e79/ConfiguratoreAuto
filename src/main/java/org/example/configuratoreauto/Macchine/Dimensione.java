@@ -50,7 +50,7 @@ public class Dimensione implements Serializable {
     public boolean equals(Object o) {
         return o instanceof Dimensione other &&
                 this.larghezza == other.larghezza &&
-                this.altezza == other.larghezza &&
+                this.altezza == other.altezza &&
                 this.peso == other.peso &&
                 this.volumeBagagliaglio == other.volumeBagagliaglio;
 

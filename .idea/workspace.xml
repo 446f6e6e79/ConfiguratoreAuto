@@ -7,9 +7,10 @@
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/AbstractModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/AbstractModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/Dimensione.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/Dimensione.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/MainTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/MainTests.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/RegistroModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/RegistroModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Preventivi/PreventiviTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Preventivi/PreventiviTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/registro.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/registro.ser" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
     <list id="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" name="Changes by donny" comment="" />
@@ -224,7 +225,8 @@
       <workItem from="1714466158831" duration="2221000" />
       <workItem from="1714546872904" duration="4197000" />
       <workItem from="1714555111336" duration="3168000" />
-      <workItem from="1714560054715" duration="3369000" />
+      <workItem from="1714560054715" duration="3493000" />
+      <workItem from="1714571097805" duration="1332000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />
@@ -346,6 +348,50 @@
           <properties class="com.google.gson.JsonSyntaxException" package="com.google.gson" />
           <option name="timeStamp" value="1" />
         </breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java</url>
+          <line>183</line>
+          <properties class="org.example.configuratoreauto.Preventivi.Preventivo" method="equals">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java</url>
+          <line>184</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java</url>
+          <line>185</line>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java</url>
+          <line>186</line>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java</url>
+          <line>187</line>
+          <option name="timeStamp" value="11" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java</url>
+          <line>188</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java</url>
+          <line>189</line>
+          <option name="timeStamp" value="13" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java</url>
+          <line>190</line>
+          <option name="timeStamp" value="14" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
   </component>
