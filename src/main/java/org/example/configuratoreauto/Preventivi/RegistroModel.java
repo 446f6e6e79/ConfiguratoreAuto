@@ -2,11 +2,8 @@ package org.example.configuratoreauto.Preventivi;
 
 
 import org.example.configuratoreauto.AbstractModel;
-import org.example.configuratoreauto.Macchine.Alimentazione;
-import org.example.configuratoreauto.Macchine.AutoNuova;
 import org.example.configuratoreauto.Macchine.Marca;
 import org.example.configuratoreauto.Utenti.Cliente;
-import org.example.configuratoreauto.Utenti.Impiegato;
 
 import java.util.ArrayList;
 import java.util.stream.Collectors;
@@ -43,7 +40,7 @@ public class RegistroModel extends AbstractModel<Preventivo> {
     @Override
     public boolean addData(Preventivo newPreventivo){
         if(!data.contains(newPreventivo)){
-            newPreventivo.setValutazioneAutomatica();
+            newPreventivo.updateStatoAutomatico();
             return data.add(newPreventivo);
         }
         return false;

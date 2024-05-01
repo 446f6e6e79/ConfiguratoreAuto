@@ -17,7 +17,7 @@ public class Preventivo implements Serializable {
     private StatoPreventivo stato;
     private AutoUsata usata;
     private AutoNuova acquisto;
-    private HashSet<Optional> optionals;
+    private HashSet<Optional> optionals = new HashSet<>();
     private Sede sede;
     private Cliente cliente;
     private Date scadenza;
@@ -29,7 +29,7 @@ public class Preventivo implements Serializable {
         if(usata == null){
             this.stato = StatoPreventivo.FINALIZZATO;
             //Setta la data di scadenza a 20 giorni dalla richiesta
-            setScadenza();
+            setScadenza(data);
         }
         else{
             //Altrimenti il preventivo dovrà essere finalizzato da un impiegato
@@ -65,10 +65,14 @@ public class Preventivo implements Serializable {
         this.consegna = dataDiConsegna.getTime();
     }
 
-    //Imposta la data di scadenza effettiva dalla data attuale
-    public void setScadenza() {
+    /*
+    *   Imposta la data di scadenza a partire da 20 giorni dalla data passata come parametro. Si verificano 2 casi:
+    *       1) Preventivo senza autoUsata -> la scadenza è impostata a 20 giorni dal giorno in cui il preventivo è richiesto
+    *       2) Preventivo con autoUsata -> scadenza impostata a 20 giorni dalla finalizzazione
+    * */
+    public void setScadenza(Date d) {
         Calendar scadenza = Calendar.getInstance();
-        scadenza.setTime(new Date());
+        scadenza.setTime(data);
         scadenza.add(Calendar.DAY_OF_MONTH, 20);
         this.scadenza = scadenza.getTime();
     }
@@ -77,7 +81,7 @@ public class Preventivo implements Serializable {
         Verifica che il preventivo non sia scaduto. Un preventivo è scaduto dopo 20 giorni dalla finalizzazione
      */
     public boolean isScaduto(){
-        if((new Date()).after(scadenza)){
+        if(new Date().after(scadenza)){
             return true;
         }
         return false;
@@ -87,11 +91,12 @@ public class Preventivo implements Serializable {
     *   Verifica se la data di consena è passata. In tal caso dovrà essere cambiato lo stato del preventivo
     * */
     public boolean isDisponibileAlRitiro(){
-        if((new Date()).after(scadenza)){
+        if(new Date().after(consegna)){
             return true;
         }
         return false;
     }
+
     //Ritorna la data nel formato DD/MM/YYYY
     private String getDataAsString(Date d){
         return new SimpleDateFormat("dd-MM-yyyy").format(d);
@@ -124,53 +129,54 @@ public class Preventivo implements Serializable {
         return cliente;
     }
 
+    /*
+    *   Set della valutazione dell'usato. Una volta valutata verrano svolte automaticamente le seguenti operazioni:
+    *       - stato impostato a FINALIZZATO
+    *       - scadenza impostata a 20 giorna dalla data attuale
+    * */
     public void setValutazione(double valutazione) {
         this.valutazione = valutazione;
+        setStato(StatoPreventivo.FINALIZZATO);
+        setScadenza(new Date());
     }
     public Sede getSede() {
         return sede;
     }
 
-    /*
-        Modifica lo stato del preventivo, effettuando alcune verifiche
-     */
-    public void changeStato(StatoPreventivo stato) {
-        if(stato.equals(StatoPreventivo.FINALIZZATO)){
-            //Se il preventivo viene finalizzato viene impostata la scadenza a 20 giorni dalla data attuale
-            setScadenza();
-        }
+    public void setStato(StatoPreventivo stato) {
         this.stato = stato;
     }
 
     /*
      *   Aggiorna automaticamente lo stato del preventivo:
-     *      -Se il preventivo risulta SCADUTO, verrà aggiornato lo stato;
-     *      -Se è stata superata la data del RITIRO, verrà aggiornato lo stato
+     *      -Se sono passati 20 giorni, e non è stato pagato il preventivo, viene assegnato lo stato SCADUTO
+     *      -Se è stata superata la data del RITIRO ed il preventivo risulta PAGATO, assegnato lo stato DISPONIBILE_AL_RITIRO
      *
      *   Tale funzione sarà chiamata ogni qualvolta viene caricato il RegistroModel, tenendo aggiornati i dati
      * */
-    public void setValutazioneAutomatica(){
-        if(isScaduto()){
-            changeStato(StatoPreventivo.SCADUTO);
+    public void updateStatoAutomatico(){
+        if(stato == StatoPreventivo.FINALIZZATO && isScaduto()){
+            setStato(StatoPreventivo.SCADUTO);
         }
-        if(isDisponibileAlRitiro()){
-            changeStato(StatoPreventivo.DISPONIBILE_AL_RITIRO);
+        if(stato == StatoPreventivo.PAGATO && isDisponibileAlRitiro()){
+            setStato(StatoPreventivo.DISPONIBILE_AL_RITIRO);
         }
     }
 
     /*Calcola il costo Totale del Preventivo
     * Il costo è calcolato come:
-    *   - costo di base + costo Optional - valutazione usato - sconto
+    *   - costo di base + costo Optional (- valutazione usato) - sconto
     */
-    public double costoTotale(){
+    public double getCostoTotale(){
         double tot = acquisto.getCostoBase();
         for(Optional optional : this.optionals){
             tot += optional.getCosto();
         }
-        if(usata!=null && stato!=StatoPreventivo.RICHIESTO){
-            tot-=valutazione;
+        tot -= (tot*acquisto.getScontoPerMese()[data.getMonth()]);
+        if(usata != null && stato != StatoPreventivo.RICHIESTO){
+            tot -= valutazione;
         }
-        return tot-(tot*acquisto.getScontoPerMese()[data.getMonth()]);
+        return tot;
     }
 
     public String toString(){

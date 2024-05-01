@@ -1,12 +1,16 @@
 package org.example.configuratoreauto.Preventivi;
 
 import org.example.configuratoreauto.Macchine.AutoNuova;
+import org.example.configuratoreauto.Macchine.AutoUsata;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
+import org.example.configuratoreauto.Macchine.Marca;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.UserModel;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -19,35 +23,56 @@ class PreventiviTest {
     Calendar c = Calendar.getInstance();
 
     @Test
-    @DisplayName("Test sull'aggiornamento automatico dello stato")
-    void addData(){
+    @DisplayName("Aggiornamento Automatico STATO")
+    void setValutazioneAutomatica(){
         u.validation("davidedona@gmail.com", "1234");
         Cliente c1 = (Cliente) u.getCurrentUser();
         c.setTime(new Date());
-        c.add(Calendar.DAY_OF_MONTH, -40);
-        Date d = c.getTime();
+        c.add(Calendar.DAY_OF_MONTH, -100);
+        Date d = c.getTime();;
+
         Preventivo p = new Preventivo(null, exampleAuto, sede, c1, d);
-        p.setValutazioneAutomatica();
-        System.out.println(p.getStato());
+        /*
+            Il preventivo è appena stato inizializzato. Inizialmente, essendo privo di auto usata
+            lo stato ha valore FINALIZZATO
+         */
+        Assertions.assertEquals(StatoPreventivo.FINALIZZATO, p.getStato());
+
+        //Una volta aggiornata automaticamente lo stato, il preventivo dovrebbe risultare SCADUTO
+        p.updateStatoAutomatico();
+        Assertions.assertEquals(StatoPreventivo.SCADUTO, p.getStato());
+
     }
 
     @Test
-    void getAllPreventivi() {
+    @DisplayName("Valutazione macchina usata")
+    void setValutazione() {
+        u.validation("davidedona@gmail.com", "1234");
+        Cliente c1 = (Cliente) u.getCurrentUser();
+        AutoUsata u = new AutoUsata(Marca.Audi, "Audi a1", exampleAuto.getDimensione(), exampleAuto.getMotore(), "1234", 10);
+        Preventivo pUsata = new Preventivo(u, exampleAuto, sede, c1);
+        pUsata.updateStatoAutomatico();
+
+        //Il preventivo, avendo un auto usata, avrà come stato RICHIESTO
+        Assertions.assertEquals(StatoPreventivo.RICHIESTO, pUsata.getStato());
+
+        double firstPrice = pUsata.getCostoTotale();
+        /*
+        *   Una volta impostata la valutazione verico che effetivamente:
+        *       - lo stato del preventivo diventi FINALIZZATO
+        *       - dal costo totale del preventivo sia sottratta l'intera valutazione
+        * */
+        pUsata.setValutazione(3500);
+        Assertions.assertEquals(3500, firstPrice - pUsata.getCostoTotale());
+        Assertions.assertEquals(StatoPreventivo.FINALIZZATO, pUsata.getStato());
     }
 
     @Test
+    @DisplayName("Filtro Preventivi per Brand")
     void getPreventiviByBrand() {
-    }
-
-    @Test
-    void getPreventiviByCliente() {
-    }
-
-    @Test
-    void getPreventiviBySede() {
-    }
-
-    @Test
-    void getPreventiviByStato() {
+        ArrayList<Preventivo> preventivi = r.getPreventiviByBrand(Marca.Porsche);
+        for(Preventivo p: preventivi){
+            Assertions.assertEquals(Marca.Porsche, p.getAcquisto().getMarca());
+        }
     }
 }
