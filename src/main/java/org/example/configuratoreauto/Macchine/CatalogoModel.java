@@ -27,10 +27,6 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
         return CATATLOGO_PATH;
     }
 
-    public ArrayList<AutoNuova> getAllAuto(){
-        return super.data;
-    }
-
     public ArrayList<AutoNuova> getAutoByBrand(Marca brand){
         return super.data.stream()
                 .filter(t -> t.getMarca() == brand)

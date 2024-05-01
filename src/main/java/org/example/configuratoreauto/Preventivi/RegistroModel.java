@@ -40,7 +40,7 @@ public class RegistroModel extends AbstractModel<Preventivo> {
     *       l'aggiornamento dello stato del preventivo autonomamente
     * */
     @Override
-    protected boolean addData(Preventivo newPreventivo){
+    public boolean addData(Preventivo newPreventivo){
         if(!data.contains(newPreventivo)){
             if(newPreventivo.isScaduto()){
                 newPreventivo.changeStato(StatoPreventivo.SCADUTO);
@@ -51,10 +51,6 @@ public class RegistroModel extends AbstractModel<Preventivo> {
             return data.add(newPreventivo);
         }
         return false;
-    }
-
-    public ArrayList<Preventivo> getAllPreventivi(){
-        return super.data;
     }
 
     public ArrayList<Preventivo> getPreventiviByBrand(Marca brand){

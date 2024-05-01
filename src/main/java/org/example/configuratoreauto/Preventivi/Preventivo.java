@@ -51,7 +51,9 @@ public class Preventivo implements Serializable {
         Calendar dataDiConsegna = Calendar.getInstance();
         dataDiConsegna.setTime(data);
         dataDiConsegna.add(Calendar.MONTH, 1);
-        dataDiConsegna.add(Calendar.DAY_OF_MONTH, 10 * optionals.size());
+        if(optionals != null){
+            dataDiConsegna.add(Calendar.DAY_OF_MONTH, 10 * optionals.size());
+        }
         this.consegna = dataDiConsegna.getTime();
     }
 

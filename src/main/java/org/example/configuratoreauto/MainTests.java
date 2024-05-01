@@ -3,9 +3,10 @@ package org.example.configuratoreauto;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
+import org.example.configuratoreauto.Preventivi.Sede;
+import org.example.configuratoreauto.Preventivi.SediModel;
 import org.example.configuratoreauto.Utenti.*;
 
-import java.util.ArrayList;
 
 public class MainTests {
     public static void main(String[] args) {
@@ -13,9 +14,13 @@ public class MainTests {
         RegistroModel r = RegistroModel.getInstance();
         CatalogoModel catalogo = CatalogoModel.getInstance();
 
+        SediModel sedi = SediModel.getInstance();
+        
         u1.validation("davidedona@gmail.com", "1234");
-        //Manca la sede
-        //r.addData(new Preventivo(null, catalogo.getAllAuto().get(0), , u1.getCurrentUser()));
+        sedi.addData(new Sede("AutoVerona", "Str. le Grazie, 15, 37134 Verona VR"));
+        sedi.uploadData();
+        r.addData(new Preventivo(null, catalogo.getAllData().get(0), sedi.getAllData().get(0), (Cliente) u1.getCurrentUser()));
+        r.uploadData();
 
         /*Test for the CATALOGO*/
         Dimensione dim911 = new Dimensione(1.90, 1.32, 4.57, 1525, 0);
@@ -67,10 +72,10 @@ public class MainTests {
         AutoNuova ford = new AutoNuova(Marca.Ford, "Mustang GT", dimFord, motoreFord, descrizioneFord, 55000, scontoPerMeseFord);
         catalogo.addData(ford);
 
-
+        catalogo.uploadData();;
 
         System.out.println("Get auto by brand: brand = Porche " +catalogo.getAutoByBrand(Marca.Porsche));
-        System.out.println("Get all auto" +catalogo.getAllAuto());
+        System.out.println("Get all auto" +catalogo.getAllData());
 
 
     }
