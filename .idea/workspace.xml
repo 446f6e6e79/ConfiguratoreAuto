@@ -6,19 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/CatalogoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/CatalogoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/RegistrazioneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/RegistrazioneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/userData.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/userData.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/catalogoView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/catalogoView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/loginPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/loginPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Utenti/UserModelTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Utenti/UserModelTest.java" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
-    <list id="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" name="Changes by donny" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/RegistrazioneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/RegistrazioneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/registrazioneView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/registrazioneView.fxml" afterDir="false" />
-    </list>
+    <list id="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" name="Changes by donny" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,31 +50,6 @@
       </UrlAndAccount>
     </option>
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/RegistrazioneController.java">
-      <ranges>
-        <range start1="3" end1="3" start2="3" end2="4" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="4" end1="4" start2="5" end2="6" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="7" end1="8" start2="9" end2="10" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="9" end1="11" start2="11" end2="11" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="13" end1="14" start2="13" end2="15" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="17" end1="17" start2="18" end2="20" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="20" end1="21" start2="23" end2="23" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="23" end1="24" start2="25" end2="27" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="28" end1="29" start2="31" end2="35" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="30" end1="31" start2="36" end2="38" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="34" end1="41" start2="41" end2="41" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="44" end1="44" start2="44" end2="46" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="46" end1="46" start2="48" end2="85" changelist="64212ea7-4dba-458d-912e-a2c9965aa8b9" />
-        <range start1="63" end1="63" start2="102" end2="103" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="66" end1="66" start2="106" end2="107" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="67" end1="67" start2="108" end2="109" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="72" end1="72" start2="114" end2="115" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="76" end1="78" start2="119" end2="126" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-        <range start1="79" end1="79" start2="127" end2="135" changelist="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" />
-      </ranges>
-    </file>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -100,47 +67,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.Default.executor": "Run",
-    "Application.MainTests.executor": "Run",
-    "Application.TestOfModels.executor": "Run",
-    "Downloaded.Files.Path.Enabled": "true",
-    "JUnit.ALLTests.executor": "Run",
-    "JUnit.FullTest.executor": "Run",
-    "JUnit.PreventiviTest.executor": "Run",
-    "JUnit.TestUsers.executor": "Run",
-    "JUnit.UserModelTest.executor": "Run",
-    "JUnit.UserModelTest.getCurrentUser.executor": "Run",
-    "Repository.Attach.Annotations": "false",
-    "Repository.Attach.JavaDocs": "false",
-    "Repository.Attach.Sources": "false",
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
-    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
-    "git-widget-placeholder": "main",
-    "jdk.selected.JAVA_MODULE": "azul-19",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "/home/blushi/IdeaProjects/ConfiguratoreAuto/src/main/resources/img",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Default.executor&quot;: &quot;Run&quot;,
+    &quot;Application.MainTests.executor&quot;: &quot;Run&quot;,
+    &quot;Application.TestOfModels.executor&quot;: &quot;Run&quot;,
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;true&quot;,
+    &quot;JUnit.ALLTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.FullTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.PreventiviTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.TestUsers.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserModelTest.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.UserModelTest.getCurrentUser.executor&quot;: &quot;Run&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary&quot;: &quot;JUnit5&quot;,
+    &quot;com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5&quot;: &quot;&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;jdk.selected.JAVA_MODULE&quot;: &quot;azul-19&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/blushi/IdeaProjects/ConfiguratoreAuto/src/main/resources/img&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File": [
-      "RELAX-NG"
+  &quot;keyToStringList&quot;: {
+    &quot;com.intellij.ide.scratch.ScratchImplUtil$2/New Scratch File&quot;: [
+      &quot;RELAX-NG&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/resources/img" />
@@ -230,7 +197,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-19.0.2-azul-19.0.2-4caba194b151-27577346" />
+        <option value="jdk-19.0.2-azul-19.0.2-4caba194b151-3b9f6195" />
       </set>
     </attachedChunks>
   </component>
@@ -281,6 +248,8 @@
       <workItem from="1714631373356" duration="810000" />
       <workItem from="1714632218989" duration="1061000" />
       <workItem from="1714633309907" duration="4237000" />
+      <workItem from="1714658924966" duration="558000" />
+      <workItem from="1714659593066" duration="417000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />

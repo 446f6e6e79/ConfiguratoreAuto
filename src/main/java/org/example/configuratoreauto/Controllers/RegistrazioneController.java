@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 public class RegistrazioneController {
     UserModel u = UserModel.getInstance();
     private static final String EMAIL_PATTERN =
-            "[a-zA-Z]+\\.[a-zA-Z]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}";
+            "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
     @FXML
     private Label responseText;
@@ -130,8 +130,10 @@ public class RegistrazioneController {
     *   Controllo che la mail inserita sia valida
     * */
     public static boolean isValidEmail(String email) {
+        System.out.println(email);
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(email);
+        System.out.println(matcher.matches());
         return matcher.matches();
     }
 }

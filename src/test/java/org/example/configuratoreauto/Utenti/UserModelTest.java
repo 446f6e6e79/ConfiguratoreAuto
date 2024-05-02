@@ -1,5 +1,6 @@
 package org.example.configuratoreauto.Utenti;
 
+import org.example.configuratoreauto.Controllers.RegistrazioneController;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,7 +9,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class UserModelTest {
     UserModel u = UserModel.getInstance();
-
     @Test
     @DisplayName("Registrazione utenti")
     void registraCliente(){
@@ -33,6 +33,16 @@ class UserModelTest {
         Assertions.assertEquals(false, u.getCurrentUser() instanceof Impiegato);
         u.validation("segretario@gmail.com", "1234");
         Assertions.assertEquals(true, u.getCurrentUser() instanceof Segretario);
+
+    }
+    @Test
+    @DisplayName("validEmail")
+    void checkValidEmail(){
+        Assertions.assertEquals(false, RegistrazioneController.isValidEmail(""));
+        Assertions.assertEquals(true, RegistrazioneController.isValidEmail("davide@gmail.com"));
+        Assertions.assertEquals(false, RegistrazioneController.isValidEmail("andrea@.com"));
+        Assertions.assertEquals(false, RegistrazioneController.isValidEmail("@gmail.com"));
+
 
     }
 }
