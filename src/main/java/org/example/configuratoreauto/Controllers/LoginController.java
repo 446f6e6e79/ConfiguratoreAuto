@@ -64,6 +64,10 @@ public class LoginController {
     }
 
     @FXML
+    private void goRegistrazione(){
+        setPage("clienteView/registrazioneView");
+    }
+    @FXML
     protected void logIn() {
         String emailText = email.getText();
         String passText = password.getText();

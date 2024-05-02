@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="262.0" prefWidth="237.0" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="org.example.configuratoreauto.Controllers.AutoController" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="239.0" pickOnBounds="true" preserveRatio="true" fx:id="autoImage"/>
+      <HBox prefHeight="108.0" prefWidth="239.0">
+         <children>
+            <Label alignment="CENTER" contentDisplay="CENTER" text="Modello:" />
+            <Label alignment="CENTER" fx:id="modelName">
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </Label>
+         </children>
+      </HBox>
+   </children>
+</VBox>

@@ -27,7 +27,7 @@
             <Button onAction="#onGuestClick" text="Login Ospite" textAlignment="CENTER" />
         </buttons>
     </ButtonBar>
-   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sei un nuovo utente? Registrati" />
-    <Label fx:id="responseText" alignment="CENTER" prefHeight="17.0" prefWidth="196.0" textAlignment="CENTER">
+   <Text onMouseClicked="#goRegistrazione" strokeType="OUTSIDE" strokeWidth="0.0" text="Sei un nuovo utente? Registrati" />
+    <Label fx:id="responseText"  alignment="CENTER" prefHeight="17.0" prefWidth="196.0" textAlignment="CENTER">
     </Label>
 </VBox>

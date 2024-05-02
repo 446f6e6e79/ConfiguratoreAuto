@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        UserModel model = UserModel.getInstance();
+        userModel = UserModel.getInstance();
         stage = primaryStage;
         setPage("loginPage");
         stage.show();
