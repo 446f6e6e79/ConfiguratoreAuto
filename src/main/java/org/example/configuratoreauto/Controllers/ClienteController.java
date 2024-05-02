@@ -2,28 +2,85 @@ package org.example.configuratoreauto.Controllers;
 
 import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.UserModel;
+
+import java.io.IOException;
 
 import static java.lang.Thread.sleep;
 
 public class ClienteController {
     UserModel userModel = UserModel.getInstance();
     CatalogoModel catalogo = CatalogoModel.getInstance();
-
     Cliente currentUser = (Cliente) userModel.getCurrentUser();
 
+    //Nodi nella quale viene salvata la view della pagina desiderata
+    AnchorPane catalogoNode;
+    AnchorPane preventiviNode;
     @FXML
     private Label responseText;
+    @FXML
+    private  Label userName;
+    @FXML
+    private Pane mainPage;
+    @FXML
+    AnchorPane catalogoComponent;
+    @FXML
+    AnchorPane preventiviComponent;
 
     //Setting degli event handlers, la funzione viene eseguita quando viene caricata la relativa pagina FXML
     @FXML
     private void initialize() throws InterruptedException {
-        responseText.setText("Benvenuto, "+currentUser.getName()+"!");
-
+        try {
+            /*Carico all'interno del nodo dichiarato la pagina fxml corrispondente, richiamando inoltre il prorprio controllore
+            *
+            * */
+            FXMLLoader catalogoLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/catalogoView.fxml"));
+            catalogoNode = catalogoLoader.load();
+            CatalogoController catalogoController = catalogoLoader.getController();
+            //corrispondente per la pagina dei preventivi
+            FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventiviView.fxml"));
+            preventiviNode = preventiviLoader.load();
+            PreventiviController preventiviController = preventiviLoader.getController();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        //imposto come pagine predefinita il catalogo
+        onCatalogo();
+        setUserName();
     }
+
+    /*
+         Questo metodo si occupa si gestire la label di saluto ottenendo i dati dal login precedente,
+         inoltre nel caso ci fosse un accesso come ospite mostra la possibilità di registrazione
+     */
+    private void setUserName(){
+        if (currentUser == null) {
+            userName.setText("Benvenuto Ospite");
+        }else{
+            userName.setText("Benvenuto " + currentUser.getName());
+        }
+    }
+    /*
+    * alla onAction del pulsante del menù di selezione sovrastante, viene modificata la componente principale in modo
+    * da mostrare la pagine selezionata
+    * */
+    @FXML
+    private void onCatalogo(){
+        mainPage.getChildren().clear();
+        mainPage.getChildren().add(catalogoNode);
+    }
+    @FXML
+    private void onPreventivo(){
+        mainPage.getChildren().clear();
+        mainPage.getChildren().add(preventiviNode);
+    }
+
 }
