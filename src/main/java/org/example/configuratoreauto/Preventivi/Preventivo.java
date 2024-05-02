@@ -25,16 +25,7 @@ public class Preventivo implements Serializable {
 
     public Preventivo(AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente, Date d){
         this.data = d;
-        //Se non è inserita un auto usata, il preventivo è già finalizzato
-        if(usata == null){
-            this.stato = StatoPreventivo.FINALIZZATO;
-            //Setta la data di scadenza a 20 giorni dalla richiesta
-            setScadenza(data);
-        }
-        else{
-            //Altrimenti il preventivo dovrà essere finalizzato da un impiegato
-            this.stato = StatoPreventivo.RICHIESTO;
-        }
+        this.stato = StatoPreventivo.RICHIESTO;
         this.usata = usata;
         this.acquisto = acquisto;
         this.sede = sede;
@@ -47,6 +38,18 @@ public class Preventivo implements Serializable {
     * */
     public Preventivo(AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente){
         this(usata, acquisto, sede, cliente, new Date());
+    }
+
+    /*
+        Costruttore Preventivo senza auto Usata:
+            - imposta di default la data a quella corrente
+            - imposta lo stato del preventivo a FINALIZZATO
+    */
+
+    public Preventivo(AutoNuova acquisto, Sede sede, Cliente cliente){
+        this(null, acquisto, sede, cliente);
+        //In caso non sia presente un auto usata, il preventivo
+        this.stato = StatoPreventivo.FINALIZZATO;
     }
 
 

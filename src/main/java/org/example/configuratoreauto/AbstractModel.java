@@ -35,7 +35,7 @@ public abstract class AbstractModel<T1> {
      *      - I dati sono salvati sfruttando la SERIALIZZAZIONE
      *      - Una volta letto l'oggetto, viene castato al Tipo variabile T1
      * */
-    private void loadData(){
+    private final void loadData(){
         try (ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(getPathToData()))){
             //Oggetto temporaneo, rappresenta il singolo oggetto, letto dal file
             Object tempObj;
@@ -53,7 +53,7 @@ public abstract class AbstractModel<T1> {
     }
 
     /*
-     *   Carica tutti i dati ...
+     *   Carica tutti i dati sul file, sfruttando la serializzazione
      * */
     protected void uploadData() {
         try (ObjectOutputStream objectOutput = new ObjectOutputStream(new FileOutputStream(getPathToData()))) {
@@ -74,7 +74,7 @@ public abstract class AbstractModel<T1> {
         return false;
     }
 
-    public ArrayList<T1> getAllData(){
+    public final ArrayList<T1> getAllData(){
         return data;
     }
     public void printData() {

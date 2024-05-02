@@ -10,6 +10,7 @@ import org.example.configuratoreauto.Utenti.*;
 public class Main extends Application {
     static UserModel userModel;
     private static Stage stage;
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
@@ -23,6 +24,7 @@ public class Main extends Application {
         launch(args);
         //Once the program is closed, whole the data, saved locally, is saved to the files
         closeModels();
+
     }
 
     public static void setPage(String pageName) {

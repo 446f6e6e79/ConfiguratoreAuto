@@ -24,7 +24,7 @@ public class LoginController {
     @FXML
     private PasswordField password;
 
-    private ReadOnlyBooleanWrapper isInputEmpty = new ReadOnlyBooleanWrapper(true);
+    private ReadOnlyBooleanWrapper isInputValid = new ReadOnlyBooleanWrapper(true);
 
     //Setting degli event handlers, la funzione viene eseguita quando viene caricata la relativa pagina FXML
     @FXML
@@ -34,11 +34,22 @@ public class LoginController {
         *   - TRUE se entrambi i campi sono vuoti
         *   - FALSE se almeno uno due campi non è vuoto
         * */
-        isInputEmpty.bind(email.textProperty().isEmpty().and(password.textProperty().isEmpty()));
+        isInputValid.bind(email.textProperty().isEmpty().and(password.textProperty().isEmpty()));
 
         //Rendiamo invisibile il testo non appena viene inserito un nuovo carattere
-        responseText.visibleProperty().bind(isInputEmpty);
+        responseText.visibleProperty().bind(isInputValid);
 
+        /*
+        *   Observer Pattern:
+        *       - SOGGETTI: Campi email e password
+        *       - Ad ogni cambiamento, nei due campi, la pagina reagirà cancellando il valore del responseText
+        * */
+        email.textProperty().addListener((observable, oldValue, newValue) -> {
+            responseText.setText("");
+        });
+        password.textProperty().addListener((observable, oldValue, newValue) -> {
+            responseText.setText("");
+        });
         /*
         *   Quando il pulsante invio è premuto, viene effettuato tentativo di login
         * */
@@ -71,7 +82,6 @@ public class LoginController {
         }
         else{
             responseText.setText("Email o Password errate");
-
         }
     }
 }

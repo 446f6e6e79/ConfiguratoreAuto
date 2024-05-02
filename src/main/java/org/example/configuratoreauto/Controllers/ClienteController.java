@@ -24,6 +24,7 @@ public class ClienteController {
     //Nodi nella quale viene salvata la view della pagina desiderata
     AnchorPane catalogoNode;
     AnchorPane preventiviNode;
+
     @FXML
     private Label responseText;
     @FXML
@@ -39,13 +40,15 @@ public class ClienteController {
     @FXML
     private void initialize() throws InterruptedException {
         try {
-            /*Carico all'interno del nodo dichiarato la pagina fxml corrispondente, richiamando inoltre il prorprio controllore
-            *
+            /*
+                Carico all'interno dei nodi la rispettiva view FXML, definendo inoltre i relativi controller
             * */
+            //CATALOGO
             FXMLLoader catalogoLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/catalogoView.fxml"));
             catalogoNode = catalogoLoader.load();
             CatalogoController catalogoController = catalogoLoader.getController();
-            //corrispondente per la pagina dei preventivi
+
+            //PREVENTIVI
             FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventiviView.fxml"));
             preventiviNode = preventiviLoader.load();
             PreventiviController preventiviController = preventiviLoader.getController();
@@ -58,25 +61,32 @@ public class ClienteController {
     }
 
     /*
-         Questo metodo si occupa si gestire la label di saluto ottenendo i dati dal login precedente,
+        Questo metodo si occupa si gestire la label di saluto ottenendo i dati dal login precedente,
          inoltre nel caso ci fosse un accesso come ospite mostra la possibilità di registrazione
      */
+
     private void setUserName(){
         if (currentUser == null) {
+            //BOTTONE CON ACCEDI??
             userName.setText("Benvenuto Ospite");
         }else{
             userName.setText("Benvenuto " + currentUser.getName());
         }
     }
     /*
-    * alla onAction del pulsante del menù di selezione sovrastante, viene modificata la componente principale in modo
-    * da mostrare la pagine selezionata
+    *   Azione avviata dal click del menù Catalogo:
+    *       cancella l'elemento presente nella pagina, a cui sostituisce l'elemento CATALOGO
     * */
     @FXML
     private void onCatalogo(){
         mainPage.getChildren().clear();
         mainPage.getChildren().add(catalogoNode);
     }
+
+    /*
+     *   Azione avviata dal click del menù Preventivi:
+     *       cancella l'elemento presente nella pagina, a cui sostituisce l'elemento PREVENTIVI
+     * */
     @FXML
     private void onPreventivo(){
         mainPage.getChildren().clear();
