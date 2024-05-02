@@ -48,8 +48,9 @@ public class Preventivo implements Serializable {
 
     public Preventivo(AutoNuova acquisto, Sede sede, Cliente cliente){
         this(null, acquisto, sede, cliente);
-        //In caso non sia presente un auto usata, il preventivo
+        //In caso non sia presente un auto usata, il preventivo è già finalizzato e posso impostare una scadenza
         this.stato = StatoPreventivo.FINALIZZATO;
+        setScadenza(new Date());
     }
 
 
@@ -58,7 +59,7 @@ public class Preventivo implements Serializable {
     *  La data è calcolata come:
     *     - data base + 1 mese + (10 giorni * numeroOptional)
     * */
-    public void setConsegna() {
+    private void setConsegna() {
         Calendar dataDiConsegna = Calendar.getInstance();
         dataDiConsegna.setTime(data);
         dataDiConsegna.add(Calendar.MONTH, 1);
@@ -73,7 +74,7 @@ public class Preventivo implements Serializable {
     *       1) Preventivo senza autoUsata -> la scadenza è impostata a 20 giorni dal giorno in cui il preventivo è richiesto
     *       2) Preventivo con autoUsata -> scadenza impostata a 20 giorni dalla finalizzazione
     * */
-    public void setScadenza(Date d) {
+    private void setScadenza(Date d) {
         Calendar scadenza = Calendar.getInstance();
         scadenza.setTime(data);
         scadenza.add(Calendar.DAY_OF_MONTH, 20);
@@ -83,7 +84,7 @@ public class Preventivo implements Serializable {
     /*
         Verifica che il preventivo non sia scaduto. Un preventivo è scaduto dopo 20 giorni dalla finalizzazione
      */
-    public boolean isScaduto(){
+    private boolean isScaduto(){
         if(new Date().after(scadenza)){
             return true;
         }
@@ -93,7 +94,7 @@ public class Preventivo implements Serializable {
     /*
     *   Verifica se la data di consena è passata. In tal caso dovrà essere cambiato lo stato del preventivo
     * */
-    public boolean isDisponibileAlRitiro(){
+    private boolean isDisponibileAlRitiro(){
         if(new Date().after(consegna)){
             return true;
         }
@@ -195,7 +196,7 @@ public class Preventivo implements Serializable {
                 this.acquisto.equals(other.acquisto) &&
                 ((this.usata == null && other.usata == null) || this.usata.equals(other.usata) ) &&
                 this.cliente.equals(other.cliente) &&
-                ((this.optionals == null && other.optionals == null) || this.usata.equals(other.usata) ) &&
+                ((this.optionals == null && other.optionals == null) || this.optionals.equals(other.optionals) ) &&
                 this.sede.equals(other.sede);
     }
 }

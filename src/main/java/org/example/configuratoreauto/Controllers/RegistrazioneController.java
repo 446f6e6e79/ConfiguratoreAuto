@@ -81,7 +81,7 @@ public class RegistrazioneController {
                 .and(nome.textProperty().isNotEmpty())
                 .and(cognome.textProperty().isNotEmpty()));
 
-        //Disabilito il bottone registra, nel caso in cui l'input non sia valido. Manteniamo così dei dati coerenti
+        //Disabilito il bottone registra, nel caso in cui l'input non sia valido. Manteniamo così dei dati consistenti
         registraButton.disableProperty().bind(isInputValid.not());
     }
 
@@ -107,14 +107,14 @@ public class RegistrazioneController {
 
                 } else {
                     responseText.setTextFill(Color.RED);
-                    responseText.setText("Email già in uso!");
-                    //Svuoto il campo email, mantenendo gli altri occupati
                     email.clear();
+                    //Svuoto il campo email, mantenendo gli altri occupati
+                    responseText.setText("Email già in uso!");
                 }
             } else {
                 responseText.setTextFill(Color.RED);
-                responseText.setText("Attenzione! Le due password non combaciano");
                 passwordConferma.clear();
+                responseText.setText("Attenzione! Le due password non combaciano");
             }
         }
         else if(!isEmailValid.get()){

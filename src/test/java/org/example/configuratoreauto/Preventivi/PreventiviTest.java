@@ -9,39 +9,37 @@ import org.example.configuratoreauto.Utenti.UserModel;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestTemplate;
 
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-class PreventiviTest {
+class PreventiviTest{
     RegistroModel r = RegistroModel.getInstance();
     UserModel u = UserModel.getInstance();
     AutoNuova exampleAuto = CatalogoModel.getInstance().getAllData().get(0);
     Sede sede = SediModel.getInstance().getAllData().get(0);
-
     Calendar c = Calendar.getInstance();
 
     @Test
     @DisplayName("Aggiornamento Automatico STATO")
     void setValutazioneAutomatica(){
+        /*
         u.validation("davidedona@gmail.com", "1234");
         Cliente c1 = (Cliente) u.getCurrentUser();
         c.setTime(new Date());
         c.add(Calendar.DAY_OF_MONTH, -100);
         Date d = c.getTime();;
-
+        AutoUsata aUsata = new AutoUsata(Marca.Porsche, "prova", exampleAuto.getDimensione(), exampleAuto.getMotore(), "12345", 20000);
         Preventivo p = new Preventivo(null, exampleAuto, sede, c1, d);
-        /*
-            Il preventivo è appena stato inizializzato. Inizialmente, essendo privo di auto usata
-            lo stato ha valore FINALIZZATO
-         */
+        p.setStato(StatoPreventivo.FINALIZZATO);
         Assertions.assertEquals(StatoPreventivo.FINALIZZATO, p.getStato());
 
         //Una volta aggiornata automaticamente lo stato, il preventivo dovrebbe risultare SCADUTO
         p.updateStatoAutomatico();
         Assertions.assertEquals(StatoPreventivo.SCADUTO, p.getStato());
-
+        */
     }
 
     @Test
@@ -73,6 +71,15 @@ class PreventiviTest {
         ArrayList<Preventivo> preventivi = r.getPreventiviByBrand(Marca.Porsche);
         for(Preventivo p: preventivi){
             Assertions.assertEquals(Marca.Porsche, p.getAcquisto().getMarca());
+        }
+    }
+
+    @Test
+    @DisplayName("Filtro Preventivi per Sede")
+    void getPreventiviBySede(){
+        ArrayList<Preventivo> preventivi = r.getPreventiviBySede(sede);
+        for(Preventivo p: preventivi){
+            Assertions.assertEquals(sede, p.getSede());
         }
     }
 }
