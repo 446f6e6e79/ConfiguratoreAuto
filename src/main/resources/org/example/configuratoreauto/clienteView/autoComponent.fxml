@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="262.0" prefWidth="237.0" xmlns="http://javafx.com/javafx/17.0.2-ea" fx:controller="org.example.configuratoreauto.Controllers.AutoController" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoController">
    <children>
-      <ImageView fitHeight="150.0" fitWidth="239.0" pickOnBounds="true" preserveRatio="true" fx:id="autoImage"/>
-      <HBox prefHeight="108.0" prefWidth="239.0">
+      <ImageView fx:id="autoImage" fitHeight="222.0" fitWidth="284.0" pickOnBounds="true" preserveRatio="true" />
+      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" text="Modello:" />
-            <Label alignment="CENTER" fx:id="modelName">
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
-            </Label>
+            <Label fx:id="NomeModello" text="Label" />
+            <Label fx:id="Marca" text="Label" />
+            <Label fx:id="Prezzo" text="Label" />
          </children>
-      </HBox>
+      </VBox>
    </children>
-</VBox>
+   <padding>
+      <Insets bottom="30.0" left="15.0" top="30.0" />
+   </padding>
+</HBox>

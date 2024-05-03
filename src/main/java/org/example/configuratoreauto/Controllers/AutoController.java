@@ -10,10 +10,17 @@ public class AutoController {
     @FXML
     private ImageView autoImage;
     @FXML
-    private Label modelName;
+    private Label NomeModello;
+    @FXML
+    private Label Marca;
+    @FXML
+    private Label Prezzo;
+
 
     public void setAuto(AutoNuova auto) {
-        modelName.setText(auto.getModello());
+        NomeModello.setText(auto.getModello());
+        Marca.setText(auto.getMarca().toString());
+        Prezzo.setText(String.valueOf(auto.getCostoBase()));
         // Carica l'immagine e imposta sull'ImageView
         Image image = new Image(getClass().getResourceAsStream("/img/test.jpeg"));
         autoImage.setImage(image);
