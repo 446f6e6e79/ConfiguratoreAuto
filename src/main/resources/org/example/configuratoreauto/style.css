@@ -1,0 +1,3 @@
+#clickableText {
+    -fx-cursor: hand; /* Cambia il cursore, segnalando il testo cliccabile*/
+}

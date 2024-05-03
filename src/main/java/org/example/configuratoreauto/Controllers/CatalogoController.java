@@ -31,7 +31,6 @@ public class CatalogoController implements Initializable {
                 // Carica la componente autoComponent.fxml
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/autoComponent.fxml"));
                 VBox autoComponent = loader.load();
-
                 // Configura il controller dell'autoComponent con i dati dell'auto
                 AutoController controller = loader.getController();
                 controller.setAuto(auto);

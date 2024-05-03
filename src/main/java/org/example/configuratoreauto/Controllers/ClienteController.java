@@ -99,11 +99,6 @@ public class ClienteController {
     @FXML
     private void onPreventivo(){
         mainPage.getChildren().clear();
-        if(currentUser == null){
-            mainPage.getChildren().add(guestNode);
-        }else{
-            mainPage.getChildren().add(preventiviNode);
-        }
+        mainPage.getChildren().add(preventiviNode);
     }
-
 }
