@@ -25,7 +25,7 @@ class PreventiviTest{
     @Test
     @DisplayName("Aggiornamento Automatico STATO")
     void setValutazioneAutomatica(){
-        /*
+
         u.validation("davidedona@gmail.com", "1234");
         Cliente c1 = (Cliente) u.getCurrentUser();
         c.setTime(new Date());
@@ -39,7 +39,7 @@ class PreventiviTest{
         //Una volta aggiornata automaticamente lo stato, il preventivo dovrebbe risultare SCADUTO
         p.updateStatoAutomatico();
         Assertions.assertEquals(StatoPreventivo.SCADUTO, p.getStato());
-        */
+        
     }
 
     @Test

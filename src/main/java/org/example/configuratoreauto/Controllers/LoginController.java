@@ -2,9 +2,11 @@ package org.example.configuratoreauto.Controllers;
 
 import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.paint.Color;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.Impiegato;
 import org.example.configuratoreauto.Utenti.Segretario;
@@ -23,8 +25,9 @@ public class LoginController {
 
     @FXML
     private PasswordField password;
-
-    private ReadOnlyBooleanWrapper isInputValid = new ReadOnlyBooleanWrapper(true);
+    @FXML
+    private Button login;
+    private ReadOnlyBooleanWrapper isInputValid = new ReadOnlyBooleanWrapper(false);
 
     //Setting degli event handlers, la funzione viene eseguita quando viene caricata la relativa pagina FXML
     @FXML
@@ -34,10 +37,10 @@ public class LoginController {
         *   - TRUE se entrambi i campi sono vuoti
         *   - FALSE se almeno uno due campi non è vuoto
         * */
-        isInputValid.bind(email.textProperty().isEmpty().and(password.textProperty().isEmpty()));
+        isInputValid.bind(email.textProperty().isNotEmpty().and(password.textProperty().isNotEmpty()));
 
-        //Rendiamo invisibile il testo non appena viene inserito un nuovo carattere
-        responseText.visibleProperty().bind(isInputValid);
+        login.disableProperty().bind(isInputValid.not());
+
 
         /*
         *   Observer Pattern:
@@ -69,23 +72,25 @@ public class LoginController {
     }
     @FXML
     protected void logIn() {
-        String emailText = email.getText();
-        String passText = password.getText();
-        email.clear();
-        password.clear();
-        if(userModel.validation(emailText, passText)){
-            if (userModel.getCurrentUser() instanceof Cliente) {
-                setPage("clienteView/homepageCliente");
+        if(isInputValid.get()) {
+            String emailText = email.getText();
+            String passText = password.getText();
+            email.clear();
+            password.clear();
+            if (userModel.validation(emailText, passText)) {
+                if (userModel.getCurrentUser() instanceof Cliente) {
+                    setPage("clienteView/homepageCliente");
+                }
+                if (userModel.getCurrentUser() instanceof Impiegato) {
+                    setPage("impiegatoView/homepage");
+                }
+                if (userModel.getCurrentUser() instanceof Segretario) {
+                    setPage("segretarioView/homepage");
+                }
+            } else {
+                responseText.setTextFill(Color.RED);
+                responseText.setText("Email o Password errate");
             }
-            if (userModel.getCurrentUser() instanceof Impiegato) {
-                setPage("impiegatoView/homepage");
-            }
-            if (userModel.getCurrentUser() instanceof Segretario) {
-                setPage("segretarioView/homepage");
-            }
-        }
-        else{
-            responseText.setText("Email o Password errate");
         }
     }
 }

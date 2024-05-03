@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/RegistrazioneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/RegistrazioneController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/MainTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/MainTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/LoginController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/registro.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/registro.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/loginPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/loginPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Preventivi/PreventiviTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Preventivi/PreventiviTest.java" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
@@ -141,7 +140,7 @@
       <recent name="org.example.configuratoreauto.Macchine" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PreventiviTest">
+  <component name="RunManager" selected="Application.Default">
     <configuration name="Default" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.example.configuratoreauto.Main" />
       <module name="ConfiguratoreAuto" />
@@ -253,7 +252,8 @@
       <workItem from="1714633309907" duration="4237000" />
       <workItem from="1714658924966" duration="558000" />
       <workItem from="1714659593066" duration="1073000" />
-      <workItem from="1714660931657" duration="2099000" />
+      <workItem from="1714660931657" duration="3395000" />
+      <workItem from="1714722131602" duration="979000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />
