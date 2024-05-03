@@ -7,6 +7,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
 import org.example.configuratoreauto.Utenti.Cliente;
@@ -23,7 +24,9 @@ public class ClienteController {
 
     //Nodi nella quale viene salvata la view della pagina desiderata
     AnchorPane catalogoNode;
-    AnchorPane preventiviNode;
+    BorderPane preventiviNode;
+
+    AnchorPane guestNode;
 
     @FXML
     private Label responseText;
@@ -34,7 +37,8 @@ public class ClienteController {
     @FXML
     AnchorPane catalogoComponent;
     @FXML
-    AnchorPane preventiviComponent;
+    BorderPane preventiviComponent;
+
 
     //Setting degli event handlers, la funzione viene eseguita quando viene caricata la relativa pagina FXML
     @FXML
@@ -52,6 +56,11 @@ public class ClienteController {
             FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventiviView.fxml"));
             preventiviNode = preventiviLoader.load();
             PreventiviController preventiviController = preventiviLoader.getController();
+
+            FXMLLoader guestLoader =  new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/guestRegister.fxml"));
+            guestNode = guestLoader.load();
+
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -90,7 +99,11 @@ public class ClienteController {
     @FXML
     private void onPreventivo(){
         mainPage.getChildren().clear();
-        mainPage.getChildren().add(preventiviNode);
+        if(currentUser == null){
+            mainPage.getChildren().add(guestNode);
+        }else{
+            mainPage.getChildren().add(preventiviNode);
+        }
     }
 
 }

@@ -85,6 +85,11 @@ public class RegistrazioneController {
         registraButton.disableProperty().bind(isInputValid.not());
     }
 
+    /*
+    *   Funzione registraUtente: tenta di effettuare la registrazione utente con i dati inseriti.
+    *       - Segnala eventuali errori a schermo
+    *       - In caso la registrazione avvenga correttamente, setta currentUser all'utente appena registrato
+    * */
     @FXML
     protected void registraUtente() {
         responseText.setText("");
@@ -127,7 +132,7 @@ public class RegistrazioneController {
         }
     }
     /*
-    *   Controllo che la mail inserita sia valida
+    *   Controllo sulla validità dell'email inserita
     * */
     public static boolean isValidEmail(String email) {
         System.out.println(email);

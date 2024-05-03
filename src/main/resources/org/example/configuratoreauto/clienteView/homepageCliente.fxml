@@ -18,7 +18,6 @@
    </top>
    <center>
       <Pane fx:id="mainPage" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-
       </Pane>
    </center>
 
