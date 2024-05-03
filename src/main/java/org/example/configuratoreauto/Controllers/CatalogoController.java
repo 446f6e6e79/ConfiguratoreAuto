@@ -3,6 +3,7 @@ package org.example.configuratoreauto.Controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.VBox;
 import org.example.configuratoreauto.Macchine.AutoNuova;
@@ -10,6 +11,7 @@ import org.example.configuratoreauto.Macchine.CatalogoModel;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.Flow;
 
 public class CatalogoController implements Initializable {
 
@@ -41,5 +43,9 @@ public class CatalogoController implements Initializable {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void setFilter(){
+
     }
 }
