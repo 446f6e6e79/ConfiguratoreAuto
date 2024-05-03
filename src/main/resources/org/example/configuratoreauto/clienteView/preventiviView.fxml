@@ -14,6 +14,6 @@
       </HBox>
    </top>
    <center>
-      <VBox fx:id="list" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+      <VBox fx:id="mainView" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
