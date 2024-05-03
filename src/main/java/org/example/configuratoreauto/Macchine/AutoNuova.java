@@ -1,7 +1,8 @@
 package org.example.configuratoreauto.Macchine;
 
 import java.io.Serializable;
-import java.util.HashSet;
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.TreeSet;
 
 public class AutoNuova extends Auto implements Serializable {
@@ -37,5 +38,10 @@ public class AutoNuova extends Auto implements Serializable {
     }
     public void addOptional(Optional optional){
         optionalDisponibili.add(optional);
+    }
+
+    public String getPriceAsString(){
+        NumberFormat euroFormat = NumberFormat.getCurrencyInstance(Locale.ITALY);
+        return euroFormat.format(costoBase);
     }
 }

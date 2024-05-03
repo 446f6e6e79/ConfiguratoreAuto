@@ -5,16 +5,38 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" style="-fx-border-color: BLACK; -fx-border-width: 2; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoController">
    <children>
-      <ImageView fx:id="autoImage" fitHeight="222.0" fitWidth="284.0" pickOnBounds="true" preserveRatio="true" />
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="200.0" prefWidth="300.0">
+      <ImageView fx:id="autoImage" fitHeight="222.0" fitWidth="332.0" pickOnBounds="true" preserveRatio="true">
+         <HBox.margin>
+            <Insets />
+         </HBox.margin></ImageView>
+      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="222.0" prefWidth="257.0">
          <children>
-            <Label fx:id="NomeModello" text="Label" />
-            <Label fx:id="Marca" text="Label" />
-            <Label fx:id="Prezzo" text="Label" />
+            <Label fx:id="NomeModello" text="Label">
+               <font>
+                  <Font name="SansSerif Regular" size="23.0" />
+               </font>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin></Label>
+            <Label fx:id="Marca" text="Label">
+               <font>
+                  <Font name="SansSerif Regular" size="19.0" />
+               </font></Label>
+            <Label fx:id="Prezzo" alignment="BOTTOM_RIGHT" prefHeight="134.0" prefWidth="290.0" text="Label">
+               <font>
+                  <Font size="19.0" />
+               </font>
+               <padding>
+                  <Insets bottom="5.0" right="20.0" />
+               </padding></Label>
          </children>
+         <padding>
+            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+         </padding>
       </VBox>
    </children>
    <padding>

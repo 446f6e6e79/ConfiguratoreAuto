@@ -20,9 +20,9 @@ public class AutoController {
     public void setAuto(AutoNuova auto) {
         NomeModello.setText(auto.getModello());
         Marca.setText(auto.getMarca().toString());
-        Prezzo.setText(String.valueOf(auto.getCostoBase()));
+        Prezzo.setText(auto.getPriceAsString());
         // Carica l'immagine e imposta sull'ImageView
-        Image image = new Image(getClass().getResourceAsStream("/img/test.jpeg"));
+        Image image = new Image(getClass().getResourceAsStream("/img/test.png"));
         autoImage.setImage(image);
     }
 }
