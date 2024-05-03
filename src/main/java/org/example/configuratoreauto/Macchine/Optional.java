@@ -2,7 +2,7 @@ package org.example.configuratoreauto.Macchine;
 
 import java.io.Serializable;
 
-public class Optional implements Serializable {
+public class Optional implements Serializable, Comparable<Optional> {
 
     private TipoOptional categoria;
     private String descrizione;
@@ -36,5 +36,10 @@ public class Optional implements Serializable {
                 this.categoria == opt.categoria &&
                 this.costo == opt.costo &&
                 this.descrizione.equals(opt.descrizione);
+    }
+
+    @Override
+    public int compareTo(Optional other){
+        return this.categoria.compareTo(other.categoria);
     }
 }

@@ -11,7 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 
-public class Preventivo implements Serializable {
+public class Preventivo implements Serializable, Comparable<Preventivo>{
     private Date data;
     private Date consegna;
     private StatoPreventivo stato;
@@ -204,5 +204,10 @@ public class Preventivo implements Serializable {
                 this.cliente.equals(other.cliente) &&
                 ((this.optionals == null && other.optionals == null) || this.optionals.equals(other.optionals) ) &&
                 this.sede.equals(other.sede);
+    }
+
+    @Override
+    public int compareTo(Preventivo o) {
+        return this.data.compareTo(o.data);
     }
 }

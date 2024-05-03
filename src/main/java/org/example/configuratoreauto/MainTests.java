@@ -73,6 +73,8 @@ public class MainTests {
         double[] scontoPerMeseFord = {0, 8, 8, 5, 5, 10, 10, 10, 5, 0, 0, 0};
         AutoNuova ford = new AutoNuova(Marca.Ford, "Mustang GT", dimFord, motoreFord, descrizioneFord, 55000, scontoPerMeseFord);
         catalogo.addData(ford);
+
+        catalogo.uploadData();
         */
         System.out.println("Get auto by brand: brand = Porche " +catalogo.getAutoByBrand(Marca.Porsche));
         System.out.println("Get all auto" +catalogo.getAllData());
