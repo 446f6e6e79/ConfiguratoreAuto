@@ -19,10 +19,7 @@ import java.util.concurrent.Flow;
 public class CatalogoController implements Initializable {
 
     @FXML
-    private ScrollPane autoScrollableContainer;
-
-    @FXML
-    private VBox autoList = new VBox();
+    private VBox autoList;
 
     CatalogoModel catalogo = CatalogoModel.getInstance();
 
