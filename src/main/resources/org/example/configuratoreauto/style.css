@@ -1,15 +1,5 @@
 #clickableText {
-    -fx-text-fill: blue;
     -fx-underline: true;
     -fx-cursor: hand; /* Cambia il cursore, segnalando il testo cliccabile*/
-}
-/*
-    Nascondo i bordi delle scroll-pane
-*/
-.no-scroll-pane-border .viewport {
-    -fx-background-color: transparent;
-}
-.no-scroll-pane-border .corner {
-    -fx-background-color: transparent;
 }
 

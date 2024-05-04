@@ -1,24 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.Pane?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="960" prefHeight="540.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.ClienteController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.ClienteController">
+    <center>
+        <Pane fx:id="mainPage" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="960.0" BorderPane.alignment="CENTER">
+        </Pane>
+    </center>
    <top>
-      <HBox prefHeight="29.0" prefWidth="600.0" BorderPane.alignment="CENTER">
-         <children>
-            <ToolBar prefHeight="36.0" prefWidth="562.0">
-              <items>
-                  <Button mnemonicParsing="false" text="Catalogo" onAction="#onCatalogo"/>
-                  <Button mnemonicParsing="false" text="Preventivi" onAction="#onPreventivo" />
-              </items>
-            </ToolBar>
-            <Label fx:id="userName" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="28.0" prefWidth="460.0" text="Label" />
-         </children></HBox>
+      <BorderPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="45.0" prefWidth="700.0" style="-fx-background-color: grey;" BorderPane.alignment="CENTER">
+         <left>
+            <ButtonBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+              <buttons>
+                      <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onCatalogo" prefHeight="30.0" prefWidth="150.0" stylesheets="@../style.css" text="Catalogo" />
+                      <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPreventivo" prefHeight="30.0" prefWidth="100.0" text="Preventivi" />
+              </buttons>
+            </ButtonBar>
+         </left>
+         <right>
+                <Label fx:id="userName" alignment="CENTER_RIGHT" contentDisplay="RIGHT" text="Label" textAlignment="RIGHT" BorderPane.alignment="CENTER" />
+         </right>
+         <padding>
+            <Insets right="30.0" />
+         </padding>
+      </BorderPane>
    </top>
-   <center>
-      <Pane fx:id="mainPage" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-      </Pane>
-   </center>
-
 </BorderPane>
