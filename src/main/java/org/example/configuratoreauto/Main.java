@@ -16,6 +16,8 @@ public class Main extends Application {
 
         userModel = UserModel.getInstance();
         stage = primaryStage;
+        stage.setMinWidth(960);
+        stage.setMinHeight(540);
         setPage("loginPage");
         stage.show();
     }
