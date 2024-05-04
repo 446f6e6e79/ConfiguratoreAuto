@@ -1,7 +1,6 @@
 package org.example.configuratoreauto.Controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -9,6 +8,7 @@ import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.Impiegato;
+import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
 import org.example.configuratoreauto.Preventivi.Sede;
 
@@ -44,8 +44,8 @@ public class PreventiviController {
     *       - vengono quindi mostrati i preventivi, per una determinata sede
     * */
     @FXML
-    void getPreventiviForImpiegato(Sede sede) {
-        Impiegato impiegato = (Impiegato) UserModel.getInstance().getCurrentUser();
+    void getPreventiviForSegretario(Sede sede) {
+        Segretario segretario = (Segretario) UserModel.getInstance().getCurrentUser();
 
         for (Preventivo p : registro.getPreventiviBySede( sede )) {
             HBox item =  loadPreventivoElement(p);

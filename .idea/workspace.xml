@@ -6,16 +6,12 @@
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/useCase.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/doc/useCase.drawio" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/ImpiegatoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/ImpiegatoController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/PreventiviController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/PreventiviController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/autoComponent.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/autoComponent.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/catalogoView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/catalogoView.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/homepageCliente.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/homepageCliente.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/registrazioneView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/registrazioneView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/SegretarioController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/SegretarioController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/impiegatoView/homepage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/impiegatoView/homepage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/loginPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/loginPage.fxml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/segretarioView/homepage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/segretarioView/homepage.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/style.css" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
     <list id="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" name="Changes by donny" comment="" />
