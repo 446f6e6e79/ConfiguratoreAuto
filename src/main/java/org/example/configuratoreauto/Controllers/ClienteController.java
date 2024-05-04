@@ -25,7 +25,7 @@ public class ClienteController {
     //Nodi nella quale viene salvata la view della pagina desiderata
     AnchorPane catalogoNode;
     BorderPane preventiviNode;
-
+    PreventiviController preventiviController;
     AnchorPane guestNode;
 
     @FXML
@@ -55,7 +55,7 @@ public class ClienteController {
             //PREVENTIVI
             FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventiviView.fxml"));
             preventiviNode = preventiviLoader.load();
-            PreventiviController preventiviController = preventiviLoader.getController();
+            preventiviController = preventiviLoader.getController();
 
             FXMLLoader guestLoader =  new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/guestRegister.fxml"));
             guestNode = guestLoader.load();
@@ -100,5 +100,6 @@ public class ClienteController {
     private void onPreventivo(){
         mainPage.getChildren().clear();
         mainPage.getChildren().add(preventiviNode);
+        preventiviController.getPreventiviForCliente();
     }
 }
