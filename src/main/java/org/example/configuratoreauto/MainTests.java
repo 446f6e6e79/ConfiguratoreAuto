@@ -76,7 +76,7 @@ public class MainTests {
 
         catalogo.uploadData();
         */
-        System.out.println("Get auto by brand: brand = Porche " +catalogo.getAutoByBrand(Marca.Porsche));
+        System.out.println("Get auto by brand: brand = Porche " +catalogo.filterAutoByBrand(Marca.Porsche, catalogo.getAllData()));
         System.out.println("Get all auto" +catalogo.getAllData());
 
 

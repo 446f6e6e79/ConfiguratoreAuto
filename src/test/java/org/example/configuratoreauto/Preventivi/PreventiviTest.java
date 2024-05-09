@@ -39,7 +39,6 @@ class PreventiviTest{
         //Una volta aggiornata automaticamente lo stato, il preventivo dovrebbe risultare SCADUTO
         p.updateStatoAutomatico();
         Assertions.assertEquals(StatoPreventivo.SCADUTO, p.getStato());
-        
     }
 
     @Test

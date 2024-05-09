@@ -14,6 +14,8 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
 
     private static Set<Integer> usedIds = new HashSet<>();
 
+    private static Set<Marca> usedBrands = new HashSet<>();
+
     //Percorso al file contenete le informazioni riguardante il catalogo
     private static final String CATATLOGO_PATH = "src/main/resources/data/catalogo.ser";
 
@@ -38,30 +40,40 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
     *   in un set tutti gli ID già in uso
     * */
     @Override
-    protected boolean addData(AutoNuova newData){
+    public boolean addData(AutoNuova newData){
         if(!data.contains(newData)){
             usedIds.add(newData.getId());
+            usedBrands.add(newData.getMarca());
             return data.add(newData);
         }
         return false;
     }
-    public ArrayList<AutoNuova> getAutoByBrand(Marca brand){
-        return super.data.stream()
+    /*
+    *   Passatogli come parametro una ArrayList di auto, restituisce un ArrayList contenente solamente le auto
+    *   del brand passato come parametro
+    * */
+    public static ArrayList<AutoNuova> filterAutoByBrand(Marca brand, ArrayList<AutoNuova> data){
+        return data.stream()
                 .filter(t -> t.getMarca() == brand)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public ArrayList<AutoNuova> getAutoByBrand(Alimentazione alimentazione){
-        return super.data.stream()
+    public static ArrayList<AutoNuova> filterAutoByAlimentazione(Alimentazione alimentazione, ArrayList<AutoNuova> data){
+        return data.stream()
                 .filter(t -> t.getMotore().getAlimentazione() == alimentazione)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public ArrayList<AutoNuova> getAutoByPowerRange(int min, int max){
-        return super.data.stream()
+    public ArrayList<AutoNuova> filterAutoByPowerRange(int min, int max, ArrayList<AutoNuova> data) {
+        return data.stream()
                 .filter(t -> t.getMotore().getPotenzaKW() >= min && t.getMotore().getPotenzaKW() <= max)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
+
+    public Set<Marca> getUsedBrands() {
+        return usedBrands;
+    }
+
     //Metodo per generare codiciUnivoci, assegnabili alle macchine
     public int getUniqueId(){
         int newId;
@@ -71,4 +83,6 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
         } while (usedIds.contains(newId));
         return newId;
     }
+
+
 }

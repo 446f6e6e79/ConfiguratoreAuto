@@ -12,6 +12,14 @@ public abstract class Auto implements Serializable{
     private Motore motore;
     private ArrayList<Immagine> immagini;
 
+    public Auto(Marca marca, String modello, Dimensione dimensione, Motore motore){
+        this.marca = marca;
+        this.modello = modello;
+        this.dimensione = dimensione;
+        this.motore = motore;
+        this.immagini = new ArrayList<>();
+    }
+
     protected void addImage(Immagine img){
         immagini.add(img);
     }
