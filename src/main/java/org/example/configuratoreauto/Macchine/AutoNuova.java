@@ -6,15 +6,16 @@ import java.util.Locale;
 import java.util.TreeSet;
 
 public class AutoNuova extends Auto implements Serializable {
-
+    private int id;
     private String descrizione;
     private double costoBase;
     //Array di 12 double, rappresentano ogni mese lo scontoApplicato
     private double [] scontoPerMese;
     private TreeSet<Optional> optionalDisponibili;
 
-    public AutoNuova(Marca marca, String modello, Dimensione dimensione, Motore motore, String descrizione, double costoBase, double [] scontoPerMese) {
+    public AutoNuova(int id, Marca marca, String modello, Dimensione dimensione, Motore motore, String descrizione, double costoBase, double [] scontoPerMese){
         super(marca, modello, dimensione, motore);
+        this.id = id;
         this.descrizione = descrizione;
         this.costoBase = costoBase;
         this.scontoPerMese = scontoPerMese;
@@ -32,12 +33,20 @@ public class AutoNuova extends Auto implements Serializable {
         return scontoPerMese;
     }
 
+    /*
+    *   Due auto sono considerate uguali se condividono lo stesso id
+    * */
     @Override
     public boolean equals(Object o){
-        return super.equals(o);
+        return o instanceof AutoNuova other &&
+                this.id == other.id;
     }
     public void addOptional(Optional optional){
         optionalDisponibili.add(optional);
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getPriceAsString(){
