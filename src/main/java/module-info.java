@@ -1,6 +1,7 @@
 module org.example.configuratoreauto {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.desktop;
 
 
     exports org.example.configuratoreauto;

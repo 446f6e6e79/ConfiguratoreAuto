@@ -11,7 +11,7 @@
 
 <AnchorPane fx:id="catalogoComponent" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.CatalogoController">
    <children>
-      <ScrollPane fitToHeight="true" hbarPolicy="NEVER" layoutX="297.0" layoutY="-5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="662.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
+      <ScrollPane fitToHeight="true" hbarPolicy="NEVER" layoutX="288.0" layoutY="-5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="674.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER">
          <content>
             <VBox fx:id="autoList" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="10" />
          </content>
@@ -19,7 +19,7 @@
             <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </ScrollPane>
-      <VBox layoutX="1.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="335.0">
+      <VBox layoutX="1.0" layoutY="1.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="286.0">
          <children>
             <Label text="Filtri:" />
             <HBox prefHeight="59.0" prefWidth="335.0">
@@ -34,7 +34,7 @@
                   <ChoiceBox fx:id="alimentazioneList" prefWidth="150.0" />
                </children>
             </HBox>
-            <Button fx:id="resetFiltri" mnemonicParsing="false" text="Pulisci tutti i filtri" onAction="#resetFilters"/>
+            <Button fx:id="resetFiltri" mnemonicParsing="false" onAction="#resetFilters" text="Pulisci tutti i filtri" />
          </children>
       </VBox>
    </children>

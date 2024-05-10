@@ -6,9 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.*;
+import javafx.scene.paint.Color;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.UserModel;
@@ -35,14 +34,14 @@ public class ClienteController {
     @FXML
     private Pane mainPage;
     @FXML
-    AnchorPane catalogoComponent;
-    @FXML
-    BorderPane preventiviComponent;
-
+    private AnchorPane catalogoComponent;
 
     //Setting degli event handlers, la funzione viene eseguita quando viene caricata la relativa pagina FXML
     @FXML
     private void initialize() throws InterruptedException {
+        //DEBUG
+        mainPage.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
+        //FINE DEBUG
         try {
             /*
                 Carico all'interno dei nodi la rispettiva view FXML, definendo inoltre i relativi controller
@@ -50,11 +49,20 @@ public class ClienteController {
             //CATALOGO
             FXMLLoader catalogoLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/catalogoView.fxml"));
             catalogoNode = catalogoLoader.load();
+
+            catalogoNode.setBackground(new Background(new BackgroundFill(Color.BLUE, null, null)));
+            //Setting dinamico delle dimensioni del catalogo
+            catalogoNode.prefWidthProperty().bind(mainPage.widthProperty());
+            catalogoNode.prefHeightProperty().bind(mainPage.heightProperty());
+            
             CatalogoController catalogoController = catalogoLoader.getController();
 
             //PREVENTIVI
             FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventiviView.fxml"));
             preventiviNode = preventiviLoader.load();
+            //Setting dinamico delle dimensioni della pagina preventivi
+            preventiviNode.prefWidthProperty().bind(mainPage.widthProperty());
+            preventiviNode.prefHeightProperty().bind(mainPage.heightProperty());
             preventiviController = preventiviLoader.getController();
 
             FXMLLoader guestLoader =  new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/guestRegister.fxml"));

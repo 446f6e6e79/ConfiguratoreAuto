@@ -4,14 +4,13 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import org.example.configuratoreauto.Macchine.Alimentazione;
 import org.example.configuratoreauto.Macchine.AutoNuova;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
 import org.example.configuratoreauto.Macchine.Marca;
-
+import javafx.scene.paint.Color;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -20,12 +19,13 @@ import java.util.ResourceBundle;
 public class CatalogoController implements Initializable {
 
     @FXML
+    private AnchorPane catalogoComponent;
+    @FXML
     private VBox autoList;
     @FXML
     private ChoiceBox<Marca> brandList;
     @FXML
     private ChoiceBox<Alimentazione> alimentazioneList;
-
 
     CatalogoModel catalogo = CatalogoModel.getInstance();
 
@@ -33,6 +33,11 @@ public class CatalogoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //======DEBUG==============
+        autoList.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
+        //====FINE DEBUG==================
+        autoList.prefWidthProperty().bind(catalogoComponent.widthProperty());
+        autoList.prefHeightProperty().bind(catalogoComponent.heightProperty());
         //Aggiungo le auto alla VBox
         loadCars();
         loadBrandFilter();
