@@ -14,8 +14,6 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
 
     private static Set<Integer> usedIds = new HashSet<>();
 
-    private static Set<Marca> usedBrands = new HashSet<>();
-
     //Percorso al file contenete le informazioni riguardante il catalogo
     private static final String CATATLOGO_PATH = "src/main/resources/data/catalogo.ser";
 
@@ -43,7 +41,6 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
     public boolean addData(AutoNuova newData){
         if(!data.contains(newData)){
             usedIds.add(newData.getId());
-            usedBrands.add(newData.getMarca());
             return data.add(newData);
         }
         return false;
@@ -70,8 +67,20 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public Set<Marca> getUsedBrands() {
+    public static Set<Marca> getUsedBrands(ArrayList<AutoNuova> data) {
+        HashSet<Marca> usedBrands = new HashSet<>();
+        for(AutoNuova t : data){
+            usedBrands.add(t.getMarca());
+        }
         return usedBrands;
+    }
+
+    public static Set<Alimentazione> getUsedAlimentazione(ArrayList<AutoNuova> data) {
+        HashSet<Alimentazione> usedAlimentazione = new HashSet<>();
+        for(AutoNuova t : data){
+            usedAlimentazione.add(t.getMotore().getAlimentazione());
+        }
+        return usedAlimentazione;
     }
 
     //Metodo per generare codiciUnivoci, assegnabili alle macchine

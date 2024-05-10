@@ -56,6 +56,7 @@ public class RegistrazioneController {
             responseText.setText("");
         };
 
+        //Agg
         nome.textProperty().addListener(textChangeListener);
         cognome.textProperty().addListener(textChangeListener);
         email.textProperty().addListener(textChangeListener);
@@ -101,7 +102,7 @@ public class RegistrazioneController {
         String nomeText = nome.getText();
         String cognomeText = cognome.getText();
 
-        //Se le due password sono uguali:
+        //Se tutti i campi sono valorizzati:
         if(isInputValid.get()) {
             if (passText.equals(passConfirmationText)) {
                 if (u.registraCliente(new Cliente(emailText, passText, nomeText, cognomeText))) {
@@ -125,10 +126,6 @@ public class RegistrazioneController {
         else if(!isEmailValid.get()){
             responseText.setTextFill(Color.RED);
             responseText.setText("Attenzione! Email non valida");
-        }
-        else {
-            responseText.setTextFill(Color.RED);
-            responseText.setText("Attenzione! Devono essere inseriti tutti i campi");
         }
     }
     /*

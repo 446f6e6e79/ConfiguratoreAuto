@@ -38,31 +38,27 @@ public class CatalogoController implements Initializable {
         loadBrandFilter();
         loadAlimentazioni();
 
-        /*
-        *   Aggiungo u
-        * */
         brandList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             setFilter();
-            loadCars(); // Reload cars when brand selection changes
+            loadCars();
+            loadAlimentazioni();
         });
 
         alimentazioneList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             setFilter();
-            loadCars(); // Reload cars when alimentazione selection changes
+            loadCars();
         });
     }
     /*
     *   Verranno mostrati solamente i brand presenti all'interno del catalogo
     * */
     private void loadBrandFilter() {
-        for(Marca m:catalogo.getUsedBrands()){
-            brandList.getItems().add(m);
-        }
+        brandList.getItems().addAll(CatalogoModel.getUsedBrands(filteredList));
     }
     private void loadAlimentazioni() {
-        for(Alimentazione a:Alimentazione.values()){
-            alimentazioneList.getItems().add(a);
-        }
+        System.out.println("Load Alimentazioni: "+CatalogoModel.getUsedAlimentazione(filteredList));
+        alimentazioneList.getItems().clear();
+        alimentazioneList.getItems().addAll(CatalogoModel.getUsedAlimentazione(filteredList));
     }
     private void loadCars() {
         //Resetto la lista presente in precedenza
@@ -94,13 +90,13 @@ public class CatalogoController implements Initializable {
 
     private void setFilter(){
         //Ogni qual volta applico un nuovo filtro, devo rigenerare l'intera lista di auto
-        this.filteredList = catalogo.getAllData();
+        filteredList = catalogo.getAllData();
 
         if(brandList.getSelectionModel().getSelectedItem() != null) {
-            this.filteredList = catalogo.filterAutoByBrand(brandList.getSelectionModel().getSelectedItem(), this.filteredList);
+            filteredList = CatalogoModel.filterAutoByBrand(brandList.getSelectionModel().getSelectedItem(), filteredList);
         }
         if(alimentazioneList.getSelectionModel().getSelectedItem() != null) {
-            this.filteredList = catalogo.filterAutoByAlimentazione(alimentazioneList.getSelectionModel().getSelectedItem(), this.filteredList);
+            filteredList = CatalogoModel.filterAutoByAlimentazione(alimentazioneList.getSelectionModel().getSelectedItem(), filteredList);
         }
     }
     /*
@@ -111,5 +107,6 @@ public class CatalogoController implements Initializable {
     private void resetFilters(){
         brandList.setValue(null);
         alimentazioneList.setValue(null);
+        loadBrandFilter();
     }
 }

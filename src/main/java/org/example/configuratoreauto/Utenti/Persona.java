@@ -12,7 +12,6 @@ public class Persona implements Serializable{
         this.email = email;
         this.password = password;
     }
-
     /*
     *   Due oggetti della classe persona sono considerabili equals se condividono stessa mail.
     *   La definizione di tale metodo permette di mantenere l'univocità della email e di
