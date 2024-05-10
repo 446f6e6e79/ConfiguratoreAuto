@@ -7,13 +7,14 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="700.0" style="-fx-border-color: BLACK; -fx-border-width: 2; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="630.0" style="-fx-border-color: BLACK; -fx-border-width: 2; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoController">
    <children>
       <ImageView fx:id="autoImage" fitHeight="245.0" fitWidth="320.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>
             <Insets />
-         </HBox.margin></ImageView>
-      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="264.0" prefWidth="344.0">
+         </HBox.margin>
+      </ImageView>
+      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="264.0" prefWidth="300.0">
          <children>
             <Label fx:id="NomeModello" text="Label">
                <font>

@@ -21,12 +21,14 @@ public class PreventiviController {
 
     @FXML
     void getPreventiviForCliente() {
+        mainView.getChildren().clear();
         Cliente cliente = (Cliente) UserModel.getInstance().getCurrentUser();
         if (cliente == null) {
             //Se l'utente è null, non è
             Label loginLabel = new Label("Accedi per vedere i tuoi preventivi");
             loginLabel.setId("clickableText");
             loginLabel.setOnMouseClicked(event -> handleLoginClick());
+
             mainView.getChildren().add(loginLabel);
             
         }
@@ -52,6 +54,7 @@ public class PreventiviController {
             mainView.getChildren().add(item);
         }
     }
+
     /*
     *   Genera il singolo elemento PREVENTIVO, contenente:
     *       - Data richiesta
@@ -66,6 +69,7 @@ public class PreventiviController {
         item.getChildren().addAll(date, auto, stato);
         return item;
     }
+
     //Dovrebbe essere aperta la pagina di login
     private void handleLoginClick() {System.out.println("Login clicked");}
 

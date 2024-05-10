@@ -18,7 +18,6 @@ import static java.lang.Thread.sleep;
 
 public class ClienteController {
     UserModel userModel = UserModel.getInstance();
-    CatalogoModel catalogo = CatalogoModel.getInstance();
     Cliente currentUser = (Cliente) userModel.getCurrentUser();
 
     //Nodi nella quale viene salvata la view della pagina desiderata
@@ -28,20 +27,13 @@ public class ClienteController {
     AnchorPane guestNode;
 
     @FXML
-    private Label responseText;
-    @FXML
     private  Label userName;
     @FXML
     private Pane mainPage;
-    @FXML
-    private AnchorPane catalogoComponent;
 
     //Setting degli event handlers, la funzione viene eseguita quando viene caricata la relativa pagina FXML
     @FXML
     private void initialize() throws InterruptedException {
-        //DEBUG
-        mainPage.setBackground(new Background(new BackgroundFill(Color.GREEN, null, null)));
-        //FINE DEBUG
         try {
             /*
                 Carico all'interno dei nodi la rispettiva view FXML, definendo inoltre i relativi controller
@@ -50,12 +42,9 @@ public class ClienteController {
             FXMLLoader catalogoLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/catalogoView.fxml"));
             catalogoNode = catalogoLoader.load();
 
-            catalogoNode.setBackground(new Background(new BackgroundFill(Color.BLUE, null, null)));
             //Setting dinamico delle dimensioni del catalogo
             catalogoNode.prefWidthProperty().bind(mainPage.widthProperty());
             catalogoNode.prefHeightProperty().bind(mainPage.heightProperty());
-            
-            CatalogoController catalogoController = catalogoLoader.getController();
 
             //PREVENTIVI
             FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventiviView.fxml"));

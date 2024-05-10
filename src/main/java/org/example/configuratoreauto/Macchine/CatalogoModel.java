@@ -13,6 +13,7 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
     private static CatalogoModel instance;
 
     private static Set<Integer> usedIds = new HashSet<>();
+    private static Set<Marca> usedBrands = new HashSet<>();
 
     //Percorso al file contenete le informazioni riguardante il catalogo
     private static final String CATATLOGO_PATH = "src/main/resources/data/catalogo.ser";
@@ -40,6 +41,7 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
     @Override
     public boolean addData(AutoNuova newData){
         if(!data.contains(newData)){
+            usedBrands.add(newData.getMarca());
             usedIds.add(newData.getId());
             return data.add(newData);
         }
@@ -67,11 +69,7 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public static Set<Marca> getUsedBrands(ArrayList<AutoNuova> data) {
-        HashSet<Marca> usedBrands = new HashSet<>();
-        for(AutoNuova t : data){
-            usedBrands.add(t.getMarca());
-        }
+    public Set<Marca> getUsedBrands() {
         return usedBrands;
     }
 

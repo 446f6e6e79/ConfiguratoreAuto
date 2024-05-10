@@ -21,7 +21,7 @@ public class CatalogoController implements Initializable {
     @FXML
     private AnchorPane catalogoComponent;
     @FXML
-    private VBox autoList;
+    private FlowPane autoList;
     @FXML
     private ChoiceBox<Marca> brandList;
     @FXML
@@ -33,32 +33,36 @@ public class CatalogoController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //======DEBUG==============
-        autoList.setBackground(new Background(new BackgroundFill(Color.RED, null, null)));
-        //====FINE DEBUG==================
+
         autoList.prefWidthProperty().bind(catalogoComponent.widthProperty());
         autoList.prefHeightProperty().bind(catalogoComponent.heightProperty());
-        //Aggiungo le auto alla VBox
+
+        //Carico le auto
         loadCars();
+
+        //Carico gli elementi per i filtri
         loadBrandFilter();
         loadAlimentazioni();
 
+        /*
+        *   Aggiungo dei listener alle varie CHOICEBOX per i filtri. In questo modo, ogni volta
+        *   viene impostato un nuovo filtro viene AGGIORNATA LA LISTA DI MACCHINE
+        * */
         brandList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             setFilter();
             loadCars();
             loadAlimentazioni();
         });
-
         alimentazioneList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             setFilter();
             loadCars();
         });
     }
     /*
-    *   Verranno mostrati solamente i brand presenti all'interno del catalogo
+    *   Carico nella choiceBox brandList i possibili brand dispobili
     * */
     private void loadBrandFilter() {
-        brandList.getItems().addAll(CatalogoModel.getUsedBrands(filteredList));
+        brandList.getItems().addAll(catalogo.getUsedBrands());
     }
     private void loadAlimentazioni() {
         System.out.println("Load Alimentazioni: "+CatalogoModel.getUsedAlimentazione(filteredList));
