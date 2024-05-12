@@ -59,14 +59,19 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
 
     public static ArrayList<AutoNuova> filterAutoByAlimentazione(Alimentazione alimentazione, ArrayList<AutoNuova> data){
         return data.stream()
-                .filter(t -> t.getMotore().getAlimentazione() == alimentazione)
+                .filter(t -> t.getMotoriDisponibili().contains(alimentazione))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<AutoNuova> filterAutoByPowerRange(int min, int max, ArrayList<AutoNuova> data) {
         return data.stream()
-                .filter(t -> t.getMotore().getPotenzaKW() >= min && t.getMotore().getPotenzaKW() <= max)
-                .collect(Collectors.toCollection(ArrayList::new));
+                .filter(t -> {
+                    for (Motore motore : t.getMotoriDisponibili()) {
+                        int potenzaKW = motore.getPotenzaKW();
+                        return potenzaKW >= min && potenzaKW <= max;
+                    }
+                    return false;
+                }).collect(Collectors.toCollection(ArrayList::new));
     }
 
     public Set<Marca> getUsedBrands() {
@@ -76,7 +81,9 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
     public static Set<Alimentazione> getUsedAlimentazione(ArrayList<AutoNuova> data) {
         HashSet<Alimentazione> usedAlimentazione = new HashSet<>();
         for(AutoNuova t : data){
-            usedAlimentazione.add(t.getMotore().getAlimentazione());
+            for(Motore m: t.getMotoriDisponibili()) {
+                usedAlimentazione.add(m.getAlimentazione());
+            }
         }
         return usedAlimentazione;
     }

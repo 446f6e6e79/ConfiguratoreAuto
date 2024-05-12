@@ -2,6 +2,7 @@ package org.example.configuratoreauto.Macchine;
 
 import java.io.Serializable;
 import java.text.NumberFormat;
+import java.util.HashSet;
 import java.util.Locale;
 import java.util.TreeSet;
 
@@ -11,6 +12,7 @@ public class AutoNuova extends Auto implements Serializable {
     private double costoBase;
     //Array di 12 double, rappresentano ogni mese lo scontoApplicato
     private double [] scontoPerMese;
+    private HashSet<Motore> motoriDisponibili;
     private TreeSet<Optional> optionalDisponibili;
 
     public AutoNuova(int id, Marca marca, String modello, Dimensione dimensione, Motore motore, String descrizione, double costoBase, double [] scontoPerMese){
@@ -19,6 +21,7 @@ public class AutoNuova extends Auto implements Serializable {
         this.descrizione = descrizione;
         this.costoBase = costoBase;
         this.scontoPerMese = scontoPerMese;
+        this.motoriDisponibili = new HashSet<>();
         this.optionalDisponibili = new TreeSet<>();
     }
 
@@ -28,6 +31,9 @@ public class AutoNuova extends Auto implements Serializable {
 
     public TreeSet<Optional> getOptionalDisponibili() {
         return optionalDisponibili;
+    }
+    public HashSet<Motore> getMotoriDisponibili() {
+        return motoriDisponibili;
     }
     public double[] getScontoPerMese() {
         return scontoPerMese;
@@ -43,6 +49,9 @@ public class AutoNuova extends Auto implements Serializable {
     }
     public void addOptional(Optional optional){
         optionalDisponibili.add(optional);
+    }
+    public void addMotore(Motore motore){
+        motoriDisponibili.add(motore);
     }
 
     public int getId() {

@@ -2,6 +2,7 @@ package org.example.configuratoreauto.Preventivi;
 
 import org.example.configuratoreauto.Macchine.AutoNuova;
 import org.example.configuratoreauto.Macchine.AutoUsata;
+import org.example.configuratoreauto.Macchine.Motore;
 import org.example.configuratoreauto.Macchine.Optional;
 import org.example.configuratoreauto.Utenti.Cliente;
 
@@ -18,6 +19,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     private AutoUsata usata;
     private AutoNuova acquisto;
     private HashSet<Optional> optionals = new HashSet<>();
+    private Motore motoreScelto;
     private Sede sede;
     private Cliente cliente;
     private Date scadenza;
