@@ -15,8 +15,8 @@ public class AutoNuova extends Auto implements Serializable {
     private HashSet<Motore> motoriDisponibili;
     private TreeSet<Optional> optionalDisponibili;
 
-    public AutoNuova(int id, Marca marca, String modello, Dimensione dimensione, Motore motore, String descrizione, double costoBase, double [] scontoPerMese){
-        super(marca, modello, dimensione, motore);
+    public AutoNuova(int id, Marca marca, String modello, Dimensione dimensione, String descrizione, double costoBase, double [] scontoPerMese){
+        super(marca, modello, dimensione);
         this.id = id;
         this.descrizione = descrizione;
         this.costoBase = costoBase;

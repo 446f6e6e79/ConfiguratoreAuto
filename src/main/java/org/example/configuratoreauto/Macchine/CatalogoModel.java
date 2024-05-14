@@ -57,9 +57,9 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public static ArrayList<AutoNuova> filterAutoByAlimentazione(Alimentazione alimentazione, ArrayList<AutoNuova> data){
+    public static ArrayList<AutoNuova> filterAutoByAlimentazione(Alimentazione alimentazione, ArrayList<AutoNuova> data) {
         return data.stream()
-                .filter(t -> t.getMotoriDisponibili().contains(alimentazione))
+                .filter(auto -> auto.getMotoriDisponibili().stream().anyMatch(motore -> motore.getAlimentazione() == alimentazione))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
