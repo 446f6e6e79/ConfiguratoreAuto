@@ -85,7 +85,7 @@ public class LoginController {
                     setPage("impiegatoView/homepage");
                 }
                 if (userModel.getCurrentUser() instanceof Segretario) {
-                    setPage("segretarioView/homepage");
+                    setPage("segretarioView/homepageSegretario");
                 }
             } else {
                 responseText.setTextFill(Color.RED);

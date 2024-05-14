@@ -46,9 +46,7 @@ public class PreventiviController {
     *       - vengono quindi mostrati i preventivi, per una determinata sede
     * */
     @FXML
-    void getPreventiviForSegretario(Sede sede) {
-        Segretario segretario = (Segretario) UserModel.getInstance().getCurrentUser();
-
+    void getPreventiviforSede(Sede sede) {
         for (Preventivo p : registro.getPreventiviBySede( sede )) {
             HBox item =  loadPreventivoElement(p);
             mainView.getChildren().add(item);
@@ -67,6 +65,7 @@ public class PreventiviController {
         Label auto = new Label(preventivo.getAcquisto().getMarca() + " " + preventivo.getAcquisto().getModello());
         Label stato = new Label(preventivo.getStato().toString());
         item.getChildren().addAll(date, auto, stato);
+        item.setStyle("-fx-border-color: black; -fx-border-width: 1px;");
         return item;
     }
 

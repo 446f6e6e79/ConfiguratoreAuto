@@ -2,6 +2,10 @@
 
     import org.example.configuratoreauto.AbstractModel;
 
+    import java.lang.reflect.Array;
+    import java.util.ArrayList;
+    import java.util.stream.Collectors;
+
     /*
     *   Classe UserModel: rappresenta il MODELLO per quanto riguarda gli utenti e l'accesso.
     *   Oltre ai metodi già definiti nella superclasse AbstractModel, la seguente classe definisce i seguenti metodi:
@@ -62,5 +66,12 @@
         }
         public Persona getCurrentUser(){
             return currentUser;
+        }
+
+        public ArrayList<Cliente> getAllClients(){
+            return data.stream()
+                    .filter(t -> t instanceof Cliente)
+                    .map(t -> (Cliente) t)
+                    .collect(Collectors.toCollection(ArrayList::new));
         }
     }

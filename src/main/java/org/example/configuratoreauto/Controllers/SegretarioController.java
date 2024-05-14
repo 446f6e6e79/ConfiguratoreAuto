@@ -1,79 +1,79 @@
 package org.example.configuratoreauto.Controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import org.example.configuratoreauto.Preventivi.Sede;
-import org.example.configuratoreauto.Preventivi.SediModel;
+import javafx.scene.layout.*;
+import org.example.configuratoreauto.Utenti.Cliente;
+import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
-
 import java.io.IOException;
 
 public class SegretarioController {
-    UserModel userModel = UserModel.getInstance();
-    SediModel sediModel = SediModel.getInstance();
+
+    //Nodi nella quale viene salvata la view della pagina desiderata
+    AnchorPane catalogoNode;
     BorderPane preventiviNode;
     PreventiviController preventiviController;
+    AnchorPane guestNode;
 
     @FXML
-    Pane mainPage;
+    private  Label userName;
     @FXML
-    ChoiceBox<Sede> choiceSede;
+    private Pane mainPage;
+
+    //Setting degli event handlers, la funzione viene eseguita quando viene caricata la relativa pagina FXML
     @FXML
-    Label userName;
-
-    @FXML
-    private void initialize() {
-
-        //Imposto le principali componenti della pagina
-        //imposta un convertitore da Sede a stringa da permettere così una leggibilità per l'utente migliore, ed un codice più compatto
-        choiceSede.setConverter(new SedeStringConverter());
-        //inizializzo la choiceBox
-        choiceSede.getItems().addAll(sediModel.getAllData());
-        //imposto la Label dell'username
-        userName.setText("Ciao Impiegato");
-
+    private void initialize() throws InterruptedException {
         try {
-            //PREVENTIVI: carico la componente già utilizzata nella view del Cliente ( componente generalizzata )
-            //            ed inoltre carico l'annesso controller utile per differenziare cliente ed impiegato
+            /*
+                Carico all'interno dei nodi la rispettiva view FXML, definendo inoltre i relativi controller
+            * */
+            //CATALOGO
+            FXMLLoader catalogoLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/catalogoView.fxml"));
+            catalogoNode = catalogoLoader.load();
+
+            //Setting dinamico delle dimensioni del catalogo
+            catalogoNode.prefWidthProperty().bind(mainPage.widthProperty());
+            catalogoNode.prefHeightProperty().bind(mainPage.heightProperty());
+
+            //PREVENTIVI
             FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventiviView.fxml"));
             preventiviNode = preventiviLoader.load();
+            //Setting dinamico delle dimensioni della pagina preventivi
+            preventiviNode.prefWidthProperty().bind(mainPage.widthProperty());
+            preventiviNode.prefHeightProperty().bind(mainPage.heightProperty());
             preventiviController = preventiviLoader.getController();
-        }catch(IOException e){
+
+            FXMLLoader guestLoader =  new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/guestRegister.fxml"));
+            guestNode = guestLoader.load();
+
+
+        } catch (IOException e) {
             e.printStackTrace();
         }
-
-        //Al cambio della sede imposto i preventivi
-        choiceSede.setOnAction(this::onPreventivo);
+        //imposto come pagine predefinita il catalogo
+        onCatalogo();
     }
 
+    /*
+     *   Azione avviata dal click del menù Catalogo:
+     *       cancella l'elemento presente nella pagina, a cui sostituisce l'elemento CATALOGO
+     * */
     @FXML
-    private void onPreventivo(ActionEvent event){
-        //pulisco dalle componenti precedenti ed aggiorno a quelle recenti
+    private void onCatalogo(){
+        mainPage.getChildren().clear();
+        mainPage.getChildren().add(catalogoNode);
+    }
+
+    /*
+     *   Azione avviata dal click del menù Preventivi:
+     *       cancella l'elemento presente nella pagina, a cui sostituisce l'elemento PREVENTIVI
+     * */
+    @FXML
+    private void onPreventivo(){
         mainPage.getChildren().clear();
         mainPage.getChildren().add(preventiviNode);
-        preventiviController.getPreventiviForSegretario(choiceSede.getValue());
-    }
-
-    // classe utile alla conversione da Sede a String
-    class SedeStringConverter extends javafx.util.StringConverter<Sede> {
-        @Override
-        public String toString(Sede sede) {
-            if (sede != null) {
-                return sede.getNome();
-            } else {
-                return "";
-            }
-        }
-
-        @Override
-        public Sede fromString(String string) {
-            // Non necessario per questa situazione
-            return null;
-        }
+        preventiviController.getPreventiviForCliente();
     }
 }
