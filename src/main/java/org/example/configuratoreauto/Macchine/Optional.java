@@ -7,6 +7,7 @@ public class Optional implements Serializable, Comparable<Optional> {
     private TipoOptional categoria;
     private String descrizione;
     private double costo;
+
     public Optional( TipoOptional categoria, String descrizione, double costo){
         this.categoria = categoria;
         this.descrizione = descrizione;
@@ -41,5 +42,9 @@ public class Optional implements Serializable, Comparable<Optional> {
     @Override
     public int compareTo(Optional other){
         return this.categoria.compareTo(other.categoria);
+    }
+
+    public String toString(){
+        return descrizione +": "+costo;
     }
 }

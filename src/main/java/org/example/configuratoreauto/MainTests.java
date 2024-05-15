@@ -19,7 +19,7 @@ public class MainTests {
         u1.validation("davidedona@gmail.com", "1234");
         sedi.addData(new Sede("AutoVerona", "Str. le Grazie, 15, 37134 Verona VR"));
 
-        Preventivo p = new Preventivo(catalogo.getAllData().get(0), sedi.getAllData().get(0), (Cliente) u1.getCurrentUser());
+        Preventivo p = new Preventivo(catalogo.getAllData().get(0), sedi.getAllData().get(0), (Cliente) u1.getCurrentUser(), null, null);
         r.addData(p);
         r.uploadData();
         System.out.println(r.getAllData());
