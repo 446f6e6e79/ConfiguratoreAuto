@@ -70,9 +70,9 @@ public class AutoNuova extends Auto implements Serializable {
         tot -= (tot*scontoPerMese[new Date().getMonth()] / 100);
         return tot;
     }
-    public String getPriceAsString(double price){
+    public static String getPriceAsString(double price){
         NumberFormat euroFormat = NumberFormat.getCurrencyInstance(Locale.ITALY);
-        return euroFormat.format(costoBase);
+        return euroFormat.format(price);
     }
     public String getBasePriceAsString(){
         return getPriceAsString(costoBase);

@@ -45,6 +45,6 @@ public class Optional implements Serializable, Comparable<Optional> {
     }
 
     public String toString(){
-        return descrizione +": "+costo;
+        return descrizione +": "+AutoNuova.getPriceAsString(costo);
     }
 }

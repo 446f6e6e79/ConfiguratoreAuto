@@ -94,11 +94,12 @@ public class AutoCustomController implements Initializable {
         selezionati.add(cerchi.getValue());
         double costoTotale =auto.getCostoTotale(selezionati);
         updatePriceInfo(selezionati);
-        prezzo.setText(auto.getPriceAsString(costoTotale));
+        prezzo.setText(AutoNuova.getPriceAsString(costoTotale));
     }
 
     public void updatePriceInfo(ArrayList<Optional> selezionati) {
         String s = "";
+        s+= "Costo base: "+auto.getBasePriceAsString();
         for(Optional o : selezionati) {
             s+= o.toString() + "\n";
         }
