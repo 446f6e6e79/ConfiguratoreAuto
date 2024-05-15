@@ -12,6 +12,7 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
 
     private static CatalogoModel instance;
 
+    private AutoNuova selectedAuto;
     private static Set<Integer> usedIds = new HashSet<>();
     private static Set<Marca> usedBrands = new HashSet<>();
 
@@ -98,5 +99,10 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
         return newId;
     }
 
-
+    public AutoNuova getSelectedAuto() {
+        return selectedAuto;
+    }
+    public void setSelectedAuto(AutoNuova auto){
+        this.selectedAuto = auto;
+    }
 }

@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="630.0" style="-fx-border-color: BLACK; -fx-border-width: 2; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoController">
+<HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="630.0" style="-fx-border-color: BLACK; -fx-border-width: 2; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoController" onMouseClicked="#handleHBoxClicked">
    <children>
       <ImageView fx:id="autoImage" fitHeight="245.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>
@@ -28,13 +28,10 @@
                <font>
                   <Font name="SansSerif Regular" size="19.0" />
                </font></Label>
-            <ImageView fitHeight="55.0" fitWidth="55.0" opacity="0.28" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="dynamicIcon" fitHeight="55.0" fitWidth="55.0" opacity="0.28" pickOnBounds="true" preserveRatio="true">
                <VBox.margin>
                   <Insets left="179.0" top="30.0" />
                </VBox.margin>
-               <image>
-                  <Image url="@../../../../img/icons/right-arrow.png" />
-               </image>
             </ImageView>
             <Label fx:id="Prezzo" alignment="BOTTOM_RIGHT" prefHeight="151.0" prefWidth="244.0" text="Label">
                <font>

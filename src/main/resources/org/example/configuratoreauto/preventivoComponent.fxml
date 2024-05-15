@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="42.0" spacing="10.0" style="-fx-border-color: BLACK; -fx-border-width: 2; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.SinglePreventivoController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0">
+         <left>
+            <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="321.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="data" text="DATA">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="modello" text="MODELLO">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="cliente" text="">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+         </left>
+         <right>
+            <HBox alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="264.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Label fx:id="consegna" text="CONSEGNA" />
+                  <Label fx:id="stato" text="STATO">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <ImageView fx:id="openIcon" fitHeight="15" fitWidth="15">
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </right>
+      </BorderPane>
+   </children>
+   <padding>
+      <Insets right="10.0" />
+   </padding>
+</HBox>
