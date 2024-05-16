@@ -14,24 +14,27 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoCustomController">
     <children>
-        <VBox alignment="CENTER_LEFT" prefHeight="540.0" prefWidth="451.0">
+        <VBox prefHeight="540.0" prefWidth="451.0">
             <children>
             <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#backClicked" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../../../../img/icons/back-icon.png" />
             </ImageView>
-                <HBox prefHeight="100.0" prefWidth="200.0">
-                    <children>
+            <VBox prefHeight="118.0" prefWidth="502.0">
+               <children>
                         <Text fx:id="modelID" strokeType="OUTSIDE" strokeWidth="0.0" text="Modello">
                             <font>
                                 <Font size="38.0" />
                             </font>
                         </Text>
                         <Text fx:id="descrizione" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrizione">
-                     <HBox.margin>
-                        <Insets left="20.0" top="30.0" />
-                     </HBox.margin></Text>
-                    </children>
-                </HBox>
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin></Text>
+               </children>
+               <padding>
+                  <Insets left="20.0" />
+               </padding>
+            </VBox>
                 <ImageView fitHeight="324.0" fitWidth="492.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="@../../../../img/test.png" />
