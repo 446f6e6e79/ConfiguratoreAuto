@@ -82,7 +82,7 @@ public class MainTests {
         catalogo.addData(ford);
 
         catalogo.uploadData();
-        */
+*/
         System.out.println("Get auto by brand: brand = Porche " +catalogo.filterAutoByBrand(Marca.Porsche, catalogo.getAllData()));
         System.out.println("Get auto by Alimentazione: Elettrico" +CatalogoModel.filterAutoByAlimentazione(Alimentazione.ELETTRICA, catalogo.getAllData()));
         System.out.println("Get all auto" +catalogo.getAllData());

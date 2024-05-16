@@ -40,7 +40,10 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         this.sede = sede;
         this.cliente = cliente;
         this.motoreScelto = motore;
-        this.optionals.addAll(List.of(optionalScelti));
+        if(optionalScelti != null){
+            this.optionals.addAll(List.of(optionalScelti));
+        }
+
         setConsegna();
     }
 
