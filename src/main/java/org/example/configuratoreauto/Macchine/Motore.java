@@ -51,4 +51,12 @@ public class Motore implements Serializable {
     public int getPotenzaKW() {
         return potenzaKW;
     }
+
+    @Override
+    public String toString() {
+        return "Alimentazione: "+this.alimentazione+"\n"+
+                "Potenza KW: "+this.potenzaKW +"\n"+
+                "Cilindrata: "+this.cilindrata +"\n"+
+                "Consumi: "+this.consumi +"\n";
+    }
 }

@@ -40,10 +40,14 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         this.sede = sede;
         this.cliente = cliente;
         this.motoreScelto = motore;
+<<<<<<< HEAD
         if(optionalScelti != null){
             this.optionals.addAll(List.of(optionalScelti));
         }
 
+=======
+        this.optionals.addAll(List.of(optionalScelti));
+>>>>>>> parent of d0329fa (Revert "Merge branch 'main' of https://github.com/446f6e6e79/ConfiguratoreAuto")
         setConsegna();
     }
 
