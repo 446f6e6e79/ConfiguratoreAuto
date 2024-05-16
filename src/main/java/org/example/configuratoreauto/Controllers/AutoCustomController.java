@@ -36,6 +36,8 @@ public class AutoCustomController implements Initializable {
     @FXML
     Text prezzo;
     @FXML
+    Text infoPrezzo;
+    @FXML
     ChoiceBox<Motore> motori;
     @FXML
     ChoiceBox<Optional> colori;
@@ -46,7 +48,7 @@ public class AutoCustomController implements Initializable {
     @FXML
     ChoiceBox<Optional> cerchi;
     @FXML
-    Text motoriInfo;
+    Text motoreInfo;
     @FXML
     ChoiceBox<Sede> sedi;
 
@@ -57,16 +59,17 @@ public class AutoCustomController implements Initializable {
         prezzo.setText(auto.getBasePriceAsString());
         //Vorrey fare display solo dell'alimentazione come scelta
         motori.getItems().addAll(auto.getMotoriDisponibili());
-
+        updatePriceInfo(new ArrayList<>());
         /*
             Listener sul cambio valore della choiceBox. Al cambiamento
             viene aggiornato il contenuto di motoreInfo
          */
         motori.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                motoriInfo.setText(newValue.toString());
+                motoreInfo.setText(newValue.getInfoMotore());
             }
         });
+        motori.setValue(motori.getItems().get(0));
         colori.getItems().addAll(auto.getOptionalByCategory(TipoOptional.colore));
         interni.getItems().addAll(auto.getOptionalByCategory(TipoOptional.interni));
         vetri.getItems().addAll(auto.getOptionalByCategory(TipoOptional.vetri));
@@ -84,7 +87,13 @@ public class AutoCustomController implements Initializable {
         cerchi.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
     }
 
-
+    public void resetChoices(){
+        colori.setValue(null);
+        interni.setValue(null);
+        vetri.setValue(null);
+        cerchi.setValue(null);
+        sedi.setValue(null);
+    }
     public void createPreventivo() {
         Preventivo p = new Preventivo(auto, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), colori.getValue());
         registro.addData(p);
@@ -103,26 +112,23 @@ public class AutoCustomController implements Initializable {
     }
 
     public void updatePriceInfo(ArrayList<Optional> selezionati) {
-        String s = "";
-        s+= "Costo base: "+auto.getBasePriceAsString();
+        String s= "Costo base: "+auto.getBasePriceAsString();
         for(Optional o : selezionati) {
             s+= o.toString() + "\n";
         }
         //Aggiungere un metodo per mostrare sconto, se presente
+        infoPrezzo.setText(s);
     }
     @FXML
     public void backClicked(){
         try {
             TabPane tabPane = (TabPane) modelID.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
             Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/catalogoView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/catalogoView.fxml"));
             AnchorPane catalogoNode;
 
             catalogoNode = loader.load();
             tab.setContent(catalogoNode); // Imposta il nuovo contenuto del tab "Catalogo"
-
-
-
         }catch (IOException e){
             e.printStackTrace();
         }

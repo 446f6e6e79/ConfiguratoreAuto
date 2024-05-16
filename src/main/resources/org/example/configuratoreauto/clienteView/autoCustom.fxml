@@ -1,16 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoCustomController">
+<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoCustomController">
     <children>
         <VBox alignment="CENTER_LEFT" prefHeight="540.0" prefWidth="451.0">
             <children>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" onMouseClicked="#backClicked">
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#backClicked" pickOnBounds="true" preserveRatio="true">
                 <Image url="@../../../../img/icons/back-icon.png" />
             </ImageView>
                 <HBox prefHeight="100.0" prefWidth="200.0">
@@ -34,7 +40,7 @@
                         <Insets top="30.0" />
                     </VBox.margin>
                 </ImageView>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Info Costo:" wrappingWidth="491.7294921875">
+                <Text fx:id="infoPrezzo" strokeType="OUTSIDE" strokeWidth="0.0" text="Info Prezzo:" wrappingWidth="491.7294921875">
                     <VBox.margin>
                         <Insets left="10.0" />
                     </VBox.margin></Text>
@@ -92,7 +98,18 @@
                         <ChoiceBox fx:id="sedi" prefWidth="150.0" />
                     </children>
                 </HBox>
-                <Button mnemonicParsing="false" onAction="#createPreventivo" text="Richiedi preventivo" />
+            <BorderPane prefHeight="200.0" prefWidth="200.0">
+               <left>
+                  <Button mnemonicParsing="false" onAction="#resetChoices" text="Reset" BorderPane.alignment="CENTER" />
+               </left>
+               <right>
+                  <Button mnemonicParsing="false" onAction="#createPreventivo" text="Richiedi preventivo" BorderPane.alignment="CENTER">
+                     <BorderPane.margin>
+                        <Insets right="10.0" />
+                     </BorderPane.margin>
+                  </Button>
+               </right>
+            </BorderPane>
             </children>
         </VBox>
     </children>

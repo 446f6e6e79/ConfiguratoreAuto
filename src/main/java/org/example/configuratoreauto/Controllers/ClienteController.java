@@ -29,7 +29,7 @@ public class ClienteController {
     private void initialize() throws InterruptedException {
         mainPage.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
         try{
-            FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventiviView.fxml"));
+            FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
             preventiviNode = preventiviLoader.load();
             //Setting dinamico delle dimensioni della pagina preventivi
             preventiviNode.prefWidthProperty().bind(mainPage.widthProperty());

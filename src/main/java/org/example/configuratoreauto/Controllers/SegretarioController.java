@@ -4,6 +4,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.*;
 import javafx.scene.control.TabPane;
+import org.example.configuratoreauto.Preventivi.RegistroModel;
+import org.example.configuratoreauto.Preventivi.SediModel;
+
 import java.io.IOException;
 
 
@@ -18,13 +21,13 @@ public class SegretarioController {
     private void initialize() throws InterruptedException {
         mainPage.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
         try{
-            FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventiviView.fxml"));
+            FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
             preventiviNode = preventiviLoader.load();
             //Setting dinamico delle dimensioni della pagina preventivi
             preventiviNode.prefWidthProperty().bind(mainPage.widthProperty());
             preventiviNode.prefHeightProperty().bind(mainPage.heightProperty());
             preventiviController = preventiviLoader.getController();
-            preventiviController.getPreventiviForCliente();
+            preventiviController.getPreventiviforSede(SediModel.getInstance().getAllData().get(0));
         }
         catch (IOException e) {
             e.printStackTrace();

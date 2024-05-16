@@ -7,12 +7,12 @@
     <tabs>
         <Tab text="Aggiorna catalogo">
             <content>
-                <fx:include source="catalogoView.fxml"></fx:include>
+                <fx:include source="../catalogoView.fxml"></fx:include>
             </content>
         </Tab>
         <Tab text="Preventivi">
             <content>
-                <fx:include source="preventiviView.fxml"></fx:include>
+                <fx:include source="../preventiviView.fxml"></fx:include>
             </content>
         </Tab>
     </tabs>

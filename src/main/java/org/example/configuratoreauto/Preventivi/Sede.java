@@ -31,4 +31,9 @@ public class Sede implements Serializable {
     public int hashCode() {
         return Objects.hash(nome, indirizzo);
     }
+
+    @Override
+    public String toString() {
+        return nome + " " + indirizzo;
+    }
 }

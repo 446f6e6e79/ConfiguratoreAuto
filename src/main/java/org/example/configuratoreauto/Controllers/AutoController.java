@@ -71,6 +71,5 @@ public class AutoController {
                 e.printStackTrace();
             }
         }
-        System.out.println(catalogo.getSelectedAuto());
     }
 }

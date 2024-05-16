@@ -3,14 +3,21 @@ package org.example.configuratoreauto.Controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import org.example.configuratoreauto.Macchine.Alimentazione;
 import org.example.configuratoreauto.Macchine.AutoNuova;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
 import org.example.configuratoreauto.Macchine.Marca;
-import javafx.scene.paint.Color;
+import org.example.configuratoreauto.Utenti.Segretario;
+import org.example.configuratoreauto.Utenti.UserModel;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -28,7 +35,7 @@ public class CatalogoController implements Initializable {
     private ChoiceBox<Alimentazione> alimentazioneList;
 
     CatalogoModel catalogo = CatalogoModel.getInstance();
-
+    UserModel user = UserModel.getInstance();
     private ArrayList<AutoNuova> filteredList = catalogo.getAllData();
 
     @Override
@@ -38,6 +45,7 @@ public class CatalogoController implements Initializable {
         autoList.prefHeightProperty().bind(catalogoComponent.heightProperty());
 
         //Carico le auto
+
         loadCars();
 
         //Carico gli elementi per i filtri
@@ -75,6 +83,10 @@ public class CatalogoController implements Initializable {
         if(filteredList.isEmpty()){
             autoList.getChildren().add(new Text("Non è presente alcuna auto che rispetta i seguenti filtri"));
         }
+        if(user.getCurrentUser() instanceof Segretario){
+            addInsertAutoElement();
+        }
+
         for (AutoNuova auto : filteredList) {
             try {
                 loadCarComponent(auto);
@@ -83,10 +95,47 @@ public class CatalogoController implements Initializable {
             }
         }
     }
+    /*
+    *   Se l'utente è di tipo SEGRETARIO, introduce, in cima alla lista di auto
+    *   un nuovo elemento cliccabile, con la possibilità di aggiungere un nuovo modello di auto
+    * */
+    private void addInsertAutoElement() {
+        HBox imageContainer = new HBox();
+        imageContainer.setPrefSize(630, 300);
+        imageContainer.setAlignment(Pos.CENTER);
+        imageContainer.setStyle("-fx-border-color: BLACK; -fx-border-width: 2; -fx-border-radius: 10;");
+
+        //Aggiungo un nuovo evento al click dell'elemento
+        imageContainer.setOnMouseClicked(event -> {
+            //Apro la pagina per l'aggiunta di una nuova auto
+            try {
+                TabPane tabPane = (TabPane) autoList.getScene().lookup("#mainPage");    //Ottiengo il riferimento al TabPane
+                Tab editCatalogoTab = tabPane.getTabs().get(0);                                //Ottiengo il riferimento alla tab "Modifica Catalogo"
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addAuto.fxml"));
+                AnchorPane autocustomNode;
+                autocustomNode = loader.load();
+                editCatalogoTab.setContent(autocustomNode); // Imposta il nuovo contenuto del tab "Catalogo"
+
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        });
+
+        ImageView inserisciAuto = new ImageView();
+        Image image = new Image(getClass().getResourceAsStream("/img/icons/car.png"));
+        inserisciAuto.setImage(image);
+
+        //Dimezzo le dimensioni dell'immagine
+        inserisciAuto.setPreserveRatio(true);
+        inserisciAuto.setFitWidth(image.getWidth() / 2);
+
+        imageContainer.getChildren().add(inserisciAuto);
+        autoList.getChildren().add(imageContainer);
+    }
 
     private void loadCarComponent(AutoNuova a) throws IOException {
         // Carica la componente autoComponent.fxml
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/autoComponent.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/autoComponent.fxml"));
         HBox autoComponent = loader.load();
 
         // Configura il controller dell'autoComponent con i dati dell'auto

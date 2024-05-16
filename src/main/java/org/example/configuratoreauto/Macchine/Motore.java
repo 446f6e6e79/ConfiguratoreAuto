@@ -54,9 +54,14 @@ public class Motore implements Serializable {
 
     @Override
     public String toString() {
+        return alimentazione.toString();
+    }
+    public String getInfoMotore() {
         return "Alimentazione: "+this.alimentazione+"\n"+
                 "Potenza KW: "+this.potenzaKW +"\n"+
                 "Cilindrata: "+this.cilindrata +"\n"+
                 "Consumi: "+this.consumi +"\n";
     }
+
+
 }
