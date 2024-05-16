@@ -2,8 +2,12 @@ package org.example.configuratoreauto.Controllers;
 
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Preventivi.Preventivo;
@@ -13,6 +17,7 @@ import org.example.configuratoreauto.Preventivi.SediModel;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.UserModel;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -104,5 +109,22 @@ public class AutoCustomController implements Initializable {
             s+= o.toString() + "\n";
         }
         //Aggiungere un metodo per mostrare sconto, se presente
+    }
+    @FXML
+    public void backClicked(){
+        try {
+            TabPane tabPane = (TabPane) modelID.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+            Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/catalogoView.fxml"));
+            AnchorPane catalogoNode;
+
+            catalogoNode = loader.load();
+            tab.setContent(catalogoNode); // Imposta il nuovo contenuto del tab "Catalogo"
+
+
+
+        }catch (IOException e){
+            e.printStackTrace();
+        }
     }
 }

@@ -5,7 +5,7 @@
 
 <TabPane fx:id="mainPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.ClienteController">
     <tabs>
-        <Tab text="Catalogo">
+        <Tab text="Catalogo" fx:id="catalogoTab">
             <content>
                 <fx:include source="catalogoView.fxml"></fx:include>
             </content>

@@ -3,6 +3,7 @@ package org.example.configuratoreauto.Controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.layout.*;
 import javafx.scene.control.TabPane;
 import org.example.configuratoreauto.Utenti.Cliente;
@@ -21,7 +22,8 @@ public class ClienteController {
     private  Label userName;
     @FXML
     private TabPane mainPage;
-
+    @FXML
+    private Tab catalogoTab;
     //Setting degli event handlers, la funzione viene eseguita quando viene caricata la relativa pagina FXML
     @FXML
     private void initialize() throws InterruptedException {
@@ -34,11 +36,13 @@ public class ClienteController {
             preventiviNode.prefHeightProperty().bind(mainPage.heightProperty());
             preventiviController = preventiviLoader.getController();
             preventiviController.getPreventiviForCliente();
+            System.out.println("Resettato main");
         }
         catch (IOException e) {
             e.printStackTrace();
         }
     }
+
 
     /*
         Questo metodo si occupa si gestire la label di saluto ottenendo i dati dal login precedente,
@@ -52,4 +56,6 @@ public class ClienteController {
             userName.setText("Benvenuto " + currentUser.getName());
         }
     }
+
+
 }

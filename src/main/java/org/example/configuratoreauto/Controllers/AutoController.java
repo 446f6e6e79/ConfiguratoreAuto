@@ -1,13 +1,20 @@
 package org.example.configuratoreauto.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import org.example.configuratoreauto.Macchine.AutoNuova;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
 import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
+
+import java.io.IOException;
 
 public class AutoController {
     @FXML
@@ -20,6 +27,8 @@ public class AutoController {
     private Label Marca;
     @FXML
     private Label Prezzo;
+
+    private FXMLLoader loader; // Variabile per memorizzare il caricatore
 
     UserModel utenti = UserModel.getInstance();
     CatalogoModel catalogo = CatalogoModel.getInstance();
@@ -45,9 +54,22 @@ public class AutoController {
         //Controllo sul tipo di utente che ha cliccato
         if(utenti.getCurrentUser() instanceof Segretario){
             //Pagina modifica auto
+
         }
         else{
             //Apertura pagina
+            try {
+                TabPane tabPane = (TabPane) autoImage.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+                Tab catalogoTab = tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/autoCustom.fxml"));
+                AnchorPane autocustomNode;
+
+                autocustomNode = loader.load();
+                catalogoTab.setContent(autocustomNode); // Imposta il nuovo contenuto del tab "Catalogo"
+
+            }catch (IOException e){
+                e.printStackTrace();
+            }
         }
         System.out.println(catalogo.getSelectedAuto());
     }
