@@ -3,8 +3,8 @@ package org.example.configuratoreauto.Macchine;
 import java.io.Serializable;
 
 public enum Marca implements Serializable {
-    BMW, Mercedes, FIAT, Ford, Seat, Audi, Ferrari, Lamborghini, Porsche, Maserati, Citroen, Renault, Tesla, Mustang,
-    Volkswagen, Bugatti, Toyota, Subaru, Nissan, Hyundai, Honda, Chrevolet, Kia, Volvo, AstonMartin, AlfaRomeo, Jaguar,
-    LandRover, RollsRoyce, Bentley, McLaren, Chrysler, Lancia, Jeep, Cadillac, GMC, Buick, Mini, Lexus, Infiniti, Acura,
-    Mazda, Mitsubishi, Suzuki
+    Acura, AlfaRomeo, AstonMartin, Audi, Bentley, BMW, Bugatti, Buick, Cadillac, Chevrolet, Chrysler, Citroen, Ferrari,
+    FIAT, Ford, GMC, Honda, Hyundai, Infiniti, Jaguar, Jeep, Kia, Lamborghini, Lancia, LandRover, Lexus, Maserati, Mazda,
+    McLaren, Mercedes, Mini, Mitsubishi, Mustang, Nissan, Porsche, Renault, RollsRoyce, Seat, Subaru, Suzuki, Tesla,
+    Toyota, Volkswagen, Volvo
 }

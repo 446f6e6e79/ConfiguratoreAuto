@@ -70,6 +70,7 @@ public class CatalogoController implements Initializable {
     *   Carico nella choiceBox brandList i possibili brand dispobili
     * */
     private void loadBrandFilter() {
+        brandList.getItems().clear();
         brandList.getItems().addAll(catalogo.getUsedBrands());
     }
     private void loadAlimentazioni() {
@@ -77,6 +78,7 @@ public class CatalogoController implements Initializable {
         alimentazioneList.getItems().clear();
         alimentazioneList.getItems().addAll(CatalogoModel.getUsedAlimentazione(filteredList));
     }
+
     private void loadCars() {
         //Resetto la lista presente in precedenza
         autoList.getChildren().clear();
@@ -95,6 +97,7 @@ public class CatalogoController implements Initializable {
             }
         }
     }
+
     /*
     *   Se l'utente è di tipo SEGRETARIO, introduce, in cima alla lista di auto
     *   un nuovo elemento cliccabile, con la possibilità di aggiungere un nuovo modello di auto
@@ -157,6 +160,7 @@ public class CatalogoController implements Initializable {
             filteredList = CatalogoModel.filterAutoByAlimentazione(alimentazioneList.getSelectionModel().getSelectedItem(), filteredList);
         }
     }
+
     /*
     *   Funzione che setta a NULL tutti i filtri presenti nella pagina.
     *   In questo modo possiamo ottenere nuovamente la lista completa di veicoli
