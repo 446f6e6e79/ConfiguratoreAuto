@@ -2,8 +2,9 @@ package org.example.configuratoreauto.Macchine;
 
 import java.io.Serializable;
 import java.text.NumberFormat;
-import java.util.*;
-import java.util.stream.Collectors;
+import java.util.HashSet;
+import java.util.Locale;
+import java.util.TreeSet;
 
 public class AutoNuova extends Auto implements Serializable {
     private int id;
@@ -57,31 +58,8 @@ public class AutoNuova extends Auto implements Serializable {
         return id;
     }
 
-    /*Calcola il costo Totale di un auto:
-     *  Parametri: optionalRichiesti
-     * Il costo è calcolato come:
-     *   - costo di base + costo Optional (- valutazione usato) - sconto
-     */
-    public double getCostoTotale(ArrayList<Optional> chosenOtionals){
-        double tot = this.costoBase;
-        for(Optional optional : chosenOtionals){
-            tot += optional.getCosto();
-        }
-        tot -= (tot*scontoPerMese[new Date().getMonth()] / 100);
-        return tot;
-    }
-    public static String getPriceAsString(double price){
+    public String getPriceAsString(){
         NumberFormat euroFormat = NumberFormat.getCurrencyInstance(Locale.ITALY);
-        return euroFormat.format(price);
-    }
-    public String getBasePriceAsString(){
-        return getPriceAsString(costoBase);
-    }
-
-    public ArrayList<Optional> getOptionalByCategory(TipoOptional category){
-        return optionalDisponibili.stream().filter(optional -> optional.getCategoria().equals(category)).collect(Collectors.toCollection(ArrayList::new));
-    }
-    public String getDescrizione(){
-        return descrizione;
+        return euroFormat.format(costoBase);
     }
 }

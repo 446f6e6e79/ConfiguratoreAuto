@@ -29,7 +29,7 @@ public class AutoController {
         this.auto = auto;
         NomeModello.setText(auto.getModello());
         Marca.setText(auto.getMarca().toString());
-        Prezzo.setText(auto.getBasePriceAsString());
+        Prezzo.setText(auto.getPriceAsString());
         // Carica l'immagine e imposta sull'ImageView
         Image image = new Image(getClass().getResourceAsStream("/img/test.png"));
         autoImage.setImage(image);

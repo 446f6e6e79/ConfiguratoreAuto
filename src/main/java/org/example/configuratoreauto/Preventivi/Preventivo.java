@@ -8,7 +8,9 @@ import org.example.configuratoreauto.Utenti.Cliente;
 
 import java.io.Serializable;
 import java.text.SimpleDateFormat;
-import java.util.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
 
 public class Preventivo implements Serializable, Comparable<Preventivo>{
     private Date data;
@@ -16,14 +18,14 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     private StatoPreventivo stato;
     private AutoUsata usata;
     private AutoNuova acquisto;
-    private ArrayList<Optional> optionals = new ArrayList<>();
+    private HashSet<Optional> optionals = new HashSet<>();
     private Motore motoreScelto;
     private Sede sede;
     private Cliente cliente;
     private Date scadenza;
     private double valutazione;
 
-    public Preventivo(AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente, Date d, Motore motore, Optional... optionalScelti){
+    public Preventivo(AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente, Date d){
         this.data = d;
         this.usata = usata;
 
@@ -39,16 +41,14 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         this.acquisto = acquisto;
         this.sede = sede;
         this.cliente = cliente;
-        this.motoreScelto = motore;
-        this.optionals.addAll(List.of(optionalScelti));
         setConsegna();
     }
 
     /*
     *   Costruttore Preventivo, setta la data di esecuzione del preventivo, alla data attuale
     * */
-    public Preventivo(AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente, Motore m, Optional... optionalScelti){
-        this(usata, acquisto, sede, cliente, new Date(), m, optionalScelti);
+    public Preventivo(AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente){
+        this(usata, acquisto, sede, cliente, new Date());
     }
 
     /*
@@ -57,8 +57,8 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
             - imposta lo stato del preventivo a FINALIZZATO
     */
 
-    public Preventivo(AutoNuova acquisto, Sede sede, Cliente cliente, Motore m, Optional... optionalScelti){
-        this(null, acquisto, sede, cliente, m, optionalScelti);
+    public Preventivo(AutoNuova acquisto, Sede sede, Cliente cliente){
+        this(null, acquisto, sede, cliente);
     }
 
 
@@ -176,12 +176,15 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     }
 
     /*Calcola il costo Totale del Preventivo
-    * Il costo è calcolato come la sottrazione tra:
-    *   - costo tot (calcolato nella classe auto)
-    *   - valutazione usato
+    * Il costo è calcolato come:
+    *   - costo di base + costo Optional (- valutazione usato) - sconto
     */
     public double getCostoTotale(){
-        double tot = this.acquisto.getCostoTotale(this.optionals);
+        double tot = acquisto.getCostoBase();
+        for(Optional optional : this.optionals){
+            tot += optional.getCosto();
+        }
+        tot -= (tot*acquisto.getScontoPerMese()[data.getMonth()]);
         if(usata != null && stato != StatoPreventivo.RICHIESTO){
             tot -= valutazione;
         }
