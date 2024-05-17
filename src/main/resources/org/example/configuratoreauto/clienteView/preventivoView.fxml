@@ -1,14 +1,217 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
+<BorderPane style="-fx-background-color: red" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+   <right>
+      <HBox prefHeight="295.0" prefWidth="293.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="362.0" prefWidth="146.0">
+               <children>
+                  <Label alignment="TOP_CENTER" prefHeight="0.0" prefWidth="105.0" text="Dati dell'acquisto">
+                     <padding>
+                        <Insets bottom="10.0" />
+                     </padding></Label>
+                  <Label text="Modello">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Marchio">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Motore">
+                     <padding>
+                        <Insets bottom="25.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Dimensione">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Rivendita usato">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Modello Marchio">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Optional">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets top="10.0" />
+               </opaqueInsets>
+               <padding>
+                  <Insets bottom="10.0" top="20.0" />
+               </padding></VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="372.0" prefWidth="201.0">
+               <children>
+                  <Label text="Label">
+                     <VBox.margin>
+                        <Insets top="60.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label text="Label">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Label">
+                     <padding>
+                        <Insets bottom="25.0" top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Label">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Label">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Label">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="Label">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+               </children></VBox>
+         </children>
+      </HBox>
+   </right>
+   <left>
+      <HBox prefHeight="362.0" prefWidth="300.0" BorderPane.alignment="CENTER">
+         <children>
+            <VBox alignment="TOP_CENTER" prefHeight="362.0" prefWidth="172.0">
+                <Label text="Dati del preventivo">
+                  <padding>
+                     <Insets left="5.0" />
+                  </padding>
+                  <VBox.margin>
+                     <Insets top="20.0" />
+                  </VBox.margin></Label>
+               <Label text="Nominativo Cliente">
+                  <VBox.margin>
+                     <Insets top="10.0" />
+                  </VBox.margin>
+               </Label>
+               <Label text="Sede">
+                  <VBox.margin>
+                     <Insets top="10.0" />
+                  </VBox.margin>
+               </Label>
+               <Label text="Data preventivo">
+                  <VBox.margin>
+                     <Insets top="10.0" />
+                  </VBox.margin>
+               </Label>
+               <Label text="Data consegna">
+                  <VBox.margin>
+                     <Insets top="10.0" />
+                  </VBox.margin>
+               </Label>
+               <Label text="Data scadenza">
+                  <VBox.margin>
+                     <Insets top="10.0" />
+                  </VBox.margin>
+               </Label>
+               <Label text="Stato">
+                  <VBox.margin>
+                     <Insets top="10.0" />
+                  </VBox.margin>
+               </Label>
+               <Label text="Costo">
+                  <VBox.margin>
+                     <Insets top="10.0" />
+                  </VBox.margin>
+               </Label>
+               <Button mnemonicParsing="false" text="Scarica PDF">
+                  <VBox.margin>
+                     <Insets top="80.0" />
+                  </VBox.margin>
+               </Button>
 
-            prefHeight="400.0" prefWidth="600.0">
-    <Label>CIAO GUARDA PREVENTIVO</Label>
-</AnchorPane>
+            </VBox>
+            <VBox alignment="TOP_CENTER" prefHeight="362.0" prefWidth="113.0">
+                <Label>
+                  <padding>
+                     <Insets top="30.0" />
+                  </padding></Label>
+               <Label text="Label" />
+               <Label text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+               <Label text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+               <Label text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+               <Label text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+               <Label text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+               <Label text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+
+            </VBox>
+         </children>
+      </HBox>
+   </left>
+   <top>
+      <BorderPane prefHeight="44.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <center>
+            <Label text="PREVENTIVO" textAlignment="CENTER" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </BorderPane.margin>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </Label>
+         </center>
+         <left>
+            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="10.0" />
+               </BorderPane.margin>
+                <Image url="@../../../../img/icons/back-icon.png"/>
+            </ImageView>
+         </left>
+      </BorderPane>
+   </top>
+</BorderPane>
