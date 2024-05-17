@@ -2,11 +2,15 @@ package org.example.configuratoreauto.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.AutoNuova;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
@@ -15,6 +19,7 @@ import org.example.configuratoreauto.Utenti.UserModel;
 import org.example.configuratoreauto.Preventivi.Sede;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class PreventiviController {
 
@@ -26,50 +31,59 @@ public class PreventiviController {
     VBox mainView;
 
 
-    public void initialize(){
-        loadPrevs();
-    }
-    private void loadPrevs() {
+
+    public void loadPrevs(ArrayList<Preventivo> registroArg) {
         //Resetto la lista presente in precedenza
         mainView.getChildren().clear();
-        if(utente.getCurrentUser() instanceof Cliente){
-            getPreventiviForCliente();
+        if(utente.getCurrentUser() != null){
+            getPreventivi( registroArg );
         }else{
-            Label loginLabel = new Label();
-            loginLabel.setText("REGISTRATI");
-            mainView.getChildren().add(loginLabel);
+            Hyperlink registratiLink = new Hyperlink("Per accedere a questi dati devi registrarti o loggarti");
+            registratiLink.setOnAction(event -> openRegistratiView());
+            mainView.getChildren().add(registratiLink);
         }
-
     }
-    @FXML
-    void getPreventiviForCliente(){
-        Cliente cliente = (Cliente) utente.getCurrentUser();
-        if(registro.getPreventiviByCliente(cliente).isEmpty()){
+
+
+    private void openRegistratiView() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/loginPage.fxml"));
+            VBox loginPane = loader.load();
+
+            // Create a new Stage for the popup dialog
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Registrati/Login");
+
+            // Set the scene with the loaded FXML
+            Scene scene = new Scene(loginPane);
+            popupStage.setScene(scene);
+
+            // Make the dialog modal and set its owner to the current window
+            popupStage.initModality(Modality.WINDOW_MODAL);
+            popupStage.initOwner(mainView.getScene().getWindow());
+
+            // Show the dialog and wait until it is closed
+            popupStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void getPreventivi(ArrayList<Preventivo> registroArg){
+        if(registroArg.isEmpty()){
             Label none = new Label();
             none.setText("NESSUNA MACCHINA");
             mainView.getChildren().add(none);
+            return;
         }
-        //Altrimenti, se l'utente è loggato, mostro la sua lista di preventivi
-        else{
-            for (Preventivo p : registro.getPreventiviByCliente(cliente)) {
-                try {
-                    loadPreventivoElement(p);
-                }catch (IOException e){
-
-                }
-
+        for(Preventivo prev : registroArg){
+            try {
+                loadPreventivoElement(prev);
+            }catch (IOException e){
+                e.printStackTrace();
             }
         }
     }
 
-    /*
-    *   Genera la view dei Preventivi per l'utente IMPIEGATO:
-    *       - vengono quindi mostrati i preventivi, per una determinata sede
-    * */
-    @FXML
-    void getPreventiviforSede(Sede sede) {
-        //COMPLETARE
-    }
 
     /*
     *   Genera il singolo elemento PREVENTIVO, contenente:

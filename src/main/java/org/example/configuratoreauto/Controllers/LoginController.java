@@ -2,15 +2,22 @@ package org.example.configuratoreauto.Controllers;
 
 import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.Impiegato;
 import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
+
+import java.io.IOException;
 
 import static org.example.configuratoreauto.Main.setPage;
 
@@ -68,7 +75,21 @@ public class LoginController {
 
     @FXML
     private void goRegistrazione(){
-        setPage("clienteView/registrazioneView");
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/registrazioneView.fxml"));
+            VBox registrazioneView = loader.load();
+
+            Stage stage = (Stage) email.getScene().getWindow();
+
+            Scene scene = new Scene(registrazioneView);
+            stage.setScene(scene);
+            stage.setTitle("Registrazione");
+
+            stage.centerOnScreen();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     @FXML
     protected void logIn() {
@@ -87,6 +108,8 @@ public class LoginController {
                 if (userModel.getCurrentUser() instanceof Segretario) {
                     setPage("segretarioView/homepageSegretario");
                 }
+                Stage stage = (Stage) responseText.getScene().getWindow();
+                stage.close();
             } else {
                 responseText.setTextFill(Color.RED);
                 responseText.setText("Email o Password errate");

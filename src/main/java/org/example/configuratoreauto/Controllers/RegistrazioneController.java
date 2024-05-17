@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.UserModel;
 
@@ -110,7 +111,8 @@ public class RegistrazioneController {
                     responseText.setText("Cliente registrato correttamente!");
                     //Salvo l'utente appena registrato come CurrentUser
                     u.validation(emailText, passText);
-
+                    Stage stage = (Stage) email.getScene().getWindow();
+                    stage.close();
                 } else {
                     responseText.setTextFill(Color.RED);
                     email.clear();

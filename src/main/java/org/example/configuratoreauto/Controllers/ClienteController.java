@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.*;
 import javafx.scene.control.TabPane;
+import org.example.configuratoreauto.Preventivi.RegistroModel;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.UserModel;
 
@@ -14,6 +15,8 @@ import java.io.IOException;
 
 public class ClienteController {
     UserModel userModel = UserModel.getInstance();
+
+    RegistroModel registro = RegistroModel.getInstance();
     Cliente currentUser = (Cliente) userModel.getCurrentUser();
 
     BorderPane preventiviNode;
@@ -24,6 +27,8 @@ public class ClienteController {
     private TabPane mainPage;
     @FXML
     private Tab catalogoTab;
+    @FXML
+    private Tab preventiviTab;
     //Setting degli event handlers, la funzione viene eseguita quando viene caricata la relativa pagina FXML
     @FXML
     private void initialize() throws InterruptedException {
@@ -35,7 +40,11 @@ public class ClienteController {
             preventiviNode.prefWidthProperty().bind(mainPage.widthProperty());
             preventiviNode.prefHeightProperty().bind(mainPage.heightProperty());
             preventiviController = preventiviLoader.getController();
-            preventiviController.getPreventiviForCliente();
+
+
+            preventiviTab.setContent(preventiviNode);
+            preventiviController.loadPrevs(registro.getPreventiviByCliente(currentUser));
+
             System.out.println("Resettato main");
         }
         catch (IOException e) {

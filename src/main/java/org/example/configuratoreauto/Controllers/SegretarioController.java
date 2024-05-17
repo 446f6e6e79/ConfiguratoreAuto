@@ -12,6 +12,7 @@ import java.io.IOException;
 
 public class SegretarioController {
 
+    RegistroModel registro = RegistroModel.getInstance();
     BorderPane preventiviNode;
     PreventiviController preventiviController;
     @FXML
@@ -27,7 +28,8 @@ public class SegretarioController {
             preventiviNode.prefWidthProperty().bind(mainPage.widthProperty());
             preventiviNode.prefHeightProperty().bind(mainPage.heightProperty());
             preventiviController = preventiviLoader.getController();
-            preventiviController.getPreventiviforSede(SediModel.getInstance().getAllData().get(0));
+            //GET 0 MOMENTANEO
+            preventiviController.loadPrevs(registro.getPreventiviBySede(SediModel.getInstance().getAllData().get(0)));
         }
         catch (IOException e) {
             e.printStackTrace();

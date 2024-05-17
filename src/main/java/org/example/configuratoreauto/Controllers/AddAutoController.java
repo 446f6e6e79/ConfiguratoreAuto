@@ -27,12 +27,12 @@ public class AddAutoController implements Initializable {
     @FXML
     private FlowPane inputImages = new FlowPane();
 
-    CatalogoModel cataloogo = CatalogoModel.getInstance();
+    CatalogoModel catalogo = CatalogoModel.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Sto aggiungendo una nuova auto
-        if(cataloogo.getSelectedAuto() == null){
+        if(catalogo.getSelectedAuto() == null){
             inputImages.getChildren().clear();
             for(int i = 0; i < 4; i++){
                 addInputImageElement();

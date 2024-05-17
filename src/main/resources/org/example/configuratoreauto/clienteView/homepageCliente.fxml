@@ -10,7 +10,7 @@
                 <fx:include source="../catalogoView.fxml"></fx:include>
             </content>
         </Tab>
-        <Tab text="Preventivi" fx:id="preventiviPage">
+        <Tab text="Preventivi" fx:id="preventiviTab">
             <content>
                 <fx:include source="../preventiviView.fxml"></fx:include>
             </content>
