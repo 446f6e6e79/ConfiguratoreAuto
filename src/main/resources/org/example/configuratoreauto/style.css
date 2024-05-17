@@ -2,4 +2,6 @@
     -fx-underline: true;
     -fx-cursor: hand; /* Cambia il cursore, segnalando il testo cliccabile*/
 }
-
+.split-pane *.split-pane-divider {
+    -fx-padding: 0 1 0 1;
+}

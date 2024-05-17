@@ -1,16 +1,17 @@
 package org.example.configuratoreauto.Controllers;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
@@ -19,32 +20,96 @@ import java.io.File;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddAutoController implements Initializable {
+    private IntegerProperty currentIndex = new SimpleIntegerProperty(-1);
+    private ObservableList<Image> images = FXCollections.observableArrayList();
+
+
     @FXML
     private TextArea modello;
     @FXML
-    private FlowPane inputImages = new FlowPane();
+    private TextField descrizione;
+    @FXML
+    private ImageView addedImages;
+    @FXML
+    private ImageView deletePhoto;
+    @FXML
+    private ImageView photoRight;
+    @FXML
+    private ImageView photoLeft;
+    @FXML
+    private ButtonBar buttonBar;
+    @FXML
+    private TextField colore;
+
 
     CatalogoModel catalogo = CatalogoModel.getInstance();
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //Sto aggiungendo una nuova auto
-        if(catalogo.getSelectedAuto() == null){
-            inputImages.getChildren().clear();
-            for(int i = 0; i < 4; i++){
-                addInputImageElement();
-            }
-        }
-        //Sto modificando un auto già presente
-        else{
+        /*
+         *   Collego la visibilità dei bottoni al valore di currentIndex:
+         *      -BottoneSX: mostrato solo se index > 0
+         *      -BottoneDX: mostrato solo se index < size-1
+         * */
+        photoLeft.visibleProperty().bind(Bindings.createBooleanBinding(
+                () -> currentIndex.get() > 0,
+                currentIndex
+        ));
+        photoRight.visibleProperty().bind(Bindings.createBooleanBinding(
+                () -> currentIndex.get() < images.size() - 1,
+                currentIndex
+        ));
 
+        /*
+        *   Setto visibile il tasto per eliminare la foto solamente nel momento in cui è
+        *   presente almeno un immagine
+        * */
+        deletePhoto.visibleProperty().bind(Bindings.createBooleanBinding(
+                () -> !images.isEmpty(),
+                images
+        ));
+
+        photoLeft.setOnMouseClicked(e -> getPreviousPhoto());
+
+        photoRight.setOnMouseClicked(e -> getNextPhoto());
+
+        deletePhoto.setOnMouseClicked(e -> {
+            if (!images.isEmpty()) {
+                images.remove(currentIndex.get());
+                if (currentIndex.get() > 0) {
+                    currentIndex.set(currentIndex.get() - 1);
+                }
+                if (!images.isEmpty()) {
+                    addedImages.setImage(images.get(currentIndex.get()));
+                } else {
+                    addedImages.setImage(null);
+                }
+            }
+        });
+        //Disabilito i bottoni per l'aggiunta di foto se non ho inserito il colore
+        buttonBar.disableProperty().bind(colore.textProperty().isEmpty());
+    }
+
+    public void getNextPhoto(){
+        if (currentIndex.get() < images.size() - 1) {
+            currentIndex.set(currentIndex.get() + 1);
+            addedImages.setImage(images.get(currentIndex.get()));
         }
     }
+
+    public void getPreviousPhoto(){
+        if (currentIndex.get() > 0) {
+            currentIndex.set(currentIndex.get() - 1);
+            addedImages.setImage(images.get(currentIndex.get()));
+        }
+    }
+
     @FXML
-    private void addImageFile(ImageView imageView){
+    private void addImageFile(){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleziona l'immagine");
 
@@ -56,9 +121,11 @@ public class AddAutoController implements Initializable {
         File imageFile = fileChooser.showOpenDialog(new Stage());
         //Gestione delle immagini
         if(imageFile != null){
-            addInputImageElement();
+            currentIndex.set(currentIndex.get() + 1);
             Image image = new Image(imageFile.toURI().toString());
-            imageView.setImage(image);
+            images.add(image);
+            System.out.println(image.getUrl());
+            addedImages.setImage(image);
         }
     }
 
@@ -75,19 +142,4 @@ public class AddAutoController implements Initializable {
             e.printStackTrace();
         }
     }
-
-    private void addInputImageElement() {
-        HBox imageContainer = new HBox();
-        ImageView imageView = new ImageView();
-        imageContainer.setOnMouseClicked(t -> addImageFile(imageView));
-
-        imageView.setFitHeight(170);
-        imageView.setFitWidth(170);
-        Image image = new Image(getClass().getResourceAsStream("/img/icons/addImage.png"));
-        imageView.setImage(image);
-        imageContainer.getChildren().add(imageView);
-
-        inputImages.getChildren().add(0, imageContainer);
-    }
-
 }
