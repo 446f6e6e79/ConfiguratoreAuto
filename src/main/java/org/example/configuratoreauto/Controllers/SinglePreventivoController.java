@@ -1,16 +1,24 @@
 package org.example.configuratoreauto.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import org.example.configuratoreauto.Macchine.AutoNuova;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
+import org.example.configuratoreauto.Utenti.Impiegato;
 import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
+
+import java.io.IOException;
 
 public class SinglePreventivoController {
     @FXML
@@ -49,9 +57,27 @@ public class SinglePreventivoController {
     }
     //Funzione che permette la gestione del click sulla componente
     @FXML
-    public void handleHBoxClicked(){
-        //COMPLETARE
+    public void handlerClick(){
+        System.out.println("CLICCATO");
         //Controllo sul tipo di utente che ha cliccato
+        if(utenti.getCurrentUser() instanceof Impiegato){
+            //Pagina modifica auto
+
+        }
+        else{
+            //Apertura pagina
+            try {
+                TabPane tabPane = (TabPane) consegna.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+                Tab preventivoTab = tabPane.getTabs().get(1); // Ottieni il riferimento al tab "Catalogo"
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventivoView.fxml"));
+                AnchorPane preventivoNode = loader.load();
+
+                preventivoTab.setContent(preventivoNode); // Imposta il nuovo contenuto del tab "Catalogo"
+
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
     }
 
     private void setStatoColor(Label stato){
@@ -70,4 +96,7 @@ public class SinglePreventivoController {
                 stato.setTextFill(Color.GREEN);
         }
     }
+
+
+
 }

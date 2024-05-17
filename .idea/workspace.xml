@@ -5,7 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/Immagine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/Immagine.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/PreventiviController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/PreventiviController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/RegistrazioneController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/RegistrazioneController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/SinglePreventivoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/SinglePreventivoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/registrazioneView.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/registrazioneView.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/preventivoComponent.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/preventivoComponent.fxml" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
     <list id="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" name="Changes by donny" comment="" />
@@ -20,8 +26,8 @@
         <option value="editable-svg" />
         <option value="Enum" />
         <option value="JUnit5 Test Class" />
-        <option value="FxmlFile" />
         <option value="Class" />
+        <option value="FxmlFile" />
       </list>
     </option>
   </component>
@@ -289,7 +295,7 @@
       <workItem from="1715870876838" duration="2219000" />
       <workItem from="1715873532074" duration="1232000" />
       <workItem from="1715931837816" duration="1452000" />
-      <workItem from="1715937234814" duration="3722000" />
+      <workItem from="1715937234814" duration="6011000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />
@@ -417,7 +423,7 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/SinglePreventivoController.java</url>
-          <line>15</line>
+          <line>24</line>
           <properties field="icon" class="org.example.configuratoreauto.Controllers.SinglePreventivoController" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>

@@ -103,7 +103,6 @@ public class PreventiviController {
         mainView.getChildren().add(preventivoComponent);
     }
 
-    //Dovrebbe essere aperta la pagina di login
-    private void handleLoginClick() {System.out.println("Login clicked");}
+
 
 }

@@ -3,15 +3,16 @@ package org.example.configuratoreauto.Controllers;
 import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.*;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.UserModel;
 
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -34,6 +35,8 @@ public class RegistrazioneController {
     private PasswordField passwordConferma;
     @FXML
     private Button registraButton;
+    @FXML
+    private Hyperlink login;
 
     private ReadOnlyBooleanWrapper isEmailValid = new ReadOnlyBooleanWrapper(false);
     private ReadOnlyBooleanWrapper isInputValid = new ReadOnlyBooleanWrapper(false);
@@ -48,7 +51,7 @@ public class RegistrazioneController {
         email.setOnAction(event -> registraUtente());
         password.setOnAction(event -> registraUtente());
         passwordConferma.setOnAction(event -> registraUtente());
-
+        login.setOnAction(event -> onLogin());
         /*
            Creo una lista di Listener. Viene cancellato il contenuto di responseText ogni qualvolta una
            textProperty, di quelle appartenenti alla lista, viene aggiornata
@@ -139,5 +142,23 @@ public class RegistrazioneController {
         Matcher matcher = pattern.matcher(email);
         System.out.println(matcher.matches());
         return matcher.matches();
+    }
+    @FXML
+    public void onLogin(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/loginPage.fxml"));
+            VBox registrazioneView = loader.load();
+
+            Stage stage = (Stage) email.getScene().getWindow();
+
+            Scene scene = new Scene(registrazioneView);
+            stage.setScene(scene);
+            stage.setTitle("Login");
+
+            stage.centerOnScreen();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

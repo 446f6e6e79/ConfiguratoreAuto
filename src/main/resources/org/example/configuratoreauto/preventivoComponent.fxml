@@ -5,7 +5,7 @@
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="42.0" spacing="10.0" style="-fx-border-color: BLACK; -fx-border-width: 2; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.SinglePreventivoController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="42.0" spacing="10.0" style="-fx-border-color: BLACK; -fx-border-width: 2; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" onMouseClicked="#handlerClick" fx:controller="org.example.configuratoreauto.Controllers.SinglePreventivoController">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <left>
