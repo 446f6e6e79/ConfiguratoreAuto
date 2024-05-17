@@ -22,4 +22,8 @@ public class AutoUsata extends Auto implements Serializable {
         return o instanceof AutoUsata other &&
                 this.targa.equals(other.targa);
     }
+
+    public String getTarga() {
+        return targa;
+    }
 }

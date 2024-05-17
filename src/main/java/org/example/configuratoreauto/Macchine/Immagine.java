@@ -42,7 +42,6 @@ public class Immagine implements Serializable{
         else {
             addAutoUsata((AutoUsata) auto, absolutePath);
         }
-
     }
 
     /*
@@ -79,7 +78,9 @@ public class Immagine implements Serializable{
                 return;
             }
         }
-
+        /*
+        *   Copio il file SORGENTE nel percorso DESTINAZIONE, all'interno del progetto
+        * */
         try {
             Files.copy(source, target.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
             System.out.println("File copied successfully!");
@@ -92,7 +93,36 @@ public class Immagine implements Serializable{
         }
     }
 
+    /*
+        Aggiungo l'immagine dell'auto usata alla DIRECTORY interna al progetto:
+            - Le cartelle sono gestite nel seguente modo:
+                -usedCarImages
+                   -TARGA_1
+                   -TARGA_2
+                   ...
+                   -TARGA_N
+    */
     private void addAutoUsata(AutoUsata auto, String absolutePath){
+        Path target = Paths.get("src", "main", "resources", "img", "carImages", String.valueOf(auto.getTarga()));
+        Path source = Paths.get(absolutePath);
 
+        if (Files.notExists(target)) {
+            try {
+                Files.createDirectories(target);
+            } catch (IOException e) {
+                System.err.println("Error creating directories: " + e.getMessage());
+                return;
+            }
+        }
+        try {
+            Files.copy(source, target.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
+            System.out.println("File copied successfully!");
+        } catch (FileAlreadyExistsException e) {
+            System.err.println("File already exists in target directory");
+        } catch (NoSuchFileException e) {
+            System.err.println("Source file not found");
+        } catch (IOException e) {
+            System.err.println("Error copying file: " + e.getMessage());
+        }
     }
 }
