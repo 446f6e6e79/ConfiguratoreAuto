@@ -40,7 +40,7 @@ public class Immagine implements Serializable{
             addAutoNuova(autoNuova, absolutePath);
         }
         else {
-            addAutoUsata((AutoUsata) auto, String absolutePath);
+            addAutoUsata((AutoUsata) auto, absolutePath);
         }
 
     }
@@ -93,6 +93,6 @@ public class Immagine implements Serializable{
     }
 
     private void addAutoUsata(AutoUsata auto, String absolutePath){
-        
+
     }
 }
