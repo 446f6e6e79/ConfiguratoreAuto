@@ -44,17 +44,24 @@ public class AddAutoController implements Initializable {
         }
     }
     @FXML
-    private void addImageFile(){
+    private void addImageFile(ImageView imageView){
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleziona l'immagine");
 
         fileChooser.getExtensionFilters().addAll(
-                new FileChooser.ExtensionFilter("Text Files", "*.png"),
-                new FileChooser.ExtensionFilter("Text Files", "*.jpg")
+                new FileChooser.ExtensionFilter("Image files", "*.png"),
+                new FileChooser.ExtensionFilter("Image files", "*.jpg")
         );
-        File immagine = fileChooser.showOpenDialog(new Stage());
+
+        File imageFile = fileChooser.showOpenDialog(new Stage());
         //Gestione delle immagini
+        if(imageFile != null){
+            addInputImageElement();
+            Image image = new Image(imageFile.toURI().toString());
+            imageView.setImage(image);
+        }
     }
+
     public void backClicked(){
         try {
             TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
@@ -69,16 +76,18 @@ public class AddAutoController implements Initializable {
         }
     }
 
-    private void addInputImageElement(){
+    private void addInputImageElement() {
         HBox imageContainer = new HBox();
-        imageContainer.setOnMouseClicked(t -> addImageFile());
-
         ImageView imageView = new ImageView();
+        imageContainer.setOnMouseClicked(t -> addImageFile(imageView));
+
         imageView.setFitHeight(170);
         imageView.setFitWidth(170);
         Image image = new Image(getClass().getResourceAsStream("/img/icons/addImage.png"));
         imageView.setImage(image);
         imageContainer.getChildren().add(imageView);
-        inputImages.getChildren().add(imageContainer);
+
+        inputImages.getChildren().add(0, imageContainer);
     }
+
 }

@@ -28,7 +28,7 @@
                   <TextField promptText="Descrizione" />
                   <ScrollPane minHeight="-Infinity" prefHeight="250.0" prefWidth="415.0">
                      <content>
-                        <FlowPane fx:id="inputImages" prefHeight="141.0" prefWidth="393.0" />
+                        <FlowPane fx:id="inputImages" prefHeight="248.0" prefWidth="406.0" />
                      </content>
                   </ScrollPane>
                     </children>
