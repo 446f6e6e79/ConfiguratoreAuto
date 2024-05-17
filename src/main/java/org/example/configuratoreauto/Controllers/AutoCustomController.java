@@ -7,7 +7,10 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Preventivi.Preventivo;
@@ -30,9 +33,20 @@ public class AutoCustomController implements Initializable {
     UserModel user = UserModel.getInstance();
 
     @FXML
+    private AnchorPane main;
+    @FXML
+    private VBox left;
+    @FXML
+    private VBox right;
+    @FXML
+    private BorderPane borderPane;
+
+    @FXML
     Text modelID;
     @FXML
     Text descrizione;
+    @FXML
+    private ImageView images;
     @FXML
     Text prezzo;
     @FXML
@@ -54,12 +68,21 @@ public class AutoCustomController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        //============RESIZING
+        borderPane.prefWidthProperty().bind(main.widthProperty());
+        borderPane.prefHeightProperty().bind(main.heightProperty());
+        left.prefWidthProperty().bind(borderPane.widthProperty().divide(2));
+        right.prefWidthProperty().bind(borderPane.widthProperty().divide(2));
+        images.fitWidthProperty().bind(left.prefWidthProperty());
+        //================================
+
         modelID.setText(auto.getModello());
         descrizione.setText(auto.getDescrizione());
         prezzo.setText(auto.getBasePriceAsString());
         //Vorrey fare display solo dell'alimentazione come scelta
         motori.getItems().addAll(auto.getMotoriDisponibili());
         updatePriceInfo(new ArrayList<>());
+
         /*
             Listener sul cambio valore della choiceBox. Al cambiamento
             viene aggiornato il contenuto di motoreInfo

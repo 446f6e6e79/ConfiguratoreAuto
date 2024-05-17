@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -24,15 +26,11 @@
                      </font>
                   </TextArea>
                   <TextField promptText="Descrizione" />
-                  <AnchorPane onMousePressed="#addImageFile" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                            <ImageView disable="true" fitHeight="286.0" fitWidth="492.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../img/test.png" />
-                           </image>
-                            </ImageView>
-                     </children>
-                  </AnchorPane>
+                  <ScrollPane minHeight="-Infinity" prefHeight="250.0" prefWidth="415.0">
+                     <content>
+                        <FlowPane fx:id="inputImages" prefHeight="141.0" prefWidth="393.0" />
+                     </content>
+                  </ScrollPane>
                     </children>
                     <padding>
                         <Insets left="20.0" right="20.0" />

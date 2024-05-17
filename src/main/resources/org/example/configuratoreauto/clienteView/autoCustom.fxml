@@ -12,108 +12,117 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoCustomController">
+<AnchorPane fx:id="main" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoCustomController">
     <children>
-        <VBox prefHeight="540.0" prefWidth="451.0">
-            <children>
-            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#backClicked" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../../../../img/icons/back-icon.png" />
-            </ImageView>
-            <VBox prefHeight="118.0" prefWidth="502.0">
-               <children>
-                        <Text fx:id="modelID" strokeType="OUTSIDE" strokeWidth="0.0" text="Modello">
-                            <font>
-                                <Font size="38.0" />
-                            </font>
+      <BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960.0">
+         <left>
+              <VBox fx:id="left" prefHeight="540.0" prefWidth="451.0" BorderPane.alignment="CENTER">
+                  <children>
+                  <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#backClicked" pickOnBounds="true" preserveRatio="true">
+                      <Image url="@../../../../img/icons/back-icon.png" />
+                  </ImageView>
+                  <VBox prefHeight="118.0" prefWidth="502.0">
+                     <children>
+                              <Text fx:id="modelID" strokeType="OUTSIDE" strokeWidth="0.0" text="Modello">
+                                  <font>
+                                      <Font size="38.0" />
+                                  </font>
+                              </Text>
+                              <Text fx:id="descrizione" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrizione">
+                           <VBox.margin>
+                              <Insets top="10.0" />
+                           </VBox.margin>
                         </Text>
-                        <Text fx:id="descrizione" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrizione">
-                     <VBox.margin>
-                        <Insets top="10.0" />
-                     </VBox.margin></Text>
-               </children>
-               <padding>
-                  <Insets left="20.0" />
-               </padding>
-            </VBox>
-                <ImageView fitHeight="324.0" fitWidth="492.0" pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image url="@../../../../img/test.png" />
-                    </image>
-                    <VBox.margin>
-                        <Insets top="30.0" />
-                    </VBox.margin>
-                </ImageView>
-                <Text fx:id="infoPrezzo" strokeType="OUTSIDE" strokeWidth="0.0" text="Info Prezzo:" wrappingWidth="491.7294921875">
-                    <VBox.margin>
-                        <Insets left="10.0" />
-                    </VBox.margin></Text>
-                <Text fx:id="prezzo" strokeType="OUTSIDE" strokeWidth="0.0" text="Prezzo Finale" wrappingWidth="491.7294921875">
-                    <VBox.margin>
-                        <Insets left="10.0" />
-                    </VBox.margin></Text>
-            </children>
-        </VBox>
-        <VBox layoutX="531.0" prefHeight="540.0" prefWidth="430.0">
-            <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Personalizzazione" />
-                <HBox prefHeight="100.0" prefWidth="200.0">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Motore:" />
-                        <ChoiceBox fx:id="motori" prefWidth="150.0" />
-                        <Text fx:id="motoreInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="Info motore" />
-                    </children>
-                </HBox>
-                <HBox prefHeight="100.0" prefWidth="200.0">
-                    <children>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </VBox>
+                      <ImageView fx:id="images" fitWidth="492.0" pickOnBounds="true" preserveRatio="true">
+                          <image>
+                              <Image url="@../../../../img/test.png" />
+                          </image>
+                          <VBox.margin>
+                              <Insets top="30.0" />
+                          </VBox.margin>
+                      </ImageView>
+                      <Text fx:id="infoPrezzo" strokeType="OUTSIDE" strokeWidth="0.0" text="Info Prezzo:" wrappingWidth="491.7294921875">
+                          <VBox.margin>
+                              <Insets left="10.0" />
+                          </VBox.margin>
+                  </Text>
+                      <Text fx:id="prezzo" strokeType="OUTSIDE" strokeWidth="0.0" text="Prezzo Finale" wrappingWidth="491.7294921875">
+                          <VBox.margin>
+                              <Insets left="10.0" />
+                          </VBox.margin>
+                  </Text>
+                  </children>
+              </VBox>
+         </left>
+         <right>
+              <VBox fx:id="right" prefHeight="540.0" prefWidth="430.0" BorderPane.alignment="CENTER">
+                  <children>
+                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Personalizzazione" />
+                      <HBox prefHeight="100.0" prefWidth="200.0">
+                          <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Motore:" />
+                              <ChoiceBox fx:id="motori" prefWidth="150.0" />
+                              <Text fx:id="motoreInfo" strokeType="OUTSIDE" strokeWidth="0.0" text="Info motore" />
+                          </children>
+                      </HBox>
+                      <HBox prefHeight="100.0" prefWidth="200.0">
+                          <children>
+                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                  <children>
+                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Colore" />
+                                      <ChoiceBox fx:id="colori" prefWidth="150.0" />
+                                  </children>
+                              </HBox>
                         <HBox prefHeight="100.0" prefWidth="200.0">
-                            <children>
-                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Colore" />
-                                <ChoiceBox fx:id="colori" prefWidth="150.0" />
-                            </children>
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Interni" />
+                              <ChoiceBox fx:id="interni" prefWidth="150.0" />
+                           </children>
                         </HBox>
+                          </children>
+                      </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Interni" />
-                        <ChoiceBox fx:id="interni" prefWidth="150.0" />
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vetri" />
+                              <ChoiceBox fx:id="vetri" prefWidth="150.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cerchi" />
+                              <ChoiceBox fx:id="cerchi" prefWidth="150.0" />
+                           </children>
+                        </HBox>
                      </children>
                   </HBox>
-                    </children>
-                </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0">
-               <children>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Vetri" />
-                        <ChoiceBox fx:id="vetri" prefWidth="150.0" />
-                     </children>
-                  </HBox>
-                  <HBox prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cerchi" />
-                        <ChoiceBox fx:id="cerchi" prefWidth="150.0" />
-                     </children>
-                  </HBox>
-               </children>
-            </HBox>
-                <HBox prefHeight="100.0" prefWidth="469.0">
-                    <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sede RITIRO:" wrappingWidth="84.9189453125" />
-                        <ChoiceBox fx:id="sedi" prefWidth="150.0" />
-                    </children>
-                </HBox>
-            <BorderPane prefHeight="200.0" prefWidth="200.0">
-               <left>
-                  <Button mnemonicParsing="false" onAction="#resetChoices" text="Reset" BorderPane.alignment="CENTER" />
-               </left>
-               <right>
-                  <Button mnemonicParsing="false" onAction="#createPreventivo" text="Richiedi preventivo" BorderPane.alignment="CENTER">
-                     <BorderPane.margin>
-                        <Insets right="10.0" />
-                     </BorderPane.margin>
-                  </Button>
-               </right>
-            </BorderPane>
-            </children>
-        </VBox>
+                      <HBox prefHeight="100.0" prefWidth="469.0">
+                          <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sede RITIRO:" wrappingWidth="84.9189453125" />
+                              <ChoiceBox fx:id="sedi" prefWidth="150.0" />
+                          </children>
+                      </HBox>
+                  <BorderPane prefHeight="200.0" prefWidth="200.0">
+                     <left>
+                        <Button mnemonicParsing="false" onAction="#resetChoices" text="Reset" BorderPane.alignment="CENTER" />
+                     </left>
+                     <right>
+                        <Button mnemonicParsing="false" onAction="#createPreventivo" text="Richiedi preventivo" BorderPane.alignment="CENTER">
+                           <BorderPane.margin>
+                              <Insets right="10.0" />
+                           </BorderPane.margin>
+                        </Button>
+                     </right>
+                  </BorderPane>
+                  </children>
+              </VBox>
+         </right>
+      </BorderPane>
     </children>
 </AnchorPane>

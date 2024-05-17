@@ -45,7 +45,6 @@ public class CatalogoController implements Initializable {
         autoList.prefHeightProperty().bind(catalogoComponent.heightProperty());
 
         //Carico le auto
-
         loadCars();
 
         //Carico gli elementi per i filtri
@@ -112,6 +111,7 @@ public class CatalogoController implements Initializable {
         imageContainer.setOnMouseClicked(event -> {
             //Apro la pagina per l'aggiunta di una nuova auto
             try {
+                catalogo.setSelectedAuto(null);
                 TabPane tabPane = (TabPane) autoList.getScene().lookup("#mainPage");    //Ottiengo il riferimento al TabPane
                 Tab editCatalogoTab = tabPane.getTabs().get(0);                                //Ottiengo il riferimento alla tab "Modifica Catalogo"
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addAuto.fxml"));
