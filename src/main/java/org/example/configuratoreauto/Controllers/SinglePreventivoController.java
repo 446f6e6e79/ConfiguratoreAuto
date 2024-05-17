@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.paint.Color;
 import org.example.configuratoreauto.Macchine.AutoNuova;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
 import org.example.configuratoreauto.Preventivi.Preventivo;
@@ -14,7 +15,6 @@ import org.example.configuratoreauto.Utenti.UserModel;
 public class SinglePreventivoController {
     @FXML
     private Image icon;
-
     @FXML
     private Label modello;
     @FXML
@@ -37,6 +37,8 @@ public class SinglePreventivoController {
         data.setText(preventivo.getDataPreventivoAsString());
         consegna.setText(preventivo.getDataConsegnaAsString());
         stato.setText(preventivo.getStato().toString());
+        setStatoColor(stato);
+
         if(utenti.getCurrentUser() instanceof Segretario){
             cliente.setText(preventivo.getCliente().getName());
         }
@@ -52,4 +54,20 @@ public class SinglePreventivoController {
         //Controllo sul tipo di utente che ha cliccato
     }
 
+    private void setStatoColor(Label stato){
+        String statoAttuale = stato.getText();
+
+        switch(statoAttuale){
+            case "SCADUTO":
+                stato.setTextFill(Color.RED);
+                break;
+            case "RITIRATO":
+                stato.setTextFill(Color.BLACK);
+                break;
+            case "RICHIESTO":
+                stato.setTextFill(Color.YELLOW);
+            default:
+                stato.setTextFill(Color.GREEN);
+        }
+    }
 }

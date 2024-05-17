@@ -38,7 +38,7 @@ public class PreventiviController {
         if(utente.getCurrentUser() != null){
             getPreventivi( registroArg );
         }else{
-            Hyperlink registratiLink = new Hyperlink("Per accedere a questi dati devi registrarti o loggarti");
+            Hyperlink registratiLink = new Hyperlink("Accedi per vedere i tuoi preventivi!");
             registratiLink.setOnAction(event -> openRegistratiView());
             mainView.getChildren().add(registratiLink);
         }
