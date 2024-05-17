@@ -84,7 +84,6 @@ public class PreventiviController {
         }
     }
 
-
     /*
     *   Genera il singolo elemento PREVENTIVO, contenente:
     *       - Data richiesta

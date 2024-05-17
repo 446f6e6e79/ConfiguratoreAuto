@@ -31,8 +31,8 @@ class PreventiviTest{
         c.setTime(new Date());
         c.add(Calendar.DAY_OF_MONTH, -100);
         Date d = c.getTime();;
-        AutoUsata aUsata = new AutoUsata(Marca.Porsche, "prova", exampleAuto.getDimensione(), exampleAuto.getMotore(), "12345", 20000);
-        Preventivo p = new Preventivo(null, exampleAuto, sede, c1, d);
+        AutoUsata aUsata = new AutoUsata(Marca.Porsche, "prova", exampleAuto.getDimensione(), exampleAuto.getMotoriDisponibili().get(0), "12345", 20000);
+        Preventivo p = new Preventivo(null, exampleAuto, sede, c1, d, exampleAuto.getMotoriDisponibili().get(0), null);
         p.setStato(StatoPreventivo.FINALIZZATO);
         Assertions.assertEquals(StatoPreventivo.FINALIZZATO, p.getStato());
 
@@ -46,7 +46,7 @@ class PreventiviTest{
     void setValutazione() {
         u.validation("davidedona@gmail.com", "1234");
         Cliente c1 = (Cliente) u.getCurrentUser();
-        AutoUsata u = new AutoUsata(Marca.Audi, "Audi a1", exampleAuto.getDimensione(), exampleAuto.getMotore(), "1234", 10);
+        AutoUsata u = new AutoUsata(Marca.Audi, "Audi a1", exampleAuto.getDimensione(), exampleAuto.getMotoriDisponibili().get(0), "1234", 10);
         Preventivo pUsata = new Preventivo(u, exampleAuto, sede, c1);
         pUsata.updateStatoAutomatico();
 
