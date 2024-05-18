@@ -17,7 +17,7 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AddAutoController">
     <children>
-        <VBox layoutX="2.0" prefHeight="900.0" prefWidth="800.0">
+        <VBox layoutX="2.0" prefHeight="900.0" prefWidth="800.0" spacing="20.0">
             <children>
                 <ImageView fitHeight="31.0" fitWidth="103.0" onMouseClicked="#backClicked" pickOnBounds="true" preserveRatio="true">
                     <Image url="@../../../../img/icons/back-icon.png" />
@@ -25,25 +25,28 @@
                   <Insets />
                </VBox.margin>
                 </ImageView>
-            <TextArea fx:id="modello" prefHeight="110.0" prefWidth="690.0" promptText="Modello">
+            <TextArea fx:id="modello" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="400.0" promptText="Modello">
                <font>
                   <Font size="38.0" />
                </font>
             </TextArea>
-            <TextField fx:id="descrizione" promptText="Descrizione" />
-            <StackPane prefHeight="398.0" prefWidth="208.0">
+            <TextField fx:id="descrizione" maxWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" promptText="Descrizione" />
+            <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="438.0" prefWidth="832.0">
                <children>
-                  <ImageView fx:id="addedImages" fitHeight="500.0" fitWidth="703.0" pickOnBounds="true" preserveRatio="true" />
-                  <BorderPane prefHeight="500.0" prefWidth="789.0">
+                  <ImageView fx:id="addedImages" fitHeight="400.0" fitWidth="650.0" pickOnBounds="true" preserveRatio="true">
+                     <StackPane.margin>
+                        <Insets bottom="20.0" top="20.0" />
+                     </StackPane.margin></ImageView>
+                  <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="760.0">
                      <right>
-                        <ImageView fx:id="photoRight" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#getNextPhoto" opacity="0.4" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                        <ImageView fx:id="photoRight" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#getNextPhoto" opacity="0.4" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                            <image>
                               <Image url="@../../../../img/icons/right-arrow.png" />
                            </image>
                         </ImageView>
                      </right>
                      <left>
-                        <ImageView fx:id="photoLeft" fitHeight="60.0" fitWidth="60.0" onMouseClicked="#getPreviousPhoto" opacity="0.4" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
+                        <ImageView fx:id="photoLeft" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#getPreviousPhoto" opacity="0.4" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
                            <image>
                               <Image url="@../../../../img/icons/right-arrow.png" />
                            </image>
@@ -55,31 +58,34 @@
                               <Image url="@../../../../img/icons/cancel.png" />
                            </image>
                            <BorderPane.margin>
-                              <Insets right="10.0" top="10.0" />
+                              <Insets right="40.0" top="10.0" />
                            </BorderPane.margin>
                         </ImageView>
                      </top>
                   </BorderPane>
                </children>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
             </StackPane>
-            <HBox prefHeight="56.0" prefWidth="790.0">
+            <HBox prefHeight="41.0" prefWidth="717.0">
                <children>
-                  <TextField fx:id="colore" prefHeight="71.0" prefWidth="379.0" promptText="Incserisci il colore" />
+                  <TextField fx:id="colore" prefHeight="44.0" prefWidth="364.0" promptText="Incserisci il colore" />
                </children>
             </HBox>
             <ButtonBar fx:id="buttonBar" disable="true" prefHeight="40.0" prefWidth="200.0">
               <buttons>
                   <Button mnemonicParsing="false" onAction="#addImageFile" prefHeight="24.0" prefWidth="752.0" text="Aggiungi immagine" textAlignment="CENTER" />
-                <Button mnemonicParsing="false" text="Conferma" />
+                <Button mnemonicParsing="false" onAction="#saveImages" text="Conferma" />
               </buttons>
             </ButtonBar>
-            <TextField prefHeight="57.0" prefWidth="710.0" promptText="Prezzo base" />
+            <TextField fx:id="basePrice" prefHeight="57.0" prefWidth="710.0" promptText="Prezzo base" />
             </children>
          <padding>
-            <Insets left="10.0" />
+            <Insets left="10.0" right="20.0" />
          </padding>
         </VBox>
-        <VBox alignment="TOP_CENTER" layoutX="813.0" prefHeight="900.0" prefWidth="783.0">
+        <VBox alignment="TOP_CENTER" layoutX="822.0" prefHeight="900.0" prefWidth="774.0">
          <children>
             <ChoiceBox prefHeight="24.0" prefWidth="475.0" />
             <TextField promptText="Descrizione" />
