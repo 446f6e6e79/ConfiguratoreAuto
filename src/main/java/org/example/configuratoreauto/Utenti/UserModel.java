@@ -12,7 +12,7 @@
     *       - getInstance() -> ritorna un'istana della classe, implementando il design pattern SINGLETON
     *       - getPathToData() -> resituisce il path al file, contenente i dati serializzati
     *       - registraCliente() -> registra un nuovo cliente, solamente se non già presente
-    *       - login(String email, String Password) -> verifica che esista nei dati salvati delle credenziali combacianti
+    *       - validation(String email, String Password) -> verifica che esista nei dati salvati delle credenziali combacianti
     *           con quelle inserite
     *       - getCurrentUser() -> restituisce l'utente che ha effettuato il login
     *

@@ -12,9 +12,10 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.FlowPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import org.example.configuratoreauto.Macchine.CatalogoModel;
+import org.example.configuratoreauto.Macchine.*;
 
 import java.io.File;
 
@@ -33,8 +34,11 @@ public class AddAutoController implements Initializable {
     private ObservableList<Image> currentImages = FXCollections.observableArrayList();
     private ArrayList<Image> allImages = new ArrayList<>();
 
+
     @FXML
     private TextArea modello;
+    @FXML
+    private ComboBox<Marca> brand;
     @FXML
     private TextField descrizione;
     @FXML
@@ -51,6 +55,14 @@ public class AddAutoController implements Initializable {
     private TextField colore;
     @FXML
     private TextField basePrice;
+    @FXML
+    private ChoiceBox<TipoOptional> optionalType;
+    @FXML
+    private TextField optionalDescription;
+    @FXML
+    private TextField optionalPrice;
+    @FXML
+    private FlowPane optionalLyst;
 
 
     CatalogoModel catalogo = CatalogoModel.getInstance();
@@ -90,6 +102,9 @@ public class AddAutoController implements Initializable {
 
         //Disabilito i bottoni per l'aggiunta di foto se non ho inserito il colore
         buttonBar.disableProperty().bind(colore.textProperty().isEmpty());
+
+        optionalType.getItems().addAll(TipoOptional.values());
+        brand.getItems().addAll(Marca.values());
     }
 
     public void getNextPhoto(){
@@ -167,5 +182,22 @@ public class AddAutoController implements Initializable {
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+    @FXML
+    private void addModel(){
+        /*
+        catalogo.addData(new AutoNuova(
+                catalogo.getUniqueId(),         //Genero un id univoco da assegnare alla macchina
+                brand.getValue(),
+                modello.getText(),
+                new Dimensione(),
+                descrizione.getText(),
+                Double.parseDouble(basePrice.getText()),
+        );
+        */
+    }
+    @FXML
+    private void addOptional(){
+
     }
 }

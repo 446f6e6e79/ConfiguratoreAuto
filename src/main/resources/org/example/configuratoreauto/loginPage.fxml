@@ -12,22 +12,22 @@
 <?import javafx.scene.text.Text?>
 
 <VBox alignment="CENTER" prefHeight="540.0" prefWidth="960" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.LoginController">
-   <VBox alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="300.0" spacing="15.0">
+   <VBox alignment="CENTER" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="403.0" prefWidth="432.0" spacing="15.0">
       <children>
-          <Label text="Benvenuto">
+          <Label prefHeight="56.0" prefWidth="169.0" text="Benvenuto!" textAlignment="CENTER">
               <font>
-                  <Font size="21.0" />
+                  <Font size="27.0" />
               </font>
           </Label>
-          <TextField fx:id="email" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" promptText="Email" />
-          <PasswordField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="26.0" prefWidth="200.0" promptText="Password" />
-          <ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="250.0">
+          <TextField fx:id="email" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" promptText="Email" />
+          <PasswordField fx:id="password" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" promptText="Password" />
+          <ButtonBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="386.0">
               <padding>
                   <Insets left="15.0" right="15.0" />
               </padding>
               <buttons>
                   <Button fx:id="login" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#logIn" prefHeight="26.0" prefWidth="100.0" text="Login" ButtonBar.buttonData="LEFT" />
-                  <Button alignment="CENTER" onAction="#onGuestClick" text="Login Ospite" textAlignment="CENTER" ButtonBar.buttonData="RIGHT" />
+                  <Button alignment="CENTER" onAction="#onGuestClick" prefHeight="24.0" prefWidth="202.0" text="Continua come Ospite" textAlignment="CENTER" ButtonBar.buttonData="RIGHT" />
               </buttons>
       
                 </ButtonBar>

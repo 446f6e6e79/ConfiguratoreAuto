@@ -9,6 +9,7 @@ import org.example.configuratoreauto.Utenti.*;
 
 
 public class MainTests {
+
     public static void main(String[] args) {
         UserModel u1 = (UserModel) UserModel.getInstance();
         RegistroModel r = RegistroModel.getInstance();
@@ -17,16 +18,22 @@ public class MainTests {
         SediModel sedi = SediModel.getInstance();
 
         // Popolare i dati utente
-        u1.addData(new Cliente("davidedona@gmail.com", "1234", "Davide", "Dona"));
-        u1.validation("davidedona@gmail.com", "1234");
-
+        u1.registraCliente(new Cliente("davide@gmail.com", "1234", "Davide", "Donà"));
+        u1.validation("davide@gmail.com", "1234");
+        u1.registraCliente(new Cliente("andrea@gmail.com", "1234", "Andrea", "Blushi"));
+        u1.registraCliente(new Cliente("victor@gmail.com", "1234", "Victor", "Ojog"));
+        u1.addData(new Segretario("segretario@gmail.com", "1234"));
+        u1.addData(new Impiegato("impiegato@gmail.com", "1234"));
         u1.uploadData();
 
         // Popolare i dati delle sedi
-        sedi.addData(new Sede("AutoVerona", "Str. le Grazie, 15, 37134 Verona VR"));
+        sedi.addData(new Sede("AutoVerona", "Str. le Grazie, 15 - 37134 Verona VR"));
+        sedi.addData(new Sede("AutoExpert", "via Monte Cellarino, 12 - Roma RM"));
+        sedi.addData(new Sede("DriveNow", "Via Antonio Giacomini, 16 - 50132 Firenze"));
+        sedi.addData(new Sede("MotorWorld", "Via della Moscova, 10 - 20121 Milano MI"));
+        sedi.addData(new Sede("CarNapoli", "Via Toledo, 156 - 80134 Napoli NA"));
         sedi.uploadData();
-        // Creare oggetti esempio per il catalogo
-        // ...
+
 
         // Aggiungere più preventivi per Davide Dona
         for (int i = 0; i < 3; i++) {
@@ -37,8 +44,6 @@ public class MainTests {
 
         r.uploadData();
 
-
-    }
 
 
 
@@ -112,7 +117,6 @@ public class MainTests {
         System.out.println("Get auto by brand: brand = Porche " +CatalogoModel.filterAutoByBrand(Marca.Porsche, catalogo.getAllData()));
         System.out.println("Get auto by Alimentazione: Elettrico" +CatalogoModel.filterAutoByAlimentazione(Alimentazione.ELETTRICA, catalogo.getAllData()));
         System.out.println("Get all auto" +catalogo.getAllData());
-
-*/
-//    }
+    */
+    }
 }
