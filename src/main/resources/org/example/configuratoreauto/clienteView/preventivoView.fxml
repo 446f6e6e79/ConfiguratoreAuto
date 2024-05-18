@@ -4,8 +4,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<BorderPane style="-fx-background-color: red" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="Infinity" maxWidth="Infinity" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.PreventivoViewController">
    <right>
       <HBox prefHeight="295.0" prefWidth="293.0" BorderPane.alignment="CENTER">
          <children>
@@ -26,9 +27,9 @@
                      </padding>
                   </Label>
                   <Label text="Motore">
-                     <padding>
-                        <Insets bottom="25.0" top="10.0" />
-                     </padding>
+                     <VBox.margin>
+                        <Insets bottom="40.0" top="10.0" />
+                     </VBox.margin>
                   </Label>
                   <Label text="Dimensione">
                      <padding>
@@ -40,7 +41,7 @@
                         <Insets top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="Modello Marchio">
+                  <Label fx:id="usatoModello" text="Modello Marchio">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
@@ -59,37 +60,40 @@
                </padding></VBox>
             <VBox alignment="TOP_CENTER" prefHeight="372.0" prefWidth="201.0">
                <children>
-                  <Label text="Label">
+                  <Label fx:id="modello" text="Label">
                      <VBox.margin>
                         <Insets top="60.0" />
                      </VBox.margin>
                   </Label>
-                  <Label text="Label">
+                  <Label fx:id="marchio" text="Label">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="Label">
+                  <Label fx:id="motore" text="Label">
                      <padding>
-                        <Insets bottom="25.0" top="10.0" />
+                        <Insets top="10.0" />
                      </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
                   </Label>
-                  <Label text="Label">
+                  <Label fx:id="dimensione" text="dimensione">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="Label">
+                  <Label fx:id="isUsato" text="Label">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="Label">
+                  <Label fx:id="labelUsato" text="Label">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
                   </Label>
-                  <Label text="Label">
+                  <Label fx:id="optional" text="Label">
                      <padding>
                         <Insets top="10.0" />
                      </padding>
@@ -151,38 +155,38 @@
                </Button>
 
             </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="362.0" prefWidth="113.0">
+            <VBox alignment="TOP_CENTER" prefHeight="356.0" prefWidth="171.0">
                 <Label>
                   <padding>
                      <Insets top="30.0" />
                   </padding></Label>
-               <Label text="Label" />
-               <Label text="Label">
+               <Label fx:id="cliente" text="Label" />
+               <Label fx:id="sede" prefHeight="28.0" prefWidth="236.0" text="Label">
                   <padding>
                      <Insets top="10.0" />
                   </padding>
                </Label>
-               <Label text="Label">
+               <Label fx:id="data" text="Label">
                   <padding>
                      <Insets top="10.0" />
                   </padding>
                </Label>
-               <Label text="Label">
+               <Label fx:id="consegna" text="Label">
                   <padding>
                      <Insets top="10.0" />
                   </padding>
                </Label>
-               <Label text="Label">
+               <Label fx:id="scadenza" text="Label">
                   <padding>
                      <Insets top="10.0" />
                   </padding>
                </Label>
-               <Label text="Label">
+               <Label fx:id="stato" text="Label">
                   <padding>
                      <Insets top="10.0" />
                   </padding>
                </Label>
-               <Label text="Label">
+               <Label fx:id="costo" text="Label">
                   <padding>
                      <Insets top="10.0" />
                   </padding>
@@ -205,11 +209,11 @@
             </Label>
          </center>
          <left>
-            <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets left="10.0" />
                </BorderPane.margin>
-                <Image url="@../../../../img/icons/back-icon.png"/>
+                <Image url="@../../../../img/icons/back-icon.png" />
             </ImageView>
          </left>
       </BorderPane>

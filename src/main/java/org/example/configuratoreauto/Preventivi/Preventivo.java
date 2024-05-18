@@ -93,9 +93,17 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         this.scadenza = scadenza.getTime();
     }
 
+    public void setMotoreScelto(Motore motoreScelto) {//Provvisorio
+        this.motoreScelto = motoreScelto;
+    }
+
+    public Motore getMotoreScelto() {
+        return motoreScelto;
+    }
+
     /*
-        Verifica che il preventivo non sia scaduto. Un preventivo è scaduto dopo 20 giorni dalla finalizzazione
-     */
+            Verifica che il preventivo non sia scaduto. Un preventivo è scaduto dopo 20 giorni dalla finalizzazione
+         */
     private boolean isScaduto(){
         if(new Date().after(scadenza)){
             return true;
@@ -155,6 +163,29 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         setStato(StatoPreventivo.FINALIZZATO);
         setScadenza(new Date());
     }
+
+    public ArrayList<Optional> getOptionals() {
+        return optionals;
+    }
+    public String getCostoDettagliato() {
+        StringBuilder dettagli = new StringBuilder();
+        double costoBase = this.acquisto.getCostoBase();
+        dettagli.append("Costo base: ").append(costoBase).append(" €\n");
+
+        if (optionals != null && !optionals.isEmpty()) {
+            dettagli.append("Optionals:\n");
+            for (Optional opt : optionals) {
+                dettagli.append("  - ").append(opt.getCategoria().toString()).append(": ").append(opt.getCosto()).append(" €\n");
+            }
+        }
+
+        double costoTotale = this.getCostoTotale();
+        dettagli.append("Costo totale: ").append(costoTotale).append(" €");
+
+        return dettagli.toString();
+    }
+
+
     public Sede getSede() {
         return sede;
     }

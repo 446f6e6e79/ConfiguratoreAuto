@@ -108,7 +108,9 @@ public class LoginController {
                 if (userModel.getCurrentUser() instanceof Segretario) {
                     setPage("segretarioView/homepageSegretario");
                 }
-
+                try {
+                    ((Stage) email.getScene().getWindow()).close();
+                }catch(NullPointerException e){}
             } else {
                 responseText.setTextFill(Color.RED);
                 responseText.setText("Email o Password errate");

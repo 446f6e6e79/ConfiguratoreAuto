@@ -114,8 +114,8 @@ public class RegistrazioneController {
                     responseText.setText("Cliente registrato correttamente!");
                     //Salvo l'utente appena registrato come CurrentUser
                     u.validation(emailText, passText);
-                    Stage stage = (Stage) email.getScene().getWindow();
-                    stage.close();
+                    onLogin();
+
                 } else {
                     responseText.setTextFill(Color.RED);
                     email.clear();

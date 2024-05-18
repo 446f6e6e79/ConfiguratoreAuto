@@ -72,7 +72,8 @@ public class SinglePreventivoController {
                 Tab preventivoTab = tabPane.getTabs().get(1); // Ottieni il riferimento al tab "Catalogo"
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventivoView.fxml"));
                 BorderPane preventivoNode = loader.load();
-
+                PreventivoViewController controller = loader.getController();
+                controller.setPreventivo(preventivo);
                 preventivoTab.setContent(preventivoNode); // Imposta il nuovo contenuto del tab "Catalogo"
 
             }catch (IOException e){
