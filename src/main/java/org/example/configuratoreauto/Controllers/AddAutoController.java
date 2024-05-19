@@ -54,6 +54,8 @@ public class AddAutoController implements Initializable {
     @FXML
     private TextField colore;
     @FXML
+    private Tooltip colorInputToolTip;
+    @FXML
     private TextField basePrice;
     @FXML
     private ChoiceBox<TipoOptional> optionalType;
@@ -103,6 +105,21 @@ public class AddAutoController implements Initializable {
         //Disabilito i bottoni per l'aggiunta di foto se non ho inserito il colore
         buttonBar.disableProperty().bind(colore.textProperty().isEmpty());
 
+//        buttonBar.setOnDragOver(event -> {
+//            if (buttonBar.isDisabled() && !colorInputToolTip.isShowing()) {
+//                colorInputToolTip.show(buttonBar, event.getScreenX(), event.getScreenY() + 10);
+//            }
+//            event.acceptTransferModes(javafx.scene.input.TransferMode.ANY);
+//            event.consume();
+//        });
+//
+//        buttonBar.setOnDragExited(event -> {
+//            if (colorInputToolTip.isShowing()) {
+//                colorInputToolTip.hide();
+//            }
+//            event.consume();
+//        });
+
         optionalType.getItems().addAll(TipoOptional.values());
         brand.getItems().addAll(Marca.values());
     }
@@ -130,7 +147,7 @@ public class AddAutoController implements Initializable {
         currentImages.remove(currentIndex.get());
         if (currentImages.isEmpty()) {
             currentIndex.set(-1);
-            addedImages.setImage(null);
+            addedImages.setImage(new Image(getClass().getResourceAsStream("/img/icons/addImage.png")));
         } else {
             if (currentIndex.get() >= currentImages.size()) {
                 currentIndex.set(currentImages.size() - 1);

@@ -5,8 +5,10 @@
 <?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.Tooltip?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -19,7 +21,7 @@
 
 <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AddAutoController">
     <children>
-        <VBox layoutX="2.0" prefHeight="900.0" prefWidth="800.0" spacing="20.0">
+        <VBox layoutX="2.0" prefHeight="900.0" prefWidth="800.0" spacing="15.0">
             <children>
                 <ImageView fitHeight="31.0" fitWidth="103.0" onMouseClicked="#backClicked" pickOnBounds="true" preserveRatio="true">
                     <Image url="@../../../../img/icons/back-icon.png" />
@@ -34,7 +36,7 @@
                         <Font size="38.0" />
                      </font>
                   </TextArea>
-                  <ComboBox  fx:id="brand" prefWidth="150.0" promptText="Marca">
+                  <ComboBox fx:id="brand" prefWidth="150.0" promptText="Marca">
                      <HBox.margin>
                         <Insets left="40.0" />
                      </HBox.margin>
@@ -42,13 +44,17 @@
                </children>
             </HBox>
             <TextField fx:id="descrizione" maxWidth="-Infinity" prefHeight="50.0" prefWidth="600.0" promptText="Descrizione" />
+            <TextField fx:id="colore" prefHeight="44.0" prefWidth="364.0" promptText="Incserisci il colore" />
             <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="438.0" prefWidth="832.0">
                <children>
                   <ImageView fx:id="addedImages" fitHeight="400.0" fitWidth="650.0" pickOnBounds="true" preserveRatio="true">
                      <StackPane.margin>
                         <Insets bottom="20.0" top="20.0" />
-                     </StackPane.margin></ImageView>
-                  <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="760.0">
+                     </StackPane.margin>
+                     <image>
+                        <Image url="@../../../../img/icons/addImage.png" />
+                     </image></ImageView>
+                  <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="745.0">
                      <right>
                         <ImageView fx:id="photoRight" fitHeight="40.0" fitWidth="40.0" onMouseClicked="#getNextPhoto" opacity="0.4" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                            <image>
@@ -79,15 +85,22 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </StackPane>
-            <HBox prefHeight="41.0" prefWidth="717.0">
-               <children>
-                  <TextField fx:id="colore" prefHeight="44.0" prefWidth="364.0" promptText="Incserisci il colore" />
-               </children>
-            </HBox>
             <ButtonBar fx:id="buttonBar" disable="true" prefHeight="40.0" prefWidth="200.0">
               <buttons>
-                  <Button mnemonicParsing="false" onAction="#addImageFile" prefHeight="24.0" prefWidth="752.0" text="Aggiungi immagine" textAlignment="CENTER" />
-                <Button mnemonicParsing="false" onAction="#saveImages" text="Conferma" />
+                  <Label>
+                     <graphic>
+                        <Button mnemonicParsing="false" onAction="#addImageFile" prefHeight="45.0" prefWidth="752.0" text="Aggiungi immagine" textAlignment="CENTER">
+                           <tooltip>
+                              <Tooltip fx:id="colorInputToolTip" text="Seleziona prima il colore" />
+                           </tooltip>
+                        </Button>
+                     </graphic>
+                  </Label>
+                  <Label>
+                     <graphic>
+                      <Button mnemonicParsing="false" onAction="#saveImages" prefHeight="40.0" prefWidth="370.0" text="Conferma" />
+                     </graphic>
+                  </Label>
               </buttons>
             </ButtonBar>
             <TextField fx:id="basePrice" prefHeight="57.0" prefWidth="710.0" promptText="Prezzo base" />
