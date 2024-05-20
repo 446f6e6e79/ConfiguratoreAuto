@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public abstract class Auto implements Serializable{
     private Marca marca;
     private String modello;
-    private Dimensione dimensione;
+
     private ArrayList<Immagine> immagini;
 
     public Auto(Marca marca, String modello){

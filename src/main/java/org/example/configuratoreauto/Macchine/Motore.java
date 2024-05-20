@@ -11,8 +11,9 @@ public class Motore implements Serializable {
     private int cilindrata;
     //Consumi, espressi in lt/100km
     private double consumi;
-
-    public Motore(Alimentazione alimentazione, int potenzaKW, int cilindrata, double consumi){
+    private String nome;
+    public Motore(String nome, Alimentazione alimentazione, int potenzaKW, int cilindrata, double consumi){
+        this.nome = nome;
         this.alimentazione = alimentazione;
         this.potenzaKW = potenzaKW;
         this.cilindrata = cilindrata;
@@ -23,14 +24,12 @@ public class Motore implements Serializable {
     public boolean equals(Object o) {
         return o instanceof Motore other &&
                 this.alimentazione == other.alimentazione &&
-                this.potenzaKW == other.potenzaKW &&
-                this.consumi == other.consumi &&
-                this.cilindrata == other.cilindrata;
+                this.nome.equals(other.nome);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(alimentazione, potenzaKW, cilindrata, consumi);
+        return Objects.hash(alimentazione, nome);
     }
 
     public double getConsumi() {
@@ -41,6 +40,7 @@ public class Motore implements Serializable {
         return cilindrata;
     }
 
+    public String getNome(){return nome;}
     public int getCavalli(){
         return (int)( potenzaKW * 1.36);
     };
@@ -54,7 +54,7 @@ public class Motore implements Serializable {
 
     @Override
     public String toString() {
-        return alimentazione.toString();
+        return nome + " - " + alimentazione;
     }
     public String getInfoMotore() {
         return "Alimentazione: "+this.alimentazione+"\n"+

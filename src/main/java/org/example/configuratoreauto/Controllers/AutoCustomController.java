@@ -4,14 +4,18 @@ import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
+
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
@@ -20,6 +24,7 @@ import org.example.configuratoreauto.Preventivi.SediModel;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.UserModel;
 
+import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -65,6 +70,10 @@ public class AutoCustomController implements Initializable {
     @FXML
     Text motoreInfo;
     @FXML
+    Text dimensioni;
+    @FXML
+    Text valido;
+    @FXML
     ChoiceBox<Sede> sedi;
 
     @Override
@@ -78,8 +87,11 @@ public class AutoCustomController implements Initializable {
         //================================
 
         modelID.setText(auto.getModello());
+        String dim = auto.getDimensione().toString();
+        dimensioni.setText(dim);
         descrizione.setText(auto.getDescrizione());
-        prezzo.setText(auto.getBasePriceAsString());
+        String price = AutoNuova.getPriceAsString(auto.getCostoTotale(new ArrayList<>(), new Date()));
+        prezzo.setText(price);
         //Vorrey fare display solo dell'alimentazione come scelta
         motori.getItems().addAll(auto.getMotoriDisponibili());
         updatePriceInfo(new ArrayList<>());
@@ -120,8 +132,24 @@ public class AutoCustomController implements Initializable {
     }
     public void createPreventivo() {
         //ArrayList con tutti gli optional scelti
-
-        //Preventivo p = new Preventivo(auto, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), );
+        ArrayList<Optional> chosen = new ArrayList<>();
+        /*chosen.add(colori.getValue());
+        chosen.add(interni.getValue());
+        chosen.add(vetri.getValue());
+        chosen.add(cerchi.getValue());*/
+        if(motori.getValue()!=null && sedi.getValue()!=null){
+            valido.setText("");
+            if(user.getCurrentUser() == null){
+                openRegistratiView();
+            }
+            Preventivo p = new Preventivo(auto, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), chosen);
+            registro.currentPreventivo = p;
+            openUsataView();
+            System.out.println("INSERITO PREVENTIVO");
+            this.backClicked();
+        }else{
+            valido.setText("Non hai inserito i campi correttamente\n");
+        }
         //registro.addData(p);
         //Gestione su cosa fare, dopo aver aggiunto il preventivo
     }
@@ -132,16 +160,19 @@ public class AutoCustomController implements Initializable {
         selezionati.add(interni.getValue());
         selezionati.add(vetri.getValue());
         selezionati.add(cerchi.getValue());
-        double costoTotale =auto.getCostoTotale(selezionati);
+        double costoTotale =auto.getCostoTotale(selezionati, new Date());
         updatePriceInfo(selezionati);
         prezzo.setText(AutoNuova.getPriceAsString(costoTotale));
     }
 
     public void updatePriceInfo(ArrayList<Optional> selezionati) {
         String s= "Costo base: "+auto.getBasePriceAsString();
+
         for(Optional o : selezionati) {
             s+= o.toString() + "\n";
         }
+        String sconto = "\nSconto applicato: "+ auto.getSconto(new Date()) +"%";
+        s+=sconto;
         //Aggiungere un metodo per mostrare sconto, se presente
         infoPrezzo.setText(s);
     }
@@ -152,10 +183,62 @@ public class AutoCustomController implements Initializable {
             Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/catalogoView.fxml"));
             AnchorPane catalogoNode;
-
+            BorderPane preventiviNode;
             catalogoNode = loader.load();
+            loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
+            preventiviNode = loader.load();
+            PreventiviController contr = loader.getController();
+            contr.loadPrevs(registro.getPreventiviByCliente((Cliente) user.getCurrentUser()));
+            Tab tab1 = tabPane.getTabs().get(1);
+            tab1.setContent(preventiviNode);
             tab.setContent(catalogoNode); // Imposta il nuovo contenuto del tab "Catalogo"
         }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    private void openRegistratiView() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/loginPage.fxml"));
+            VBox loginPane = loader.load();
+
+            // Create a new Stage for the popup dialog
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Registrati/Login");
+
+            // Set the scene with the loaded FXML
+            Scene scene = new Scene(loginPane);
+            popupStage.setScene(scene);
+
+            // Make the dialog modal and set its owner to the current window
+            popupStage.initModality(Modality.WINDOW_MODAL);
+            popupStage.initOwner(main.getScene().getWindow());
+
+            // Show the dialog and wait until it is closed
+            popupStage.showAndWait();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void openUsataView() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/usataCustom.fxml"));
+            AnchorPane usataView = loader.load();
+
+            // Create a new Stage for the popup dialog
+            Stage popupStage = new Stage();
+            popupStage.setTitle("Auto Usata");
+
+            // Set the scene with the loaded FXML
+            Scene scene = new Scene(usataView);
+            popupStage.setScene(scene);
+
+            // Make the dialog modal and set its owner to the current window
+            popupStage.initModality(Modality.WINDOW_MODAL);
+            popupStage.initOwner(main.getScene().getWindow());
+
+            // Show the dialog and wait until it is closed
+            popupStage.showAndWait();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

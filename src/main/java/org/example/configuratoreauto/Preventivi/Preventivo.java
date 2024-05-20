@@ -199,7 +199,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     *   - valutazione usato
     */
     public double getCostoTotale(){
-        double tot = this.acquisto.getCostoTotale(this.optionals);
+        double tot = this.acquisto.getCostoTotale(this.optionals, this.data);
         if(usata != null && stato != StatoPreventivo.RICHIESTO){
             tot -= valutazione;
         }

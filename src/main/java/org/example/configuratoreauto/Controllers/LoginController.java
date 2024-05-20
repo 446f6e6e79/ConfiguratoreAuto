@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import org.example.configuratoreauto.Macchine.CatalogoModel;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.Impiegato;
 import org.example.configuratoreauto.Utenti.Segretario;
@@ -23,7 +24,7 @@ import static org.example.configuratoreauto.Main.setPage;
 
 public class LoginController {
     UserModel userModel = UserModel.getInstance();
-
+    CatalogoModel catalogo = CatalogoModel.getInstance();
     @FXML
     private Label responseText;
 
@@ -99,7 +100,7 @@ public class LoginController {
             email.clear();
             password.clear();
             if (userModel.validation(emailText, passText)) {
-                if (userModel.getCurrentUser() instanceof Cliente) {
+                if (userModel.getCurrentUser() instanceof Cliente && catalogo.getSelectedAuto()==null) {
                     setPage("clienteView/homepageCliente");
                 }
                 if (userModel.getCurrentUser() instanceof Impiegato) {

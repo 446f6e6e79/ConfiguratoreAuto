@@ -11,6 +11,7 @@ import org.example.configuratoreauto.Macchine.Optional;
 import javafx.scene.image.ImageView;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
+import org.example.configuratoreauto.Preventivi.StatoPreventivo;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.UserModel;
 
@@ -71,7 +72,11 @@ public class PreventivoViewController {
         sede.setText(preventivo.getSede().toString());
         data.setText(preventivo.getDataPreventivoAsString());
         consegna.setText(preventivo.getDataConsegnaAsString());
-        scadenza.setText(preventivo.getDataScadenzaAsString());
+        if(preventivo.getStato()!= StatoPreventivo.RICHIESTO) {
+            scadenza.setText(preventivo.getDataScadenzaAsString());
+        }else{
+            scadenza.setText("...");
+        }
         stato.setText(preventivo.getStato().toString());
         costo.setText(preventivo.getCostoDettagliato());
 
@@ -92,9 +97,9 @@ public class PreventivoViewController {
         if(preventivo.getOptionals().isEmpty()){
             optional.setText("No");
         }else{
-        for(Optional opt :preventivo.getOptionals()){
-            s += opt.toString() +"\n";
-            optional.setText(s);
+        for(Optional opt : preventivo.getOptionals()){
+                s += opt.toString() +"\n";
+                optional.setText(s);
         }}
 
 

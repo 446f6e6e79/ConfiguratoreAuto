@@ -31,7 +31,7 @@ public class ClienteController {
     private Tab preventiviTab;
     //Setting degli event handlers, la funzione viene eseguita quando viene caricata la relativa pagina FXML
     @FXML
-    private void initialize() throws InterruptedException {
+    public void initialize() throws InterruptedException {
         mainPage.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
         try{
             FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
@@ -45,7 +45,6 @@ public class ClienteController {
             preventiviTab.setContent(preventiviNode);
             preventiviController.loadPrevs(registro.getPreventiviByCliente(currentUser));
 
-            System.out.println("Resettato main");
         }
         catch (IOException e) {
             e.printStackTrace();
