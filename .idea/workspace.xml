@@ -6,8 +6,15 @@
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/AddAutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/AddAutoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/segretarioView/addAuto.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/segretarioView/addAuto.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/AutoCustomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/AutoCustomController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/Auto.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/Auto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoNuova.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoNuova.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoUsata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoUsata.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/MainTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/MainTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/RegistroModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/RegistroModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/registro.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/registro.ser" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
     <list id="6020b4a2-fc3d-4fbf-9e4c-fbc95500bcb2" name="Changes by donny" comment="" />
@@ -52,13 +59,6 @@
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
-  </component>
-  <component name="MavenImportPreferences">
-    <option name="generalSettings">
-      <MavenGeneralSettings>
-        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
-      </MavenGeneralSettings>
-    </option>
   </component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="ProjectErrors" />
@@ -216,8 +216,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.15989.150" />
-        <option value="bundled-js-predefined-1d06a55b98c1-91d5c284f522-JavaScript-IU-241.15989.150" />
+        <option value="jdk-19.0.2-azul-19.0.2-4caba194b151-3b9f6195" />
       </set>
     </attachedChunks>
   </component>
@@ -296,6 +295,7 @@
       <workItem from="1715970700967" duration="6586000" />
       <workItem from="1715981842695" duration="3921000" />
       <workItem from="1716148091187" duration="2315000" />
+      <workItem from="1716230020576" duration="1783000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />
@@ -423,8 +423,8 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-field">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/SinglePreventivoController.java</url>
-          <line>24</line>
-          <properties field="icon" class="org.example.configuratoreauto.Controllers.SinglePreventivoController" />
+          <line>25</line>
+          <properties field="modello" class="org.example.configuratoreauto.Controllers.SinglePreventivoController" />
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

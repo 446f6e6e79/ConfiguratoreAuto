@@ -23,48 +23,31 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     private Date scadenza;
     private double valutazione;
 
-    public Preventivo(AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente, Date d, Motore motore, Optional... optionalScelti){
+    public Preventivo(AutoNuova acquisto, Sede sede, Cliente cliente, Date d, Motore motore, ArrayList optionalScelti){
         this.data = d;
-        this.usata = usata;
+        this.stato = StatoPreventivo.RICHIESTO;
+        this.acquisto = acquisto;
+        this.sede = sede;
+        this.cliente = cliente;
+        this.motoreScelto = motore;
+        if(optionalScelti != null){
+            this.optionals.addAll(optionalScelti);
+        }
+        setConsegna();
+    }
 
+    public Preventivo(AutoNuova acquisto, Sede sede, Cliente cliente, Motore motore, ArrayList optionalScelti){
+        this(acquisto, sede, cliente, new Date(), motore, optionalScelti);
+    }
+
+    public void setUsata(AutoUsata auto){
+        this.usata = auto;
         if(usata == null){
             //In caso non sia presente un auto usata, il preventivo è già finalizzato e posso impostare una scadenza
             this.stato = StatoPreventivo.FINALIZZATO;
             setScadenza(new Date());
         }
-        else{
-            this.stato = StatoPreventivo.RICHIESTO;
-        }
-
-        this.acquisto = acquisto;
-        this.sede = sede;
-        this.cliente = cliente;
-        this.motoreScelto = motore;
-
-        if(optionalScelti != null){
-            this.optionals.addAll(List.of(optionalScelti));
-        }
-
-        setConsegna();
     }
-
-    /*
-    *   Costruttore Preventivo, setta la data di esecuzione del preventivo, alla data attuale
-    * */
-    public Preventivo(AutoUsata usata, AutoNuova acquisto, Sede sede, Cliente cliente, Motore m, Optional... optionalScelti){
-        this(usata, acquisto, sede, cliente, new Date(), m, optionalScelti);
-    }
-
-    /*
-        Costruttore Preventivo senza auto Usata:
-            - imposta di default la data a quella corrente
-            - imposta lo stato del preventivo a FINALIZZATO
-    */
-
-    public Preventivo(AutoNuova acquisto, Sede sede, Cliente cliente, Motore m, Optional... optionalScelti){
-        this(null, acquisto, sede, cliente, m, optionalScelti);
-    }
-
 
     /*
     *  Calcola la data di consegna effettiva della macchina.
@@ -102,8 +85,8 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     }
 
     /*
-            Verifica che il preventivo non sia scaduto. Un preventivo è scaduto dopo 20 giorni dalla finalizzazione
-         */
+        Verifica che il preventivo non sia scaduto. Un preventivo è scaduto dopo 20 giorni dalla finalizzazione
+    */
     private boolean isScaduto(){
         if(new Date().after(scadenza)){
             return true;

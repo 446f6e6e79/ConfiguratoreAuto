@@ -23,6 +23,7 @@ import org.example.configuratoreauto.Utenti.UserModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 public class AutoCustomController implements Initializable {
@@ -118,8 +119,10 @@ public class AutoCustomController implements Initializable {
         sedi.setValue(null);
     }
     public void createPreventivo() {
-        Preventivo p = new Preventivo(auto, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), colori.getValue());
-        registro.addData(p);
+        //ArrayList con tutti gli optional scelti
+
+        //Preventivo p = new Preventivo(auto, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), );
+        //registro.addData(p);
         //Gestione su cosa fare, dopo aver aggiunto il preventivo
     }
 

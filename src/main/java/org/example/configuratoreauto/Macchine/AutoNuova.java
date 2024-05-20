@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 public class AutoNuova extends Auto implements Serializable {
     private int id;
     private String descrizione;
+    private Dimensione dimensione;
     private double costoBase;
     //Array di 12 double, rappresentano ogni mese lo scontoApplicato
     private double [] scontoPerMese;
@@ -15,8 +16,9 @@ public class AutoNuova extends Auto implements Serializable {
     private TreeSet<Optional> optionalDisponibili;
 
     public AutoNuova(int id, Marca marca, String modello, Dimensione dimensione, String descrizione, double costoBase, double [] scontoPerMese){
-        super(marca, modello, dimensione);
+        super(marca, modello);
         this.id = id;
+        this.dimensione = dimensione;
         this.descrizione = descrizione;
         this.costoBase = costoBase;
         this.scontoPerMese = scontoPerMese;
@@ -83,5 +85,9 @@ public class AutoNuova extends Auto implements Serializable {
     }
     public String getDescrizione(){
         return descrizione;
+    }
+
+    public Dimensione getDimensione() {
+        return dimensione;
     }
 }

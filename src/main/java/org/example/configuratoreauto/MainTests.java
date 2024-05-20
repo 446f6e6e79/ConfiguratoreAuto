@@ -7,6 +7,8 @@ import org.example.configuratoreauto.Preventivi.Sede;
 import org.example.configuratoreauto.Preventivi.SediModel;
 import org.example.configuratoreauto.Utenti.*;
 
+import java.util.Date;
+
 
 public class MainTests {
 
@@ -35,10 +37,11 @@ public class MainTests {
         sedi.uploadData();
 
 
-        // Aggiungere più preventivi per Davide Dona
+        //Aggiungere più preventivi per Davide Dona
         for (int i = 0; i < 3; i++) {
-            Preventivo p = new Preventivo(catalogo.getAllData().get(i), sedi.getAllData().get(0), (Cliente) u1.getCurrentUser(), null, null);
+            Preventivo p = new Preventivo(catalogo.getAllData().get(i), sedi.getAllData().get(0), (Cliente) u1.getCurrentUser(),null, null);
             p.setMotoreScelto(catalogo.getAllData().get(i).getMotoriDisponibili().get(0)); // Imposta il primo motore disponibile per l'auto
+            p.setUsata(null);
             r.addData(p);
         }
 
@@ -113,10 +116,10 @@ public class MainTests {
         catalogo.addData(ford);
 
         catalogo.uploadData();
-
+        */
         System.out.println("Get auto by brand: brand = Porche " +CatalogoModel.filterAutoByBrand(Marca.Porsche, catalogo.getAllData()));
         System.out.println("Get auto by Alimentazione: Elettrico" +CatalogoModel.filterAutoByAlimentazione(Alimentazione.ELETTRICA, catalogo.getAllData()));
         System.out.println("Get all auto" +catalogo.getAllData());
-    */
+    //
     }
 }

@@ -11,10 +11,9 @@ public abstract class Auto implements Serializable{
     private Dimensione dimensione;
     private ArrayList<Immagine> immagini;
 
-    public Auto(Marca marca, String modello, Dimensione dimensione){
+    public Auto(Marca marca, String modello){
         this.marca = marca;
         this.modello = modello;
-        this.dimensione = dimensione;
         this.immagini = new ArrayList<>();
     }
 
@@ -28,10 +27,6 @@ public abstract class Auto implements Serializable{
 
     public String getModello() {
         return modello;
-    }
-
-    public Dimensione getDimensione() {
-        return dimensione;
     }
 
     public String toString(){

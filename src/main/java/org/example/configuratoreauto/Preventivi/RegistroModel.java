@@ -15,6 +15,8 @@ public class RegistroModel extends AbstractModel<Preventivo> {
     //Percorso al file contenete le informazioni riguardanti i preventivi
     private static final String REGISTRO_PATH = "src/main/resources/data/registro.ser";
 
+    private Preventivo currentPreventivo;
+
     private RegistroModel() {
         super();
     }
