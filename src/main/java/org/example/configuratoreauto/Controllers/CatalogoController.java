@@ -111,10 +111,11 @@ public class CatalogoController implements Initializable {
         imageContainer.setOnMouseClicked(event -> {
             //Apro la pagina per l'aggiunta di una nuova auto
             try {
+                CatalogoModel.getInstance().setSelectedAuto(null);
                 catalogo.setSelectedAuto(null);
                 TabPane tabPane = (TabPane) autoList.getScene().lookup("#mainPage");    //Ottiengo il riferimento al TabPane
                 Tab editCatalogoTab = tabPane.getTabs().get(0);                                //Ottiengo il riferimento alla tab "Modifica Catalogo"
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addAuto.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addModel.fxml"));
                 AnchorPane autocustomNode;
                 autocustomNode = loader.load();
                 editCatalogoTab.setContent(autocustomNode); // Imposta il nuovo contenuto del tab "Catalogo"
