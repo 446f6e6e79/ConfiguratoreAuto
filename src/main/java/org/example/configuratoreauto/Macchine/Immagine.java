@@ -40,7 +40,18 @@ public class Immagine implements Serializable{
             return null;
         }
     }
-    
+
+    /**
+     * Elimina il file dalla relativa directory
+     */
+    public void delete(){
+        try {
+            Files.delete(Path.of(this.path));
+        } catch (IOException e) {
+            System.err.println("Error deleting file: " + e.getMessage());
+        }
+    }
+
     /**
     *   Metodo STATICO. Passato come parametri una LISTA DI IMMAGINI ed un COLORE
     *       restituisce la stessa lista, filtrata per colore
@@ -101,7 +112,6 @@ public class Immagine implements Serializable{
             Files.copy(source, target.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
             //Salvo il path dell'immagine
             this.path = String.valueOf(target.resolve(source.getFileName()));
-//            this.path = path.substring(path.indexOf("/img"));
         } catch (FileAlreadyExistsException e) {
             System.err.println("File already exists in target directory");
         } catch (NoSuchFileException e) {
@@ -136,7 +146,6 @@ public class Immagine implements Serializable{
             Files.copy(source, target.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
             //Salvo il path dell'immagine
             this.path = String.valueOf(target.resolve(source.getFileName()));
-            this.path = path.substring(path.indexOf("/img"));
         } catch (FileAlreadyExistsException e) {
             System.err.println("File already exists in target directory");
         } catch (NoSuchFileException e) {

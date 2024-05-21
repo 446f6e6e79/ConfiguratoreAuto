@@ -1,4 +1,4 @@
 package org.example.configuratoreauto.Controllers;
 
-public class AddAutoOptionals {
+public class AddAutoOptionalsController {
 }

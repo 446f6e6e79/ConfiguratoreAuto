@@ -6,7 +6,10 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -17,19 +20,21 @@ import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.*;
 
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class AddAutoImagesController implements Initializable {
+    CatalogoModel catalogo = CatalogoModel.getInstance();
+    AutoNuova currentAuto = catalogo.getSelectedAuto();
     /*
      *   Definisco delle variabili  Observable che permettono di implementare il pattern observer:
      *       -currentIndex è un numero intero, indica la foto attualmente selezionata
      *       -currentImages è una ArrayList, contenente le immagini
      * */
-    private IntegerProperty currentIndex = new SimpleIntegerProperty(-1);
-    private ObservableList<Immagine> imagesCurrentColor = FXCollections.observableArrayList();
-
+    private final IntegerProperty currentIndex = new SimpleIntegerProperty(-1);
+    private final ObservableList<Immagine> imagesCurrentColor = FXCollections.observableArrayList();
     @FXML
     private ImageView addedImagesView;
     @FXML
@@ -49,16 +54,13 @@ public class AddAutoImagesController implements Initializable {
     @FXML
     private Button avantiButton;
 
-    CatalogoModel catalogo = CatalogoModel.getInstance();
-    AutoNuova currentAuto = catalogo.getSelectedAuto();
-
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Recupero i colori DISPONIBILI
-        ArrayList <String> availableColors = currentAuto.getUsedColors();
+        ArrayList<String> availableColors = currentAuto.getUsedColors();
 
         //Se erano già presenti delle immagini, le carico
         //Aggiungo i colori disponibili e ne seleziono 1
-        if(!availableColors.isEmpty()){
+        if (!availableColors.isEmpty()) {
             coloreInput.getItems().addAll(availableColors);
             coloreInput.getSelectionModel().select(0);
             currentIndex.set(0);
@@ -117,23 +119,23 @@ public class AddAutoImagesController implements Initializable {
     }
 
     //Aggiorna la ImageView alla foto sucessiva, aggiornando inoltre l'index
-    public void getNextPhoto(){
+    public void getNextPhoto() {
         if (currentIndex.get() < imagesCurrentColor.size() - 1) {
             currentIndex.set(currentIndex.get() + 1);
             addedImagesView.setImage(imagesCurrentColor.get(currentIndex.get()).getImage());
         }
     }
+
     //Aggiorna la ImageView alla foto precedente
-    public void getPreviousPhoto(){
+    public void getPreviousPhoto() {
         if (currentIndex.get() > 0) {
             currentIndex.set(currentIndex.get() - 1);
             addedImagesView.setImage(imagesCurrentColor.get(currentIndex.get()).getImage());
         }
     }
 
-    private void deletePhoto(){
-        //Rimuovo l'immagine dalla lista generale
-        String color = coloreInput.getValue();
+    private void deletePhoto() {
+        //Rimuovo l'immagine dalla lista genera
         currentAuto.removeImage(imagesCurrentColor.get(currentIndex.get()));
 
         imagesCurrentColor.remove(currentIndex.get());
@@ -150,7 +152,7 @@ public class AddAutoImagesController implements Initializable {
 
     /**
      * Aggiorna le nuove immagini ed il prezzo
-     *  dopo che è stato selezionato un nuovo colore
+     * dopo che è stato selezionato un nuovo colore
      */
     private void updateDataForSelectedColor() {
         imagesCurrentColor.clear();
@@ -158,7 +160,7 @@ public class AddAutoImagesController implements Initializable {
 
         String selectedColor = coloreInput.getValue();
         if (selectedColor != null) {
-            for (Immagine img : currentAuto.getImmagini()){
+            for (Immagine img : currentAuto.getImmagini()) {
                 if (img.getColor().equals(selectedColor)) {
                     imagesCurrentColor.add(img);
                 }
@@ -168,8 +170,8 @@ public class AddAutoImagesController implements Initializable {
                 addedImagesView.setImage(imagesCurrentColor.get(0).getImage());
 
                 //Aggiorno di conseguenza il prezzo
-                for(Optional colore: currentAuto.getOptionalByCategory(TipoOptional.colore)){
-                    if(colore.getDescrizione().equals(coloreInput.getValue())){
+                for (Optional colore : currentAuto.getOptionalByCategory(TipoOptional.colore)) {
+                    if (colore.getDescrizione().equals(coloreInput.getValue())) {
                         colorPrice.setText(String.valueOf(colore.getCosto()));
                     }
                 }
@@ -179,16 +181,17 @@ public class AddAutoImagesController implements Initializable {
             }
         }
     }
+
     /*
      *   Salvo localmente le immagini per tale colore. Verranno caricate
      * */
     @FXML
-    private void saveImages(){
+    private void saveImages() {
 
         //Aggiorno gli optional disponibili per auto
         currentAuto.addOptional(
                 new Optional(
-                      TipoOptional.colore,
+                        TipoOptional.colore,
                         coloreInput.getValue(),
                         Double.parseDouble(colorPrice.getText())
                 )
@@ -201,12 +204,12 @@ public class AddAutoImagesController implements Initializable {
         currentIndex.set(-1);
     }
 
-    public boolean isValidCosto(){
+    public boolean isValidCosto() {
         return true;
     }
 
     @FXML
-    private void imageFileInput(){
+    private void imageFileInput() {
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleziona l'immagine");
 
@@ -218,15 +221,31 @@ public class AddAutoImagesController implements Initializable {
         File imageFile = fileChooser.showOpenDialog(new Stage());
 
         //Gestione dell'immagine appena aggiunta
-        if(imageFile != null){
+        if (imageFile != null) {
             Immagine img = new Immagine(coloreInput.getValue(), currentAuto, imageFile.toURI().toString().substring(5));
             currentAuto.addImage(img);
             //Aggiungo l'immagine alla lista delle immagini del colore corrente
             imagesCurrentColor.add(img);
             //Imposto il current index alla nuova immagine aggiunta
-            currentIndex.set(imagesCurrentColor.size()-1);
+            currentIndex.set(imagesCurrentColor.size() - 1);
             //Aggiungo l'immagine appena inserita alla ImageView
             addedImagesView.setImage(img.getImage());
+        }
+    }
+    @FXML
+    private void nextPage(){
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addImages.fxml"));
+            Parent addImagesView = loader.load();
+
+            // Assuming you are replacing the scene of the current stage
+            Stage stage = (Stage) avantiButton.getScene().getWindow();
+            stage.setScene(new Scene(addImagesView));
+
+            // Alternatively, if you want to replace the content of a specific pane:
+            // ((BorderPane) avantiButton.getScene().getRoot()).setCenter(addImagesView);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }

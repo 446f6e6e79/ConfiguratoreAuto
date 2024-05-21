@@ -85,7 +85,7 @@
       <bottom>
          <HBox alignment="BASELINE_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
             <children>
-               <Button fx:id="avantiButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="222.0" text="Avanti" textAlignment="CENTER">
+               <Button fx:id="avantiButton" mnemonicParsing="false" onAction="#nextPage" prefHeight="56.0" prefWidth="222.0" text="Avanti" textAlignment="CENTER">
                   <font>
                      <Font size="30.0" />
                   </font>

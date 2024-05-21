@@ -21,6 +21,10 @@ public abstract class Auto implements Serializable{
         immagini.add(img);
     }
 
+    /**
+     *  Rimuove un immagine dalla lista di immagini dell'auto. L'immagine è inoltre eliminata dalla relativa directory
+     * @param img immagine da rimuovere
+     */
     public void removeImage(Immagine img){
         if(this.immagini.remove(img)){
             //Elimino il file dalla directory
