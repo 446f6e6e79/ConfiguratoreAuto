@@ -7,6 +7,7 @@ import org.example.configuratoreauto.Macchine.Optional;
 import org.example.configuratoreauto.Utenti.Cliente;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -38,6 +39,16 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
 
     public Preventivo(AutoNuova acquisto, Sede sede, Cliente cliente, Motore motore, ArrayList optionalScelti){
         this(acquisto, sede, cliente, new Date(), motore, optionalScelti);
+    }
+
+    /**
+     *
+     * @param price double, prezzo da formattare
+     * @return  ritorna il toString del prezzo passato come parametro, formattato secondo lo standard
+     */
+    public static String getPriceAsString(double price){
+        NumberFormat euroFormat = NumberFormat.getCurrencyInstance(Locale.ITALY);
+        return euroFormat.format(price);
     }
 
     public void setUsata(AutoUsata auto){

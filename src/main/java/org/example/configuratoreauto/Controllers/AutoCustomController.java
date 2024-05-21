@@ -24,7 +24,6 @@ import org.example.configuratoreauto.Preventivi.SediModel;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.UserModel;
 
-import java.awt.*;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -90,7 +89,7 @@ public class AutoCustomController implements Initializable {
         String dim = auto.getDimensione().toString();
         dimensioni.setText(dim);
         descrizione.setText(auto.getDescrizione());
-        String price = AutoNuova.getPriceAsString(auto.getCostoTotale(new ArrayList<>(), new Date()));
+        String price = Preventivo.getPriceAsString(auto.getCostoTotale(new ArrayList<>(), new Date()));
         prezzo.setText(price);
         //Vorrey fare display solo dell'alimentazione come scelta
         motori.getItems().addAll(auto.getMotoriDisponibili());
@@ -162,7 +161,7 @@ public class AutoCustomController implements Initializable {
         selezionati.add(cerchi.getValue());
         double costoTotale =auto.getCostoTotale(selezionati, new Date());
         updatePriceInfo(selezionati);
-        prezzo.setText(AutoNuova.getPriceAsString(costoTotale));
+        prezzo.setText(Preventivo.getPriceAsString(costoTotale));
     }
 
     public void updatePriceInfo(ArrayList<Optional> selezionati) {

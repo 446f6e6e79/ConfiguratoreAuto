@@ -1,12 +1,13 @@
 package org.example.configuratoreauto.Macchine;
 
+import org.example.configuratoreauto.Preventivi.Preventivo;
+
 import java.io.Serializable;
-import java.text.NumberFormat;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class AutoNuova extends Auto implements Serializable {
-    private int id;
+    private final int id;
     private String descrizione;
     private Dimensione dimensione;
     private double costoBase;
@@ -26,12 +27,63 @@ public class AutoNuova extends Auto implements Serializable {
         this.optionalDisponibili = new TreeSet<>();
     }
 
+    public AutoNuova(int id){
+        this.id = id;
+    }
+
+    //Metodo GET per il campoID
+    public int getId() {
+        return id;
+    }
+
+    /*
+    *   GET e SET costoBase
+    * */
     public double getCostoBase() {
         return costoBase;
     }
+    public void setCostoBase(double costoBase) {
+        this.costoBase = costoBase;
+    }
+    /*
+    *   Get e SET per il campo dimensione
+    * */
+    public Dimensione getDimensione() {
+        return dimensione;
+    }
+    public void setDimensione(Dimensione dimensione) {
+        this.dimensione = dimensione;
+    }
+    /*
+    *   GET e SET descrizione
+    * */
+    public String getDescrizione() {
+        return descrizione;
+    }
+    public void setDescrizione(String descrizione) {
+        this.descrizione = descrizione;
+    }
 
-    public TreeSet<Optional> getOptionalDisponibili() {
-        return optionalDisponibili;
+    public double[] getScontoPerMese() {
+        return scontoPerMese;
+    }
+    public void setScontoPerMese(double[] scontoPerMese) {
+        this.scontoPerMese = scontoPerMese;
+    }
+
+
+    /**
+     * Aggiunge un nuovo optional a quelli dipsonibili.
+     * Se tale optional era già presente, lo sostituisce con quello nuovo
+     * @param optional optioanl da aggiungere alla lista
+     * @param optional optioanl da aggiungere alla lista
+     * @param optional optioanl da aggiungere alla lista
+     */
+    public void addOptional(Optional optional){
+        //Provo a rimuovere l'optional, se già presente
+        optionalDisponibili.remove(optional);
+        //Aggiungo l'optional
+        optionalDisponibili.add(optional);
     }
 
     /**
@@ -55,29 +107,16 @@ public class AutoNuova extends Auto implements Serializable {
         return new ArrayList<>(colors);
     }
 
-    /**
-     * Aggiunge un nuovo optional a quelli dipsonibili.
-     * Se tale optional era già presente, lo sostituisce con quello nuovo
-     * @param optional optioanl da aggiungere alla lista
-     */
-    public void addOptional(Optional optional){
-        //Provo a rimuovere l'optional, se già presente
-        optionalDisponibili.remove(optional);
-        //Aggiungo l'optional
-        optionalDisponibili.add(optional);
-    }
 
     public ArrayList<Motore> getMotoriDisponibili() {
         return motoriDisponibili;
     }
 
-    public double[] getScontoPerMese() {
-        return scontoPerMese;
-    }
 
     public double getSconto(Date data){
         return this.getScontoPerMese()[data.getMonth()];
     }
+
     /*
     *   Due auto sono considerate uguali se condividono lo stesso id
     * */
@@ -89,10 +128,6 @@ public class AutoNuova extends Auto implements Serializable {
 
     public void addMotore(Motore motore){
         motoriDisponibili.add(motore);
-    }
-
-    public int getId() {
-        return id;
     }
 
     /**
@@ -113,25 +148,7 @@ public class AutoNuova extends Auto implements Serializable {
         return tot;
     }
 
-    /**
-     *
-     * @param price double, prezzo da formattare
-     * @return  ritorna il toString del prezzo passato come parametro, formattato secondo lo standard
-     */
-    public static String getPriceAsString(double price){
-        NumberFormat euroFormat = NumberFormat.getCurrencyInstance(Locale.ITALY);
-        return euroFormat.format(price);
-    }
-
     public String getBasePriceAsString(){
-        return getPriceAsString(costoBase);
-    }
-
-    public String getDescrizione(){
-        return descrizione;
-    }
-
-    public Dimensione getDimensione() {
-        return dimensione;
+        return Preventivo.getPriceAsString(costoBase);
     }
 }

@@ -1,5 +1,7 @@
 package org.example.configuratoreauto.Macchine;
 
+import org.example.configuratoreauto.Preventivi.Preventivo;
+
 import java.io.Serializable;
 
 public class Optional implements Serializable, Comparable<Optional> {
@@ -44,6 +46,6 @@ public class Optional implements Serializable, Comparable<Optional> {
     }
 
     public String toString(){
-        return descrizione +": "+AutoNuova.getPriceAsString(costo);
+        return descrizione +": "+ Preventivo.getPriceAsString(costo);
     }
 }

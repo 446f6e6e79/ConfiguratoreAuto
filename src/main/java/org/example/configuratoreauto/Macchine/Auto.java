@@ -16,7 +16,28 @@ public abstract class Auto implements Serializable{
         this.modello = modello;
         this.immagini = new ArrayList<>();
     }
+    protected Auto(){}
 
+    /*
+    *   GET e SET per l'attrito MARCA
+    * */
+    public Marca getMarca() {
+        return marca;
+    }
+    public void setMarca(Marca marca) {
+        this.marca = marca;
+    }
+
+    public String getModello() {
+        return modello;
+    }
+    public void setModello(String modello) {
+        this.modello = modello;
+    }
+
+    /**
+     * Aggiunge un'immagine alla lista delle immagini di un'auto
+     * */
     public void addImage(Immagine img){
         immagini.add(img);
     }
@@ -34,14 +55,6 @@ public abstract class Auto implements Serializable{
 
     public ArrayList<Immagine> getImmagini(){
         return immagini;
-    }
-
-    public Marca getMarca() {
-        return marca;
-    }
-
-    public String getModello() {
-        return modello;
     }
 
     public String toString(){
