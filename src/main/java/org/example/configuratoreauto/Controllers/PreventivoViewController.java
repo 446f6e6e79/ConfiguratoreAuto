@@ -101,10 +101,6 @@ public class PreventivoViewController {
                 s += opt.toString() +"\n";
                 optional.setText(s);
         }}
-
-
-
-
     }
 
     @FXML
@@ -116,9 +112,11 @@ public class PreventivoViewController {
             BorderPane preventiviList;
             preventiviList = loader.load();
             PreventiviController controller = loader.getController();
-            controller.loadPrevs(registro.getPreventiviByCliente((Cliente) user.getCurrentUser()));
-
-
+            if(user.getCurrentUser() instanceof Cliente){
+                controller.loadPrevs(registro.getPreventiviByCliente((Cliente) user.getCurrentUser()));
+            }else{
+                controller.loadPrevs(registro.getAllData());
+            }
             tab.setContent(preventiviList); // Imposta il nuovo contenuto del tab "Catalogo"
         }catch (IOException e){
             e.printStackTrace();

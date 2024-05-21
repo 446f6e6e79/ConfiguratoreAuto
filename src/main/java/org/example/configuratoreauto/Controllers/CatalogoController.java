@@ -69,7 +69,6 @@ public class CatalogoController implements Initializable {
         brandList.getItems().addAll(catalogo.getUsedBrands());
     }
     private void loadAlimentazioni() {
-        System.out.println("Load Alimentazioni: "+CatalogoModel.getUsedAlimentazione(filteredList));
         alimentazioneList.getItems().clear();
         alimentazioneList.getItems().addAll(CatalogoModel.getUsedAlimentazione(filteredList));
     }
