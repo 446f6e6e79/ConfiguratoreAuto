@@ -5,15 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/AddAutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/AddAutoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/AddAutoImagesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/AddAutoImagesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/AddAutoOptionalsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/AddAutoOptionalsController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/UsataCustomController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/UsataCustomController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/segretarioView/addImages.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/segretarioView/addImages.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/segretarioView/addModel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/segretarioView/addModel.fxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/segretarioView/addOptionals.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/segretarioView/addOptionals.fxml" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -302,7 +294,7 @@
       <workItem from="1716294516813" duration="1404000" />
       <workItem from="1716295929597" duration="2325000" />
       <workItem from="1716300266091" duration="308000" />
-      <workItem from="1716319208552" duration="8622000" />
+      <workItem from="1716319208552" duration="9123000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />
