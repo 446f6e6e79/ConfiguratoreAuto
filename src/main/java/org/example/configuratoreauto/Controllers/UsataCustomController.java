@@ -1,5 +1,7 @@
 package org.example.configuratoreauto.Controllers;
 
+import javafx.beans.binding.Bindings;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -13,13 +15,12 @@ import org.example.configuratoreauto.Preventivi.RegistroModel;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-import javafx.beans.binding.Bindings;
 
 
 public class UsataCustomController {
 
     RegistroModel registro = RegistroModel.getInstance();
-    private ObservableList<Image> usedImages;
+    private final ObservableList<Image> usedImages = FXCollections.observableArrayList();
 
     @FXML
     private ComboBox<Marca> marcaComboBox;
@@ -30,24 +31,19 @@ public class UsataCustomController {
     @FXML
     private TextField kmTextField;
     @FXML
-    private ImageView imageView;
-    @FXML
-    private TextField colorTextField;
-    @FXML
     private Label saveLabel;
     @FXML
     private Button salvaButton;
 
-
+    
     private List<Immagine> immagini = new ArrayList<>();
-    private int currentImageIndex = 0;
 
-/*
+    
     @FXML
     private void initialize() {
         marcaComboBox.getItems().setAll(Marca.values());
-        salvaButton.disabledProperty().bind(
-                Bindings.size(usedImages.getImageUrls()).lessThan(4)
+        salvaButton.disableProperty().bind(
+                Bindings.size(usedImages).isNotEqualTo(4)
         );
     }
 
@@ -84,8 +80,7 @@ public class UsataCustomController {
         if (marcaComboBox.getValue() != null &&
                 !modelloTextField.getText().isEmpty() &&
                 !targaTextField.getText().isEmpty() &&
-                !kmTextField.getText().isEmpty() &&
-                immagini.size() >= 4) {
+                !kmTextField.getText().isEmpty()) {
 
             Marca marca = marcaComboBox.getValue();
             String modello = modelloTextField.getText();
@@ -94,8 +89,8 @@ public class UsataCustomController {
 
             AutoUsata autoUsata = new AutoUsata(marca, modello, targa, km);
 
-            for (Immagine immagine : immagini) {
-
+            for (Image img : usedImages) {
+                autoUsata.addImage(new Immagine(null, autoUsata, img.getUrl().substring(5)));
             }
 
             saveLabel.setText("Auto usata salvata con successo!");
@@ -113,6 +108,4 @@ public class UsataCustomController {
         registro.addData(registro.currentPreventivo);
         ((Stage) saveLabel.getScene().getWindow()).close();
     }
-    
- */
 }

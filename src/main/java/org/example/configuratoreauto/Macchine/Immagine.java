@@ -128,9 +128,9 @@ public class Immagine implements Serializable{
                    -TARGA_N
     */
     private void addAutoUsata(AutoUsata auto, String absolutePath){
-        Path target = Paths.get("src", "main", "resources", "img", "carImages", String.valueOf(auto.getTarga()));
+        Path target = Paths.get("src", "main", "resources", "img", "usedCarImages", String.valueOf(auto.getTarga()));
         Path source = Paths.get(absolutePath);
-
+        
         if (Files.notExists(target)) {
             try {
                 Files.createDirectories(target);
