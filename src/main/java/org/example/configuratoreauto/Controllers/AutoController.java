@@ -53,7 +53,18 @@ public class AutoController {
         catalogo.setSelectedAuto(auto);
         //Controllo sul tipo di utente che ha cliccato
         if(utenti.getCurrentUser() instanceof Segretario){
-            //Pagina modifica auto
+            //Pagina modifica aut
+            try{
+                TabPane tabPane = (TabPane) autoImage.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+                Tab catalogoTab = tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/autoEditor.fxml"));
+                AnchorPane autoeditor;
+
+                autoeditor = loader.load();
+                catalogoTab.setContent(autoeditor); // Imposta il nuovo contenuto del tab "Catalogo"
+            }catch (IOException e){
+                e.printStackTrace();
+            }
 
         }
         else{
