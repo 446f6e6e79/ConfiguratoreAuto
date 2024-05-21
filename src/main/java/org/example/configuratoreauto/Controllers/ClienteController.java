@@ -40,17 +40,13 @@ public class ClienteController {
             preventiviNode.prefWidthProperty().bind(mainPage.widthProperty());
             preventiviNode.prefHeightProperty().bind(mainPage.heightProperty());
             preventiviController = preventiviLoader.getController();
-
-
             preventiviTab.setContent(preventiviNode);
             preventiviController.loadPrevs(registro.getPreventiviByCliente(currentUser));
-
         }
         catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     /*
         Questo metodo si occupa si gestire la label di saluto ottenendo i dati dal login precedente,

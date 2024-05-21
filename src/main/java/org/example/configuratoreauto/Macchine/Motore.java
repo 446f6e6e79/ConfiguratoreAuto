@@ -57,10 +57,14 @@ public class Motore implements Serializable {
         return nome + " - " + alimentazione;
     }
     public String getInfoMotore() {
-        return "Alimentazione: "+this.alimentazione+"\n"+
-                "Potenza KW: "+this.potenzaKW +"\n"+
-                "Cilindrata: "+this.cilindrata +"\n"+
-                "Consumi: "+this.consumi +"\n";
+        String s = "Alimentazione: "+this.alimentazione+"\n"+
+                "Potenza KW: "+this.potenzaKW +"\n";
+
+        if(cilindrata != 0){
+            s += "Cilindrata: "+this.cilindrata+"\n";
+        }
+        s+= "Consumi: "+this.consumi+"\n";
+        return s;
     }
 
 

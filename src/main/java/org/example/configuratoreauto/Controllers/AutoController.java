@@ -40,8 +40,13 @@ public class AutoController {
         Marca.setText(auto.getMarca().toString());
         Prezzo.setText(auto.getBasePriceAsString());
         // Carica l'immagine e imposta sull'ImageView
-        Image image = new Image(getClass().getResourceAsStream("/img/test.png"));
-        autoImage.setImage(image);
+        if(auto.getImmagini().size()!= 0){
+            autoImage.setImage(auto.getImmagini().get(0).getImage());
+        }
+        else{
+            Image image = new Image(getClass().getResourceAsStream("/img/test.png"));
+            autoImage.setImage(image);
+        }
         String iconPath = (utenti.getCurrentUser() instanceof Segretario) ? "/img/icons/edit-icon.png" : "/img/icons/right-arrow.png";
         Image icon = new Image(getClass().getResourceAsStream(iconPath));
         dynamicIcon.setImage(icon);

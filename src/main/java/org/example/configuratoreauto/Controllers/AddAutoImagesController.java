@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -28,6 +29,7 @@ import java.util.ResourceBundle;
 public class AddAutoImagesController implements Initializable {
     CatalogoModel catalogo = CatalogoModel.getInstance();
     AutoNuova currentAuto = catalogo.getSelectedAuto();
+
     /*
      *   Definisco delle variabili  Observable che permettono di implementare il pattern observer:
      *       -currentIndex è un numero intero, indica la foto attualmente selezionata
@@ -97,6 +99,7 @@ public class AddAutoImagesController implements Initializable {
                 () -> !imagesCurrentColor.isEmpty(),
                 imagesCurrentColor
         ));
+
         /*
          *   Setto le action per i 3 bottoni presenti nell'inserimento dell'immagine
          * */
@@ -109,11 +112,6 @@ public class AddAutoImagesController implements Initializable {
 
         //Disabilito il bottone per aggiunger il colore se non sono presenti foto
         saveImageButton.disableProperty().bind(Bindings
-                .size(imagesCurrentColor).isEqualTo(0)
-        );
-
-        //Disabilito il bottone avanti fino a che non è stata inserita una nuova immagine
-        avantiButton.disableProperty().bind(Bindings
                 .size(imagesCurrentColor).isEqualTo(0)
         );
     }
@@ -175,7 +173,6 @@ public class AddAutoImagesController implements Initializable {
                         colorPrice.setText(String.valueOf(colore.getCosto()));
                     }
                 }
-
             } else {
                 addedImagesView.setImage(new Image(getClass().getResourceAsStream("/img/icons/addImage.png")));
             }
@@ -234,18 +231,27 @@ public class AddAutoImagesController implements Initializable {
     }
     @FXML
     private void nextPage(){
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addImages.fxml"));
-            Parent addImagesView = loader.load();
+        if(!currentAuto.getUsedColors().isEmpty()) {
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addOptionals.fxml"));
+                Parent addImagesView = loader.load();
+                // Assuming you are replacing the scene of the current stage
+                Stage stage = (Stage) avantiButton.getScene().getWindow();
+                stage.setScene(new Scene(addImagesView));
 
-            // Assuming you are replacing the scene of the current stage
-            Stage stage = (Stage) avantiButton.getScene().getWindow();
-            stage.setScene(new Scene(addImagesView));
-
-            // Alternatively, if you want to replace the content of a specific pane:
-            // ((BorderPane) avantiButton.getScene().getRoot()).setCenter(addImagesView);
-        } catch (IOException e) {
-            e.printStackTrace();
+                // Alternatively, if you want to replace the content of a specific pane:
+                // ((BorderPane) avantiButton.getScene().getRoot()).setCenter(addImagesView);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            // Show an error popup
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Errore");
+            alert.setHeaderText(null);
+            alert.setContentText("Aggiungi almeno un colore");
+            alert.showAndWait();
         }
     }
 }

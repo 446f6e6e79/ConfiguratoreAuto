@@ -109,6 +109,15 @@ public class MainTests {
         ford.addMotore(motoreFord);
         catalogo.addData(ford);
 
+        dimFerrari = new Dimensione(2.02, 1.58, 4.97, 2033, 0);
+        motoreFerrari = new Motore("F140IA V12", Alimentazione.BENZINA, 715, 8000, 6.5);
+        descrizioneFerrari = "Ferrari Purosangue con prestazioni eccezionali";
+        scontoPerMeseFerrari = new double[]{0, 5, 5, 5, 5, 10, 10, 10, 5, 0, 0, 0};
+        ferrari = new AutoNuova(85, Marca.Ferrari, "Purosangue", dimFerrari, descrizioneFerrari, 350000, scontoPerMeseFerrari);
+        ferrari.addMotore(motoreFerrari);
+        catalogo.addData(ferrari);
+
+
         catalogo.uploadData();
         //
         System.out.println("Get auto by brand: brand = Porche " +CatalogoModel.filterAutoByBrand(Marca.Porsche, catalogo.getAllData()));

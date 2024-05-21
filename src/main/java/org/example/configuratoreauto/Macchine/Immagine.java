@@ -22,10 +22,7 @@ public class Immagine implements Serializable{
         this.colore=colore;
         addToLocalImages(auto, absolutePath);
     }
-    public Immagine(String colore, Auto auto, Image image){
-        this(colore, auto, image.getUrl().substring(5));    //Rimuovo la parte iniziale dell'URL
-        System.out.println(image.getUrl().substring(5));
-    }
+
     public String getColor(){
         return this.colore;
     }
@@ -121,7 +118,7 @@ public class Immagine implements Serializable{
         }
     }
 
-    /*
+    /**
         Aggiungo l'immagine dell'auto usata alla DIRECTORY interna al progetto:
             - Le cartelle sono gestite nel seguente modo:
                 -usedCarImages

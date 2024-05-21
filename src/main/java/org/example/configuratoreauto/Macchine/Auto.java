@@ -3,13 +3,11 @@ package org.example.configuratoreauto.Macchine;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-
-
 public abstract class Auto implements Serializable{
     private Marca marca;
     private String modello;
 
-    private ArrayList<Immagine> immagini;
+    private ArrayList<Immagine> immagini = new ArrayList<>();
 
     public Auto(Marca marca, String modello){
         this.marca = marca;

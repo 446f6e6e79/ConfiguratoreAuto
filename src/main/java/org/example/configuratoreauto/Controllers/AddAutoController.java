@@ -53,7 +53,7 @@ public class AddAutoController implements Initializable {
     private Text message;
 
     CatalogoModel catalogo = CatalogoModel.getInstance();
-    double sconti[] = new double[12];
+    double[] sconti = new double[12];
     private static final String[] MONTH_NAMES = {
             "Gennaio", "Febbraio", "Marzo", "Aprile",
             "Maggio", "Giugno", "Luglio", "Agosto",
@@ -147,24 +147,24 @@ public class AddAutoController implements Initializable {
                 && isValidDouble(peso) && isValidDouble(volume) && isValidDouble(costoBase)) {
             if(catalogo.getSelectedAuto() == null){
                 catalogo.setSelectedAuto(new AutoNuova(
-                        catalogo.getUniqueId(),
-                        brand.getValue(),
-                        modello.getText(),
-                        new Dimensione(
-                                Double.parseDouble(lunghezza.getText()),
-                                Double.parseDouble(altezza.getText()),
-                                Double.parseDouble(larghezza.getText()),
-                                Double.parseDouble(peso.getText()),
-                                Double.parseDouble(volume.getText())
-                        ),
-                        descrizione.getText(),
-                        Double.parseDouble(costoBase.getText()),
-                        sconti
-                ));
+                        catalogo.getUniqueId()));
             }
-            else{
-                //Dovrei fare set di ogni nuovo dato. Forse è meglio creare un costruttore con tutto a null, valorizzare dopo
-            }
+
+            //Setto i parametri della pagina all'auto
+            catalogo.getSelectedAuto().setMarca(brand.getValue());
+            catalogo.getSelectedAuto().setModello(modello.getText());
+            catalogo.getSelectedAuto().setDimensione(new Dimensione(
+                            Double.parseDouble(lunghezza.getText()),
+                            Double.parseDouble(altezza.getText()),
+                            Double.parseDouble(larghezza.getText()),
+                            Double.parseDouble(peso.getText()),
+                            Double.parseDouble(volume.getText())
+                    ));
+            catalogo.getSelectedAuto().setDescrizione(descrizione.getText());
+            catalogo.getSelectedAuto().setCostoBase(Double.parseDouble(costoBase.getText()));
+            catalogo.getSelectedAuto().setScontoPerMese(sconti);
+
+            //Carico la pagina successiva
             loadAddImagesPage();
         }
         else{
