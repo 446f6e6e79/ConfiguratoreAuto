@@ -20,12 +20,20 @@ public class Immagine implements Serializable{
         this.colore=colore;
         addToLocalImages(auto, absolutePath);
     }
+    public Immagine(String colore, Auto auto, Image image){
+        this(colore, auto, image.getUrl().substring(5));    //Rimuovo la parte iniziale dell'URL
+        System.out.println(image.getUrl().substring(5));
+    }
+    public String getColor(){
+        return this.colore;
+    }
 
     public Image getImage() {
+        System.out.println("PERCORSOOO:"+path);
         return new Image(this.getClass().getClassLoader().getResourceAsStream(path));
     }
 
-    /*
+    /**
     *   Metodo STATICO. Passato come parametri una LISTA DI IMMAGINI ed un COLORE
     *       restituisce la stessa lista, filtrata per colore
     * */
@@ -44,7 +52,7 @@ public class Immagine implements Serializable{
         }
     }
 
-    /*
+    /**
         Aggiungo l'immagine alla DIRECTORY interna al progetto:
             - Le cartelle sono gestite nel seguente modo:
                 -carImages
@@ -83,7 +91,9 @@ public class Immagine implements Serializable{
         * */
         try {
             Files.copy(source, target.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("File copied successfully!");
+            //Salvo il path dell'immagine
+            this.path = String.valueOf(target.resolve(source.getFileName()));
+            this.path = path.substring(path.indexOf("/img"));
         } catch (FileAlreadyExistsException e) {
             System.err.println("File already exists in target directory");
         } catch (NoSuchFileException e) {
@@ -116,7 +126,9 @@ public class Immagine implements Serializable{
         }
         try {
             Files.copy(source, target.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-            System.out.println("File copied successfully!");
+            //Salvo il path dell'immagine
+            this.path = String.valueOf(target.resolve(source.getFileName()));
+            this.path = path.substring(path.indexOf("/img"));
         } catch (FileAlreadyExistsException e) {
             System.err.println("File already exists in target directory");
         } catch (NoSuchFileException e) {

@@ -6,6 +6,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -17,7 +19,10 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 public class AddAutoController implements Initializable {
-
+    @FXML
+    private AnchorPane mainPane;
+    @FXML
+    private BorderPane mainBorderPane;
     @FXML
     private TextField modello;
     @FXML
@@ -57,6 +62,9 @@ public class AddAutoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        mainBorderPane.prefWidthProperty().bind(mainPane.widthProperty());
+        mainBorderPane.prefHeightProperty().bind(mainPane.heightProperty());
+
         /*
         *   Valorizzo i campi per le varie choiceBox
         * */

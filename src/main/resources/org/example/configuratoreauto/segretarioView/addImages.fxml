@@ -27,7 +27,7 @@
                      <Insets />
                   </VBox.margin>
                   <children>
-                     <ComboBox editable="true" prefHeight="69.0" prefWidth="330.0" promptText="Colore" />
+                     <ComboBox fx:id="coloreInput" editable="true" prefHeight="69.0" prefWidth="330.0" promptText="Colore" />
                   </children>
                </HBox>
                <TextField fx:id="colorPrice" promptText="Costo" />
@@ -38,21 +38,21 @@
                            <Insets top="20.0" />
                         </VBox.margin>
                         <children>
-                           <ImageView fx:id="addedImages" fitHeight="166.0" fitWidth="175.0" pickOnBounds="true" preserveRatio="true">
+                           <ImageView fx:id="addedImagesView" fitHeight="400.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
                               <image>
                                  <Image url="@../../../../img/icons/addImage.png" />
                               </image>
                            </ImageView>
                            <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="400.0" prefWidth="745.0">
                               <left>
-                                 <ImageView fx:id="photoLeft" fitHeight="40.0" fitWidth="40.0" opacity="0.4" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
+                                 <ImageView fx:id="photoLeft" fitHeight="40.0" fitWidth="40.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
                                     <image>
                                        <Image url="@../../../../img/icons/right-arrow.png" />
                                     </image>
                                  </ImageView>
                               </left>
                               <right>
-                                 <ImageView fx:id="photoRight" fitHeight="40.0" fitWidth="40.0" opacity="0.4" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                 <ImageView fx:id="photoRight" fitHeight="40.0" fitWidth="40.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                                     <image>
                                        <Image url="@../../../../img/icons/right-arrow.png" />
                                     </image>
@@ -75,7 +75,7 @@
                </VBox>
                <ButtonBar prefHeight="40.0" prefWidth="200.0">
                  <buttons>
-                   <Button fx:id="addImageButton" mnemonicParsing="false" onAction="#addImageFile" prefHeight="40.0" prefWidth="710.0" text="Aggiungi Immagine" />
+                   <Button fx:id="addImageButton" mnemonicParsing="false" onAction="#imageFileInput" prefHeight="40.0" prefWidth="710.0" text="Aggiungi Immagine" />
                      <Button fx:id="saveImageButton" mnemonicParsing="false" onAction="#saveImages" prefHeight="63.0" text="Conferma" />
                  </buttons>
                </ButtonBar>
@@ -85,7 +85,7 @@
       <bottom>
          <HBox alignment="BASELINE_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
             <children>
-               <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="222.0" text="Avanti" textAlignment="CENTER">
+               <Button fx:id="avantiButton" mnemonicParsing="false" prefHeight="56.0" prefWidth="222.0" text="Avanti" textAlignment="CENTER">
                   <font>
                      <Font size="30.0" />
                   </font>

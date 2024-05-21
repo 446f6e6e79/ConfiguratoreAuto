@@ -17,8 +17,12 @@ public abstract class Auto implements Serializable{
         this.immagini = new ArrayList<>();
     }
 
-    protected void addImage(Immagine img){
+    public void addImage(Immagine img){
         immagini.add(img);
+    }
+
+    public ArrayList<Immagine> getImmagini(){
+        return immagini;
     }
 
     public Marca getMarca() {

@@ -28,14 +28,13 @@ public class Optional implements Serializable, Comparable<Optional> {
 
     @Override
     public int hashCode(){
-        return categoria.hashCode() ^ descrizione.hashCode() ^ (int)costo;
+        return categoria.hashCode() ^ descrizione.hashCode();
     }
 
     @Override
     public boolean equals(Object o){
         return o instanceof Optional opt &&
                 this.categoria == opt.categoria &&
-                this.costo == opt.costo &&
                 this.descrizione.equals(opt.descrizione);
     }
 
