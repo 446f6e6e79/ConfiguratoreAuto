@@ -21,6 +21,13 @@ public abstract class Auto implements Serializable{
         immagini.add(img);
     }
 
+    public void removeImage(Immagine img){
+        if(this.immagini.remove(img)){
+            //Elimino il file dalla directory
+            img.delete();
+        }
+    }
+
     public ArrayList<Immagine> getImmagini(){
         return immagini;
     }

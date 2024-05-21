@@ -2,6 +2,8 @@ package org.example.configuratoreauto.Macchine;
 
 import javafx.scene.image.Image;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.*;
@@ -29,10 +31,16 @@ public class Immagine implements Serializable{
     }
 
     public Image getImage() {
-        System.out.println("PERCORSOOO:"+path);
-        return new Image(this.getClass().getClassLoader().getResourceAsStream(path));
+        System.out.println(path);
+        try {
+            FileInputStream inputStream = new FileInputStream(path);
+            return new Image(inputStream);
+        } catch (FileNotFoundException e) {
+            System.err.println("Image file not found: " + e.getMessage());
+            return null;
+        }
     }
-
+    
     /**
     *   Metodo STATICO. Passato come parametri una LISTA DI IMMAGINI ed un COLORE
     *       restituisce la stessa lista, filtrata per colore
@@ -93,7 +101,7 @@ public class Immagine implements Serializable{
             Files.copy(source, target.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
             //Salvo il path dell'immagine
             this.path = String.valueOf(target.resolve(source.getFileName()));
-            this.path = path.substring(path.indexOf("/img"));
+//            this.path = path.substring(path.indexOf("/img"));
         } catch (FileAlreadyExistsException e) {
             System.err.println("File already exists in target directory");
         } catch (NoSuchFileException e) {
@@ -136,5 +144,11 @@ public class Immagine implements Serializable{
         } catch (IOException e) {
             System.err.println("Error copying file: " + e.getMessage());
         }
+    }
+    @Override
+    public boolean equals(Object other){
+        return other instanceof Immagine otherImage &&
+                this.path.equals(otherImage.path) &&
+                this.colore.equals(otherImage.colore);
     }
 }
