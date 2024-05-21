@@ -8,11 +8,16 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.example.configuratoreauto.Macchine.CatalogoModel;
+import org.example.configuratoreauto.Macchine.Optional;
+import org.example.configuratoreauto.Macchine.TipoOptional;
+
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
@@ -37,7 +42,7 @@ public class AddAutoImagesController implements Initializable {
     @FXML
     private ImageView photoLeft;
     @FXML
-    private TextField colore;
+    private ComboBox colore;
     @FXML
     private Button addImageButton;
     @FXML
@@ -45,13 +50,20 @@ public class AddAutoImagesController implements Initializable {
     @FXML
     private TextField colorPrice;
 
+    CatalogoModel catalogo = CatalogoModel.getInstance();
+
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        //Sono già presenti delle immagini, carico quelle già esistenti
+        ArrayList <Optional> oldPhotos = catalogo.getSelectedAuto().getOptionalByCategory(TipoOptional.colore);
+        if(oldPhotos != null){
+
+        }
+
         /*
          *   Collego la visibilità dei bottoni al valore di currentIndex:
          *      -BottoneSX: mostrato solo se index > 0
          *      -BottoneDX: mostrato solo se index < size-1
          * */
-
         photoLeft.visibleProperty().bind(Bindings.createBooleanBinding(
                 () -> currentIndex.get() > 0,
                 currentIndex
@@ -61,7 +73,6 @@ public class AddAutoImagesController implements Initializable {
                 () -> currentImages.size() > 1 && currentIndex.get() < currentImages.size() - 1,
                 currentIndex, currentImages
         ));
-
 
         /*
          *   Setto visibile il tasto per eliminare la foto solamente nel momento in cui è
@@ -79,9 +90,8 @@ public class AddAutoImagesController implements Initializable {
         deletePhoto.setOnMouseClicked(e -> deletePhoto());
 
         //Disabilito i bottoni per l'aggiunta di foto se non ho inserito il colore
-        addImageButton.disableProperty().bind(colore.textProperty().isEmpty());
+        addImageButton.disableProperty().bind(colore.valueProperty().isNull());
         saveImageButton.disableProperty().bind(Bindings.size(currentImages).isEqualTo(0));
-
     }
 
     public void getNextPhoto(){

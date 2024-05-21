@@ -33,9 +33,19 @@ public class AutoNuova extends Auto implements Serializable {
     public TreeSet<Optional> getOptionalDisponibili() {
         return optionalDisponibili;
     }
+
+    public ArrayList<Optional> getOptionalByCategory(TipoOptional category){
+        return optionalDisponibili.stream().filter(optional -> optional.getCategoria().equals(category)).collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    public void addOptional(Optional optional){
+        optionalDisponibili.add(optional);
+    }
+
     public ArrayList<Motore> getMotoriDisponibili() {
         return motoriDisponibili;
     }
+
     public double[] getScontoPerMese() {
         return scontoPerMese;
     }
@@ -51,9 +61,7 @@ public class AutoNuova extends Auto implements Serializable {
         return o instanceof AutoNuova other &&
                 this.id == other.id;
     }
-    public void addOptional(Optional optional){
-        optionalDisponibili.add(optional);
-    }
+
     public void addMotore(Motore motore){
         motoriDisponibili.add(motore);
     }
@@ -81,10 +89,6 @@ public class AutoNuova extends Auto implements Serializable {
     }
     public String getBasePriceAsString(){
         return getPriceAsString(costoBase);
-    }
-
-    public ArrayList<Optional> getOptionalByCategory(TipoOptional category){
-        return optionalDisponibili.stream().filter(optional -> optional.getCategoria().equals(category)).collect(Collectors.toCollection(ArrayList::new));
     }
     public String getDescrizione(){
         return descrizione;

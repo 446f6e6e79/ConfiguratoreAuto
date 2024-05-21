@@ -1,12 +1,18 @@
 package org.example.configuratoreauto.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Mesi;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -64,6 +70,7 @@ public class AddAutoController implements Initializable {
         * */
         avantiButton.disableProperty().bind(
                 modello.textProperty().isEmpty()
+                .or(descrizione.textProperty().isEmpty())
                 .or(brand.valueProperty().isNull())
                 .or(lunghezza.textProperty().isEmpty())
                 .or(altezza.textProperty().isEmpty())
@@ -144,7 +151,7 @@ public class AddAutoController implements Initializable {
                     Double.parseDouble(costoBase.getText()),
                     sconti
             ));
-            //Load 2nda pagina
+            loadAddImagesPage();
         }
         else{
             message.setText("Errore nell'inserimento di alcuni campi");
@@ -154,8 +161,13 @@ public class AddAutoController implements Initializable {
     private boolean isValidDouble(TextField tf){
         try {
             double value = Double.parseDouble(tf.getText());
+            if(value < 0){
+                tf.clear();
+                tf.requestFocus();
+            }
         } catch (NumberFormatException e) {
             tf.clear();
+            tf.requestFocus();
             message.setText("Errore nell'inserimento di alcuni campi");
             return false;
         }
@@ -164,9 +176,26 @@ public class AddAutoController implements Initializable {
 
     private boolean isValidModello(TextField tf) {
         if(tf.getText().matches("[a-zA-Z0-9 ]+")){
-            tf.clear();
-            return false;
+            return true;
         }
-        return true;
+        tf.clear();
+        tf.requestFocus();
+        return false;
+    }
+
+    private void loadAddImagesPage() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addImages.fxml"));
+            Parent addImagesView = loader.load();
+
+            // Assuming you are replacing the scene of the current stage
+            Stage stage = (Stage) avantiButton.getScene().getWindow();
+            stage.setScene(new Scene(addImagesView));
+
+            // Alternatively, if you want to replace the content of a specific pane:
+            // ((BorderPane) avantiButton.getScene().getRoot()).setCenter(addImagesView);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
