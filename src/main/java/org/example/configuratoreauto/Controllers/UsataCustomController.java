@@ -1,5 +1,6 @@
 package org.example.configuratoreauto.Controllers;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -41,7 +42,7 @@ public class UsataCustomController {
     private List<Immagine> immagini = new ArrayList<>();
     private int currentImageIndex = 0;
 
-
+/*
     @FXML
     private void initialize() {
         marcaComboBox.getItems().setAll(Marca.values());
@@ -112,4 +113,6 @@ public class UsataCustomController {
         registro.addData(registro.currentPreventivo);
         ((Stage) saveLabel.getScene().getWindow()).close();
     }
+    
+ */
 }

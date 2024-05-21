@@ -110,20 +110,20 @@ public class AddAutoController implements Initializable {
         }
     }
 
+    @FXML
+    public void goBack(){
+        try {
+            TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+            Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/catalogoView.fxml"));
+            AnchorPane catalogoNode;
 
-//    public void backClicked(){
-//        try {
-//            TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
-//            Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
-//            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/catalogoView.fxml"));
-//            AnchorPane catalogoNode;
-//
-//            catalogoNode = loader.load();
-//            tab.setContent(catalogoNode); // Imposta il nuovo contenuto del tab "Catalogo"
-//        }catch (IOException e){
-//            e.printStackTrace();
-//        }
-//    }
+            catalogoNode = loader.load();
+            tab.setContent(catalogoNode); // Imposta il nuovo contenuto del tab "Catalogo"
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
 
     @FXML
     private void addSconto(){
@@ -199,16 +199,13 @@ public class AddAutoController implements Initializable {
 
     private void loadAddImagesPage() {
         try {
+            TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+            Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addImages.fxml"));
-            Parent addImagesView = loader.load();
-
-            // Assuming you are replacing the scene of the current stage
-            Stage stage = (Stage) avantiButton.getScene().getWindow();
-            stage.setScene(new Scene(addImagesView));
-
-            // Alternatively, if you want to replace the content of a specific pane:
-            // ((BorderPane) avantiButton.getScene().getRoot()).setCenter(addImagesView);
-        } catch (IOException e) {
+            AnchorPane imageNode;
+            imageNode = loader.load();
+            tab.setContent(imageNode); // Imposta il nuovo contenuto del tab "Catalogo"
+        }catch (IOException e){
             e.printStackTrace();
         }
     }

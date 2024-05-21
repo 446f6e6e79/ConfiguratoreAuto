@@ -1,12 +1,13 @@
 package org.example.configuratoreauto.Controllers;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.layout.AnchorPane;
 import org.example.configuratoreauto.Macchine.*;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
@@ -92,6 +93,34 @@ public class AddAutoOptionalsController implements Initializable {
         );
         updateMotoriList();
     }
+
     @FXML
-    private void
+    public void goBack(){
+        try {
+            TabPane tabPane = (TabPane) consumi.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+            Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addImages.fxml"));
+            AnchorPane modelNode;
+            modelNode = loader.load();
+            tab.setContent(modelNode); // Imposta il nuovo contenuto del tab "Catalogo"
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+    @FXML
+    public void nextPage(){
+        try {
+            catalogo.setSelectedAuto(null);
+            TabPane tabPane = (TabPane) consumi.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+            Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/catalogoView.fxml"));
+            AnchorPane catalogoNode;
+
+            catalogoNode = loader.load();
+            tab.setContent(catalogoNode); // Imposta il nuovo contenuto del tab "Catalogo"
+        }catch (IOException e){
+            e.printStackTrace();
+        }
+    }
+
 }

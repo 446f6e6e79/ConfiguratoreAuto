@@ -10,12 +10,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.*;
@@ -132,6 +130,7 @@ public class AddAutoImagesController implements Initializable {
         }
     }
 
+
     private void deletePhoto() {
         //Rimuovo l'immagine dalla lista genera
         currentAuto.removeImage(imagesCurrentColor.get(currentIndex.get()));
@@ -233,15 +232,14 @@ public class AddAutoImagesController implements Initializable {
     private void nextPage(){
         if(!currentAuto.getUsedColors().isEmpty()) {
             try {
+                TabPane tabPane = (TabPane) colorPrice.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+                Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addOptionals.fxml"));
-                Parent addImagesView = loader.load();
-                // Assuming you are replacing the scene of the current stage
-                Stage stage = (Stage) avantiButton.getScene().getWindow();
-                stage.setScene(new Scene(addImagesView));
+                AnchorPane catalogoNode;
 
-                // Alternatively, if you want to replace the content of a specific pane:
-                // ((BorderPane) avantiButton.getScene().getRoot()).setCenter(addImagesView);
-            } catch (IOException e) {
+                catalogoNode = loader.load();
+                tab.setContent(catalogoNode); // Imposta il nuovo contenuto del tab "Catalogo"
+            }catch (IOException e){
                 e.printStackTrace();
             }
         }
@@ -252,6 +250,19 @@ public class AddAutoImagesController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText("Aggiungi almeno un colore");
             alert.showAndWait();
+        }
+    }
+    public void goBack(){
+        try {
+            TabPane tabPane = (TabPane) colorPrice.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+            Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addModel.fxml"));
+            AnchorPane modelNode;
+
+            modelNode = loader.load();
+            tab.setContent(modelNode); // Imposta il nuovo contenuto del tab "Catalogo"
+        }catch (IOException e){
+            e.printStackTrace();
         }
     }
 }
