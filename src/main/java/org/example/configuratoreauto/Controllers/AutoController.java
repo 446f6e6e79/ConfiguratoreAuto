@@ -57,7 +57,7 @@ public class AutoController {
             try{
                 TabPane tabPane = (TabPane) autoImage.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
                 Tab catalogoTab = tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/autoEditor.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addModel.fxml"));
                 AnchorPane autoeditor;
 
                 autoeditor = loader.load();

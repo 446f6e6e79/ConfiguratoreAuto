@@ -11,13 +11,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
-import org.example.configuratoreauto.Macchine.Alimentazione;
-import org.example.configuratoreauto.Macchine.AutoNuova;
-import org.example.configuratoreauto.Macchine.CatalogoModel;
-import org.example.configuratoreauto.Macchine.Marca;
+import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -111,7 +107,6 @@ public class CatalogoController implements Initializable {
         imageContainer.setOnMouseClicked(event -> {
             //Apro la pagina per l'aggiunta di una nuova auto
             try {
-                CatalogoModel.getInstance().setSelectedAuto(null);
                 catalogo.setSelectedAuto(null);
                 TabPane tabPane = (TabPane) autoList.getScene().lookup("#mainPage");    //Ottiengo il riferimento al TabPane
                 Tab editCatalogoTab = tabPane.getTabs().get(0);                                //Ottiengo il riferimento alla tab "Modifica Catalogo"

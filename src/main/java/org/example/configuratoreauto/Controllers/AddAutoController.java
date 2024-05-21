@@ -96,6 +96,7 @@ public class AddAutoController implements Initializable {
         * */
         if(catalogo.getSelectedAuto() != null){
             AutoNuova aN = catalogo.getSelectedAuto();
+            sconti = aN.getScontoPerMese();
             modello.setText(aN.getModello());
             brand.setValue(aN.getMarca());
             descrizione.setText(aN.getDescrizione());
@@ -104,7 +105,8 @@ public class AddAutoController implements Initializable {
             larghezza.setText(String.valueOf(aN.getDimensione().getLarghezza()));
             peso.setText(String.valueOf(aN.getDimensione().getPeso()));
             volume.setText(String.valueOf(aN.getDimensione().getVolumeBagagliaglio()));
-
+            costoBase.setText(String.valueOf(aN.getCostoBase()));
+            addSconto();
         }
     }
 
@@ -143,22 +145,26 @@ public class AddAutoController implements Initializable {
     private void addModello() {
         if (isValidModello(modello) && isValidDouble(lunghezza) && isValidDouble(altezza) && isValidDouble(larghezza)
                 && isValidDouble(peso) && isValidDouble(volume) && isValidDouble(costoBase)) {
-
-            catalogo.setSelectedAuto(new AutoNuova(
-                    catalogo.getUniqueId(),
-                    brand.getValue(),
-                    modello.getText(),
-                    new Dimensione(
-                            Double.parseDouble(lunghezza.getText()),
-                            Double.parseDouble(altezza.getText()),
-                            Double.parseDouble(larghezza.getText()),
-                            Double.parseDouble(peso.getText()),
-                            Double.parseDouble(volume.getText())
-                    ),
-                    descrizione.getText(),
-                    Double.parseDouble(costoBase.getText()),
-                    sconti
-            ));
+            if(catalogo.getSelectedAuto() == null){
+                catalogo.setSelectedAuto(new AutoNuova(
+                        catalogo.getUniqueId(),
+                        brand.getValue(),
+                        modello.getText(),
+                        new Dimensione(
+                                Double.parseDouble(lunghezza.getText()),
+                                Double.parseDouble(altezza.getText()),
+                                Double.parseDouble(larghezza.getText()),
+                                Double.parseDouble(peso.getText()),
+                                Double.parseDouble(volume.getText())
+                        ),
+                        descrizione.getText(),
+                        Double.parseDouble(costoBase.getText()),
+                        sconti
+                ));
+            }
+            else{
+                //Dovrei fare set di ogni nuovo dato. Forse è meglio creare un costruttore con tutto a null, valorizzare dopo
+            }
             loadAddImagesPage();
         }
         else{
