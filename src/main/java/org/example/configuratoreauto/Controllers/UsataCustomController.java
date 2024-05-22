@@ -1,6 +1,7 @@
 package org.example.configuratoreauto.Controllers;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,10 +13,11 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.regex.Pattern;
 
 public class UsataCustomController {
 
@@ -35,16 +37,25 @@ public class UsataCustomController {
     @FXML
     private Button salvaButton;
 
-    
     private List<Immagine> immagini = new ArrayList<>();
 
-    
     @FXML
     private void initialize() {
         marcaComboBox.getItems().setAll(Marca.values());
-        salvaButton.disableProperty().bind(
-                Bindings.size(usedImages).isNotEqualTo(4)
+
+        BooleanBinding formValid = Bindings.createBooleanBinding(() ->
+                        isValidTarga(targaTextField.getText()) &&
+                                !modelloTextField.getText().isEmpty() &&
+                                !targaTextField.getText().isEmpty() &&
+                                !kmTextField.getText().isEmpty() &&
+                                usedImages.size() == 4,
+                targaTextField.textProperty(),
+                modelloTextField.textProperty(),
+                kmTextField.textProperty(),
+                usedImages
         );
+
+        salvaButton.disableProperty().bind(formValid.not());
     }
 
     @FXML
@@ -68,7 +79,9 @@ public class UsataCustomController {
                 Image image = new Image(imageUrl);
                 clickedImageView.setImage(image);
                 //Aggiungo l'immagine alla lista immagini aggiunte
-                usedImages.add(image);
+                if (!usedImages.contains(image)) {
+                    usedImages.add(image);
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -78,6 +91,7 @@ public class UsataCustomController {
     @FXML
     private void salvaButton() {
         if (marcaComboBox.getValue() != null &&
+                isValidTarga(targaTextField.getText()) &&
                 !modelloTextField.getText().isEmpty() &&
                 !targaTextField.getText().isEmpty() &&
                 !kmTextField.getText().isEmpty()) {
@@ -108,4 +122,11 @@ public class UsataCustomController {
         registro.addData(registro.currentPreventivo);
         ((Stage) saveLabel.getScene().getWindow()).close();
     }
+
+    private boolean isValidTarga(String targa) {
+        String regex = "^[A-Z]{2}[0-9]{3}[A-Z]{2}$"; // Adjust this regex based on actual targa format
+        return Pattern.matches(regex, targa);
+    }
+
+
 }

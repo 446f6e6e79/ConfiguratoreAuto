@@ -32,14 +32,22 @@
                         <Insets left="20.0" />
                      </padding>
                   </VBox>
-                      <ImageView fx:id="images" fitWidth="492.0" pickOnBounds="true" preserveRatio="true">
-                          <image>
-                              <Image url="@../../../../img/test.png" />
-                          </image>
-                          <VBox.margin>
-                              <Insets top="30.0" />
-                          </VBox.margin>
-                      </ImageView>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                         <ImageView onMouseClicked="#prevImage" fitHeight="30" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                             <Image url="@../../../../img/icons/left-arrow.png" />
+                         </ImageView>
+                         <ImageView fx:id="images" fitHeight="257.0" fitWidth="442.0" pickOnBounds="true" preserveRatio="true">
+                                <image>
+                                    <Image url="@../../../../img/test.png" fx:id="singleimage"/>
+                                </image>
+                            </ImageView>
+                        <ImageView onMouseClicked="#nextImage" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                            <Image url="@../../../../img/icons/right-arrow.png">
+                            </Image>
+                        </ImageView>
+                     </children>
+                  </HBox>
                       <Text fx:id="infoPrezzo" strokeType="OUTSIDE" strokeWidth="0.0" text="Info Prezzo:" wrappingWidth="491.7294921875">
                           <VBox.margin>
                               <Insets left="10.0" />
