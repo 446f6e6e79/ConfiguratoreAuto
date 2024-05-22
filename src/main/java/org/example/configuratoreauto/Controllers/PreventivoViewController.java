@@ -1,5 +1,16 @@
 package org.example.configuratoreauto.Controllers;
 
+import org.apache.pdfbox.pdmodel.PDDocument;
+import org.apache.pdfbox.pdmodel.PDPage;
+import org.apache.pdfbox.pdmodel.PDPageContentStream;
+import org.apache.pdfbox.pdmodel.font.PDType1Font;
+
+import javafx.stage.FileChooser;
+
+
+import java.io.File;
+import java.io.IOException;
+
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -64,10 +75,21 @@ public class PreventivoViewController {
     @FXML
     private Label usatoModello;
 
+    @FXML
+    Label kmResult;
+    @FXML
+    Label kmLabel;
+    @FXML
+    Label targa;
+    @FXML
+    Label targaLabel;
     private UserModel user = UserModel.getInstance();
     private RegistroModel registro = RegistroModel.getInstance();
 
+    private Preventivo preventivo;
+
     public void setPreventivo(Preventivo preventivo) {
+        this.preventivo = preventivo;
         cliente.setText(preventivo.getCliente().getName() + " " + preventivo.getCliente().getSurname());
         sede.setText(preventivo.getSede().toString());
         data.setText(preventivo.getDataPreventivoAsString());
@@ -87,11 +109,17 @@ public class PreventivoViewController {
 
         if(preventivo.getUsata() != null){
             isUsato.setText("Si");
-            usatoModello.setText(preventivo.getUsata().getModello() + " " + preventivo.getUsata().getMarca());
+            labelUsato.setText(preventivo.getUsata().getModello() + " " + preventivo.getUsata().getMarca());
+            kmResult.setText(""+preventivo.getUsata().getKm()+"km");
+            targa.setText(preventivo.getUsata().getTarga());
         }else{
             isUsato.setText("No");
             labelUsato.setText("");
             usatoModello.setText("");
+            kmLabel.setText("");
+            kmResult.setText("");
+            targa.setText("");
+            targaLabel.setText("");
         }
         String s="";
         if(preventivo.getOptionals().isEmpty()){
@@ -122,4 +150,76 @@ public class PreventivoViewController {
             e.printStackTrace();
         }
     }
+
+
+    @FXML
+    private void onPdf() {
+        // Crea un nuovo documento PDF
+        try (PDDocument document = new PDDocument()) {
+            PDPage page = new PDPage();
+            document.addPage(page);
+
+            // Creazione di un contenuto per la pagina PDF
+            try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
+                // Use a different font that supports a wider range of characters
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+                contentStream.beginText();
+                contentStream.newLineAtOffset(100, 700);
+
+                // Scrittura dei dati del preventivo nel PDF
+                contentStream.showText("Cliente: " + preventivo.getCliente() );
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Sede: " + preventivo.getSede().getNome()+" "+preventivo.getSede().getIndirizzo());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Data: " + preventivo.getDataPreventivoAsString());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Data Consegna: " + preventivo.getDataConsegnaAsString());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Scadenza: " + preventivo.getDataScadenzaAsString());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Stato: " + preventivo.getDataPreventivoAsString());
+                //contentStream.newLine();
+                //contentStream.showText("Costo: " + costo.getText());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Modello: " +  preventivo.getAcquisto().getModello());
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Marchio: " + preventivo.getAcquisto().getMarca().toString());
+                contentStream.newLineAtOffset(0, -20);
+                //contentStream.showText("Motore: " + motore.getText());
+                //contentStream.newLine();
+                //contentStream.showText("Dimensione: " + dimensione.getText());
+
+                if (!isUsato.getText().equals("No")) {
+    contentStream.newLineAtOffset(0, -20);
+                    contentStream.showText("Usato: " + labelUsato.getText());
+    contentStream.newLineAtOffset(0, -20);
+                    contentStream.showText("Km: " + kmResult.getText());
+    contentStream.newLineAtOffset(0, -20);
+                    contentStream.showText("Targa: " + targa.getText());
+                }
+
+                if (!optional.getText().equals("No")) {
+    contentStream.newLineAtOffset(0, -20);
+                    contentStream.showText("Optionals:");
+    contentStream.newLineAtOffset(0, -20);
+                    contentStream.showText(optional.getText());
+                }
+
+                contentStream.endText();
+            }
+
+            // Salva il documento PDF su disco
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Salva PDF");
+            fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF files", "*.pdf"));
+            File file = fileChooser.showSaveDialog(modello.getScene().getWindow());
+
+            if (file != null) {
+                document.save(file);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
