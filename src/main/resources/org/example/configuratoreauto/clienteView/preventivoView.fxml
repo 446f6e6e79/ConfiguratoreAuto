@@ -152,7 +152,7 @@
                      <Insets top="10.0" />
                   </VBox.margin>
                </Label>
-               <Button mnemonicParsing="false" text="Scarica PDF">
+               <Button onMouseClicked="#onPdf" mnemonicParsing="false" text="Scarica PDF">
                   <VBox.margin>
                      <Insets top="80.0" />
                   </VBox.margin>

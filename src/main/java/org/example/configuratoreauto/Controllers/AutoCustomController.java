@@ -94,8 +94,7 @@ public class AutoCustomController implements Initializable {
         images.fitWidthProperty().bind(left.prefWidthProperty());
         //================================
 
-        // Carica la prima immagine
-        updateImage();
+
 
         modelID.setText(auto.getModello());
         String dim = auto.getDimensione().toString();
@@ -117,41 +116,64 @@ public class AutoCustomController implements Initializable {
         vetri.getItems().addAll(auto.getOptionalByCategory(TipoOptional.vetri));
         cerchi.getItems().addAll(auto.getOptionalByCategory(TipoOptional.cerchi));
         sedi.getItems().addAll(sediModel.getAllData());
-
+        if (!colori.getItems().isEmpty()) {
+            colori.setValue(colori.getItems().get(0)); // Set the first color as default
+        }
         ChangeListener<Optional> priceUpdateListener = (observable, oldValue, newValue) -> getDynamicPrice();
         colori.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
         interni.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
         vetri.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
         cerchi.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
 
-        colori.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateImagesForColor(String.valueOf(newValue)));
+        colori.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+             updateImagesForColor(newValue.getDescrizione());
+        });
+        if(colori.getValue()!=null)
+            updateImagesForColor(colori.getValue().getDescrizione());
     }
 
 
     private void updateImagesForColor(String color) {
         imagesCurrentColor.clear();
+        System.out.println(color);
+
         for (Immagine img : catalogo.getSelectedAuto().getImmagini()) {
+            System.out.println(img.getColor());
             if (img.getColor().equals(color)) {
                 imagesCurrentColor.add(img);
             }
         }
-        currentImageIndex.setValue(0);
+        if (!imagesCurrentColor.isEmpty()) {
+            currentImageIndex.setValue(0);
+            updateImage();
+        } else {
+            // Handle case when no images are available for the selected color
+            System.out.println("No images available for the selected color: " + color);
+            // You might want to display a default image or show a message to the user
+        }
     }
-
+    private void updateImage() {
+        if (!imagesCurrentColor.isEmpty()) {
+            images.setImage(imagesCurrentColor.get(currentImageIndex.get()).getImage());
+        }
+    }
     //Aggiorna la ImageView alla foto sucessiva, aggiornando inoltre l'index
     public void prevImage() {
-        if (currentImageIndex.get() < imagesCurrentColor.size() - 1) {
-            currentImageIndex.set(currentImageIndex.get() + 1);
-            images.setImage(imagesCurrentColor.get(currentImageIndex.get()).getImage());
+        if (currentImageIndex.get() > 0) {
+            currentImageIndex.set(currentImageIndex.get() - 1); // Decrement index to move to the previous image
+        } else {
+            currentImageIndex.set(imagesCurrentColor.size() - 1); // Wrap around to the last image
         }
+        updateImage();
     }
 
-    //Aggiorna la ImageView alla foto precedente
     public void nextImage() {
-        if (currentImageIndex.get() > 0) {
-            currentImageIndex.set(currentImageIndex.get() - 1);
-            images.setImage(imagesCurrentColor.get(currentImageIndex.get()).getImage());
+        if (currentImageIndex.get() < imagesCurrentColor.size() - 1) {
+            currentImageIndex.set(currentImageIndex.get() + 1); // Increment index to move to the next image
+        } else {
+            currentImageIndex.setValue(0); // Wrap around to the first image
         }
+        updateImage();
     }
 
     public void resetChoices(){
@@ -164,6 +186,14 @@ public class AutoCustomController implements Initializable {
 
     public void createPreventivo() {
         ArrayList<Optional> chosen = new ArrayList<>();
+        if(colori.getValue()!=null)
+            chosen.add(colori.getValue());
+        if(interni.getValue()!=null)
+            chosen.add(interni.getValue());
+        if(vetri.getValue()!=null)
+            chosen.add(vetri.getValue());
+        if(cerchi.getValue()!=null)
+            chosen.add(cerchi.getValue());
         if(motori.getValue()!=null && sedi.getValue()!=null){
             valido.setText("");
             if(user.getCurrentUser() == null){
@@ -181,10 +211,14 @@ public class AutoCustomController implements Initializable {
 
     public void getDynamicPrice() {
         ArrayList<Optional> selezionati = new ArrayList<>();
-        selezionati.add(colori.getValue());
-        selezionati.add(interni.getValue());
-        selezionati.add(vetri.getValue());
-        selezionati.add(cerchi.getValue());
+        if(colori.getValue()!=null)
+            selezionati.add(colori.getValue());
+        if(interni.getValue()!=null)
+            selezionati.add(interni.getValue());
+        if(vetri.getValue()!=null)
+            selezionati.add(vetri.getValue());
+        if(cerchi.getValue()!=null)
+            selezionati.add(cerchi.getValue());
         double costoTotale =auto.getCostoTotale(selezionati, new Date());
         updatePriceInfo(selezionati);
         prezzo.setText(Preventivo.getPriceAsString(costoTotale));
@@ -194,7 +228,9 @@ public class AutoCustomController implements Initializable {
         String s= "Costo base: "+auto.getBasePriceAsString();
 
         for(Optional o : selezionati) {
-            s+= o.toString() + "\n";
+            if(o!=null){
+                s+= o.toString() + "\n";
+            }
         }
         String sconto = "\nSconto applicato: "+ auto.getSconto(new Date()) +"%";
         s+=sconto;
