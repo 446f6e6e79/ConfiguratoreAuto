@@ -1,6 +1,11 @@
 package org.example.configuratoreauto.Controllers;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -38,7 +43,8 @@ public class AutoCustomController implements Initializable {
     RegistroModel registro = RegistroModel.getInstance();
     UserModel user = UserModel.getInstance();
 
-    private int currentImageIndex = 0;
+    private final IntegerProperty currentImageIndex = new SimpleIntegerProperty(-1);
+    private final ObservableList<Immagine> imagesCurrentColor = FXCollections.observableArrayList();
 
     @FXML
     private AnchorPane main;
@@ -117,36 +123,35 @@ public class AutoCustomController implements Initializable {
         interni.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
         vetri.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
         cerchi.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
+
+        colori.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateImagesForColor(String.valueOf(newValue)));
     }
 
 
-    private void updateImage() {
-        if (!auto.getImmagini().isEmpty()) {
-            Immagine image = auto.getImmagini().get(currentImageIndex);
-            images.setImage(image.getImage());
-        }
-    }
-
-    @FXML
-    private void prevImage() {
-        if(auto.getImmagini().size()!=0){
-            if (currentImageIndex > 0) {
-                currentImageIndex--;
-                updateImage();
-            }else{
-                currentImageIndex=auto.getImmagini().size()-1;
+    private void updateImagesForColor(String color) {
+        imagesCurrentColor.clear();
+        for (Immagine img : catalogo.getSelectedAuto().getImmagini()) {
+            if (img.getColor().equals(color)) {
+                imagesCurrentColor.add(img);
             }
         }
-
+        currentImageIndex.setValue(0);
     }
 
-    @FXML
-    private void nextImage() {
-        if(auto.getImmagini().size()!=0){
-            currentImageIndex = (currentImageIndex + 1)%auto.getImmagini().size();
-            updateImage();
+    //Aggiorna la ImageView alla foto sucessiva, aggiornando inoltre l'index
+    public void prevImage() {
+        if (currentImageIndex.get() < imagesCurrentColor.size() - 1) {
+            currentImageIndex.set(currentImageIndex.get() + 1);
+            images.setImage(imagesCurrentColor.get(currentImageIndex.get()).getImage());
         }
+    }
 
+    //Aggiorna la ImageView alla foto precedente
+    public void nextImage() {
+        if (currentImageIndex.get() > 0) {
+            currentImageIndex.set(currentImageIndex.get() - 1);
+            images.setImage(imagesCurrentColor.get(currentImageIndex.get()).getImage());
+        }
     }
 
     public void resetChoices(){
