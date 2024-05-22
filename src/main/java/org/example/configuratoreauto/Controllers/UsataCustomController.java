@@ -23,7 +23,7 @@ public class UsataCustomController {
 
     RegistroModel registro = RegistroModel.getInstance();
     private final ObservableList<Image> usedImages = FXCollections.observableArrayList();
-
+    private BooleanBinding formValid;
     @FXML
     private ComboBox<Marca> marcaComboBox;
     @FXML
@@ -43,7 +43,8 @@ public class UsataCustomController {
     private void initialize() {
         marcaComboBox.getItems().setAll(Marca.values());
 
-        BooleanBinding formValid = Bindings.createBooleanBinding(() ->
+
+        formValid = Bindings.createBooleanBinding(() ->
                         isValidTarga(targaTextField.getText()) &&
                                 !modelloTextField.getText().isEmpty() &&
                                 !targaTextField.getText().isEmpty() &&
@@ -60,7 +61,6 @@ public class UsataCustomController {
 
     @FXML
     private void imageFileInput(MouseEvent event) {
-        System.out.println("CLICCATOOO");
         ImageView clickedImageView = (ImageView) event.getSource();
         FileChooser fileChooser = new FileChooser();
         fileChooser.setTitle("Seleziona l'immagine");
@@ -88,14 +88,11 @@ public class UsataCustomController {
         }
     }
 
+
     @FXML
     private void salvaButton() {
-        if (marcaComboBox.getValue() != null &&
-                isValidTarga(targaTextField.getText()) &&
-                !modelloTextField.getText().isEmpty() &&
-                !targaTextField.getText().isEmpty() &&
-                !kmTextField.getText().isEmpty()) {
-
+        if (formValid.get()) {
+            // Se il form è valido, esegui le operazioni di salvataggio
             Marca marca = marcaComboBox.getValue();
             String modello = modelloTextField.getText();
             String targa = targaTextField.getText();
@@ -112,7 +109,35 @@ public class UsataCustomController {
             registro.addData(registro.currentPreventivo);
             ((Stage) saveLabel.getScene().getWindow()).close();
         } else {
-            saveLabel.setText("Compila tutti i campi e aggiungi almeno 4 immagini.");
+            // Se il form non è valido, visualizza un messaggio di errore e evidenzia i campi non validi
+            ;
+            highlightInvalidFields();
+        }
+    }
+
+
+
+
+    private void highlightInvalidFields() {
+        marcaComboBox.setStyle("-fx-border-color: black;");
+        modelloTextField.setStyle("-fx-border-color: black;");
+        targaTextField.setStyle("-fx-border-color: black;");
+        kmTextField.setStyle("-fx-border-color: black;");
+
+        if (marcaComboBox.getValue() == null) {
+            marcaComboBox.setStyle("-fx-border-color: red;");
+        }
+        if (!isValidTarga(targaTextField.getText())) {
+            targaTextField.setStyle("-fx-border-color: red;");
+        }
+        if (modelloTextField.getText().isEmpty()) {
+            modelloTextField.setStyle("-fx-border-color: red;");
+        }
+        if (targaTextField.getText().isEmpty()) {
+            targaTextField.setStyle("-fx-border-color: red;");
+        }
+        if (kmTextField.getText().isEmpty()) {
+            kmTextField.setStyle("-fx-border-color: red;");
         }
     }
 

@@ -46,6 +46,8 @@
                         <Insets top="10.0" />
                      </padding>
                   </Label>
+                  <Label fx:id="kmLabel" text="Chilometraggio" />
+                  <Label fx:id="targaLabel" text="Targa" />
                   <Label text="Optional">
                      <padding>
                         <Insets top="10.0" />
@@ -93,6 +95,8 @@
                         <Insets top="10.0" />
                      </padding>
                   </Label>
+                  <Label fx:id="kmResult" text="Label" />
+                  <Label fx:id="targa" text="Label" />
                   <Label fx:id="optional" text="Label">
                      <padding>
                         <Insets top="10.0" />

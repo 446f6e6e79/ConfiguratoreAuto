@@ -24,4 +24,8 @@ public class AutoUsata extends Auto implements Serializable {
     public String getTarga() {
         return targa;
     }
+
+    public int getKm(){
+        return km;
+    }
 }
