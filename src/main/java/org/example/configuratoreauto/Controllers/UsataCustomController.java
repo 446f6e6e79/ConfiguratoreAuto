@@ -115,9 +115,6 @@ public class UsataCustomController {
         }
     }
 
-
-
-
     private void highlightInvalidFields() {
         marcaComboBox.setStyle("-fx-border-color: black;");
         modelloTextField.setStyle("-fx-border-color: black;");
@@ -149,7 +146,7 @@ public class UsataCustomController {
     }
 
     private boolean isValidTarga(String targa) {
-        String regex = "^[A-Z]{2}[0-9]{3}[A-Z]{2}$"; // Adjust this regex based on actual targa format
+        String regex = "^[A-Z]{2}[0-9]{3}[A-Z]{2}$";
         return Pattern.matches(regex, targa);
     }
 

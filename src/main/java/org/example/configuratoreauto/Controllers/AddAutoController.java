@@ -3,14 +3,13 @@ package org.example.configuratoreauto.Controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+
 import javafx.scene.control.*;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Mesi;
 
@@ -87,9 +86,34 @@ public class AddAutoController implements Initializable {
                 .or(volume.textProperty().isEmpty())
                 .or(costoBase.textProperty().isEmpty())
         );
+
+        //Blocco il tasto aggiungi sconto fino a che non è stato inserito un valore per sconto
         addScontoButton.disableProperty().bind(
                 scontoInput.textProperty().isEmpty()
         );
+
+        /*
+        *   Blocco input NON validi sui campi numerici:
+        * */
+        lunghezza.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            checkValidDouble(event, lunghezza);
+        });
+        larghezza.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            checkValidDouble(event, larghezza);
+        });
+        altezza.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            checkValidDouble(event, altezza);
+        });
+        peso.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            checkValidDouble(event, peso);
+        });
+        volume.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            checkValidDouble(event, volume);
+        });
+        scontoInput.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            checkValidDouble(event, scontoInput);
+        });
+
 
         /*
         *   In caso il segretario stia modificando un auto, carico i dati già presenti
@@ -207,6 +231,23 @@ public class AddAutoController implements Initializable {
             tab.setContent(imageNode); // Imposta il nuovo contenuto del tab "Catalogo"
         }catch (IOException e){
             e.printStackTrace();
+        }
+    }
+
+    private void checkValidDouble(KeyEvent event, TextField tf){
+        //Leggo il carattere che ha generato l'evento
+        String character = event.getCharacter();
+        /*
+            Blocco l'input di un qualsiasi tasto, diverso da:
+                - numero da 0 - 9
+                - punto
+         */
+        if (!character.matches("[0-9.]")) {
+            event.consume();
+        }
+        //Blocca la presenza di più punti
+        if (character.equals(".") && tf.getText().contains(".")) {
+            event.consume();
         }
     }
 }
