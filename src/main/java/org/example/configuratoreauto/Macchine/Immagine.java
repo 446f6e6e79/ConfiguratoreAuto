@@ -7,8 +7,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.Serializable;
 import java.nio.file.*;
-import java.util.ArrayList;
-import java.util.stream.Collectors;
+import java.util.Comparator;
 
 /*
 *   PATH: percorso assoluto all'immagine, inserita come input
@@ -17,10 +16,12 @@ import java.util.stream.Collectors;
 public class Immagine implements Serializable{
     String path;
     String colore;
+    Auto auto;
 
     public Immagine(String colore, Auto auto, String absolutePath){
         this.colore=colore;
         this.path=absolutePath;
+        this.auto=auto;
     }
 
     public String getColor(){
@@ -37,18 +38,22 @@ public class Immagine implements Serializable{
         }
     }
 
-    /**
-     * Elimina il file dalla relativa directory
-     */
-    public void delete(){
-        try {
-            Files.delete(Path.of(this.path));
-        } catch (IOException e) {
-            System.err.println("Error deleting file: " + e.getMessage());
+    public static void cleanDirectory(AutoNuova autoNuova) throws IOException {
+        Path path = Paths.get("src", "main", "resources", "img", "carImages", String.valueOf(autoNuova.getId()));
+        if (Files.exists(path)) {
+            Files.walk(path)
+                    .sorted(Comparator.reverseOrder())
+                    .forEach(p -> {
+                        try {
+                            Files.delete(p);
+                        } catch (IOException e) {
+                            throw new RuntimeException("Failed to delete " + p, e);
+                        }
+                    });
         }
     }
 
-    private void addToLocalImages(Auto auto) {
+    public void addToLocalImages() {
         if(auto instanceof AutoNuova autoNuova){
             for(Immagine img:auto.getImmagini()){
                 addAutoNuova(autoNuova);

@@ -2,6 +2,7 @@ package org.example.configuratoreauto.Macchine;
 
 import org.example.configuratoreauto.AbstractModel;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -137,6 +138,44 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
             tempAuto.setOptionalDisponibili(new TreeSet<>());
             tempAuto.getOptionalDisponibili().addAll(autoToModify.getOptionalDisponibili());
         }
+    }
+
+    /**
+     * Memorizza i dati di tempAuto in selectedAuto, confermando definitivamente le modifiche
+     */
+    public void saveTempData(){
+        //Se stavo aggiungendo un nuovo modello, genero una nuova autoNuova
+        if(selectedAuto == null){
+            selectedAuto = new AutoNuova(getUniqueId());
+        }
+        //Salvo i dati all'interno di selectedAuto
+        selectedAuto.setMarca(tempAuto.getMarca());
+        selectedAuto.setModello(tempAuto.getModello());
+        selectedAuto.setDescrizione(tempAuto.getDescrizione());
+        selectedAuto.setDimensione(tempAuto.getDimensione());
+        selectedAuto.setCostoBase(tempAuto.getCostoBase());
+        selectedAuto.setScontoPerMese(tempAuto.getScontoPerMese());
+
+        //Carico le immagini in memoria
+        selectedAuto.setImmagini(tempAuto.getImmagini());
+
+        //Pulisco la cartella delle immagini già presenti
+        try {
+            Immagine.cleanDirectory(selectedAuto);
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+
+        //Salvo localmente tutte le immagini aggiunte
+        for(Immagine img: tempAuto.getImmagini()){
+            img.addToLocalImages();
+        }
+
+        selectedAuto.setMotoriDisponibili(tempAuto.getMotoriDisponibili());
+        selectedAuto.setOptionalDisponibili(tempAuto.getOptionalDisponibili());
+
+        //Resetto tempAuto per le successive aggiunte
+        tempAuto = null;
     }
 
     public AutoNuova getTempAuto(){

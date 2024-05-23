@@ -5,15 +5,17 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import org.example.configuratoreauto.Macchine.*;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 
+
 public class AddAutoOptionalsController implements Initializable {
     CatalogoModel catalogo = CatalogoModel.getInstance();
+    AutoNuova tempAuto = catalogo.getTempAuto();
 
     @FXML
     private ChoiceBox<TipoOptional> optionalType;
@@ -23,6 +25,8 @@ public class AddAutoOptionalsController implements Initializable {
     private TextField costoOptional;
     @FXML
     private Button addOptional;
+    @FXML
+    private Text optionalTextList;
     @FXML
     private ChoiceBox<Alimentazione> alimentazioneType;
     @FXML
@@ -35,6 +39,8 @@ public class AddAutoOptionalsController implements Initializable {
     private TextField consumi;
     @FXML
     private Button addMotore;
+    @FXML
+    private Text motorTextList;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -64,7 +70,7 @@ public class AddAutoOptionalsController implements Initializable {
     }
 
     private void addOptional() {
-        catalogo.getSelectedAuto().addOptional(
+        tempAuto.addOptional(
                 new Optional(
                         optionalType.getValue(),
                         descrizioneOptional.getText(),
@@ -74,15 +80,23 @@ public class AddAutoOptionalsController implements Initializable {
     }
 
     private void updateOptionalList(){
-
+        String s ="";
+        for(Optional o: tempAuto.getOptionalByCategory(optionalType.getValue())){
+            s+= o.toString()+"\n";
+        }
+        optionalTextList.setText(s);
     }
 
     private void updateMotoriList(){
-
+        String s ="";
+        for(Motore m: tempAuto.getMotoriDisponibili()){
+            s += m.toString()+"\n";
+        }
+        motorTextList.setText(s);
     }
 
     private void addMotore(){
-        catalogo.getSelectedAuto().addMotore(
+        tempAuto.addMotore(
                 new Motore(
                     nomeMotore.getText(),
                     alimentazioneType.getValue(),
@@ -109,6 +123,8 @@ public class AddAutoOptionalsController implements Initializable {
     }
     @FXML
     public void nextPage(){
+        //Salvo i dati memorizzati nell'auto temporanea, nel relativo oggetto auto
+        catalogo.saveTempData();
         try {
             catalogo.setSelectedAuto(null);
             TabPane tabPane = (TabPane) consumi.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane

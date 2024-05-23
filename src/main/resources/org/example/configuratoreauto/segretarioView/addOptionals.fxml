@@ -33,7 +33,7 @@
                            </VBox>
                            <ScrollPane hbarPolicy="NEVER" prefHeight="332.0" prefWidth="449.0">
                               <content>
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="446.7294921875" />
+                                 <Text fx:id="optionalTextList" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="446.7294921875" />
                               </content>
                            </ScrollPane>
                         </children>
@@ -57,7 +57,7 @@
                            </VBox>
                            <ScrollPane hbarPolicy="NEVER" prefHeight="332.0" prefWidth="449.0">
                               <content>
-                                 <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="446.7294921875" />
+                                 <Text fx:id="motorTextList" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="446.7294921875" />
                               </content>
                            </ScrollPane>
                         </children>
@@ -70,7 +70,7 @@
       <bottom>
          <HBox alignment="BASELINE_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
             <children>
-               <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="222.0" text="Conferma" textAlignment="CENTER">
+               <Button onAction="#nextPage" mnemonicParsing="false" prefHeight="56.0" prefWidth="222.0" text="Conferma modifiche" textAlignment="CENTER">
                   <font>
                      <Font size="30.0" />
                   </font>
