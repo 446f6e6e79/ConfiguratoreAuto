@@ -168,7 +168,7 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
 
         //Salvo localmente tutte le immagini aggiunte
         for(Immagine img: tempAuto.getImmagini()){
-            img.addToLocalImages();
+            img.addToLocalImages(selectedAuto);
         }
 
         selectedAuto.setMotoriDisponibili(tempAuto.getMotoriDisponibili());

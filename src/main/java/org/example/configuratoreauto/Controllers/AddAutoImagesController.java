@@ -51,8 +51,6 @@ public class AddAutoImagesController implements Initializable {
     private Button saveImageButton;
     @FXML
     private TextField colorPrice;
-    @FXML
-    private Button avantiButton;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
         //Recupero i colori già DISPONIBILI
@@ -164,6 +162,8 @@ public class AddAutoImagesController implements Initializable {
         //Pulisco la lista delle immagini per il coloreAttuale
         imagesCurrentColor.clear();
         currentIndex.set(-1);
+        //Pulisco il campo del prezzo
+        colorPrice.setText("");
 
         //Carico le immagini già presenti per il colore scelto
         String selectedColor = coloreInput.getValue();
@@ -195,18 +195,21 @@ public class AddAutoImagesController implements Initializable {
      */
     @FXML
     private void saveImages() {
-        //Aggiorno gli optional disponibili per auto
-        tempAuto.addOptional(
-                new Optional(
-                        TipoOptional.colore,
-                        coloreInput.getValue(),
-                        Double.parseDouble(colorPrice.getText())
-                )
-        );
+        String selectedColor = coloreInput.getValue();
+        if (selectedColor != null && !coloreInput.getItems().contains(selectedColor)) {
+            // Add the color only if it's not already in the ComboBox
+            tempAuto.addOptional(
+                    new Optional(
+                            TipoOptional.colore,
+                            selectedColor,
+                            Double.parseDouble(colorPrice.getText())
+                    )
+            );
+            coloreInput.getItems().add(selectedColor);
+        }
 
-        coloreInput.getItems().add(coloreInput.getValue());
         coloreInput.setValue(null);
-        colorPrice.setText(null);
+        colorPrice.clear();
         imagesCurrentColor.clear();
         currentIndex.set(-1);
     }

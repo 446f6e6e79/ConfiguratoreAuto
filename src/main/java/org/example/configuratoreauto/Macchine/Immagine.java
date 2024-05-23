@@ -53,7 +53,7 @@ public class Immagine implements Serializable{
         }
     }
 
-    public void addToLocalImages() {
+    public void addToLocalImages(Auto auto) {
         if(auto instanceof AutoNuova autoNuova){
             for(Immagine img:auto.getImmagini()){
                 addAutoNuova(autoNuova);

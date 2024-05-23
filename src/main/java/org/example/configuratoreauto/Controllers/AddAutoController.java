@@ -228,6 +228,7 @@ public class AddAutoController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addImages.fxml"));
             AnchorPane imageNode;
             imageNode = loader.load();
+
             tab.setContent(imageNode); // Imposta il nuovo contenuto del tab "Catalogo"
         }catch (IOException e){
             e.printStackTrace();
