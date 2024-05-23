@@ -178,6 +178,10 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
         tempAuto = null;
     }
 
+    public void setTempAuto(AutoNuova tempAuto) {
+        this.tempAuto = tempAuto;
+    }
+
     public AutoNuova getTempAuto(){
         return tempAuto;
     }

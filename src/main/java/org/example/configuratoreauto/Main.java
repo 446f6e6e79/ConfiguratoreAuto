@@ -50,7 +50,10 @@ public class Main extends Application {
     * */
     private static void closeModels(){
         userModel.uploadData();
+        System.out.println("Caricato userModel");
         registroModel.uploadData();
+        System.out.println("Caricato registro model");
         catalogoModel.uploadData();
+        System.out.println("Caricato catalogo model");
     }
 }

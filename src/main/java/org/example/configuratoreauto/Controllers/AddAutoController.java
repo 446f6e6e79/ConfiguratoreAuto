@@ -112,10 +112,12 @@ public class AddAutoController implements Initializable {
             checkValidDouble(event, scontoInput);
         });
 
-        //Ottengo la copia dell'auto
-        catalogo.generateTempAuto(catalogo.getSelectedAuto());
         AutoNuova tempAuto = catalogo.getTempAuto();
-
+        //Ottengo la copia dell'auto, solo se non già presente
+        if(tempAuto == null){
+            catalogo.generateTempAuto(catalogo.getSelectedAuto());
+            tempAuto = catalogo.getTempAuto();
+        }
         /*
         *   In caso il segretario stia modificando un auto, carico i dati già presenti
         * */
@@ -135,6 +137,8 @@ public class AddAutoController implements Initializable {
     }
     @FXML
     public void goBack(){
+        //Resetto tempAuto a null, cancellando tutte le modifiche effettuate
+        catalogo.setTempAuto(null);
         try {
             TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
             Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
