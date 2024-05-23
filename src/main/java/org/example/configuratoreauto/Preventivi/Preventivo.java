@@ -234,8 +234,18 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
                 this.sede.equals(other.sede);
     }
 
+    /**
+     *  Ordina gli oggetti preventivo in base al loro stato.
+     *  A parità di stato, ordina secondo la data
+     * @param o the object to be compared.
+     * @return
+     */
     @Override
     public int compareTo(Preventivo o) {
+        int diff = this.stato.compareTo(o.stato);
+        if(diff != 0){
+            return diff;
+        }
         return this.data.compareTo(o.data);
     }
 }

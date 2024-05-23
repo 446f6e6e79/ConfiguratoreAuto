@@ -83,6 +83,7 @@ public class PreventivoViewController {
     Label targa;
     @FXML
     Label targaLabel;
+
     private UserModel user = UserModel.getInstance();
     private RegistroModel registro = RegistroModel.getInstance();
 
@@ -140,6 +141,7 @@ public class PreventivoViewController {
             BorderPane preventiviList;
             preventiviList = loader.load();
             PreventiviController controller = loader.getController();
+
             if(user.getCurrentUser() instanceof Cliente){
                 controller.loadPrevs(registro.getPreventiviByCliente((Cliente) user.getCurrentUser()));
             }else{
