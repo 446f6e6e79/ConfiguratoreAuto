@@ -120,6 +120,12 @@ public class AutoNuova extends Auto implements Serializable {
         return new ArrayList<>(colors);
     }
 
+    public ArrayList<Immagine> getImageByColor(String color){
+        return super.getImmagini().stream()
+                .filter(t-> t.getColor().equals(color))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
     public double getSconto(Date data){
         return this.getScontoPerMese()[data.getMonth()];
     }

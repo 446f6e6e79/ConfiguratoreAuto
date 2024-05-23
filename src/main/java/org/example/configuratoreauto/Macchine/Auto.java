@@ -45,10 +45,7 @@ public abstract class Auto implements Serializable{
      * @param img immagine da rimuovere
      */
     public void removeImage(Immagine img){
-        if(this.immagini.remove(img)){
-            //Elimino il file dalla directory
-            img.delete();
-        }
+        this.immagini.remove(img);
     }
 
     public ArrayList<Immagine> getImmagini(){

@@ -70,7 +70,7 @@
       <bottom>
          <HBox alignment="BASELINE_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
             <children>
-               <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="222.0" text="Avanti" textAlignment="CENTER">
+               <Button mnemonicParsing="false" prefHeight="56.0" prefWidth="222.0" text="Conferma" textAlignment="CENTER">
                   <font>
                      <Font size="30.0" />
                   </font>

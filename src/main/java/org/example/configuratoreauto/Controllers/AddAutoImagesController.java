@@ -8,11 +8,10 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -26,7 +25,7 @@ import java.util.ResourceBundle;
 
 public class AddAutoImagesController implements Initializable {
     CatalogoModel catalogo = CatalogoModel.getInstance();
-    AutoNuova currentAuto = catalogo.getTempAuto();
+    AutoNuova tempAuto = catalogo.getTempAuto();
 
     /*
      *   Definisco delle variabili  Observable che permettono di implementare il pattern observer:
@@ -35,6 +34,7 @@ public class AddAutoImagesController implements Initializable {
      * */
     private final IntegerProperty currentIndex = new SimpleIntegerProperty(-1);
     private final ObservableList<Immagine> imagesCurrentColor = FXCollections.observableArrayList();
+
     @FXML
     private ImageView addedImagesView;
     @FXML
@@ -55,11 +55,8 @@ public class AddAutoImagesController implements Initializable {
     private Button avantiButton;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        System.out.println("Selezionata: "+catalogo.getSelectedAuto());
-        System.out.println("Temporanea:"+catalogo.getTempAuto());
-
-        //Recupero i colori DISPONIBILI
-        ArrayList<String> availableColors = currentAuto.getUsedColors();
+        //Recupero i colori già DISPONIBILI
+        ArrayList<String> availableColors = tempAuto.getUsedColors();
 
         //Se erano già presenti delle immagini, le carico
         //Aggiungo i colori disponibili e ne seleziono 1
@@ -67,7 +64,6 @@ public class AddAutoImagesController implements Initializable {
             coloreInput.getItems().addAll(availableColors);
             coloreInput.getSelectionModel().select(0);
             currentIndex.set(0);
-
             //Aggiorno le immagini per il colore selezionato
             updateDataForSelectedColor();
         }
@@ -111,13 +107,17 @@ public class AddAutoImagesController implements Initializable {
         //Disabilito il bottone per l'aggiunta di foto se non ho inserito il colore
         addImageButton.disableProperty().bind(coloreInput.valueProperty().isNull());
 
-        //Disabilito il bottone per aggiunger il colore se non sono presenti foto
+        //Disabilito il bottone per aggiungere il colore se non sono presenti foto
         saveImageButton.disableProperty().bind(Bindings
                 .size(imagesCurrentColor).isEqualTo(0)
         );
+
+        colorPrice.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            checkValidDouble(event, colorPrice);
+        });
     }
 
-    //Aggiorna la ImageView alla foto sucessiva, aggiornando inoltre l'index
+    //Aggiorna la ImageView alla foto sucessiva, aggiornando l'index
     public void getNextPhoto() {
         if (currentIndex.get() < imagesCurrentColor.size() - 1) {
             currentIndex.set(currentIndex.get() + 1);
@@ -125,7 +125,7 @@ public class AddAutoImagesController implements Initializable {
         }
     }
 
-    //Aggiorna la ImageView alla foto precedente
+    //Aggiorna la ImageView alla foto precedente, aggiornando l'index
     public void getPreviousPhoto() {
         if (currentIndex.get() > 0) {
             currentIndex.set(currentIndex.get() - 1);
@@ -133,16 +133,22 @@ public class AddAutoImagesController implements Initializable {
         }
     }
 
-
+    /**
+     *  Rimuove un immagine dalle liste:
+     *      - lista di immagini del colore attuale
+     *      - lista di immagini completa, dell'auto temporanea
+     */
     private void deletePhoto() {
-        //Rimuovo l'immagine dalla lista genera
-        currentAuto.removeImage(imagesCurrentColor.get(currentIndex.get()));
-
+        //Recuper l'oggetto immagine e lo elimino da tempAuto
+        tempAuto.removeImage(imagesCurrentColor.get(currentIndex.get()));
         imagesCurrentColor.remove(currentIndex.get());
+
         if (imagesCurrentColor.isEmpty()) {
             currentIndex.set(-1);
             addedImagesView.setImage(new Image(getClass().getResourceAsStream("/img/icons/addImage.png")));
-        } else {
+            //DOVREI CONTROLLARE SE IL COLORE ERA GIA' stato aggiunto ed in caso cancellarlo???
+        }
+        else {
             if (currentIndex.get() >= imagesCurrentColor.size()) {
                 currentIndex.set(imagesCurrentColor.size() - 1);
             }
@@ -155,40 +161,42 @@ public class AddAutoImagesController implements Initializable {
      * dopo che è stato selezionato un nuovo colore
      */
     private void updateDataForSelectedColor() {
+        //Pulisco la lista delle immagini per il coloreAttuale
         imagesCurrentColor.clear();
         currentIndex.set(-1);
 
+        //Carico le immagini già presenti per il colore scelto
         String selectedColor = coloreInput.getValue();
         if (selectedColor != null) {
-            for (Immagine img : currentAuto.getImmagini()) {
-                if (img.getColor().equals(selectedColor)) {
-                    imagesCurrentColor.add(img);
-                }
-            }
+            imagesCurrentColor.addAll(tempAuto.getImageByColor(selectedColor));
+
+            //Se erano già presenti delle immagini aggiorno di conseguenza tutti i campi
             if (!imagesCurrentColor.isEmpty()) {
                 currentIndex.set(0);
                 addedImagesView.setImage(imagesCurrentColor.get(0).getImage());
 
-                //Aggiorno di conseguenza il prezzo
-                for (Optional colore : currentAuto.getOptionalByCategory(TipoOptional.colore)) {
+                //Aggiorno il prezzo
+                for (Optional colore : tempAuto.getOptionalByCategory(TipoOptional.colore)) {
                     if (colore.getDescrizione().equals(coloreInput.getValue())) {
                         colorPrice.setText(String.valueOf(colore.getCosto()));
                     }
                 }
-            } else {
+            }
+            //Non erano presenti delle immagini, setto l'immagine di default
+            else {
                 addedImagesView.setImage(new Image(getClass().getResourceAsStream("/img/icons/addImage.png")));
             }
         }
     }
 
-    /*
-     *   Salvo localmente le immagini per tale colore. Verranno caricate
-     * */
+    /**
+     * Aggiunge agli optional il colore inserito
+     * Tale modifiche saranno poi passate al vero oggetto auto solamente quando confermate
+     */
     @FXML
     private void saveImages() {
-
         //Aggiorno gli optional disponibili per auto
-        currentAuto.addOptional(
+        tempAuto.addOptional(
                 new Optional(
                         TipoOptional.colore,
                         coloreInput.getValue(),
@@ -203,9 +211,6 @@ public class AddAutoImagesController implements Initializable {
         currentIndex.set(-1);
     }
 
-    public boolean isValidCosto() {
-        return true;
-    }
 
     @FXML
     private void imageFileInput() {
@@ -221,19 +226,26 @@ public class AddAutoImagesController implements Initializable {
 
         //Gestione dell'immagine appena aggiunta
         if (imageFile != null) {
-            Immagine img = new Immagine(coloreInput.getValue(), currentAuto, imageFile.toURI().toString().substring(5));
-            currentAuto.addImage(img);
+            Immagine img = new Immagine(coloreInput.getValue(), tempAuto, imageFile.toURI().toString().substring(5));
+
+            //Aggiunge l'immagine all'auto temporanea
+            tempAuto.addImage(img);
+
             //Aggiungo l'immagine alla lista delle immagini del colore corrente
             imagesCurrentColor.add(img);
+
             //Imposto il current index alla nuova immagine aggiunta
             currentIndex.set(imagesCurrentColor.size() - 1);
+
             //Aggiungo l'immagine appena inserita alla ImageView
             addedImagesView.setImage(img.getImage());
         }
     }
+
+    //Carica la pagina successiva
     @FXML
     private void nextPage(){
-        if(!currentAuto.getUsedColors().isEmpty()) {
+        if(!tempAuto.getUsedColors().isEmpty()) {
             try {
                 TabPane tabPane = (TabPane) colorPrice.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
                 Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
@@ -255,6 +267,8 @@ public class AddAutoImagesController implements Initializable {
             alert.showAndWait();
         }
     }
+
+    //Carica la pagina precedente
     public void goBack(){
         try {
             TabPane tabPane = (TabPane) colorPrice.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
@@ -266,6 +280,24 @@ public class AddAutoImagesController implements Initializable {
             tab.setContent(modelNode); // Imposta il nuovo contenuto del tab "Catalogo"
         }catch (IOException e){
             e.printStackTrace();
+        }
+    }
+
+    private void checkValidDouble(KeyEvent event, TextField tf){
+        //Leggo il carattere che ha generato l'evento
+        String character = event.getCharacter();
+
+        /*
+            Blocco l'input di un qualsiasi tasto, diverso da:
+                - numero da 0 - 9
+                - punto
+         */
+        if (!character.matches("[0-9.]")) {
+            event.consume();
+        }
+        //Blocca la presenza di più punti
+        if (character.equals(".") && tf.getText().contains(".")) {
+            event.consume();
         }
     }
 }

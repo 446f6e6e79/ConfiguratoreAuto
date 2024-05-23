@@ -20,7 +20,7 @@ public class Immagine implements Serializable{
 
     public Immagine(String colore, Auto auto, String absolutePath){
         this.colore=colore;
-        addToLocalImages(auto, absolutePath);
+        this.path=absolutePath;
     }
 
     public String getColor(){
@@ -28,7 +28,6 @@ public class Immagine implements Serializable{
     }
 
     public Image getImage() {
-        System.out.println(path);
         try {
             FileInputStream inputStream = new FileInputStream(path);
             return new Image(inputStream);
@@ -49,22 +48,17 @@ public class Immagine implements Serializable{
         }
     }
 
-    /**
-    *   Metodo STATICO. Passato come parametri una LISTA DI IMMAGINI ed un COLORE
-    *       restituisce la stessa lista, filtrata per colore
-    * */
-    public static ArrayList<Immagine> getImagesByColor(ArrayList<Immagine> imageList, String color) {
-        return imageList.stream()
-                .filter(t -> t.colore.equals(color))
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    private void addToLocalImages(Auto auto, String absolutePath) {
+    private void addToLocalImages(Auto auto) {
         if(auto instanceof AutoNuova autoNuova){
-            addAutoNuova(autoNuova, absolutePath);
+            for(Immagine img:auto.getImmagini()){
+                addAutoNuova(autoNuova);
+            }
+
         }
         else {
-            addAutoUsata((AutoUsata) auto, absolutePath);
+            for(Immagine img:auto.getImmagini()){
+                addAutoUsata((AutoUsata) auto);
+            }
         }
     }
 
@@ -79,10 +73,10 @@ public class Immagine implements Serializable{
                    -idAuto_2
                    ...
     */
-    private void addAutoNuova(AutoNuova auto, String absolutePath){
+    private void addAutoNuova(AutoNuova auto){
         Path root = Paths.get("src", "main", "resources", "img", "carImages", String.valueOf(auto.getId()));
         Path target = root.resolve(colore);
-        Path source = Paths.get(absolutePath);
+        Path source = Paths.get(this.path);
 
         //Creo la directory root se non già esistente
         if (Files.notExists(root)) {
@@ -102,12 +96,14 @@ public class Immagine implements Serializable{
                 return;
             }
         }
+
         /*
         *   Copio il file SORGENTE nel percorso DESTINAZIONE, all'interno del progetto
         * */
         try {
             Files.copy(source, target.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-            //Salvo il path dell'immagine
+
+            //Aggiorno il path dell'immagine
             this.path = String.valueOf(target.resolve(source.getFileName()));
         } catch (FileAlreadyExistsException e) {
             System.err.println("File already exists in target directory");
@@ -127,9 +123,9 @@ public class Immagine implements Serializable{
                    ...
                    -TARGA_N
     */
-    private void addAutoUsata(AutoUsata auto, String absolutePath){
+    private void addAutoUsata(AutoUsata auto){
         Path target = Paths.get("src", "main", "resources", "img", "usedCarImages", String.valueOf(auto.getTarga()));
-        Path source = Paths.get(absolutePath);
+        Path source = Paths.get(this.path);
         
         if (Files.notExists(target)) {
             try {
@@ -141,7 +137,8 @@ public class Immagine implements Serializable{
         }
         try {
             Files.copy(source, target.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-            //Salvo il path dell'immagine
+
+            //Aggiorno il path dell'immagine
             this.path = String.valueOf(target.resolve(source.getFileName()));
         } catch (FileAlreadyExistsException e) {
             System.err.println("File already exists in target directory");
@@ -151,6 +148,7 @@ public class Immagine implements Serializable{
             System.err.println("Error copying file: " + e.getMessage());
         }
     }
+
     @Override
     public boolean equals(Object other){
         return other instanceof Immagine otherImage &&

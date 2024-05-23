@@ -2,11 +2,8 @@ package org.example.configuratoreauto.Macchine;
 
 import org.example.configuratoreauto.AbstractModel;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.UUID;      //Permette di generare randomicamente codici univoci
 
 public class CatalogoModel extends AbstractModel<AutoNuova> {
 
@@ -121,12 +118,24 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
             tempAuto.setMarca(autoToModify.getMarca());
             tempAuto.setModello(autoToModify.getModello());
             tempAuto.setDescrizione(autoToModify.getDescrizione());
-            tempAuto.setDimensione(autoToModify.getDimensione());
+            tempAuto.setDimensione(new Dimensione(
+                        autoToModify.getDimensione().getLarghezza(),
+                        autoToModify.getDimensione().getAltezza(),
+                        autoToModify.getDimensione().getLunghezza(),
+                        autoToModify.getDimensione().getPeso(),
+                        autoToModify.getDimensione().getVolumeBagagliaglio()
+                    ));
             tempAuto.setCostoBase(autoToModify.getCostoBase());
-            tempAuto.setScontoPerMese(autoToModify.getScontoPerMese());
-            tempAuto.setImmagini(autoToModify.getImmagini());
-            tempAuto.setMotoriDisponibili(autoToModify.getMotoriDisponibili());
-            tempAuto.setOptionalDisponibili(autoToModify.getOptionalDisponibili());
+            tempAuto.setScontoPerMese(Arrays.copyOf(autoToModify.getScontoPerMese(), 12));
+
+            tempAuto.setImmagini(new ArrayList<>());
+            tempAuto.getImmagini().addAll(autoToModify.getImmagini());
+
+            tempAuto.setMotoriDisponibili(new ArrayList<>());
+            tempAuto.getMotoriDisponibili().addAll(autoToModify.getMotoriDisponibili());
+
+            tempAuto.setOptionalDisponibili(new TreeSet<>());
+            tempAuto.getOptionalDisponibili().addAll(autoToModify.getOptionalDisponibili());
         }
     }
 
