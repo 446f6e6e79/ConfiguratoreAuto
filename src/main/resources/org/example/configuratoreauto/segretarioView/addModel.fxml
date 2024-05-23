@@ -1,18 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AddAutoController">
+<AnchorPane fx:id="mainPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AddAutoController">
    <BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0">
       <top>
          <HBox prefHeight="69.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
-               <ImageView onMouseClicked="#goBack" fitHeight="88.0" fitWidth="91.0" pickOnBounds="true" preserveRatio="true" >
-                  <Image url="@../../../../img/icons/back-icon.png"></Image>
+               <ImageView fitHeight="88.0" fitWidth="91.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../../../../img/icons/back-icon.png" />
                </ImageView>
             </children></HBox>
       </top>
@@ -31,18 +43,22 @@
                      <Insets />
                   </VBox.margin>
                </HBox>
-               <TextField fx:id="descrizione" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="500.0" promptText="Descrizione" />
-               <VBox prefHeight="200.0" prefWidth="100.0">
+               <TextArea fx:id="descrizione" prefHeight="80.0" prefWidth="900.0" promptText="Descrizione">
+                  <VBox.margin>
+                     <Insets right="40.0" />
+                  </VBox.margin>
+               </TextArea>
+               <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                   <children>
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dimensioni:" />
-                     <TextField fx:id="lunghezza" prefHeight="24.0" prefWidth="0.0" promptText="Lunghezza" />
+                     <TextField fx:id="lunghezza" maxWidth="-Infinity" prefHeight="24.0" prefWidth="300.0" promptText="Lunghezza" />
                      <TextField fx:id="altezza" prefHeight="24.0" prefWidth="0.0" promptText="Altezza" />
                      <TextField fx:id="larghezza" promptText="Largezza" />
                      <TextField fx:id="peso" promptText="Peso" />
                      <TextField fx:id="volume" promptText="Volume bagagliaio" />
                   </children>
                </VBox>
-               <VBox prefHeight="200.0" prefWidth="100.0">
+               <VBox prefHeight="229.0" prefWidth="900.0">
                   <children>
                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Costo:" />
                      <HBox prefHeight="298.0" prefWidth="900.0">
@@ -74,10 +90,16 @@
                                  <ToggleButton mnemonicParsing="false" prefHeight="60.0" prefWidth="88.0" text="Novembre" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                                  <ToggleButton mnemonicParsing="false" prefHeight="60.0" prefWidth="88.0" text="Dicembre" GridPane.columnIndex="3" GridPane.rowIndex="2" />
                               </children>
+                              <HBox.margin>
+                                 <Insets left="30.0" top="-5.0" />
+                              </HBox.margin>
                            </GridPane>
                            <TextField fx:id="scontoInput" promptText="Sconto" />
                            <Button fx:id="addScontoButton" mnemonicParsing="false" onAction="#addSconto" text="Aggiungi" />
                         </children>
+                        <padding>
+                           <Insets top="10.0" />
+                        </padding>
                      </HBox>
                   </children>
                </VBox>
@@ -88,7 +110,7 @@
       <bottom>
          <HBox alignment="BASELINE_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
             <children>
-               <Button fx:id="avantiButton" mnemonicParsing="false" onAction="#addModello" text="Continua" textAlignment="CENTER">
+               <Button fx:id="avantiButton" styleClass="greenButton" mnemonicParsing="false" onAction="#addModello" text="Continua" textAlignment="CENTER">
                   <font>
                      <Font size="30.0" />
                   </font>

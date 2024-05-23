@@ -2,42 +2,58 @@
     -fx-underline: true;
     -fx-cursor: hand; /* Cambia il cursore, segnalando il testo cliccabile*/
 }
-.split-pane *.split-pane-divider {
-    -fx-padding: 0 1 0 1;
-}
 
+/* Define styles for the greenButton class */
 .greenButton {
-    appearance: none;
-    background-color: #2ea44f;
-    border: 1px solid rgba(27, 31, 35, .15);
-    border-radius: 6px;
-    box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
-    box-sizing: border-box;
-    color: #fff;
-    cursor: pointer;
-    display: inline-block;
-    font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 20px;
-    padding: 6px 16px;
-    position: relative;
-    text-align: center;
-    text-decoration: none;
-    user-select: none;
-    -webkit-user-select: none;
-    touch-action: manipulation;
-    vertical-align: middle;
-    white-space: nowrap;
+    -fx-background-color: #4CAF50; /* Green background color */
+    -fx-text-fill: white; /* Text color */
+    -fx-font-size: 20px; /* Font size */
+    -fx-padding: 10px 20px; /* Padding */
+    -fx-border-radius: 5px; /* Border radius */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.2, 1); /* Box shadow */
 }
 
+/* Define hover effect */
 .greenButton:hover {
-    background-color: #2c974b;
+    -fx-background-color: #45a049; /* Darker green on hover */
 }
 
-.greenButton:disabled {
-    background-color: #94d3a2;
-    border-color: rgba(27, 31, 35, .1);
-    color: rgba(255, 255, 255, .8);
-    cursor: default;
+/* Define pressed effect */
+.greenButton:pressed {
+    -fx-background-color: #388e3c; /* Even darker green when pressed */
 }
+
+/* Define styles for disabled state */
+.greenButton:disabled {
+    -fx-opacity: 0.5; /* Reduce opacity when disabled */
+    -fx-background-color: #ccc; /* Light gray background color when disabled */
+    -fx-text-fill: #666; /* Dark gray text color when disabled */
+    -fx-cursor: default; /* Change cursor to default when disabled */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0); /* Box shadow for disabled state */
+}
+
+/*================= TAB_PANE ===== */
+.tab-pane {
+    -fx-tab-min-width: 100px; /* Minimum width of each tab */
+}
+
+.tab-pane .tab {
+    -fx-background-color: #f0f0f0; /* Background color of tabs */
+    -fx-padding: 10px 15px; /* Padding of each tab */
+    -fx-closable: false; /* Disallow closing tabs */
+    -fx-focus-color: transparent; /* Remove focus border */
+}
+
+.tab-pane .tab:hover {
+    -fx-background-color: #e0e0e0; /* Hover background color of tabs */
+}
+
+.tab-pane .tab:selected {
+    -fx-background-color: #fff; /* Background color of selected tab */
+    -fx-focus-color: transparent; /* Remove focus border */
+}
+
+.tab-content {
+    -fx-padding: 20px; /* Padding of tab content */
+}
+

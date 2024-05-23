@@ -25,7 +25,7 @@ public class AddAutoController implements Initializable {
     @FXML
     private ComboBox<Marca> brand;
     @FXML
-    private TextField descrizione;
+    private TextArea descrizione;
     @FXML
     private TextField lunghezza;
     @FXML
