@@ -55,6 +55,9 @@ public class AddAutoImagesController implements Initializable {
     private Button avantiButton;
 
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        System.out.println("Selezionata: "+catalogo.getSelectedAuto());
+        System.out.println("Temporanea:"+catalogo.getTempAuto());
+
         //Recupero i colori DISPONIBILI
         ArrayList<String> availableColors = currentAuto.getUsedColors();
 

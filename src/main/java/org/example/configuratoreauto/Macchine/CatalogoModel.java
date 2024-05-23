@@ -13,6 +13,7 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
     private static CatalogoModel instance;
 
     private AutoNuova selectedAuto;
+    private AutoNuova tempAuto;
     private static Set<Integer> usedIds = new HashSet<>();
     private static Set<Marca> usedBrands = new HashSet<>();
 
@@ -105,4 +106,30 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
     public void setSelectedAuto(AutoNuova auto){
         this.selectedAuto = auto;
     }
+
+    /**
+     *  Genero un'auto TEMPORANEA a cui posso applicare le modifiche.
+     *  Una volta confermate, tali modifiche verranno passate al vero oggetto auto
+     * @param autoToModify Auto che sto modificando
+     */
+    public void generateTempAuto(AutoNuova autoToModify){
+        this.tempAuto = new AutoNuova();
+        //Se sto modificando una macchina, copio tutti i parametri di autoToModify in tempAuto
+        if(autoToModify != null){
+            tempAuto.setMarca(autoToModify.getMarca());
+            tempAuto.setModello(autoToModify.getModello());
+            tempAuto.setDescrizione(autoToModify.getDescrizione());
+            tempAuto.setDimensione(autoToModify.getDimensione());
+            tempAuto.setCostoBase(autoToModify.getCostoBase());
+            tempAuto.setScontoPerMese(autoToModify.getScontoPerMese());
+            tempAuto.setImmagini(autoToModify.getImmagini());
+            tempAuto.setMotoriDisponibili(autoToModify.getMotoriDisponibili());
+            tempAuto.setOptionalDisponibili(autoToModify.getOptionalDisponibili());
+        }
+    }
+
+    public AutoNuova getTempAuto(){
+        return tempAuto;
+    }
+
 }

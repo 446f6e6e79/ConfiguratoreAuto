@@ -3,7 +3,6 @@ package org.example.configuratoreauto.Controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -12,7 +11,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Mesi;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -114,22 +112,24 @@ public class AddAutoController implements Initializable {
             checkValidDouble(event, scontoInput);
         });
 
+        //Ottengo la copia dell'auto
+        catalogo.generateTempAuto(catalogo.getSelectedAuto());
+        AutoNuova tempAuto = catalogo.getTempAuto();
 
         /*
         *   In caso il segretario stia modificando un auto, carico i dati già presenti
         * */
         if(catalogo.getSelectedAuto() != null){
-            AutoNuova aN = catalogo.getSelectedAuto();
-            sconti = aN.getScontoPerMese();
-            modello.setText(aN.getModello());
-            brand.setValue(aN.getMarca());
-            descrizione.setText(aN.getDescrizione());
-            lunghezza.setText(String.valueOf(aN.getDimensione().getLunghezza()));
-            altezza.setText(String.valueOf(aN.getDimensione().getAltezza()));
-            larghezza.setText(String.valueOf(aN.getDimensione().getLarghezza()));
-            peso.setText(String.valueOf(aN.getDimensione().getPeso()));
-            volume.setText(String.valueOf(aN.getDimensione().getVolumeBagagliaglio()));
-            costoBase.setText(String.valueOf(aN.getCostoBase()));
+            sconti = tempAuto.getScontoPerMese();
+            modello.setText(tempAuto.getModello());
+            brand.setValue(tempAuto.getMarca());
+            descrizione.setText(tempAuto.getDescrizione());
+            lunghezza.setText(String.valueOf(tempAuto.getDimensione().getLunghezza()));
+            altezza.setText(String.valueOf(tempAuto.getDimensione().getAltezza()));
+            larghezza.setText(String.valueOf(tempAuto.getDimensione().getLarghezza()));
+            peso.setText(String.valueOf(tempAuto.getDimensione().getPeso()));
+            volume.setText(String.valueOf(tempAuto.getDimensione().getVolumeBagagliaglio()));
+            costoBase.setText(String.valueOf(tempAuto.getCostoBase()));
             addSconto();
         }
     }
@@ -169,24 +169,20 @@ public class AddAutoController implements Initializable {
     private void addModello() {
         if (isValidModello(modello) && isValidDouble(lunghezza) && isValidDouble(altezza) && isValidDouble(larghezza)
                 && isValidDouble(peso) && isValidDouble(volume) && isValidDouble(costoBase)) {
-            if(catalogo.getSelectedAuto() == null){
-                catalogo.setSelectedAuto(new AutoNuova(
-                        catalogo.getUniqueId()));
-            }
 
-            //Setto i parametri della pagina all'auto
-            catalogo.getSelectedAuto().setMarca(brand.getValue());
-            catalogo.getSelectedAuto().setModello(modello.getText());
-            catalogo.getSelectedAuto().setDimensione(new Dimensione(
+            //Setto i parametri inseriti all'auto temporanea
+            catalogo.getTempAuto().setMarca(brand.getValue());
+            catalogo.getTempAuto().setModello(modello.getText());
+            catalogo.getTempAuto().setDimensione(new Dimensione(
                             Double.parseDouble(lunghezza.getText()),
                             Double.parseDouble(altezza.getText()),
                             Double.parseDouble(larghezza.getText()),
                             Double.parseDouble(peso.getText()),
                             Double.parseDouble(volume.getText())
                     ));
-            catalogo.getSelectedAuto().setDescrizione(descrizione.getText());
-            catalogo.getSelectedAuto().setCostoBase(Double.parseDouble(costoBase.getText()));
-            catalogo.getSelectedAuto().setScontoPerMese(sconti);
+            catalogo.getTempAuto().setDescrizione(descrizione.getText());
+            catalogo.getTempAuto().setCostoBase(Double.parseDouble(costoBase.getText()));
+            catalogo.getTempAuto().setScontoPerMese(sconti);
 
             //Carico la pagina successiva
             loadAddImagesPage();
@@ -221,6 +217,7 @@ public class AddAutoController implements Initializable {
         return false;
     }
 
+    //Carico la pagina successiva
     private void loadAddImagesPage() {
         try {
             TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
@@ -234,9 +231,15 @@ public class AddAutoController implements Initializable {
         }
     }
 
+    /**
+     *  Funzione che blocca input non validi, nei TextField che richiedono l'inserimento di campi double
+     * @param event evento KeyEvent, rappresenta la pressione di un tasto
+     * @param tf TextField, campo di input
+     */
     private void checkValidDouble(KeyEvent event, TextField tf){
         //Leggo il carattere che ha generato l'evento
         String character = event.getCharacter();
+
         /*
             Blocco l'input di un qualsiasi tasto, diverso da:
                 - numero da 0 - 9

@@ -7,7 +7,8 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class AutoNuova extends Auto implements Serializable {
-    private final int id;
+    //private final int id;
+    private int id;
     private String descrizione;
     private Dimensione dimensione;
     private double costoBase;
@@ -31,32 +32,30 @@ public class AutoNuova extends Auto implements Serializable {
         this.id = id;
     }
 
+    public AutoNuova(){}
+
     //Metodo GET per il campoID
     public int getId() {
         return id;
     }
 
-    /*
-    *   GET e SET costoBase
-    * */
+    //GET e SET costoBase
     public double getCostoBase() {
         return costoBase;
     }
     public void setCostoBase(double costoBase) {
         this.costoBase = costoBase;
     }
-    /*
-    *   Get e SET per il campo dimensione
-    * */
+
+    //Get e SET per il campo dimensione
     public Dimensione getDimensione() {
         return dimensione;
     }
     public void setDimensione(Dimensione dimensione) {
         this.dimensione = dimensione;
     }
-    /*
-    *   GET e SET descrizione
-    * */
+
+    //GET e SET descrizione
     public String getDescrizione() {
         return descrizione;
     }
@@ -64,6 +63,7 @@ public class AutoNuova extends Auto implements Serializable {
         this.descrizione = descrizione;
     }
 
+    //GET e SET Sconto per mese
     public double[] getScontoPerMese() {
         return scontoPerMese;
     }
@@ -71,12 +71,25 @@ public class AutoNuova extends Auto implements Serializable {
         this.scontoPerMese = scontoPerMese;
     }
 
+    //GET e SET motori disponibili
+    public ArrayList<Motore> getMotoriDisponibili() {
+        return motoriDisponibili;
+    }
+    public void setMotoriDisponibili(ArrayList<Motore> motoriDisponibili){
+        this.motoriDisponibili = motoriDisponibili;
+    }
+
+    //GET E SET OPTIONAL
+    public TreeSet<Optional> getOptionalDisponibili() {
+        return optionalDisponibili;
+    }
+    public void setOptionalDisponibili(TreeSet<Optional> optionalDisponibili){
+        this.optionalDisponibili = optionalDisponibili;
+    }
 
     /**
      * Aggiunge un nuovo optional a quelli dipsonibili.
      * Se tale optional era già presente, lo sostituisce con quello nuovo
-     * @param optional optioanl da aggiungere alla lista
-     * @param optional optioanl da aggiungere alla lista
      * @param optional optioanl da aggiungere alla lista
      */
     public void addOptional(Optional optional){
@@ -106,12 +119,6 @@ public class AutoNuova extends Auto implements Serializable {
         }
         return new ArrayList<>(colors);
     }
-
-
-    public ArrayList<Motore> getMotoriDisponibili() {
-        return motoriDisponibili;
-    }
-
 
     public double getSconto(Date data){
         return this.getScontoPerMese()[data.getMonth()];

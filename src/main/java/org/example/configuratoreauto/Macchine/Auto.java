@@ -55,6 +55,10 @@ public abstract class Auto implements Serializable{
         return immagini;
     }
 
+    public void setImmagini(ArrayList<Immagine> immagini) {
+        this.immagini = immagini;
+    }
+
     public String toString(){
         return this.modello;
     }
