@@ -112,12 +112,19 @@ public class AutoCustomController implements Initializable {
         });
         motori.setValue(motori.getItems().get(0));
         colori.getItems().addAll(auto.getOptionalByCategory(TipoOptional.colore));
+
+        interni.getItems().add(null);
         interni.getItems().addAll(auto.getOptionalByCategory(TipoOptional.interni));
+
+        vetri.getItems().add(null);
         vetri.getItems().addAll(auto.getOptionalByCategory(TipoOptional.vetri));
+
+        cerchi.getItems().add(null);
         cerchi.getItems().addAll(auto.getOptionalByCategory(TipoOptional.cerchi));
         sedi.getItems().addAll(sediModel.getAllData());
+
         if (!colori.getItems().isEmpty()) {
-            colori.setValue(colori.getItems().get(0)); // Set the first color as default
+            colori.setValue(colori.getItems().get(0));
         }
         ChangeListener<Optional> priceUpdateListener = (observable, oldValue, newValue) -> getDynamicPrice();
         colori.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
@@ -147,26 +154,39 @@ public class AutoCustomController implements Initializable {
             currentImageIndex.setValue(0);
             updateImage();
         } else {
-            // Handle case when no images are available for the selected color
             System.out.println("No images available for the selected color: " + color);
-            // You might want to display a default image or show a message to the user
         }
     }
+
+    /**
+     * Aggiorna l'imageView, caricando la foto puntata da currentImageIndex
+     */
     private void updateImage() {
         if (!imagesCurrentColor.isEmpty()) {
             images.setImage(imagesCurrentColor.get(currentImageIndex.get()).getImage());
         }
     }
-    //Aggiorna la ImageView alla foto sucessiva, aggiornando inoltre l'index
+
+    /**
+     * Aggiorna l'indice in modo da mostrare l'immagine precedente. Si distinguono due casi:
+     *  - se currentImageIndex == 0 -> viene impostato all'ultima foto
+     *  - altrimenti viene decrementato di 1
+     */
     public void prevImage() {
+        System.out.println(modelID.getStyle());
         if (currentImageIndex.get() > 0) {
-            currentImageIndex.set(currentImageIndex.get() - 1); // Decrement index to move to the previous image
+            currentImageIndex.set(currentImageIndex.get() - 1);
         } else {
-            currentImageIndex.set(imagesCurrentColor.size() - 1); // Wrap around to the last image
+            currentImageIndex.set(imagesCurrentColor.size() - 1);
         }
         updateImage();
     }
 
+    /**
+     * Aggiorna l'indice in modo da mostrare l'immagine successiva. Si distinguono due casi:
+     *  - se currentImageIndex == size - 1 -> viene impostato alla prima foto
+     *  - altrimenti viene incrementato di 1
+     */
     public void nextImage() {
         if (currentImageIndex.get() < imagesCurrentColor.size() - 1) {
             currentImageIndex.set(currentImageIndex.get() + 1); // Increment index to move to the next image
@@ -176,6 +196,9 @@ public class AutoCustomController implements Initializable {
         updateImage();
     }
 
+    /**
+     * Resetta tutte le ChoiceBox presenti nella pagina
+     */
     public void resetChoices(){
         colori.setValue(null);
         interni.setValue(null);
@@ -209,6 +232,10 @@ public class AutoCustomController implements Initializable {
         }
     }
 
+    /**
+     * Genera dinamicamente il prezzo.
+     * Recupera gli optional scelti, mostrando il prezzo aggiornato ad ogni scelta
+     */
     public void getDynamicPrice() {
         ArrayList<Optional> selezionati = new ArrayList<>();
         if(colori.getValue()!=null)
@@ -223,9 +250,11 @@ public class AutoCustomController implements Initializable {
         updatePriceInfo(selezionati);
         prezzo.setText(Preventivo.getPriceAsString(costoTotale));
     }
-
+    /**
+     *
+    **/
     public void updatePriceInfo(ArrayList<Optional> selezionati) {
-        String s= "Costo base: "+auto.getBasePriceAsString();
+        String s= "Costo base: "+auto.getBasePriceAsString()+"\n";
 
         for(Optional o : selezionati) {
             if(o!=null){

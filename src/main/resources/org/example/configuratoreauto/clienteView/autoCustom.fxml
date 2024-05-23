@@ -24,11 +24,7 @@
                   </ImageView>
                   <VBox prefHeight="152.0" prefWidth="805.0">
                      <children>
-                              <Text fx:id="modelID" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold;" text="Modello">
-                                  <font>
-                                      <Font size="55.0" />
-                                  </font>
-                              </Text>
+                              <Text fx:id="modelID" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 55" text="Modello"/>
                               <Text fx:id="descrizione" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrizione">
                            <VBox.margin>
                               <Insets top="10.0" />

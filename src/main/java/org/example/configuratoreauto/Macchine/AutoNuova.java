@@ -39,6 +39,7 @@ public class AutoNuova extends Auto implements Serializable {
         return id;
     }
 
+
     //GET e SET costoBase
     public double getCostoBase() {
         return costoBase;
