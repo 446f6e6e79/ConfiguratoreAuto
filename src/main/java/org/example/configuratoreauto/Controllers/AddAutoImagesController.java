@@ -26,7 +26,7 @@ import java.util.ResourceBundle;
 
 public class AddAutoImagesController implements Initializable {
     CatalogoModel catalogo = CatalogoModel.getInstance();
-    AutoNuova currentAuto = catalogo.getSelectedAuto();
+    AutoNuova currentAuto = catalogo.getTempAuto();
 
     /*
      *   Definisco delle variabili  Observable che permettono di implementare il pattern observer:

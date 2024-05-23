@@ -88,7 +88,7 @@
       <bottom>
          <HBox alignment="BASELINE_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
             <children>
-               <Button fx:id="avantiButton" mnemonicParsing="false" onAction="#addModello" text="Avanti" textAlignment="CENTER">
+               <Button fx:id="avantiButton" mnemonicParsing="false" onAction="#addModello" text="Continua" textAlignment="CENTER">
                   <font>
                      <Font size="30.0" />
                   </font>

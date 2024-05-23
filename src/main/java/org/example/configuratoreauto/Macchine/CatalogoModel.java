@@ -113,9 +113,11 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
      * @param autoToModify Auto che sto modificando
      */
     public void generateTempAuto(AutoNuova autoToModify){
-        this.tempAuto = new AutoNuova();
+        if(this.tempAuto == null){
+            tempAuto = new AutoNuova();
+        }
         //Se sto modificando una macchina, copio tutti i parametri di autoToModify in tempAuto
-        if(autoToModify != null){
+        if(autoToModify != null ){
             tempAuto.setMarca(autoToModify.getMarca());
             tempAuto.setModello(autoToModify.getModello());
             tempAuto.setDescrizione(autoToModify.getDescrizione());

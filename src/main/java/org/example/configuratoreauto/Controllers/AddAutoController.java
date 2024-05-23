@@ -119,7 +119,7 @@ public class AddAutoController implements Initializable {
         /*
         *   In caso il segretario stia modificando un auto, carico i dati già presenti
         * */
-        if(catalogo.getSelectedAuto() != null){
+        if(catalogo.getSelectedAuto() != null || tempAuto.getModello() != null){
             sconti = tempAuto.getScontoPerMese();
             modello.setText(tempAuto.getModello());
             brand.setValue(tempAuto.getMarca());
@@ -133,7 +133,6 @@ public class AddAutoController implements Initializable {
             addSconto();
         }
     }
-
     @FXML
     public void goBack(){
         try {
