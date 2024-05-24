@@ -3,7 +3,7 @@
     -fx-cursor: hand; /* Cambia il cursore, segnalando il testo cliccabile*/
 }
 
-/* Define styles for the greenButton class */
+/* ========= ButtoneVerde =============*/
 .greenButton {
     -fx-background-color: #4CAF50; /* Green background color */
     -fx-text-fill: white; /* Text color */
@@ -11,18 +11,12 @@
     -fx-border-radius: 5px; /* Border radius */
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.2, 1); /* Box shadow */
 }
-
-/* Define hover effect */
 .greenButton:hover {
     -fx-background-color: #45a049; /* Darker green on hover */
 }
-
-/* Define pressed effect */
 .greenButton:pressed {
     -fx-background-color: #388e3c; /* Even darker green when pressed */
 }
-
-/* Define styles for disabled state */
 .greenButton:disabled {
     -fx-opacity: 0.5; /* Reduce opacity when disabled */
     -fx-background-color: #ccc; /* Light gray background color when disabled */
@@ -31,31 +25,28 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0); /* Box shadow for disabled state */
 }
 
-/*================= TAB_PANE ===== */
+/*================= TAB_PANE =============*/
 .tab-pane {
     -fx-tab-min-width: 100px; /* Minimum width of each tab */
 }
-
 .tab-pane .tab {
     -fx-background-color: #f0f0f0; /* Background color of tabs */
     -fx-padding: 10px 15px; /* Padding of each tab */
     -fx-closable: false; /* Disallow closing tabs */
     -fx-focus-color: transparent; /* Remove focus border */
 }
-
 .tab-pane .tab:hover {
     -fx-background-color: #e0e0e0; /* Hover background color of tabs */
 }
-
 .tab-pane .tab:selected {
     -fx-background-color: #fff; /* Background color of selected tab */
     -fx-focus-color: transparent; /* Remove focus border */
 }
-
 .tab-content {
     -fx-padding: 20px; /* Padding of tab content */
 }
 
+/*================ ELEMENTO CLICCABILE ===========*/
 .clickableElement {
     -fx-background-color: #FFFFFF;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.2, 1);
@@ -64,9 +55,23 @@
     -fx-border-radius: 10;
     -fx-background-radius: 10;
 }
-
 .clickableElement:hover {
     -fx-background-color: #E0E0E0; /* Change background color on hover */
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.5, 0.2, 1); /* Change shadow on hover */
     -fx-border-color: DARKGREY; /* Change border color on hover */
 }
+
+/* ================ choiceBox ==============
+.choice-box .context-menu { -fx-background-color: black; }
+.choice-box .menu-item:focused { -fx-background-color: orange; }
+.choice-box .menu-item > .label { -fx-text-fill: white; }
+
+.choice-box .menu-item:focused > .label { -fx-text-fill: black; }
+.choice-box {
+   -fx-background-color: black;
+   -fx-mark-color: orange; // arrow color
+}
+
+.choice-box > .label { -fx-text-fill: white; }
+
+ */

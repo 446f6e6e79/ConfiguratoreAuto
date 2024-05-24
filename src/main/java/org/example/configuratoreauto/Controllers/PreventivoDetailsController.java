@@ -16,19 +16,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import org.example.configuratoreauto.Macchine.Optional;
-import javafx.scene.image.ImageView;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 import org.example.configuratoreauto.Preventivi.StatoPreventivo;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.UserModel;
 
-import java.io.IOException;
-
-public class PreventivoViewController {
+public class PreventivoDetailsController {
 
     @FXML
     private Label cliente;

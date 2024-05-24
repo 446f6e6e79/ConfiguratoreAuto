@@ -13,7 +13,7 @@ import org.example.configuratoreauto.Utenti.UserModel;
 import java.io.IOException;
 
 
-public class ClienteController {
+public class ClienteHomeController {
     UserModel userModel = UserModel.getInstance();
 
     RegistroModel registro = RegistroModel.getInstance();

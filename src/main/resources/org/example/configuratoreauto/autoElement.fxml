@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox fx:id="mainComponent" maxHeight="1.7976931348623157E308" styleClass="clickableElement" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoController" onMouseClicked="#handleHBoxClicked">
+<HBox fx:id="mainComponent" maxHeight="1.7976931348623157E308" styleClass="clickableElement" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="630.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoElementController" onMouseClicked="#handleHBoxClicked">
    <children>
       <ImageView fx:id="autoImage" fitHeight="245.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>

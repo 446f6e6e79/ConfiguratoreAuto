@@ -14,9 +14,10 @@ import java.util.Comparator;
 *   COLORE: colore optional, a cui l'immagine fa riferimento
 * */
 public class Immagine implements Serializable{
-    String path;
-    String colore;
-    Auto auto;
+    private String path;
+    private String colore;
+    private Auto auto;
+    private static Path tempImages = Paths.get("src", "main", "resources", "img", "carImages", "tempImages");
 
     public Immagine(String colore, Auto auto, String absolutePath){
         this.colore=colore;
@@ -28,6 +29,10 @@ public class Immagine implements Serializable{
         return this.colore;
     }
 
+    /**
+     * Restituisce l'oggetto Image, assegnabile ad ImageView
+     * @return Image relativa all'immagine
+     */
     public Image getImage() {
         try {
             FileInputStream inputStream = new FileInputStream(path);
@@ -38,60 +43,47 @@ public class Immagine implements Serializable{
         }
     }
 
-    public static void cleanDirectory(AutoNuova autoNuova) throws IOException {
-        Path path = Paths.get("src", "main", "resources", "img", "carImages", String.valueOf(autoNuova.getId()));
-        if (Files.exists(path)) {
-            Files.walk(path)
-                    .sorted(Comparator.reverseOrder())
-                    .forEach(p -> {
-                        try {
-                            Files.delete(p);
-                        } catch (IOException e) {
-                            throw new RuntimeException("Failed to delete " + p, e);
-                        }
-                    });
-        }
-    }
-
-    public void addToLocalImages(Auto auto) {
-        if(auto instanceof AutoNuova autoNuova){
-            for(Immagine img:auto.getImmagini()){
-                addAutoNuova(autoNuova);
-            }
-
-        }
-        else {
-            for(Immagine img:auto.getImmagini()){
-                addAutoUsata((AutoUsata) auto);
-            }
-        }
-    }
-
     /**
-        Aggiungo l'immagine alla DIRECTORY interna al progetto:
-            - Le cartelle sono gestite nel seguente modo:
-                -carImages
-                   -idAuto_1
-                      -colore_1
-                      ...
-                      -colore_n
-                   -idAuto_2
-                   ...
-    */
-    private void addAutoNuova(AutoNuova auto){
-        Path root = Paths.get("src", "main", "resources", "img", "carImages", String.valueOf(auto.getId()));
-        Path target = root.resolve(colore);
+     *  Rinomina la directory TEMPORANEA, nella directory TARGET, in cui dovranno essere inserite le immagini.
+     *  Rimpiazza eventualmente, le cartelle TARGET già presenti, tenendo così aggiornate le immagini.
+     *  Rimuove inoltre infine la cartella tempImages
+     * @param autoNuova - Auto per cui stiamo cercando di aggiungere le immagini
+     * @throws IOException
+     */
+    public static void cleanAndRenameDirectory(AutoNuova autoNuova) throws IOException {
+        Path rootBase = Paths.get("src", "main", "resources", "img", "carImages");
+        Path targetDir = rootBase.resolve(String.valueOf(autoNuova.getId()));
+        Path tempDir = rootBase.resolve("tempImages");
+
+        /*
+            Pulisco la cartella target, se era già esistente. Non ho problemi di eliminare
+            modifiche effettuate alle immagini, in quanto quelle sono salvate nella direcory
+            tempAuto
+         */
+        cleanDirectory(targetDir);
+
+        //Rinomino la carrella tempImages, nella cartella target
+        if (Files.exists(tempDir)) {
+            Files.move(tempDir, targetDir, StandardCopyOption.REPLACE_EXISTING);
+        }
+        cleanDirectory(tempDir);
+    }
+
+
+    public void addAutoNuova(AutoNuova auto){
+        Path baseRoot = Paths.get("src", "main", "resources", "img", "carImages");
+        Path target = tempImages.resolve(colore);
         Path source = Paths.get(this.path);
 
-        //Creo la directory root se non già esistente
-        if (Files.notExists(root)) {
+        //Creo la directory tempImages, se non già presente
+        if(Files.notExists(tempImages)) {
             try {
-                Files.createDirectories(root);
+                Files.createDirectories(tempImages);
             } catch (IOException e) {
-                System.err.println("Error creating directories: " + e.getMessage());
                 return;
             }
         }
+
         //Creo la directoryTarget se non già esistente
         if (Files.notExists(target)) {
             try {
@@ -108,8 +100,10 @@ public class Immagine implements Serializable{
         try {
             Files.copy(source, target.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
 
-            //Aggiorno il path dell'immagine
-            this.path = String.valueOf(target.resolve(source.getFileName()));
+            /*
+                Aggiorno il path dell'immagine.
+             */
+            this.path = String.valueOf(baseRoot.resolve(auto.getId() +"/"+colore+"/"+source.getFileName()));
         } catch (FileAlreadyExistsException e) {
             System.err.println("File already exists in target directory");
         } catch (NoSuchFileException e) {
@@ -128,7 +122,7 @@ public class Immagine implements Serializable{
                    ...
                    -TARGA_N
     */
-    private void addAutoUsata(AutoUsata auto){
+    public void addAutoUsata(AutoUsata auto){
         Path target = Paths.get("src", "main", "resources", "img", "usedCarImages", String.valueOf(auto.getTarga()));
         Path source = Paths.get(this.path);
         
@@ -142,7 +136,6 @@ public class Immagine implements Serializable{
         }
         try {
             Files.copy(source, target.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-
             //Aggiorno il path dell'immagine
             this.path = String.valueOf(target.resolve(source.getFileName()));
         } catch (FileAlreadyExistsException e) {
@@ -154,10 +147,26 @@ public class Immagine implements Serializable{
         }
     }
 
-    @Override
-    public boolean equals(Object other){
-        return other instanceof Immagine otherImage &&
-                this.path.equals(otherImage.path) &&
-                this.colore.equals(otherImage.colore);
+    /**
+     *  Rimuove una directory passata come parametro, andando ad eliminare anche
+     *  le sotto-cartelle
+     * @param dir -Path alla directory che si intende eliminare
+     */
+    private static void cleanDirectory(Path dir){
+        if (Files.exists(dir)) {
+            try {
+                Files.walk(dir)
+                        .sorted(Comparator.reverseOrder())
+                        .forEach(p -> {
+                            try {
+                                Files.delete(p);
+                            } catch (IOException e) {
+                                System.out.println("Errorore nell'eliminazione del file " + p + ": " + e.getMessage());
+                            }
+                        });
+            } catch (IOException e) {
+                System.err.println("Error deleting directory " + dir + ": " + e.getMessage());
+            }
+        }
     }
 }

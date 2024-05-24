@@ -1,8 +1,5 @@
 package org.example.configuratoreauto.Controllers;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -18,7 +15,7 @@ import org.example.configuratoreauto.Utenti.UserModel;
 
 import java.io.IOException;
 
-public class AutoController {
+public class AutoElementController {
     @FXML
     private ImageView autoImage;
     @FXML

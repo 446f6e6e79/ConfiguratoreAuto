@@ -7,12 +7,8 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
-import org.example.configuratoreauto.Macchine.AutoNuova;
-import org.example.configuratoreauto.Macchine.CatalogoModel;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 import org.example.configuratoreauto.Utenti.Impiegato;
@@ -21,7 +17,7 @@ import org.example.configuratoreauto.Utenti.UserModel;
 
 import java.io.IOException;
 
-public class SinglePreventivoController {
+public class PreventivoElementController {
     @FXML
     private Image icon;
     @FXML
@@ -72,7 +68,7 @@ public class SinglePreventivoController {
                 Tab preventivoTab = tabPane.getTabs().get(1); // Ottieni il riferimento al tab "Catalogo"
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventivoView.fxml"));
                 BorderPane preventivoNode = loader.load();
-                PreventivoViewController controller = loader.getController();
+                PreventivoDetailsController controller = loader.getController();
                 controller.setPreventivo(preventivo);
                 preventivoTab.setContent(preventivoNode); // Imposta il nuovo contenuto del tab "Catalogo"
 

@@ -146,11 +146,11 @@ public class PreventiviController {
      *       - Stato del preventivo
      * */
     private void loadPreventivoElement(Preventivo a) throws IOException {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventivoComponent.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventivoElement.fxml"));
         HBox preventivoComponent = loader.load();
 
         // Configura il controller dell'autoComponent con i dati dell'auto
-        SinglePreventivoController controller = loader.getController();
+        PreventivoElementController controller = loader.getController();
         controller.setPreventivo(a);
 
         // Aggiungi l'autoComponent al VBox

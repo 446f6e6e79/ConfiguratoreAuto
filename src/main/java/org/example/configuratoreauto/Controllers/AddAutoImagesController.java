@@ -56,7 +56,6 @@ public class AddAutoImagesController implements Initializable {
         //Recupero i colori già DISPONIBILI
         ArrayList<String> availableColors = tempAuto.getUsedColors();
 
-        //Se erano già presenti delle immagini, le carico
         //Aggiungo i colori disponibili e ne seleziono 1
         if (!availableColors.isEmpty()) {
             coloreInput.getItems().addAll(availableColors);
@@ -167,7 +166,7 @@ public class AddAutoImagesController implements Initializable {
 
         //Carico le immagini già presenti per il colore scelto
         String selectedColor = coloreInput.getValue();
-        if (selectedColor != null) {
+        if (selectedColor != null ) {
             imagesCurrentColor.addAll(tempAuto.getImageByColor(selectedColor));
 
             //Se erano già presenti delle immagini aggiorno di conseguenza tutti i campi
@@ -182,10 +181,10 @@ public class AddAutoImagesController implements Initializable {
                     }
                 }
             }
-            //Non erano presenti delle immagini, setto l'immagine di default
-            else {
-                addedImagesView.setImage(new Image(getClass().getResourceAsStream("/img/icons/addImage.png")));
-            }
+        }
+        //Non erano presenti delle immagini, setto l'immagine di default
+        else {
+            addedImagesView.setImage(new Image(getClass().getResourceAsStream("/img/icons/addImage.png")));
         }
     }
 

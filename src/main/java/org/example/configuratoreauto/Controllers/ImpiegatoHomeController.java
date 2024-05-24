@@ -4,7 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.example.configuratoreauto.Utenti.UserModel;
 
-public class ImpiegatoController {
+public class ImpiegatoHomeController {
     UserModel userModel = UserModel.getInstance();
 
     @FXML

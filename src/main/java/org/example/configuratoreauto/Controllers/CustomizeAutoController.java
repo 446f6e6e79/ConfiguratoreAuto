@@ -3,7 +3,6 @@ package org.example.configuratoreauto.Controllers;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,7 +12,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -33,10 +31,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.ResourceBundle;
 
-public class AutoCustomController implements Initializable {
+public class CustomizeAutoController implements Initializable {
     CatalogoModel catalogo = CatalogoModel.getInstance();
     SediModel sediModel = SediModel.getInstance();
     AutoNuova auto = catalogo.getSelectedAuto();
@@ -94,8 +91,6 @@ public class AutoCustomController implements Initializable {
         images.fitWidthProperty().bind(left.prefWidthProperty());
         //================================
 
-
-
         modelID.setText(auto.getModello());
         String dim = auto.getDimensione().toString();
         dimensioni.setText(dim);
@@ -142,7 +137,6 @@ public class AutoCustomController implements Initializable {
 
     private void updateImagesForColor(String color) {
         imagesCurrentColor.clear();
-        System.out.println(color);
 
         for (Immagine img : catalogo.getSelectedAuto().getImmagini()) {
             System.out.println(img.getColor());
@@ -200,7 +194,8 @@ public class AutoCustomController implements Initializable {
      * Resetta tutte le ChoiceBox presenti nella pagina
      */
     public void resetChoices(){
-        colori.setValue(null);
+        colori.setValue(colori.getItems().get(0));
+        currentImageIndex.set(0);
         interni.setValue(null);
         vetri.setValue(null);
         cerchi.setValue(null);

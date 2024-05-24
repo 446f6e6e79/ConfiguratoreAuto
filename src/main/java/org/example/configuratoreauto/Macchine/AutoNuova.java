@@ -7,13 +7,13 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class AutoNuova extends Auto implements Serializable {
-    //private final int id;
     private int id;
     private String descrizione;
     private Dimensione dimensione;
     private double costoBase;
-    //Array di 12 double, rappresentano ogni mese lo scontoApplicato
+    /**Array di 12 double, rappresentano ogni mese lo scontoApplicato*/
     private double [] scontoPerMese;
+    /** ArrayList contenente tutti i motori disponibili per il modello*/
     private ArrayList<Motore> motoriDisponibili = new ArrayList<>();
     private TreeSet<Optional> optionalDisponibili = new TreeSet<>();
 
@@ -32,7 +32,10 @@ public class AutoNuova extends Auto implements Serializable {
         this.id = id;
     }
 
-    public AutoNuova(){}
+    /**
+     * Costruttore usato per generare un auto TEMPORANEA
+     */
+    protected AutoNuova(){}
 
     //Metodo GET per il campoID
     public int getId() {
@@ -113,12 +116,11 @@ public class AutoNuova extends Auto implements Serializable {
      *
      * @return Restituisce un arrayList contenente tutti i colori aggiunti per tale macchina
      */
-    public ArrayList<String> getUsedColors(){
-        HashSet<String> colors = new HashSet<>();
-        for(Optional colore: getOptionalByCategory(TipoOptional.colore)){
-            colors.add(colore.getDescrizione());
-        }
-        return new ArrayList<>(colors);
+    public ArrayList<String> getUsedColors() {
+        return getOptionalByCategory(TipoOptional.colore)
+                .stream()
+                .map(Optional::getDescrizione)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<Immagine> getImageByColor(String color){

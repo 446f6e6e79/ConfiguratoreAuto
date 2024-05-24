@@ -132,12 +132,12 @@ public class CatalogoController implements Initializable {
     }
 
     private void loadCarComponent(AutoNuova a) throws IOException {
-        // Carica la componente autoComponent.fxml
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/autoComponent.fxml"));
+        // Carica la componente autoElement.fxml
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/autoElement.fxml"));
         HBox autoComponent = loader.load();
 
         // Configura il controller dell'autoComponent con i dati dell'auto
-        AutoController controller = loader.getController();
+        AutoElementController controller = loader.getController();
         controller.setAuto(a);
 
         // Aggiungi l'autoComponent al VBox

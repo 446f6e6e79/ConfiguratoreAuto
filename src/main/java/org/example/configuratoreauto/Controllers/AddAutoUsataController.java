@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class UsataCustomController {
+public class AddAutoUsataController {
 
     RegistroModel registro = RegistroModel.getInstance();
     private final ObservableList<Image> usedImages = FXCollections.observableArrayList();

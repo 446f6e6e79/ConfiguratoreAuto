@@ -91,10 +91,10 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
     //Metodo per generare codiciUnivoci, assegnabili alle macchine
     public int getUniqueId(){
         int newId;
-        //Continua a generare codici casuali, fino a che non ne trova uno nuovo
+        //Continua a generare codici casuali, fino a che non ne trova uno nuovo > 0
         do {
             newId = UUID.randomUUID().hashCode();
-        } while (usedIds.contains(newId));
+        } while (usedIds.contains(newId) && newId < 0);
         return newId;
     }
 
@@ -159,17 +159,8 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
         //Carico le immagini in memoria
         selectedAuto.setImmagini(tempAuto.getImmagini());
 
-        //Pulisco la cartella delle immagini già presenti
-        try {
-            Immagine.cleanDirectory(selectedAuto);
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-
         //Salvo localmente tutte le immagini aggiunte
-        for(Immagine img: tempAuto.getImmagini()){
-            img.addToLocalImages(selectedAuto);
-        }
+        selectedAuto.addToLocalImages();
 
         selectedAuto.setMotoriDisponibili(tempAuto.getMotoriDisponibili());
         selectedAuto.setOptionalDisponibili(tempAuto.getOptionalDisponibili());

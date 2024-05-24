@@ -42,7 +42,11 @@ public class Optional implements Serializable, Comparable<Optional> {
 
     @Override
     public int compareTo(Optional other){
-        return this.categoria.compareTo(other.categoria);
+        int diff = this.categoria.compareTo(other.categoria);
+        if(diff != 0){
+            return diff;
+        }
+        return this.descrizione.compareTo(other.descrizione);
     }
 
     public String toString(){

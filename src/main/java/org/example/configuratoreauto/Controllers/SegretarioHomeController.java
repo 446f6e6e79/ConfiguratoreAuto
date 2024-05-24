@@ -10,7 +10,7 @@ import org.example.configuratoreauto.Preventivi.SediModel;
 import java.io.IOException;
 
 
-public class SegretarioController {
+public class SegretarioHomeController {
 
     RegistroModel registro = RegistroModel.getInstance();
     BorderPane preventiviNode;
