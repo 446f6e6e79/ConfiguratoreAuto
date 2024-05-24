@@ -161,6 +161,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         this.valutazione = valutazione;
         setStato(StatoPreventivo.FINALIZZATO);
         setScadenza(new Date());
+        setConsegna();
     }
 
     public ArrayList<Optional> getOptionals() {

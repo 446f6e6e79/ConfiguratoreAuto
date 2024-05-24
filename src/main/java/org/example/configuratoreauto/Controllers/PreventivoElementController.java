@@ -11,6 +11,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
+import org.example.configuratoreauto.Preventivi.StatoPreventivo;
 import org.example.configuratoreauto.Utenti.Impiegato;
 import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
@@ -40,7 +41,11 @@ public class PreventivoElementController {
         this.preventivo = preventivo;
         modello.setText(preventivo.getAcquisto().getModello());
         data.setText(preventivo.getDataPreventivoAsString());
-        consegna.setText(preventivo.getDataConsegnaAsString());
+        if(preventivo.getStato() != StatoPreventivo.RICHIESTO ){
+            consegna.setText(preventivo.getDataConsegnaAsString());
+        }else{
+            consegna.setText("");
+        }
         stato.setText(preventivo.getStato().toString());
         setStatoColor(stato);
 

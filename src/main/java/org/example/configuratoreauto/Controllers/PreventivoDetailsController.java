@@ -96,7 +96,11 @@ public class PreventivoDetailsController {
         cliente.setText(preventivo.getCliente().getName() + " " + preventivo.getCliente().getSurname());
         sede.setText(preventivo.getSede().toString());
         data.setText(preventivo.getDataPreventivoAsString());
-        consegna.setText(preventivo.getDataConsegnaAsString());
+        if(preventivo.getStato()!= StatoPreventivo.RICHIESTO) {
+            consegna.setText(preventivo.getDataConsegnaAsString());
+        }else{
+            consegna.setText("da definire");
+        }
         if(preventivo.getStato()!= StatoPreventivo.RICHIESTO) {
             scadenza.setText(preventivo.getDataScadenzaAsString());
         }else{
