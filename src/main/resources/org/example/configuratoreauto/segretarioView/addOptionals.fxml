@@ -108,7 +108,7 @@
                                     </font></Button>
                               </children>
                            </VBox>
-                           <ScrollPane hbarPolicy="NEVER" prefHeight="332.0" prefWidth="449.0">
+                           <ScrollPane fx:id="motoreScrollPane" hbarPolicy="NEVER" prefHeight="332.0" prefWidth="449.0">
                               <content>
                                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
                               </content>

@@ -52,7 +52,7 @@ public class AddAutoOptionalsController implements Initializable {
     @FXML
     private Button addMotore;
     @FXML
-    private Text motorTextList;
+    private ScrollPane motoreScrollPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -102,6 +102,10 @@ public class AddAutoOptionalsController implements Initializable {
         });
     }
 
+    /**
+     * Aggiunge un optional alla lista di TempAuto.
+     * Aggiorna inoltre il DISPLAY della lista di optional
+     */
     private void addOptional() {
         tempAuto.addOptional(
                 new Optional(
@@ -155,26 +159,60 @@ public class AddAutoOptionalsController implements Initializable {
         optionalScrollPane.setContent(container);
     }
 
-
-    private void updateMotoriList(){
-        String s ="";
-        for(Motore m: tempAuto.getMotoriDisponibili()){
-            s += m.toString()+"\n";
-        }
-        motorTextList.setText(s);
-    }
-
+    /**
+     * Aggiunge un motore alla lista di TempAuto.
+     * Aggiorna inoltre il DISPLAY della lista di motori
+     */
     private void addMotore(){
         tempAuto.addMotore(
                 new Motore(
-                    nomeMotore.getText(),
-                    alimentazioneType.getValue(),
-                    Integer.parseInt(potenzaMotore.getText()),
-                    Integer.parseInt(cilindrata.getText()),
-                    Integer.parseInt(consumi.getText())
+                        nomeMotore.getText(),
+                        alimentazioneType.getValue(),
+                        Integer.parseInt(potenzaMotore.getText()),
+                        Integer.parseInt(cilindrata.getText()),
+                        Integer.parseInt(consumi.getText())
                 )
         );
         updateMotoriList();
+    }
+
+    private void updateMotoriList() {
+        VBox container = new VBox();
+        container.setPrefWidth(optionalScrollPane.getPrefWidth() - 4);
+        container.setAlignment(Pos.CENTER);
+
+        List<Motore> motoriCopy = new ArrayList<>(tempAuto.getMotoriDisponibili());
+
+        for (Motore m : motoriCopy) {
+            HBox optionalElement = new HBox();
+            optionalElement.setAlignment(Pos.CENTER);
+            optionalElement.setStyle("-fx-border-color: black; -fx-border-width: 2;");
+            optionalElement.setPadding(new Insets(10, 10, 10, 10));
+            optionalElement.setSpacing(5);
+            optionalElement.setPrefWidth(container.getPrefWidth() - 10);
+            optionalElement.setPrefHeight(70);
+
+            Text nomeMotore = new Text(m.getNome());
+            Text alimentazione = new Text(m.getAlimentazione().toString());
+
+            ImageView binImg = new ImageView();
+            binImg.setFitHeight(50);
+            binImg.setFitWidth(50);
+            //Rende cliccabile tutto l'imageView
+            binImg.setPickOnBounds(true);
+            binImg.setImage(new Image(getClass().getResourceAsStream("/img/icons/bin.png")));
+
+            binImg.setOnMouseClicked(event -> {
+
+                tempAuto.getOptionalDisponibili().remove(o);
+                updateOptionalList();
+            });
+
+            optionalElement.getChildren().addAll(nomeMotore, alimentazione, binImg);
+            container.getChildren().add(optionalElement);
+        }
+
+        optionalScrollPane.setContent(container);
     }
 
     @FXML
