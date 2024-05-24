@@ -204,7 +204,7 @@ public class AddAutoOptionalsController implements Initializable {
 
             binImg.setOnMouseClicked(event -> {
 
-                tempAuto.getOptionalDisponibili().remove(o);
+                tempAuto.getOptionalDisponibili().remove(m);
                 updateOptionalList();
             });
 
