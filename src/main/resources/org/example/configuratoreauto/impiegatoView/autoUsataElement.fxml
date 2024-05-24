@@ -6,45 +6,50 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<HBox fx:id="mainComponent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleHBoxClicked" prefHeight="300.0" prefWidth="630.0" styleClass="clickableElement" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoElementController">
+<HBox fx:id="mainComponent" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleHBoxClicked" prefHeight="300.0" prefWidth="800.0" styleClass="clickableElement" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoUsataElementController">
    <children>
-      <ImageView fx:id="autoImage" fitHeight="245.0" fitWidth="350.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="autoImage" fitHeight="299.0" fitWidth="529.0" pickOnBounds="true" preserveRatio="true">
          <HBox.margin>
             <Insets />
          </HBox.margin>
       </ImageView>
-      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="264.0" prefWidth="300.0">
+      <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="274.0">
          <children>
-            <Label fx:id="NomeModello" text="Modello">
+            <Label fx:id="modello" text="Modello">
                <font>
                   <Font name="SansSerif Regular" size="23.0" />
                </font>
                <VBox.margin>
                   <Insets bottom="10.0" />
                </VBox.margin></Label>
-            <Label fx:id="Marca" text="Marca">
+            <Label fx:id="marca" text="Marca">
                <font>
                   <Font name="SansSerif Regular" size="19.0" />
                </font></Label>
-            <ImageView fx:id="dynamicIcon" fitHeight="55.0" fitWidth="55.0" opacity="0.28" pickOnBounds="true" preserveRatio="true">
+            <Label fx:id="targa" text="Targa">
                <VBox.margin>
-                  <Insets left="179.0" top="30.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
-            </ImageView>
-            <Label fx:id="Prezzo" alignment="BOTTOM_RIGHT" prefHeight="49.0" prefWidth="244.0" text="Km">
+            </Label>
+            <Label fx:id="km" alignment="BOTTOM_RIGHT" prefHeight="49.0" prefWidth="244.0" text="Km">
                <font>
                   <Font size="19.0" />
                </font>
                <padding>
                   <Insets bottom="2.0" right="20.0" />
                </padding></Label>
+            <Label text="Valutazione">
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="valutazione" prefHeight="26.0" prefWidth="100.0" />
+            <Button mnemonicParsing="false" onAction="#conferma" text="Conferma" />
+            <Label fx:id="validation" text="ERROR" />
          </children>
          <padding>
             <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
          </padding>
       </VBox>
    </children>
-   <padding>
-      <Insets bottom="200.0" left="15.0" top="20.0" />
-   </padding>
 </HBox>
