@@ -100,9 +100,7 @@ public class AddAutoUsataController {
 
             AutoUsata autoUsata = new AutoUsata(marca, modello, targa, km);
 
-            for (Image img : usedImages) {
-                autoUsata.addImage(new Immagine(null, autoUsata, img.getUrl().substring(5)));
-            }
+            autoUsata.addToLocalImages();
 
             saveLabel.setText("Auto usata salvata con successo!");
             registro.currentPreventivo.setUsata(autoUsata);

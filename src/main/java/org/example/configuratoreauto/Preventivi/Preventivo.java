@@ -178,6 +178,10 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
                 dettagli.append("  - ").append(opt.getCategoria().toString()).append(": ").append(opt.getCosto()).append(" €\n");
             }
         }
+        if(stato!=StatoPreventivo.RICHIESTO && usata!=null){
+            dettagli.append("Valutazione usato: ").append(valutazione).append(" €\n");
+        }
+
 
         double costoTotale = this.getCostoTotale();
         dettagli.append("Costo totale: ").append(costoTotale).append(" €");
@@ -188,6 +192,10 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
 
     public Sede getSede() {
         return sede;
+    }
+
+    public Date getData() {
+        return data;
     }
 
     public void setStato(StatoPreventivo stato) {
