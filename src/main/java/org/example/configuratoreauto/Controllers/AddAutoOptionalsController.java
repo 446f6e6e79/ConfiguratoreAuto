@@ -178,19 +178,19 @@ public class AddAutoOptionalsController implements Initializable {
 
     private void updateMotoriList() {
         VBox container = new VBox();
-        container.setPrefWidth(optionalScrollPane.getPrefWidth() - 4);
+        container.setPrefWidth(motoreScrollPane.getPrefWidth() - 4);
         container.setAlignment(Pos.CENTER);
 
         List<Motore> motoriCopy = new ArrayList<>(tempAuto.getMotoriDisponibili());
 
         for (Motore m : motoriCopy) {
-            HBox optionalElement = new HBox();
-            optionalElement.setAlignment(Pos.CENTER);
-            optionalElement.setStyle("-fx-border-color: black; -fx-border-width: 2;");
-            optionalElement.setPadding(new Insets(10, 10, 10, 10));
-            optionalElement.setSpacing(5);
-            optionalElement.setPrefWidth(container.getPrefWidth() - 10);
-            optionalElement.setPrefHeight(70);
+            HBox motoreElement = new HBox();
+            motoreElement.setAlignment(Pos.CENTER);
+            motoreElement.setStyle("-fx-border-color: black; -fx-border-width: 2;");
+            motoreElement.setPadding(new Insets(10, 10, 10, 10));
+            motoreElement.setSpacing(5);
+            motoreElement.setPrefWidth(container.getPrefWidth() - 10);
+            motoreElement.setPrefHeight(70);
 
             Text nomeMotore = new Text(m.getNome());
             Text alimentazione = new Text(m.getAlimentazione().toString());
@@ -205,14 +205,14 @@ public class AddAutoOptionalsController implements Initializable {
             binImg.setOnMouseClicked(event -> {
 
                 tempAuto.getOptionalDisponibili().remove(m);
-                updateOptionalList();
+                updateMotoriList();
             });
 
-            optionalElement.getChildren().addAll(nomeMotore, alimentazione, binImg);
-            container.getChildren().add(optionalElement);
+            motoreElement.getChildren().addAll(nomeMotore, alimentazione, binImg);
+            container.getChildren().add(motoreElement);
         }
 
-        optionalScrollPane.setContent(container);
+        motoreScrollPane.setContent(container);
     }
 
     @FXML
