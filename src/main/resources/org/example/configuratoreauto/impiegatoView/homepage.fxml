@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
 
-<?import javafx.scene.control.PasswordField?>
-<VBox alignment="CENTER" prefWidth="960" prefHeight="540" spacing="20.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.ImpiegatoHomeController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
-    <Label text="CIAO IMPIEGATO">
-        <font>
-            <Font size="21.0" />
-        </font>
-    </Label>
-</VBox>
+<TabPane fx:id="mainPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="540.0" prefWidth="960" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.ImpiegatoHomeController">
+    <tabs>
+        <Tab text="Valutazioni" fx:id="valutazioniTab">
+            <content>
+                <fx:include source="valutazioniView.fxml"></fx:include>
+            </content>
+        </Tab>
+        <Tab text="Pagamenti" fx:id="pagamentiTab">
+            <content>
+                <fx:include source="pagamentiView.fxml"></fx:include>
+            </content>
+        </Tab>
+        <Tab text="Segnala Ritiro" fx:id="ritiroTab">
+            <content>
+                <fx:include source="ritiroView.fxml"></fx:include>
+            </content>
+        </Tab>
+    </tabs>
+</TabPane>

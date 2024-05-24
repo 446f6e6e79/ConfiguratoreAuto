@@ -148,6 +148,10 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         return cliente;
     }
 
+    public double getValutazione() {
+        return valutazione;
+    }
+
     /*
     *   Set della valutazione dell'usato. Una volta valutata verrano svolte automaticamente le seguenti operazioni:
     *       - stato impostato a FINALIZZATO

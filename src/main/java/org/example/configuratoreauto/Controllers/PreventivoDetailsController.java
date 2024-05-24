@@ -76,7 +76,7 @@ public class PreventivoDetailsController {
     Label kmResult;
     @FXML
     Label kmLabel;
-    @FXML   
+    @FXML
     Label targa;
     @FXML
     Label targaLabel;
