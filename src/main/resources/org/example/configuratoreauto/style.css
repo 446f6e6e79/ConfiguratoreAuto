@@ -25,6 +25,28 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0); /* Box shadow for disabled state */
 }
 
+/*================= Buttone Rosso ========*/
+.resetButton {
+    -fx-background-color: #f44336;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.2, 1);
+}
+.resetButton:hover {
+    -fx-background-color: #e53935;
+}
+.resetButton:pressed {
+    -fx-background-color: #d32f2f;
+}
+.resetButton:disabled {
+    -fx-opacity: 0.5; /* Reduce opacity when disabled */
+    -fx-background-color: #ccc; /* Light gray background color when disabled */
+    -fx-text-fill: #666; /* Dark gray text color when disabled */
+    -fx-cursor: default; /* Change cursor to default when disabled */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0); /* Box shadow for disabled state */
+}
+
 /*================= TAB_PANE =============*/
 .tab-pane {
     -fx-tab-min-width: 100px; /* Minimum width of each tab */
@@ -95,4 +117,18 @@
 }
 .choice-box:focused {
     -fx-border-color: #4a90e2;
+}
+
+.borderTopBottom {
+    -fx-border-color: #B0BEC5 transparent #B0BEC5 transparent;
+    -fx-border-width: 2px 0 2px 0;
+    -fx-background-color: #FAFAFA;
+    -fx-text-fill: #333;
+}
+
+.scrollPaneBorder {
+    -fx-border-color: transparent transparent transparent #B0BEC5;
+    -fx-border-width: 0 0 0 2px;
+    -fx-padding: 10px;
+    -fx-background-color: #FAFAFA;
 }

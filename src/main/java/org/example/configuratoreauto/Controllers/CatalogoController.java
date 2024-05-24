@@ -92,15 +92,15 @@ public class CatalogoController implements Initializable {
         }
     }
 
-    /*
+    /**
     *   Se l'utente è di tipo SEGRETARIO, introduce, in cima alla lista di auto
     *   un nuovo elemento cliccabile, con la possibilità di aggiungere un nuovo modello di auto
     * */
     private void addInsertAutoElement() {
         HBox imageContainer = new HBox();
-        imageContainer.setPrefSize(630, 300);
+        imageContainer.setPrefSize(542, 240);
         imageContainer.setAlignment(Pos.CENTER);
-        imageContainer.setStyle("-fx-border-color: BLACK; -fx-border-width: 2; -fx-border-radius: 10;");
+        imageContainer.getStyleClass().add("clickableElement");
 
         //Aggiungo un nuovo evento al click dell'elemento
         imageContainer.setOnMouseClicked(event -> {

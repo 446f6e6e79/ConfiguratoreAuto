@@ -63,7 +63,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     /**
     *  Calcola la data di consegna effettiva della macchina.
     *  La data è calcolata come:
-    *     - data base + 1 mese + (10 giorni * numeroOptional)
+    *     - data richiesta + 1 mese + (10 giorni * numeroOptional)
     * */
     private void setConsegna() {
         Calendar dataDiConsegna = Calendar.getInstance();
