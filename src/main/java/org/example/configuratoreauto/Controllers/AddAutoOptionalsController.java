@@ -59,11 +59,11 @@ public class AddAutoOptionalsController implements Initializable {
 
         optionalType.getItems().addAll(
                 Arrays.stream(TipoOptional.values())
-                        .filter(tipo -> tipo != TipoOptional.colore)
+                        .filter(tipo -> tipo != TipoOptional.Colore)
                         .toList()
         );
         optionalType.setOnAction(t-> updateOptionalList());
-        optionalType.setValue(TipoOptional.cerchi);
+        optionalType.setValue(TipoOptional.Cerchi);
 
         addOptional.disableProperty().bind(
                 descrizioneOptional.textProperty().isEmpty()

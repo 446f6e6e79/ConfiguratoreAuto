@@ -61,11 +61,11 @@ public class AddAutoImagesController implements Initializable {
             coloreInput.getItems().addAll(availableColors);
             coloreInput.getSelectionModel().select(0);
             currentIndex.set(0);
-            //Aggiorno le immagini per il colore selezionato
+            //Aggiorno le immagini per il Colore selezionato
             updateDataForSelectedColor();
         }
 
-        //Quando cambia il valore di color, viene aggiornata la lista di immagini per il colore disponibile
+        //Quando cambia il valore di color, viene aggiornata la lista di immagini per il Colore disponibile
         coloreInput.valueProperty().addListener((observable, oldValue, newValue) -> {
             updateDataForSelectedColor();
         });
@@ -101,10 +101,10 @@ public class AddAutoImagesController implements Initializable {
         photoRight.setOnMouseClicked(e -> getNextPhoto());
         deletePhoto.setOnMouseClicked(e -> deletePhoto());
 
-        //Disabilito il bottone per l'aggiunta di foto se non ho inserito il colore
+        //Disabilito il bottone per l'aggiunta di foto se non ho inserito il Colore
         addImageButton.disableProperty().bind(coloreInput.valueProperty().isNull());
 
-        //Disabilito il bottone per aggiungere il colore se non sono presenti foto
+        //Disabilito il bottone per aggiungere il Colore se non sono presenti foto
         saveImageButton.disableProperty().bind(Bindings
                 .size(imagesCurrentColor).isEqualTo(0)
         );
@@ -132,7 +132,7 @@ public class AddAutoImagesController implements Initializable {
 
     /**
      *  Rimuove un immagine dalle liste:
-     *      - lista di immagini del colore attuale
+     *      - lista di immagini del Colore attuale
      *      - lista di immagini completa, dell'auto temporanea
      */
     private void deletePhoto() {
@@ -155,7 +155,7 @@ public class AddAutoImagesController implements Initializable {
 
     /**
      * Aggiorna le nuove immagini ed il prezzo
-     * dopo che è stato selezionato un nuovo colore
+     * dopo che è stato selezionato un nuovo Colore
      */
     private void updateDataForSelectedColor() {
         //Pulisco la lista delle immagini per il coloreAttuale
@@ -164,7 +164,7 @@ public class AddAutoImagesController implements Initializable {
         //Pulisco il campo del prezzo
         colorPrice.setText("");
 
-        //Carico le immagini già presenti per il colore scelto
+        //Carico le immagini già presenti per il Colore scelto
         String selectedColor = coloreInput.getValue();
         if (selectedColor != null ) {
             imagesCurrentColor.addAll(tempAuto.getImageByColor(selectedColor));
@@ -175,7 +175,7 @@ public class AddAutoImagesController implements Initializable {
                 addedImagesView.setImage(imagesCurrentColor.get(0).getImage());
 
                 //Aggiorno il prezzo
-                for (Optional colore : tempAuto.getOptionalByCategory(TipoOptional.colore)) {
+                for (Optional colore : tempAuto.getOptionalByCategory(TipoOptional.Colore)) {
                     if (colore.getDescrizione().equals(coloreInput.getValue())) {
                         colorPrice.setText(String.valueOf(colore.getCosto()));
                     }
@@ -189,7 +189,7 @@ public class AddAutoImagesController implements Initializable {
     }
 
     /**
-     * Aggiunge agli optional il colore inserito
+     * Aggiunge agli optional il Colore inserito
      * Tale modifiche saranno poi passate al vero oggetto auto solamente quando confermate
      */
     @FXML
@@ -199,7 +199,7 @@ public class AddAutoImagesController implements Initializable {
             // Add the color only if it's not already in the ComboBox
             tempAuto.addOptional(
                     new Optional(
-                            TipoOptional.colore,
+                            TipoOptional.Colore,
                             selectedColor,
                             Double.parseDouble(colorPrice.getText())
                     )
@@ -233,7 +233,7 @@ public class AddAutoImagesController implements Initializable {
             //Aggiunge l'immagine all'auto temporanea
             tempAuto.addImage(img);
 
-            //Aggiungo l'immagine alla lista delle immagini del colore corrente
+            //Aggiungo l'immagine alla lista delle immagini del Colore corrente
             imagesCurrentColor.add(img);
 
             //Imposto il current index alla nuova immagine aggiunta
@@ -265,7 +265,7 @@ public class AddAutoImagesController implements Initializable {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Errore");
             alert.setHeaderText(null);
-            alert.setContentText("Aggiungi almeno un colore");
+            alert.setContentText("Aggiungi almeno un Colore");
             alert.showAndWait();
         }
     }

@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.Marca;
 import org.example.configuratoreauto.Preventivi.*;
 import org.example.configuratoreauto.Utenti.Cliente;
+import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
 
 import java.io.IOException;
@@ -41,18 +42,19 @@ public class PreventiviController {
 
     @FXML
     private void initialize() {
-        if (utente.getCurrentUser() instanceof Cliente) {
-            choiceSede.setVisible(false);
-            clienteField.setVisible(false);
-            sedeLabel.setVisible(false);
-            clienteLabel.setVisible(false);
-        } else {
+        if(utente.getCurrentUser() instanceof Segretario) {
             choiceSede.setVisible(true);
             clienteField.setVisible(true);
             sedeLabel.setVisible(true);
             clienteLabel.setVisible(true);
+            loadPrevs(registro.getAllData());
         }
-        loadPrevs(registro.getAllData());
+        else{
+            choiceSede.setVisible(false);
+            clienteField.setVisible(false);
+            sedeLabel.setVisible(false);
+            clienteLabel.setVisible(false);
+        }
         initializeChoiceBoxes();
     }
 

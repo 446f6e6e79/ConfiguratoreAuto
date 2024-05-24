@@ -61,17 +61,38 @@
     -fx-border-color: DARKGREY; /* Change border color on hover */
 }
 
-/* ================ choiceBox ==============
-.choice-box .context-menu { -fx-background-color: black; }
-.choice-box .menu-item:focused { -fx-background-color: orange; }
-.choice-box .menu-item > .label { -fx-text-fill: white; }
-
-.choice-box .menu-item:focused > .label { -fx-text-fill: black; }
+/*============== Choice Box ================*/
 .choice-box {
-   -fx-background-color: black;
-   -fx-mark-color: orange; // arrow color
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-padding: 4 8;
 }
-
-.choice-box > .label { -fx-text-fill: white; }
-
- */
+.choice-box .list-cell {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+    -fx-padding: 8 12;
+}
+.choice-box .list-cell:hover {
+    -fx-background-color: #f0f0f0;
+}
+.choice-box .list-cell:selected {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: #ffffff;
+}
+.choice-box .arrow {
+    -fx-background-color: transparent;
+    -fx-shape: "M 0,0 L 4,4 L 8,0 Z"; /* Down arrow shape */
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-padding: 0 8;
+    -fx-fill: #333333;
+}
+.choice-box:focused .arrow {
+    -fx-fill: #4a90e2;
+}
+.choice-box:focused {
+    -fx-border-color: #4a90e2;
+}

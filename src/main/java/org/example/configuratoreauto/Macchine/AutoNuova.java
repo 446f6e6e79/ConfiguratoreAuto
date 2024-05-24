@@ -117,7 +117,7 @@ public class AutoNuova extends Auto implements Serializable {
      * @return Restituisce un arrayList contenente tutti i colori aggiunti per tale macchina
      */
     public ArrayList<String> getUsedColors() {
-        return getOptionalByCategory(TipoOptional.colore)
+        return getOptionalByCategory(TipoOptional.Colore)
                 .stream()
                 .map(Optional::getDescrizione)
                 .collect(Collectors.toCollection(ArrayList::new));

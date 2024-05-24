@@ -5,7 +5,6 @@
 <?import javafx.scene.layout.*?>
 
 <BorderPane fx:id="preventiviComponent" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.PreventiviController">
-
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="240.0" prefWidth="208.0" BorderPane.alignment="CENTER">
          <children>

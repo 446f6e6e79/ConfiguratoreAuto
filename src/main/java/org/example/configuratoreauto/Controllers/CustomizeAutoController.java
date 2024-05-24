@@ -106,16 +106,16 @@ public class CustomizeAutoController implements Initializable {
             }
         });
         motori.setValue(motori.getItems().get(0));
-        colori.getItems().addAll(auto.getOptionalByCategory(TipoOptional.colore));
+        colori.getItems().addAll(auto.getOptionalByCategory(TipoOptional.Colore));
 
         interni.getItems().add(null);
-        interni.getItems().addAll(auto.getOptionalByCategory(TipoOptional.interni));
+        interni.getItems().addAll(auto.getOptionalByCategory(TipoOptional.Interni));
 
         vetri.getItems().add(null);
-        vetri.getItems().addAll(auto.getOptionalByCategory(TipoOptional.vetri));
+        vetri.getItems().addAll(auto.getOptionalByCategory(TipoOptional.Vetri));
 
         cerchi.getItems().add(null);
-        cerchi.getItems().addAll(auto.getOptionalByCategory(TipoOptional.cerchi));
+        cerchi.getItems().addAll(auto.getOptionalByCategory(TipoOptional.Cerchi));
         sedi.getItems().addAll(sediModel.getAllData());
 
         if (!colori.getItems().isEmpty()) {
