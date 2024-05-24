@@ -261,12 +261,7 @@ public class AddAutoImagesController implements Initializable {
             }
         }
         else{
-            // Show an error popup
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setTitle("Errore");
-            alert.setHeaderText(null);
-            alert.setContentText("Aggiungi almeno un Colore");
-            alert.showAndWait();
+            //Mostra un errore!
         }
     }
 

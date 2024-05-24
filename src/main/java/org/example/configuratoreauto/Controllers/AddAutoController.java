@@ -61,13 +61,13 @@ public class AddAutoController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         mainBorderPane.prefWidthProperty().bind(mainPane.widthProperty());
         mainBorderPane.prefHeightProperty().bind(mainPane.heightProperty());
-
         /*
         *   Valorizzo i campi per le varie choiceBox
         * */
         brand.getItems().addAll(Marca.values());
 
         avantiButton.setDisable(true);
+
         /*
         *   Collego la proprietà disable del bottone AVANTI:
         *    - almeno un campo non è valorizzato -> Disable = TRUE
@@ -94,6 +94,7 @@ public class AddAutoController implements Initializable {
         *   Blocco input NON validi sui campi numerici:
         * */
         lunghezza.addEventFilter(KeyEvent.KEY_TYPED, event -> {
+            System.out.println("Altezza:"+mainPane.getHeight()+" Larghezza: "+mainPane.getWidth());
             checkValidDouble(event, lunghezza);
         });
         larghezza.addEventFilter(KeyEvent.KEY_TYPED, event -> {

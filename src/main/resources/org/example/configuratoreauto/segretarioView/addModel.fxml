@@ -18,25 +18,39 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AddAutoController">
-   <BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0">
+<AnchorPane fx:id="mainPane" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AddAutoController">
+   <BorderPane fx:id="mainBorderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0">
       <top>
-         <HBox prefHeight="69.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <HBox maxWidth="-Infinity" onMouseClicked="#goBack" prefHeight="58.0" prefWidth="113.0" BorderPane.alignment="TOP_LEFT">
             <children>
-               <ImageView fitHeight="88.0" fitWidth="91.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true">
+               <ImageView fitHeight="38.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
                   <Image url="@../../../../img/icons/back-icon.png" />
                </ImageView>
-            </children></HBox>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="INDIETRO" wrappingWidth="85.0718002319336">
+                  <HBox.margin>
+                     <Insets left="-5.0" top="9.0" />
+                  </HBox.margin>
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Text>
+            </children>
+            <BorderPane.margin>
+               <Insets top="10.0" />
+            </BorderPane.margin></HBox>
       </top>
       <center>
-         <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="742.0" prefWidth="900.0" spacing="20.0" BorderPane.alignment="CENTER">
+         <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="900.0" spacing="10.0" BorderPane.alignment="CENTER">
             <children>
                <HBox prefHeight="57.0" prefWidth="900.0" spacing="20.0">
                   <children>
                      <TextField fx:id="modello" maxWidth="500.0" promptText="Modello">
                         <font>
                            <Font size="30.0" />
-                        </font></TextField>
+                        </font>
+                        <HBox.margin>
+                           <Insets right="20.0" />
+                        </HBox.margin></TextField>
                      <ComboBox fx:id="brand" prefHeight="56.0" prefWidth="178.0" promptText="Marca" />
                   </children>
                   <VBox.margin>
@@ -47,23 +61,54 @@
                   <VBox.margin>
                      <Insets right="40.0" />
                   </VBox.margin>
+                  <font>
+                     <Font size="18.0" />
+                  </font>
                </TextArea>
-               <VBox prefHeight="200.0" prefWidth="100.0" spacing="5.0">
+               <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                   <children>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dimensioni:" />
-                     <TextField fx:id="lunghezza" maxWidth="-Infinity" prefHeight="24.0" prefWidth="300.0" promptText="Lunghezza" />
-                     <TextField fx:id="altezza" prefHeight="24.0" prefWidth="0.0" promptText="Altezza" />
-                     <TextField fx:id="larghezza" promptText="Largezza" />
-                     <TextField fx:id="peso" promptText="Peso" />
-                     <TextField fx:id="volume" promptText="Volume bagagliaio" />
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dimensioni:">
+                        <font>
+                           <Font size="22.0" />
+                        </font></Text>
+                     <TextField fx:id="lunghezza" maxWidth="-Infinity" prefHeight="30.0" prefWidth="360.0" promptText="Lunghezza [m]">
+                        <font>
+                           <Font size="16.0" />
+                        </font>
+                     </TextField>
+                     <TextField fx:id="altezza" maxWidth="-Infinity" prefHeight="30.0" prefWidth="360.0" promptText="Altezza [m]">
+                        <font>
+                           <Font size="16.0" />
+                        </font></TextField>
+                     <TextField fx:id="larghezza" maxWidth="-Infinity" prefHeight="0.0" prefWidth="360.0" promptText="Largezza [m]">
+                        <font>
+                           <Font size="16.0" />
+                        </font></TextField>
+                     <TextField fx:id="peso" maxWidth="-Infinity" prefWidth="360.0" promptText="Peso [m]">
+                        <font>
+                           <Font size="16.0" />
+                        </font></TextField>
+                     <TextField fx:id="volume" maxWidth="-Infinity" prefWidth="360.0" promptText="Volume bagagliaio [L]">
+                        <font>
+                           <Font size="16.0" />
+                        </font></TextField>
                   </children>
                </VBox>
-               <VBox prefHeight="229.0" prefWidth="900.0">
+               <VBox prefHeight="237.0" prefWidth="900.0">
                   <children>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Costo:" />
-                     <HBox prefHeight="298.0" prefWidth="900.0">
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Costo:">
+                        <font>
+                           <Font size="22.0" />
+                        </font></Text>
+                     <HBox prefHeight="165.0" prefWidth="900.0">
                         <children>
-                           <TextField fx:id="costoBase" promptText="Costo base" />
+                           <TextField fx:id="costoBase" promptText="Costo base €">
+                              <font>
+                                 <Font size="16.0" />
+                              </font>
+                              <HBox.margin>
+                                 <Insets right="50.0" />
+                              </HBox.margin></TextField>
                            <GridPane fx:id="selectedMesi" prefHeight="210.0" prefWidth="373.0">
                              <columnConstraints>
                                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
@@ -94,8 +139,14 @@
                                  <Insets left="30.0" top="-5.0" />
                               </HBox.margin>
                            </GridPane>
-                           <TextField fx:id="scontoInput" promptText="Sconto" />
-                           <Button fx:id="addScontoButton" mnemonicParsing="false" onAction="#addSconto" text="Aggiungi" />
+                           <TextField fx:id="scontoInput" promptText="Sconto %">
+                              <HBox.margin>
+                                 <Insets top="65.0" />
+                              </HBox.margin></TextField>
+                           <Button fx:id="addScontoButton" mnemonicParsing="false" onAction="#addSconto" text="Aggiungi">
+                              <HBox.margin>
+                                 <Insets top="65.0" />
+                              </HBox.margin></Button>
                         </children>
                         <padding>
                            <Insets top="10.0" />
@@ -108,19 +159,19 @@
          </VBox>
       </center>
       <bottom>
-         <HBox alignment="BASELINE_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="59.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
+         <HBox alignment="BASELINE_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="81.0" prefWidth="1200.0" BorderPane.alignment="CENTER">
             <children>
-               <Button fx:id="avantiButton" styleClass="greenButton" mnemonicParsing="false" onAction="#addModello" text="Continua" textAlignment="CENTER">
+               <Button fx:id="avantiButton" mnemonicParsing="false" onAction="#addModello" prefHeight="80.0" prefWidth="200.0" styleClass="greenButton" text="Continua" textAlignment="CENTER">
                   <font>
                      <Font size="30.0" />
                   </font>
                   <HBox.margin>
-                     <Insets bottom="40.0" />
+                     <Insets />
                   </HBox.margin>
                </Button>
             </children>
             <BorderPane.margin>
-               <Insets bottom="100.0" />
+               <Insets bottom="30.0" />
             </BorderPane.margin></HBox>
       </bottom>
    </BorderPane>

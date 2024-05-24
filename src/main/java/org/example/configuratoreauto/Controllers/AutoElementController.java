@@ -49,8 +49,8 @@ public class AutoElementController {
         String iconPath = (utenti.getCurrentUser() instanceof Segretario) ? "/img/icons/edit-icon.png" : "/img/icons/right-arrow.png";
         Image icon = new Image(getClass().getResourceAsStream(iconPath));
         dynamicIcon.setImage(icon);
-
     }
+
     //Funzione che permette la gestione del click sulla componente
     @FXML
     public void handleHBoxClicked(){
