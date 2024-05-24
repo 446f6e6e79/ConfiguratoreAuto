@@ -6,200 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane maxHeight="Infinity" maxWidth="Infinity" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.PreventivoDetailsController">
-   <right>
-      <HBox prefHeight="295.0" prefWidth="293.0" BorderPane.alignment="CENTER">
-         <children>
-            <VBox alignment="TOP_CENTER" prefHeight="362.0" prefWidth="146.0">
-               <children>
-                  <Label alignment="TOP_CENTER" prefHeight="0.0" prefWidth="105.0" text="Dati dell'acquisto">
-                     <padding>
-                        <Insets bottom="10.0" />
-                     </padding></Label>
-                  <Label text="Modello">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label text="Marchio">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label text="Motore">
-                     <VBox.margin>
-                        <Insets bottom="40.0" top="10.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label text="Dimensione">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label text="Rivendita usato">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="usatoModello" text="Modello Marchio">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="kmLabel" text="Chilometraggio" />
-                  <Label fx:id="targaLabel" text="Targa" />
-                  <Label text="Optional">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </Label>
-               </children>
-               <opaqueInsets>
-                  <Insets top="10.0" />
-               </opaqueInsets>
-               <padding>
-                  <Insets bottom="10.0" top="20.0" />
-               </padding></VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="372.0" prefWidth="201.0">
-               <children>
-                  <Label fx:id="modello" text="Label">
-                     <VBox.margin>
-                        <Insets top="60.0" />
-                     </VBox.margin>
-                  </Label>
-                  <Label fx:id="marchio" text="Label">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="motore" text="Label">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                     <font>
-                        <Font size="10.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="dimensione" text="dimensione">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="isUsato" text="Label">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="labelUsato" text="Label">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="kmResult" text="Label" />
-                  <Label fx:id="targa" text="Label" />
-                  <Label fx:id="optional" text="Label">
-                     <padding>
-                        <Insets top="10.0" />
-                     </padding>
-                  </Label>
-               </children></VBox>
-         </children>
-      </HBox>
-   </right>
-   <left>
-      <HBox prefHeight="362.0" prefWidth="300.0" BorderPane.alignment="CENTER">
-         <children>
-            <VBox alignment="TOP_CENTER" prefHeight="362.0" prefWidth="172.0">
-                <Label text="Dati del preventivo">
-                  <padding>
-                     <Insets left="5.0" />
-                  </padding>
-                  <VBox.margin>
-                     <Insets top="20.0" />
-                  </VBox.margin></Label>
-               <Label text="Nominativo Cliente">
-                  <VBox.margin>
-                     <Insets top="10.0" />
-                  </VBox.margin>
-               </Label>
-               <Label text="Sede">
-                  <VBox.margin>
-                     <Insets top="10.0" />
-                  </VBox.margin>
-               </Label>
-               <Label text="Data preventivo">
-                  <VBox.margin>
-                     <Insets top="10.0" />
-                  </VBox.margin>
-               </Label>
-               <Label text="Data consegna">
-                  <VBox.margin>
-                     <Insets top="10.0" />
-                  </VBox.margin>
-               </Label>
-               <Label text="Data scadenza">
-                  <VBox.margin>
-                     <Insets top="10.0" />
-                  </VBox.margin>
-               </Label>
-               <Label text="Stato">
-                  <VBox.margin>
-                     <Insets top="10.0" />
-                  </VBox.margin>
-               </Label>
-               <Label text="Costo">
-                  <VBox.margin>
-                     <Insets top="10.0" />
-                  </VBox.margin>
-               </Label>
-               <Button onMouseClicked="#onPdf" mnemonicParsing="false" text="Scarica PDF">
-                  <VBox.margin>
-                     <Insets top="80.0" />
-                  </VBox.margin>
-               </Button>
-
-            </VBox>
-            <VBox alignment="TOP_CENTER" prefHeight="356.0" prefWidth="171.0">
-                <Label>
-                  <padding>
-                     <Insets top="30.0" />
-                  </padding></Label>
-               <Label fx:id="cliente" text="Label" />
-               <Label fx:id="sede" prefHeight="28.0" prefWidth="236.0" text="Label">
-                  <padding>
-                     <Insets top="10.0" />
-                  </padding>
-               </Label>
-               <Label fx:id="data" text="Label">
-                  <padding>
-                     <Insets top="10.0" />
-                  </padding>
-               </Label>
-               <Label fx:id="consegna" text="Label">
-                  <padding>
-                     <Insets top="10.0" />
-                  </padding>
-               </Label>
-               <Label fx:id="scadenza" text="Label">
-                  <padding>
-                     <Insets top="10.0" />
-                  </padding>
-               </Label>
-               <Label fx:id="stato" text="Label">
-                  <padding>
-                     <Insets top="10.0" />
-                  </padding>
-               </Label>
-               <Label fx:id="costo" text="Label">
-                  <padding>
-                     <Insets top="10.0" />
-                  </padding>
-               </Label>
-
-            </VBox>
-         </children>
-      </HBox>
-   </left>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.PreventivoDetailsController">
    <top>
       <BorderPane prefHeight="44.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <center>
@@ -222,4 +29,214 @@
          </left>
       </BorderPane>
    </top>
+   <left>
+      <VBox alignment="TOP_CENTER" prefHeight="756.0" prefWidth="561.0" BorderPane.alignment="CENTER">
+          <Label text="DATI PREVENTIVO">
+            <padding>
+               <Insets left="5.0" />
+            </padding>
+            <VBox.margin>
+               <Insets top="20.0" />
+            </VBox.margin>
+         </Label>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label text="Nominativo Cliente" />
+               <Label fx:id="cliente" prefHeight="18.0" prefWidth="189.0" text="Label" textAlignment="RIGHT" />
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label text="Sede" />
+               <Label fx:id="sede" prefHeight="28.0" prefWidth="50.0" text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label text="Data preventivo" />
+               <Label fx:id="data" text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label text="Data consegna" />
+               <Label fx:id="consegna" text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label text="Data scadenza" />
+               <Label fx:id="scadenza" text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label text="Stato" />
+               <Label fx:id="stato" text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label text="Costo" />
+               <Label fx:id="costo" text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+            </children>
+         </HBox>
+         <Button mnemonicParsing="false" onMouseClicked="#onPdf" text="Scarica PDF">
+            <VBox.margin>
+               <Insets bottom="30.0" />
+            </VBox.margin>
+         </Button>
+
+            </VBox>
+   </left>
+   <center>
+      <VBox prefHeight="756.0" prefWidth="274.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="TOP_CENTER" prefHeight="28.0" prefWidth="573.0" text="DATI SULLA VETTURA">
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
+            </Label>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Modello">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="modello" text="Label" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Marchio">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="marchio" text="Label">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Motore" />
+                  <Label fx:id="motore" text="Label">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                     <font>
+                        <Font size="10.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Dimensione">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="dimensione" text="dimensione">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Rivendita usato">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="isUsato" text="Label">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="73.0" prefWidth="438.0">
+               <children>
+                  <Label fx:id="targaLabel" text="Targa" />
+                  <Label fx:id="targa" text="Label" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="usatoModello" text="Modello Marchio">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="labelUsato" text="Label">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="kmLabel" text="Chilometraggio" />
+                  <Label fx:id="kmResult" text="Label" />
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label text="Optional">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="optional" text="Label">
+                     <padding>
+                        <Insets top="10.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox prefHeight="100.0" prefWidth="200.0" />
+         </children>
+      </VBox>
+   </center>
+   <right>
+      <HBox prefHeight="756.0" prefWidth="451.0" BorderPane.alignment="CENTER">
+         <children>
+            <ImageView fx:id="image" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+
+            </ImageView>
+         </children>
+      </HBox>
+   </right>
 </BorderPane>

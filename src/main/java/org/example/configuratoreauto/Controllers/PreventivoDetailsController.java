@@ -1,5 +1,6 @@
 package org.example.configuratoreauto.Controllers;
 
+import javafx.scene.image.ImageView;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -75,18 +76,23 @@ public class PreventivoDetailsController {
     Label kmResult;
     @FXML
     Label kmLabel;
-    @FXML
+    @FXML   
     Label targa;
     @FXML
     Label targaLabel;
-
+    @FXML
+    ImageView image;
     private UserModel user = UserModel.getInstance();
     private RegistroModel registro = RegistroModel.getInstance();
 
     private Preventivo preventivo;
 
     public void setPreventivo(Preventivo preventivo) {
+
         this.preventivo = preventivo;
+        if(!preventivo.getAcquisto().getImmagini().isEmpty()){
+            image.setImage(preventivo.getAcquisto().getImmagini().get(0).getImage());
+        }
         cliente.setText(preventivo.getCliente().getName() + " " + preventivo.getCliente().getSurname());
         sede.setText(preventivo.getSede().toString());
         data.setText(preventivo.getDataPreventivoAsString());
@@ -94,7 +100,7 @@ public class PreventivoDetailsController {
         if(preventivo.getStato()!= StatoPreventivo.RICHIESTO) {
             scadenza.setText(preventivo.getDataScadenzaAsString());
         }else{
-            scadenza.setText("...");
+            scadenza.setText("da definire");
         }
         stato.setText(preventivo.getStato().toString());
         costo.setText(preventivo.getCostoDettagliato());
