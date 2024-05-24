@@ -34,7 +34,6 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         if(optionalScelti != null){
             this.optionals.addAll(optionalScelti);
         }
-        setConsegna();
     }
 
     public Preventivo(AutoNuova acquisto, Sede sede, Cliente cliente, Motore motore, ArrayList optionalScelti){
@@ -51,16 +50,17 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         return euroFormat.format(price);
     }
 
-    public void setUsata(AutoUsata auto){
-        this.usata = auto;
+    public void setUsata(AutoUsata usata){
+        this.usata = usata;
         if(usata == null){
             //In caso non sia presente un auto usata, il preventivo è già finalizzato e posso impostare una scadenza
             this.stato = StatoPreventivo.FINALIZZATO;
             setScadenza(new Date());
+            setConsegna();
         }
     }
 
-    /*
+    /**
     *  Calcola la data di consegna effettiva della macchina.
     *  La data è calcolata come:
     *     - data base + 1 mese + (10 giorni * numeroOptional)
@@ -75,7 +75,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         this.consegna = dataDiConsegna.getTime();
     }
 
-    /*
+    /**
     *   Imposta la data di scadenza a partire da 20 giorni dalla data passata come parametro. Si verificano 2 casi:
     *       1) Preventivo senza autoUsata -> la scadenza è impostata a 20 giorni dal giorno in cui il preventivo è richiesto
     *       2) Preventivo con autoUsata -> scadenza impostata a 20 giorni dalla finalizzazione
@@ -131,6 +131,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     public String getDataScadenzaAsString(){
         return getDataAsString(this.scadenza);
     }
+
     public StatoPreventivo getStato() {
         return stato;
     }

@@ -7,7 +7,6 @@
 .greenButton {
     -fx-background-color: #4CAF50; /* Green background color */
     -fx-text-fill: white; /* Text color */
-    -fx-font-size: 20px; /* Font size */
     -fx-padding: 10px 20px; /* Padding */
     -fx-border-radius: 5px; /* Border radius */
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.2, 1); /* Box shadow */
@@ -57,3 +56,17 @@
     -fx-padding: 20px; /* Padding of tab content */
 }
 
+.clickableElement {
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.2, 1);
+    -fx-border-color: GREY;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+
+.clickableElement:hover {
+    -fx-background-color: #E0E0E0; /* Change background color on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.5, 0.2, 1); /* Change shadow on hover */
+    -fx-border-color: DARKGREY; /* Change border color on hover */
+}
