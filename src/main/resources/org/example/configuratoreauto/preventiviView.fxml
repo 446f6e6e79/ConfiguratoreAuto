@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <BorderPane fx:id="preventiviComponent" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.PreventiviController">
    <left>
@@ -20,32 +21,104 @@
                <font>
                   <Font name="System Bold" size="30.0" />
                </font></Label>
-            <VBox prefHeight="326.0" prefWidth="290.0" styleClass="borderTopBottom">
+            <VBox prefHeight="364.0" prefWidth="276.0" spacing="15.0" styleClass="borderTopBottom">
                <children>
-                  <ComboBox fx:id="choiceStato" prefWidth="150.0" />
-                  <Label text="Filtra per marca" />
-                  <ComboBox fx:id="choiceMarca" prefWidth="150.0" />
-                  <Label fx:id="clienteLabel" text="Filtra per cliente" />
-                  <TextField fx:id="clienteField" promptText="Nome / Cognome">
+                  <HBox alignment="CENTER" prefHeight="41.0" prefWidth="276.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Stato:">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="77.0" />
+                           </HBox.margin>
+                        </Text>
+                        <ComboBox fx:id="choiceStato" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="30.0" prefWidth="150.0" promptText="Stato" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="0.0" prefWidth="276.0">
+                     <children>
+                        <Label text="Marca:">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="70.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ComboBox fx:id="choiceMarca" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="32.0" prefWidth="276.0">
+                     <children>
+                        <Label fx:id="clienteLabel" prefHeight="24.0" prefWidth="68.0" text="Cliente:">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="57.0" />
+                           </HBox.margin>
+                        </Label>
+                        <TextField fx:id="clienteField" prefHeight="30.0" prefWidth="150.0" promptText="Nome / Cognome">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="37.0" prefWidth="276.0">
+                     <children>
+                        <Label fx:id="sedeLabel" text="Sede:">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="79.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ComboBox fx:id="choiceSede" prefHeight="30.0" prefWidth="150.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="36.0" prefWidth="276.0">
+                     <children>
+                        <Label fx:id="impiegatoStatoLabel" text="Stato:">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="77.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ChoiceBox fx:id="stateChoiceBox" prefHeight="30.0" prefWidth="150.0" />
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="97.0" prefWidth="276.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#resetFilter" styleClass="resetButton" text="Reset">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Button>
+                     </children>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" />
+                        <Insets />
                      </VBox.margin>
-                  </TextField>
-                  <Label fx:id="sedeLabel" text="Filtra per sede" />
-                  <Label fx:id="impiegatoStatoLabel" text="Seleziona Stato" />
-                  <ChoiceBox fx:id="stateChoiceBox" prefWidth="150.0" />
-                  <ComboBox fx:id="choiceSede" prefWidth="150.0" />
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </HBox>
                </children>
-            </VBox>
-            <Button mnemonicParsing="false" onAction="#resetFilter" text="Reset Filtri">
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets />
                </VBox.margin>
-            </Button>
+               <padding>
+                  <Insets top="10.0" />
+               </padding>
+            </VBox>
 
          </children>
          <padding>
-            <Insets left="10.0" />
+            <Insets left="10.0" top="5.0" />
          </padding>
       </VBox>
    </left>
@@ -61,7 +134,10 @@
    <center>
       <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
-            <VBox fx:id="mainView" prefHeight="767.0" prefWidth="1090.0" styleClass="scrollPaneBorder" />
+            <VBox fx:id="mainView" alignment="TOP_CENTER" prefHeight="842.0" prefWidth="1118.0" spacing="10.0" styleClass="scrollPaneBorder">
+               <padding>
+                  <Insets top="10.0" />
+               </padding></VBox>
          </content>
       </ScrollPane>
    </center>

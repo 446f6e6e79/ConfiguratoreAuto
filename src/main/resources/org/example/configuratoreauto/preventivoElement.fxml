@@ -1,51 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="42.0" spacing="10.0" style="-fx-border-color: BLACK; -fx-border-width: 2; -fx-border-radius: 10;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" onMouseClicked="#handlerClick" fx:controller="org.example.configuratoreauto.Controllers.PreventivoElementController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handlerClick" prefHeight="100.0" prefWidth="950.0" spacing="10.0" styleClass="clickableElement" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.PreventivoElementController">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0">
+      <BorderPane prefHeight="182.0" prefWidth="1100.0">
          <left>
-            <HBox alignment="CENTER_LEFT" prefHeight="28.0" prefWidth="321.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="577.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="data" text="DATA">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="modello" text="MODELLO">
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
                   <Label fx:id="cliente" text="">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                  </Label>
+                  <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="180.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="data" text="DAta RICHIESTA" textAlignment="CENTER">
+                           <padding>
+                              <Insets left="10.0" />
+                           </padding>
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="22.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <Label fx:id="modello" text="MODELLO">
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
                   </Label>
                </children>
             </HBox>
          </left>
-         <right>
-            <HBox alignment="CENTER_RIGHT" prefHeight="28.0" prefWidth="264.0" BorderPane.alignment="CENTER">
+         <center>
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="386.0" BorderPane.alignment="CENTER">
                <children>
-                  <Label fx:id="consegna" text="CONSEGNA" />
+                  <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="155.0">
+                     <children>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data consegna:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Text>
+                        <Label fx:id="consegna" text="CONSEGNA">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="22.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                  </VBox>
                   <Label fx:id="stato" text="STATO">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
+                     <font>
+                        <Font name="System Bold" size="30.0" />
+                     </font>
                   </Label>
-                  <ImageView fx:id="openIcon" fitHeight="15" fitWidth="15">
+                  <ImageView fx:id="openIcon" fitHeight="30.0" fitWidth="30.0">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
                   </ImageView>
                </children>
             </HBox>
-         </right>
+         </center>
       </BorderPane>
    </children>
    <padding>

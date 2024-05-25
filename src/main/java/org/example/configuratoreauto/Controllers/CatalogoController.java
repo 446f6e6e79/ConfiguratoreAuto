@@ -22,7 +22,7 @@ import java.util.ResourceBundle;
 public class CatalogoController implements Initializable {
 
     @FXML
-    private AnchorPane catalogoComponent;
+    private BorderPane catalogoComponent;
     @FXML
     private FlowPane autoList;
     @FXML

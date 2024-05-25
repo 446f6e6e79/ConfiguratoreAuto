@@ -5,7 +5,6 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
-<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
@@ -13,89 +12,85 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="catalogoComponent" prefHeight="500.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.CatalogoController">
-   <children>
-      <BorderPane prefHeight="500.0" prefWidth="970.0">
-         <center>
-            <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="381.0" prefWidth="525.0" styleClass="scrollPaneBorder" BorderPane.alignment="CENTER">
-               <content>
-                  <FlowPane fx:id="autoList" hgap="20.0" prefHeight="400.0" prefWidth="200.0" vgap="20.0" />
-               </content>
-               <padding>
-                  <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
-               </padding>
-            </ScrollPane>
-         </center>
-         <left>
-            <VBox prefHeight="500.0" prefWidth="286.0" BorderPane.alignment="CENTER">
+<BorderPane fx:id="catalogoComponent" prefHeight="500.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.CatalogoController">
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="381.0" prefWidth="525.0" styleClass="scrollPaneBorder" BorderPane.alignment="CENTER">
+         <content>
+            <FlowPane fx:id="autoList" hgap="20.0" prefHeight="400.0" prefWidth="200.0" vgap="20.0" />
+         </content>
+         <padding>
+            <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+         </padding>
+      </ScrollPane>
+   </center>
+   <left>
+      <VBox prefHeight="500.0" prefWidth="286.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label text="Filtri:" textAlignment="CENTER">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <VBox.margin>
+                  <Insets left="5.0" top="5.0" />
+               </VBox.margin>
+            </Label>
+            <VBox prefHeight="241.0" prefWidth="280.0" styleClass="borderTopBottom">
                <children>
-                  <Label text="Filtri:" textAlignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="30.0" />
-                     </font>
-                     <VBox.margin>
-                        <Insets left="5.0" top="5.0" />
-                     </VBox.margin>
-                  </Label>
-                  <VBox prefHeight="241.0" prefWidth="280.0" styleClass="borderTopBottom">
+                  <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="335.0">
                      <children>
-                        <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="335.0">
-                           <children>
-                              <Label prefHeight="24.0" prefWidth="66.0" text="Marca:">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets right="76.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <ChoiceBox fx:id="brandList" prefWidth="150.0" />
-                           </children>
-                        </HBox>
-                        <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="335.0">
-                           <children>
-                              <Label text="Alimentazione:">
-                                 <font>
-                                    <Font size="19.0" />
-                                 </font>
-                                 <HBox.margin>
-                                    <Insets right="13.0" />
-                                 </HBox.margin>
-                              </Label>
-                              <ChoiceBox fx:id="alimentazioneList" prefWidth="150.0" />
-                           </children>
-                        </HBox>
-                        <VBox alignment="CENTER" prefHeight="62.0" prefWidth="280.0">
-                           <children>
-                              <Button fx:id="resetFiltri" mnemonicParsing="false" onAction="#resetFilters" styleClass="resetButton" text="Reset">
-                                 <font>
-                                    <Font size="30.0" />
-                                 </font>
-                              </Button>
-                           </children>
-                           <padding>
-                              <Insets top="40.0" />
-                           </padding>
-                        </VBox>
+                        <Label prefHeight="24.0" prefWidth="66.0" text="Marca:">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="76.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ChoiceBox fx:id="brandList" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" />
                      </children>
+                  </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="335.0">
+                     <children>
+                        <Label text="Alimentazione:">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="13.0" />
+                           </HBox.margin>
+                        </Label>
+                        <ChoiceBox fx:id="alimentazioneList" prefHeight="30.0" prefWidth="150.0" />
+                     </children>
+                  </HBox>
+                  <VBox alignment="CENTER" prefHeight="62.0" prefWidth="280.0">
+                     <children>
+                        <Button fx:id="resetFiltri" mnemonicParsing="false" onAction="#resetFilters" styleClass="resetButton" text="Reset">
+                           <font>
+                              <Font name="System Bold" size="30.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets top="40.0" />
+                     </padding>
                   </VBox>
                </children>
-               <padding>
-                  <Insets left="3.0" right="3.0" />
-               </padding>
             </VBox>
-         </left>
-         <top>
-            <HBox alignment="CENTER" prefHeight="32.0" prefWidth="970.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Catalogo">
-                     <font>
-                        <Font name="System Bold" size="26.0" />
-                     </font>
-                  </Text>
-               </children>
-            </HBox>
-         </top>
-      </BorderPane>
-   </children>
-</AnchorPane>
+         </children>
+         <padding>
+            <Insets left="3.0" right="3.0" />
+         </padding>
+      </VBox>
+   </left>
+   <top>
+      <HBox alignment="CENTER" prefHeight="32.0" prefWidth="970.0" BorderPane.alignment="CENTER">
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Catalogo">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>

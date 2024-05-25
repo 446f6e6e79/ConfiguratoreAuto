@@ -2,10 +2,12 @@ package org.example.configuratoreauto.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.Marca;
@@ -162,7 +164,9 @@ public class PreventiviController {
     private void getPreventivi(ArrayList<Preventivo> registroArg) {
         if (registroArg.isEmpty()) {
             Label none = new Label();
-            none.setText("Non è presente nessuna macchina, controlla i filtri nel caso ti aspettassi qualcosa!!");
+            none.setText("Non è presente alcun preventivo che rispetti i filtri selezionati!");
+            none.setFont(new Font(30));
+            none.setPadding(new Insets(300,0,0,0));
             mainView.getChildren().add(none);
             return;
         }
@@ -175,7 +179,7 @@ public class PreventiviController {
         }
     }
 
-    /*
+    /**
      *   Genera il singolo elemento PREVENTIVO, contenente:
      *       - Data richiesta
      *       - Auto, per cui è stato richiesto il preventivo
