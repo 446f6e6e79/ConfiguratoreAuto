@@ -49,8 +49,8 @@ public class PreventivoElementController {
         stato.setText(preventivo.getStato().toString());
         setStatoColor(stato);
 
-        if(utenti.getCurrentUser() instanceof Segretario){
-            cliente.setText(preventivo.getCliente().getName());
+        if(utenti.getCurrentUser() instanceof Impiegato || utenti.getCurrentUser() instanceof Segretario){
+            cliente.setText(preventivo.getCliente().getName() + " " + preventivo.getCliente().getSurname());
         }
         String iconPath = "/img/icons/right-arrow.png";
         Image icon = new Image(getClass().getResourceAsStream(iconPath));
@@ -61,14 +61,9 @@ public class PreventivoElementController {
     @FXML
     public void handlerClick(){
         System.out.println("CLICCATO");
-        //Controllo sul tipo di utente che ha cliccato
-        if(utenti.getCurrentUser() instanceof Impiegato){
-            //Pagina modifica auto
 
-        }
-        else{
             //Apertura pagina
-            try {
+        try {
                 TabPane tabPane = (TabPane) consegna.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
                 Tab preventivoTab = tabPane.getTabs().get(1); // Ottieni il riferimento al tab "Catalogo"
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventivoView.fxml"));
@@ -77,10 +72,10 @@ public class PreventivoElementController {
                 controller.setPreventivo(preventivo);
                 preventivoTab.setContent(preventivoNode); // Imposta il nuovo contenuto del tab "Catalogo"
 
-            }catch (IOException e){
+        }catch (IOException e){
                 e.printStackTrace();
-            }
         }
+
     }
 
     private void setStatoColor(Label stato){

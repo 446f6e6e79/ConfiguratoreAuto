@@ -1,5 +1,6 @@
 package org.example.configuratoreauto.Controllers;
 
+import javafx.scene.control.Button;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -22,6 +23,8 @@ import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 import org.example.configuratoreauto.Preventivi.StatoPreventivo;
 import org.example.configuratoreauto.Utenti.Cliente;
+import org.example.configuratoreauto.Utenti.Impiegato;
+import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
 
 public class PreventivoDetailsController {
@@ -79,13 +82,30 @@ public class PreventivoDetailsController {
     Label targa;
     @FXML
     Label targaLabel;
-
+    @FXML
+    Button pagatoButton;
+    @FXML
+    Button disponibileButton;
+    @FXML
+    Button ritiratoButton;
     private UserModel user = UserModel.getInstance();
     private RegistroModel registro = RegistroModel.getInstance();
 
     private Preventivo preventivo;
 
     public void setPreventivo(Preventivo preventivo) {
+        pagatoButton.setVisible(false);
+        disponibileButton.setVisible(false);
+        ritiratoButton.setVisible(false);
+        if(user.getCurrentUser() instanceof Impiegato && preventivo.getStato()==StatoPreventivo.FINALIZZATO){
+           pagatoButton.setVisible(true);
+        }
+        if(user.getCurrentUser() instanceof Impiegato && preventivo.getStato()==StatoPreventivo.PAGATO){
+            disponibileButton.setVisible(true);
+        }
+        if(user.getCurrentUser() instanceof Impiegato && preventivo.getStato()==StatoPreventivo.DISPONIBILE_AL_RITIRO){
+            ritiratoButton.setVisible(true);
+        }
         this.preventivo = preventivo;
         cliente.setText(preventivo.getCliente().getName() + " " + preventivo.getCliente().getSurname());
         sede.setText(preventivo.getSede().toString());
@@ -146,13 +166,34 @@ public class PreventivoDetailsController {
 
             if(user.getCurrentUser() instanceof Cliente){
                 controller.loadPrevs(registro.getPreventiviByCliente((Cliente) user.getCurrentUser()));
-            }else{
+            }else if(user.getCurrentUser() instanceof Segretario){
                 controller.loadPrevs(registro.getAllData());
+            }else if(user.getCurrentUser() instanceof Impiegato && preventivo.getStato()!=StatoPreventivo.RITIRATO){
+                controller.loadPrevs(registro.getPreventiviByStato(preventivo.getStato()));
+            }else if(user.getCurrentUser() instanceof Impiegato && preventivo.getStato()==StatoPreventivo.RITIRATO){
+                controller.loadPrevs((registro.getPreventiviByStato(StatoPreventivo.FINALIZZATO)));
             }
             tab.setContent(preventiviList); // Imposta il nuovo contenuto del tab "Catalogo"
         }catch (IOException e){
             e.printStackTrace();
         }
+    }
+    @FXML
+    private void pagato(){
+        preventivo.setStato(StatoPreventivo.PAGATO);
+
+        goBack();
+    }
+    @FXML
+    private void disponibile(){
+        preventivo.setStato(StatoPreventivo.DISPONIBILE_AL_RITIRO);
+        goBack();
+    }
+
+    @FXML
+    private void ritirato(){
+        preventivo.setStato((StatoPreventivo.RITIRATO));
+        goBack();
     }
 
 

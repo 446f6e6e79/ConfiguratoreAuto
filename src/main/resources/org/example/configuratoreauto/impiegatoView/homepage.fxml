@@ -10,14 +10,9 @@
                 <fx:include source="valutazioniView.fxml"></fx:include>
             </content>
         </Tab>
-        <Tab text="Pagamenti" fx:id="pagamentiTab">
+        <Tab text="Gestione Preventivi" fx:id="pagamentiTab">
             <content>
-                <fx:include source="pagamentiView.fxml"></fx:include>
-            </content>
-        </Tab>
-        <Tab text="Segnala Ritiro" fx:id="ritiroTab">
-            <content>
-                <fx:include source="ritiroView.fxml"></fx:include>
+                <fx:include source="../preventiviView.fxml"></fx:include>
             </content>
         </Tab>
     </tabs>

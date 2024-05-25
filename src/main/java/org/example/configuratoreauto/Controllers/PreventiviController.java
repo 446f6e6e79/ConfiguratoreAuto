@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.Marca;
 import org.example.configuratoreauto.Preventivi.*;
 import org.example.configuratoreauto.Utenti.Cliente;
+import org.example.configuratoreauto.Utenti.Impiegato;
 import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
 
@@ -21,45 +22,80 @@ import java.util.stream.Collectors;
 
 public class PreventiviController {
 
-    RegistroModel registro = RegistroModel.getInstance();
-    SediModel sedi = SediModel.getInstance();
-    UserModel utente = UserModel.getInstance();
+    private RegistroModel registro = RegistroModel.getInstance();
+    private SediModel sedi = SediModel.getInstance();
+    private UserModel utente = UserModel.getInstance();
 
+    private StatoPreventivo actualStato;
     @FXML
-    VBox mainView;
+    private Label titleMain;
     @FXML
-    Label sedeLabel;
+    private VBox mainView;
     @FXML
-    Label clienteLabel;
+    private Label sedeLabel;
     @FXML
-    ComboBox<StatoPreventivo> choiceStato;
+    private Label clienteLabel;
     @FXML
-    ComboBox<Marca> choiceMarca;
+    private ComboBox<StatoPreventivo> choiceStato;
     @FXML
-    ComboBox<Sede> choiceSede;
+    private ComboBox<Marca> choiceMarca;
     @FXML
-    TextField clienteField;
-
+    private ComboBox<Sede> choiceSede;
+    @FXML
+    private TextField clienteField;
+    @FXML
+    private Label statoLabel;
+    @FXML
+    private ChoiceBox<StatoPreventivo> stateChoiceBox;
+    @FXML
+    private Label impiegatoStatoLabel;
     @FXML
     private void initialize() {
-        if(utente.getCurrentUser() instanceof Segretario) {
+        impiegatoStatoLabel.setVisible(false);
+        stateChoiceBox.setVisible(false);
+        if (utente.getCurrentUser() instanceof Segretario) {
             choiceSede.setVisible(true);
             clienteField.setVisible(true);
             sedeLabel.setVisible(true);
             clienteLabel.setVisible(true);
             loadPrevs(registro.getAllData());
-        }
-        else{
+        } else if (utente.getCurrentUser() instanceof Cliente) {
             choiceSede.setVisible(false);
             clienteField.setVisible(false);
             sedeLabel.setVisible(false);
             clienteLabel.setVisible(false);
+        } else if (utente.getCurrentUser() instanceof Impiegato) {
+            choiceSede.setVisible(true);
+            clienteField.setVisible(true);
+            sedeLabel.setVisible(true);
+            impiegatoStatoLabel.setVisible(true);
+            stateChoiceBox.setVisible(true);
+            clienteLabel.setVisible(true);
+            choiceStato.setVisible(false);
+            statoLabel.setVisible(false);
+            titleMain.setText("Gestione Preventivi");
+
+            initializeStateChoiceBox();
+            actualStato = StatoPreventivo.FINALIZZATO; // Default state
+            loadPrevs(registro.getPreventiviByStato(StatoPreventivo.FINALIZZATO));
         }
         initializeChoiceBoxes();
     }
 
+    private void initializeStateChoiceBox() {
+        stateChoiceBox.getItems().setAll(StatoPreventivo.FINALIZZATO, StatoPreventivo.PAGATO, StatoPreventivo.DISPONIBILE_AL_RITIRO);
+        stateChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                actualStato = newValue;
+                titleMain.setText("Gestione Preventivi - " + newValue);
+                loadPrevs(registro.getPreventiviByStato(newValue));
+            }
+        });
+        stateChoiceBox.getSelectionModel().selectFirst(); // Default to the first state
+    }
+
     @FXML
-    void resetFilter() {
+    private void resetFilter() {
         // Reset the values of ChoiceBoxes and TextField
         choiceStato.getSelectionModel().clearSelection();
         choiceMarca.getSelectionModel().clearSelection();
@@ -68,8 +104,6 @@ public class PreventiviController {
 
         // Call filterPreventivi to refresh the list
         filterPreventivi();
-        loadPrevs(registro.getAllData());
-
     }
 
     private void initializeChoiceBoxes() {

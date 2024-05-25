@@ -226,7 +226,12 @@
                   </Label>
                </children>
             </HBox>
-            <HBox prefHeight="100.0" prefWidth="200.0" />
+            <HBox prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Button fx:id="pagatoButton" mnemonicParsing="false" onAction="#pagato" text="SEGNALA PAGAMENTO" />
+                  <Button fx:id="disponibileButton" mnemonicParsing="false" onAction="#disponibile" text="SEGNALA RITIRO" />
+                  <Button fx:id="ritiratoButton" mnemonicParsing="false" onAction="#ritirato" text="SEGNALA RITIRATO" />
+               </children></HBox>
          </children>
       </VBox>
    </center>

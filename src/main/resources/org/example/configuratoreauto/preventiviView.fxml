@@ -8,7 +8,7 @@
    <left>
       <VBox alignment="TOP_CENTER" prefHeight="240.0" prefWidth="208.0" BorderPane.alignment="CENTER">
          <children>
-            <Label text="Filtra per stato:" />
+            <Label fx:id="statoLabel" text="Filtra per stato:" />
             <ComboBox fx:id="choiceStato" prefWidth="150.0" />
             <Label text="Filtra per marca" />
             <ComboBox fx:id="choiceMarca" prefWidth="150.0" />
@@ -20,7 +20,9 @@
             </TextField>
             <Label fx:id="sedeLabel" text="Filtra per sede" />
             <ComboBox fx:id="choiceSede" prefWidth="150.0" />
-            <Button mnemonicParsing="false" text="Reset Filtri" onAction="#resetFilter">
+            <Label fx:id="impiegatoStatoLabel" text="Seleziona Stato" />
+            <ChoiceBox fx:id="stateChoiceBox" prefWidth="150.0" />
+            <Button mnemonicParsing="false" onAction="#resetFilter" text="Reset Filtri">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
@@ -32,7 +34,7 @@
 
    <top>
       <HBox prefHeight="32.0" BorderPane.alignment="CENTER">
-         <Label alignment="CENTER" prefHeight="32.0" prefWidth="755.0" text="PREVENTIVI">PREVENTIVI</Label>
+         <Label fx:id="titleMain" alignment="CENTER" prefHeight="32.0" prefWidth="755.0" text="Gestione Preventivi">PREVENTIVI</Label>
       </HBox>
    </top>
 
