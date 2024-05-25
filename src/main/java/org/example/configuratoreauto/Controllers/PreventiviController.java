@@ -103,9 +103,13 @@ public class PreventiviController {
         choiceMarca.getSelectionModel().clearSelection();
         choiceSede.getSelectionModel().clearSelection();
         clienteField.clear();
-
-        // Call filterPreventivi to refresh the list
+        stateChoiceBox.getSelectionModel().select(0);
         filterPreventivi();
+        if(utente.getCurrentUser()instanceof Impiegato){
+            loadPrevs(registro.getPreventiviByStato(StatoPreventivo.FINALIZZATO));
+        }
+        // Call filterPreventivi to refresh the list
+
     }
 
     private void initializeChoiceBoxes() {
