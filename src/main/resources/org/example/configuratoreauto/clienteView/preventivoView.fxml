@@ -228,9 +228,7 @@
             </HBox>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
-                  <Button fx:id="pagatoButton" mnemonicParsing="false" onAction="#pagato" text="SEGNALA PAGAMENTO" />
-                  <Button fx:id="disponibileButton" mnemonicParsing="false" onAction="#disponibile" text="SEGNALA RITIRO" />
-                  <Button fx:id="ritiratoButton" mnemonicParsing="false" onAction="#ritirato" text="SEGNALA RITIRATO" />
+                  <Button fx:id="impiegatoButton" mnemonicParsing="false" onAction="#impiegatoPress" text="SEGNALA PAGAMENTO" />
                </children></HBox>
          </children>
       </VBox>

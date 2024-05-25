@@ -97,7 +97,7 @@ public class PreventiviController {
     }
 
     @FXML
-    private void resetFilter() {
+    public void resetFilter() {
         // Reset the values of ChoiceBoxes and TextField
         choiceStato.getSelectionModel().clearSelection();
         choiceMarca.getSelectionModel().clearSelection();
