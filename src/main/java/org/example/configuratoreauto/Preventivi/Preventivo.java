@@ -154,7 +154,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         setConsegna();
     }
 
-    public ArrayList<Optional> getOptionals() {
+    public ArrayList<Optional> getOptionalScelti() {
         return optionals;
     }
     public String getCostoDettagliato() {

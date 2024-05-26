@@ -47,7 +47,7 @@ public class PreventivoElementController {
             consegna.setText("");
         }
         stato.setText(preventivo.getStato().toString());
-        setStatoColor(stato);
+        setStatoColor(stato, preventivo.getStato());
 
         //Se è in disponibile al ritiro, coloro di verde l'intero elento
         if(preventivo.getStato() == StatoPreventivo.DISPONIBILE_AL_RITIRO){
@@ -81,20 +81,21 @@ public class PreventivoElementController {
 
     }
 
-    private void setStatoColor(Label stato){
-        String statoAttuale = stato.getText();
-
-        switch(statoAttuale){
-            case "SCADUTO":
+    private void setStatoColor(Label stato, StatoPreventivo statoPreventivo) {
+        switch (statoPreventivo) {
+            case SCADUTO:
                 stato.setTextFill(Color.RED);
                 break;
-            case "RITIRATO":
+            case RITIRATO:
+            case DISPONIBILE_AL_RITIRO:
                 stato.setTextFill(Color.BLACK);
                 break;
-            case "RICHIESTO":
+            case RICHIESTO:
                 stato.setTextFill(Color.YELLOW);
+                break;
             default:
                 stato.setTextFill(Color.GREEN);
+                break;
         }
     }
 

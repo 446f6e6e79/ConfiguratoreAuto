@@ -2,6 +2,7 @@ package org.example.configuratoreauto.Controllers;
 
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
@@ -34,9 +35,18 @@ public class PreventivoDetailsController {
     @FXML
     private ImageView image;
     @FXML
+    private Label modello;
+    @FXML
     private VBox priceDetails;
     @FXML
     private Label prezzoBase;
+    @FXML
+    private Label marchio;
+    @FXML
+    private Label modelloDescription;
+
+
+
 
     @FXML
     private Label cliente;
@@ -60,16 +70,12 @@ public class PreventivoDetailsController {
     private Label costo;
 
     @FXML
-    private Label modello;
-
-    @FXML
-    private Label marchio;
-
-    @FXML
     private Label motore;
 
     @FXML
     private Label dimensione;
+
+
 
     @FXML
     private Label isUsato;
@@ -122,10 +128,27 @@ public class PreventivoDetailsController {
         image.setImage(preventivo.getAcquisto().getDefaultImage());
         modello.setText(preventivo.getAcquisto().getModello());
         prezzoBase.setText(preventivo.getAcquisto().getBasePriceAsString());
-        //Per ogni optional aggiunto, aggiungo uan riga
-        for(Optional o: preventivo.getOptionals()){
 
+        //Per ogni optional scelto, aggiungo una riga nella tabella
+        for(Optional o: preventivo.getOptionalScelti()){
+            HBox row = new HBox();
+            row.getStyleClass().add("tableRow");
+
+            //Creo la label per la descrizione dell'optional
+            Label description = new Label(o.getDescrizione());
+            description.getStyleClass().add("tableRowLabel");
+            description.setPrefWidth(prezzoBase.getPrefWidth());
+
+            //Creo la label per il prezzo dell'optional
+            Label price = new Label(Preventivo.getPriceAsString(o.getCosto()));
+            price.getStyleClass().add("tableRowLabel");
+            description.setPrefWidth(prezzoBase.getPrefWidth());
+
+            //Aggiungo gli elementi alla riga, aggiungo la riga alla tabella
+            row.getChildren().addAll(description, price);
+            priceDetails.getChildren().add(row);
         }
+        modelloDescription.setText(preventivo.getAcquisto().getModello());
 
         /*
         *   Carico i dati relativi al preventivo
@@ -306,7 +329,7 @@ public class PreventivoDetailsController {
                 contentStream.showText("Costi Optionals:");
                 contentStream.newLineAtOffset(0, -20);
                 int c=0;
-                for(Optional opt : preventivo.getOptionals()){
+                for(Optional opt : preventivo.getOptionalScelti()){
                     if(opt!=null){
                         c++;
                         contentStream.showText("   "+opt.getDescrizione() + ": "+ opt.getCosto()+" €");

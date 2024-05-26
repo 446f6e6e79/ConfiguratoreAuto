@@ -27,10 +27,13 @@ public class Main extends Application {
         stage.show();
     }
 
+    //Override del metodo STOP, viene eseguito alla terminazione del programma
+    @Override
+    public void stop() {
+        closeModels();
+    }
     public static void main(String[] args) {
         launch(args);
-        //Once the program is closed, whole the data, saved locally, is saved to the files
-        closeModels();
     }
 
     public static void setPage(String pageName) {
@@ -44,10 +47,7 @@ public class Main extends Application {
             e.printStackTrace();
         }
     }
-    /*
-        DA SPOSTARE IN UNA CLASSE MODEL GENERICA
-    *   Metodo che aggiorna le istanze di tutti i modelli, prima della effettiva terminazione del programma
-    * */
+
     private static void closeModels(){
         userModel.uploadData();
         System.out.println("Caricato userModel");
