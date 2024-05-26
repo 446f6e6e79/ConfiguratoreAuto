@@ -267,7 +267,7 @@ public class CustomizeAutoController implements Initializable {
             TabPane tabPane = (TabPane) modelID.getScene().lookup("#mainPage");
             Tab tab= tabPane.getTabs().get(0);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/catalogoView.fxml"));
-            AnchorPane catalogoNode;
+            BorderPane catalogoNode;
             BorderPane preventiviNode;
             catalogoNode = loader.load();
             loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
