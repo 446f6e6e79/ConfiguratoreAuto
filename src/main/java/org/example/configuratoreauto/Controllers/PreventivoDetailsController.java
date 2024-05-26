@@ -125,8 +125,9 @@ public class PreventivoDetailsController {
 
         /*
         *   Carico i dati per l'auto acquistata
+        *   TODO: recuperare il colore selezionato, in modo da personalizzare la lista
         * */
-        image.setImage(preventivo.getAcquisto().getDefaultImage());
+        image.setImage(preventivo.getAcquisto().getDefaultImage(null));
         modello.setText(preventivo.getAcquisto().getModello());
         prezzoBase.setText(preventivo.getAcquisto().getBasePriceAsString());
 

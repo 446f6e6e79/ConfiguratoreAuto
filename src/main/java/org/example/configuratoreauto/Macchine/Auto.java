@@ -1,19 +1,16 @@
 package org.example.configuratoreauto.Macchine;
 
-import javafx.scene.image.Image;
-
 import java.io.IOException;
 import java.io.Serializable;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Comparator;
 
+/**
+ * Classe Astratta auto. Rappresenta alcuni campi e metodi comuni alle classsi
+ * AutoNuova e AutoUsata.
+ */
 public abstract class Auto implements Serializable{
     private Marca marca;
     private String modello;
-
     private ArrayList<Immagine> immagini = new ArrayList<>();
 
     public Auto(Marca marca, String modello){
@@ -23,9 +20,7 @@ public abstract class Auto implements Serializable{
     }
     protected Auto(){}
 
-    /*
-    *   GET e SET per l'attrito MARCA
-    * */
+    //GET e SET per l'attrito MARCA
     public Marca getMarca() {
         return marca;
     }
@@ -33,6 +28,7 @@ public abstract class Auto implements Serializable{
         this.marca = marca;
     }
 
+    //GET e SET per l'attributo modello
     public String getModello() {
         return modello;
     }
@@ -48,7 +44,7 @@ public abstract class Auto implements Serializable{
     }
 
     /**
-     Aggiungo l'immagine alla DIRECTORY interna al progetto:
+     Aggiunge l'immagine alla DIRECTORY interna al progetto:
         - Le cartelle sono gestite nel seguente modo:
             -carImages
                 -idAuto_1
@@ -85,18 +81,26 @@ public abstract class Auto implements Serializable{
             }
         }
     }
+
     /**
-     *  Rimuove un immagine dalla lista di immagini dell'auto. L'immagine è inoltre eliminata dalla relativa directory
-     * @param img immagine da rimuovere
+     *  Rimuove un immagine dalla lista di immagini dell'auto.
+     *  L'immagine non viene però rimossa dalla memoria.
      */
     public void removeImage(Immagine img){
         this.immagini.remove(img);
     }
 
+    /**
+     * @return Lista di TUTTE le immagini disponibili per tale colore
+     */
     public ArrayList<Immagine> getImmagini(){
         return immagini;
     }
 
+    /**
+     *
+     * @param immagini Lista di immagini da settare all'oggetto Auto
+     */
     public void setImmagini(ArrayList<Immagine> immagini) {
         this.immagini = immagini;
     }

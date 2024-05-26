@@ -301,7 +301,7 @@ public class CustomizeAutoController implements Initializable {
 
     private void openUsataView() {
         try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/usataCustom.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/addAutoUsata.fxml"));
             BorderPane usataView = loader.load();
 
             Stage popupStage = new Stage();

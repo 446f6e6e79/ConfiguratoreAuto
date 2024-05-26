@@ -52,7 +52,7 @@ public class AutoNuova extends Auto implements Serializable {
         this.costoBase = costoBase;
     }
 
-    //Get e SET per il campo dimensione
+    //GET e SET per il campo dimensione
     public Dimensione getDimensione() {
         return dimensione;
     }
@@ -105,7 +105,16 @@ public class AutoNuova extends Auto implements Serializable {
     }
 
     /**
-     *
+     * Aggiunge un motore a quelli disponibili.
+     * Se tale motore era già presente, lo sostituisce con quello nuovo
+     * @param motore motore da aggiungere alla lista
+     */
+    public void addMotore(Motore motore){
+        motoriDisponibili.add(motore);
+    }
+
+    /**
+     * Data una specifica categoria, ritorna tutti gli optional disponibili per essa
      * @param category Categoria di optional
      * @return ritorna tutti gli optional di tipo category, dispobili per tale modello
      */
@@ -114,7 +123,6 @@ public class AutoNuova extends Auto implements Serializable {
     }
 
     /**
-     *
      * @return Restituisce un arrayList contenente tutti i colori aggiunti per tale macchina
      */
     public ArrayList<String> getUsedColors() {
@@ -124,27 +132,23 @@ public class AutoNuova extends Auto implements Serializable {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
+    /**
+     *  Restituisce tutte le immagini presenti per il modello,
+     * @param color colore
+     * @return  Lista di immagini Auto, relative al colore
+     */
     public ArrayList<Immagine> getImageByColor(String color){
         return super.getImmagini().stream()
                 .filter(t-> t.getColor().equals(color))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
+    /**
+     * @param data Una certa data
+     * @return sconto per la data inserita
+     */
     public double getSconto(Date data){
         return this.getScontoPerMese()[data.getMonth()];
-    }
-
-    /*
-    *   Due auto sono considerate uguali se condividono lo stesso id
-    * */
-    @Override
-    public boolean equals(Object o){
-        return o instanceof AutoNuova other &&
-                this.id == other.id;
-    }
-
-    public void addMotore(Motore motore){
-        motoriDisponibili.add(motore);
     }
 
     /**
@@ -165,6 +169,15 @@ public class AutoNuova extends Auto implements Serializable {
         return tot;
     }
 
+    /*
+    *   Due auto sono considerate uguali se condividono lo stesso id
+    * */
+    @Override
+    public boolean equals(Object o){
+        return o instanceof AutoNuova other &&
+                this.id == other.id;
+    }
+
     public String getBasePriceAsString(){
         return Preventivo.getPriceAsString(costoBase);
     }
@@ -173,8 +186,12 @@ public class AutoNuova extends Auto implements Serializable {
      * Metodo che permette di ottenere l'immagine di default di un auto nuova
      * @return Restituisce l'immagine di DEFAULT dell'auto
      */
-    public Image getDefaultImage(){
-        ArrayList<Immagine> immagini = this.getImmagini();
+    public Image getDefaultImage(String colore){
+        ArrayList<Immagine> immagini;
+        if(colore != null){
+            immagini = getImageByColor(colore);
+        }
+        immagini = getImmagini();
         if(!immagini.isEmpty()){
             return this.getImmagini().get(0).getImage();
         }

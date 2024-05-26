@@ -38,14 +38,10 @@ public class AutoElementController {
         NomeModello.setText(auto.getModello());
         Marca.setText(auto.getMarca().toString());
         Prezzo.setText(auto.getBasePriceAsString());
+
         // Carica l'immagine e imposta sull'ImageView
-        if(auto.getImmagini().size()!= 0){
-            autoImage.setImage(auto.getDefaultImage());
-        }
-        else{
-            Image image = new Image(getClass().getResourceAsStream("/img/no_data.png"));
-            autoImage.setImage(image);
-        }
+        autoImage.setImage(auto.getDefaultImage(null));
+
         String iconPath = (utenti.getCurrentUser() instanceof Segretario) ? "/img/icons/edit-icon.png" : "/img/icons/right-arrow.png";
         Image icon = new Image(getClass().getResourceAsStream(iconPath));
         dynamicIcon.setImage(icon);
@@ -76,7 +72,7 @@ public class AutoElementController {
             try {
                 TabPane tabPane = (TabPane) autoImage.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
                 Tab catalogoTab = tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/autoCustom.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/autoCustomization.fxml"));
                 AnchorPane autocustomNode;
 
                 autocustomNode = loader.load();
