@@ -117,15 +117,19 @@ public class PreventivoDetailsController {
         this.preventivo = preventivo;
 
         /*
-        *   Carico i dati per da mostrare nella pagina
+        *   Carico i dati per l'auto acquistata
         * */
         image.setImage(preventivo.getAcquisto().getDefaultImage());
+        modello.setText(preventivo.getAcquisto().getModello());
         prezzoBase.setText(preventivo.getAcquisto().getBasePriceAsString());
-        //Per ogni optional aggiunto
+        //Per ogni optional aggiunto, aggiungo uan riga
         for(Optional o: preventivo.getOptionals()){
 
         }
 
+        /*
+        *   Carico i dati relativi al preventivo
+        * */
         cliente.setText(preventivo.getCliente().getName() + " " + preventivo.getCliente().getSurname());
         sede.setText(preventivo.getSede().toString());
         data.setText(preventivo.getDataPreventivoAsString());
@@ -140,9 +144,8 @@ public class PreventivoDetailsController {
             scadenza.setText("...");
         }
         stato.setText(preventivo.getStato().toString());
-        costo.setText(preventivo.getCostoDettagliato());
 
-        modello.setText(preventivo.getAcquisto().getModello());
+
         marchio.setText(preventivo.getAcquisto().getMarca().toString());
         motore.setText(preventivo.getMotoreScelto().getInfoMotore());
         dimensione.setText(preventivo.getAcquisto().getDimensione().toSimpleString());

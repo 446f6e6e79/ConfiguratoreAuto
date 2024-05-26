@@ -251,30 +251,30 @@
                </VBox>
             </children>
          </HBox>
-         <VBox fx:id="priceDetails" prefHeight="200.0" prefWidth="809.0">
+         <VBox fx:id="priceDetails" prefHeight="200.0" prefWidth="809.0" styleClass="tableVBox">
             <children>
-               <HBox prefHeight="40.0" prefWidth="835.0">
+               <HBox prefHeight="40.0" prefWidth="835.0" styleClass="tableRow">
                   <children>
-                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="415.0" text="Descrizione" textAlignment="CENTER">
+                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="415.0" styleClass="titleRow" text="Descrizione" textAlignment="CENTER">
                         <font>
                            <Font size="20.0" />
                         </font>
                      </Label>
-                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="415.0" text="Prezzo" textAlignment="CENTER">
+                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="415.0" styleClass="titleRow" text="Prezzo" textAlignment="CENTER">
                         <font>
                            <Font size="20.0" />
                         </font>
                      </Label>
                   </children>
                </HBox>
-               <HBox prefHeight="37.0" prefWidth="200.0">
+               <HBox prefHeight="37.0" prefWidth="200.0" styleClass="tableRow">
                   <children>
-                     <Label fx:id="modello" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="415.0" textAlignment="CENTER">
+                     <Label fx:id="modello" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="415.0" styleClass="tableRowLabel" textAlignment="CENTER">
                         <font>
                            <Font size="20.0" />
                         </font>
                      </Label>
-                     <Label fx:id="prezzoBase" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="415.0" text="Prezzo" textAlignment="CENTER">
+                     <Label fx:id="prezzoBase" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="415.0" styleClass="tableRowLabel" text="Prezzo" textAlignment="CENTER">
                         <font>
                            <Font size="20.0" />
                         </font>

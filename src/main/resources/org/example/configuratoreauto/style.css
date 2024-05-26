@@ -177,28 +177,33 @@
     -fx-border-radius: 5; /* Rounded corners of the border */
 }
 
-/* Style for each HBox row */
 .tableRow {
     -fx-spacing: 10; /* Space between labels */
     -fx-padding: 5; /* Padding within each row */
-    -fx-background-color: #FFFFFF; /* Background color of each row */
-    -fx-border-color: #DDDDDD; /* Border color of each row */
-    -fx-border-width: 1; /* Border width of each row */
-    -fx-border-radius: 5; /* Rounded corners of each row */
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DDDDDD;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
 }
 
-/* Style for labels within each row */
 .tableRowLabel {
-    -fx-font-size: 14px; /* Font size for the labels */
-    -fx-text-fill: #333333; /* Text color of the labels */
+    -fx-font-size: 20;
+    -fx-text-fill: #333333;
+}
+.titleRow{
+    -fx-font-size: 26;
+    -fx-text-fill: #222222;
+    -fx-font-weight: bold;
 }
 
-/* Hover effect for each row */
 .tableRow:hover {
     -fx-background-color: #E0E0E0; /* Change background color on hover */
     -fx-border-color: #BBBBBB; /* Change border color on hover */
 }
+
+/*==== LOGOUT TAB =============*/
 .logout-tab {
     -fx-background-color: #ff0000; /* Background color of the Logout tab */
     -fx-text-fill: white; /* Text color of the Logout tab */
 }
+
