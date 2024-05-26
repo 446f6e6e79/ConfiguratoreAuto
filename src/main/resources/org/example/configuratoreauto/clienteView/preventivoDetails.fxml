@@ -159,7 +159,7 @@
                <Insets top="10.0" />
             </VBox.margin>
          </Label>
-         <HBox prefHeight="352.0" prefWidth="801.0" BorderPane.alignment="CENTER">
+         <HBox alignment="CENTER" prefHeight="352.0" prefWidth="801.0" BorderPane.alignment="CENTER">
             <children>
                <ImageView fx:id="image" fitHeight="298.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true" />
                <VBox prefHeight="352.0" prefWidth="321.0">
@@ -215,6 +215,9 @@
                   </padding>
                </VBox>
             </children>
+            <VBox.margin>
+               <Insets top="15.0" />
+            </VBox.margin>
          </HBox>
          <VBox fx:id="priceDetails" prefHeight="88.0" prefWidth="793.0" styleClass="tableVBox">
             <children>
@@ -247,6 +250,9 @@
                   </children>
                </HBox>
             </children>
+            <VBox.margin>
+               <Insets left="5.0" />
+            </VBox.margin>
          </VBox>
       </VBox>
    </left>

@@ -24,7 +24,7 @@
                   </ImageView>
                   <VBox prefHeight="152.0" prefWidth="805.0">
                      <children>
-                              <Text fx:id="modelID" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 55" text="Modello"/>
+                              <Text fx:id="modelID" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 55" text="Modello" />
                               <Text fx:id="descrizione" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrizione">
                            <VBox.margin>
                               <Insets top="10.0" />
@@ -155,7 +155,7 @@
                      <right>
                         <Button mnemonicParsing="false" onAction="#createPreventivo" text="Richiedi preventivo" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
-                              <Insets right="10.0" />
+                              <Insets right="200.0" />
                            </BorderPane.margin>
                         </Button>
                      </right>

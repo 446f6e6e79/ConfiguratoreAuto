@@ -6,6 +6,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
+import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 import org.example.configuratoreauto.Utenti.*;
 
@@ -53,6 +54,9 @@ public class Main extends Application {
         System.out.println("Caricato userModel");
         registroModel.uploadData();
         System.out.println("Caricato registro model");
+        for(Preventivo p: registroModel.getAllData()){
+            System.out.println(p);
+        }
         catalogoModel.uploadData();
         System.out.println("Caricato catalogo model");
     }

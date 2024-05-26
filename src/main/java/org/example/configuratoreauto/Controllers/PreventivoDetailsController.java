@@ -131,26 +131,29 @@ public class PreventivoDetailsController {
         prezzoBase.setText(preventivo.getAcquisto().getBasePriceAsString());
 
         //Per ogni optional scelto, aggiungo una riga nella tabella
-        for(Optional o: preventivo.getOptionalScelti()){
+        for(Optional o : preventivo.getOptionalScelti()){
             HBox row = new HBox();
             row.getStyleClass().add("tableRow");
 
-            //Creo la label per la descrizione dell'optional
+            // Creo la label per la descrizione dell'optional
             Label description = new Label(o.getDescrizione());
             description.setAlignment(Pos.CENTER);
             description.getStyleClass().add("tableRowLabel");
             description.setPrefWidth(prezzoBase.getPrefWidth());
 
-            //Creo la label per il prezzo dell'optional
+            // Creo la label per il prezzo dell'optional
             Label price = new Label(Preventivo.getPriceAsString(o.getCosto()));
             price.setAlignment(Pos.CENTER);
             price.getStyleClass().add("tableRowLabel");
-            description.setPrefWidth(prezzoBase.getPrefWidth());
 
-            //Aggiungo gli elementi alla riga, aggiungo la riga alla tabella
+            // Bind the width of the price label to the description label
+            price.prefWidthProperty().bind(description.widthProperty());
+
+            // Aggiungo gli elementi alla riga, aggiungo la riga alla tabella
             row.getChildren().addAll(description, price);
             priceDetails.getChildren().add(row);
         }
+
         modelloDescription.setText(preventivo.getAcquisto().getModello());
 
         /*
