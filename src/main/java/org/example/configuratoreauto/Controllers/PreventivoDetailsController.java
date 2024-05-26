@@ -1,5 +1,6 @@
 package org.example.configuratoreauto.Controllers;
 
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -136,11 +137,13 @@ public class PreventivoDetailsController {
 
             //Creo la label per la descrizione dell'optional
             Label description = new Label(o.getDescrizione());
+            description.setAlignment(Pos.CENTER);
             description.getStyleClass().add("tableRowLabel");
             description.setPrefWidth(prezzoBase.getPrefWidth());
 
             //Creo la label per il prezzo dell'optional
             Label price = new Label(Preventivo.getPriceAsString(o.getCosto()));
+            price.setAlignment(Pos.CENTER);
             price.getStyleClass().add("tableRowLabel");
             description.setPrefWidth(prezzoBase.getPrefWidth());
 

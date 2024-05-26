@@ -13,6 +13,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -237,7 +238,7 @@ public class AddAutoOptionalsController implements Initializable {
             TabPane tabPane = (TabPane) consumi.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
             Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/catalogoView.fxml"));
-            AnchorPane catalogoNode;
+            BorderPane catalogoNode;
 
             catalogoNode = loader.load();
             tab.setContent(catalogoNode); // Imposta il nuovo contenuto del tab "Catalogo"
