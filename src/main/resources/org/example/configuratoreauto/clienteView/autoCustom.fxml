@@ -45,7 +45,7 @@
                      <children>
                          <ImageView fx:id="images" fitHeight="330.0" fitWidth="589.0" pickOnBounds="true" preserveRatio="true">
                                 <image>
-                                    <Image fx:id="singleimage" url="@../../../../img/test.png" />
+                                    <Image fx:id="singleimage" url="@../../../../img/no_data.png" />
                                 </image>
                             </ImageView>
                         <BorderPane prefHeight="478.0" prefWidth="750.0">

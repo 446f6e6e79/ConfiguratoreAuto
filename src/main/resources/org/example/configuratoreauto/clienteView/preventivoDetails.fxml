@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.PreventivoDetailsController">
+   <top>
+      <BorderPane prefHeight="44.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <center>
+            <Label text="PREVENTIVO" textAlignment="CENTER" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </BorderPane.margin>
+               <padding>
+                  <Insets right="40.0" />
+               </padding>
+            </Label>
+         </center>
+         <left>
+            <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#goBack" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+               <BorderPane.margin>
+                  <Insets left="10.0" />
+               </BorderPane.margin>
+                <Image url="@../../../../img/icons/back-icon.png" />
+            </ImageView>
+         </left>
+      </BorderPane>
+   </top>
+   <right>
+      <VBox alignment="TOP_CENTER" prefHeight="756.0" prefWidth="561.0" BorderPane.alignment="CENTER">
+          <Label text="DATI PREVENTIVO">
+            <padding>
+               <Insets left="5.0" />
+            </padding>
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin>
+            <font>
+               <Font name="System Bold" size="24.0" />
+            </font>
+         </Label>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label text="Nominativo Cliente" />
+               <Label fx:id="cliente" prefHeight="18.0" prefWidth="189.0" text="Label" textAlignment="RIGHT" />
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label text="Sede" />
+               <Label fx:id="sede" prefHeight="28.0" prefWidth="50.0" text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+               <VBox prefHeight="200.0" prefWidth="100.0">
+                  <children>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <Label fx:id="usatoModello" text="Modello Marchio">
+                              <padding>
+                                 <Insets top="10.0" />
+                              </padding>
+                           </Label>
+                           <Label fx:id="labelUsato" text="Label">
+                              <padding>
+                                 <Insets top="10.0" />
+                              </padding>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <HBox prefHeight="73.0" prefWidth="438.0">
+                        <children>
+                           <Label fx:id="targaLabel" text="Targa" />
+                           <Label fx:id="targa" text="Label" />
+                        </children>
+                     </HBox>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <Label fx:id="kmLabel" text="Chilometraggio" />
+                           <Label fx:id="kmResult" text="Label" />
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label text="Data preventivo" />
+               <Label fx:id="data" text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label text="Data consegna" />
+               <Label fx:id="consegna" text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label text="Data scadenza" />
+               <Label fx:id="scadenza" text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label text="Stato" />
+               <Label fx:id="stato" text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+            </children>
+         </HBox>
+         <HBox prefHeight="100.0" prefWidth="200.0">
+            <children>
+               <Label text="Costo" />
+               <Label fx:id="costo" text="Label">
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+               </Label>
+            </children>
+         </HBox>
+         <Button mnemonicParsing="false" onMouseClicked="#onPdf" styleClass="greenButton" text="Scarica PDF">
+            <VBox.margin>
+               <Insets bottom="30.0" />
+            </VBox.margin>
+         </Button>
+
+            </VBox>
+   </right>
+   <left>
+      <VBox prefHeight="756.0" prefWidth="793.0">
+         <Label alignment="TOP_CENTER" prefHeight="27.0" prefWidth="632.0" text="DATI SULLA VETTURA">
+            <padding>
+               <Insets bottom="10.0" />
+            </padding>
+            <font>
+               <Font name="System Bold" size="24.0" />
+            </font>
+            <VBox.margin>
+               <Insets top="10.0" />
+            </VBox.margin>
+         </Label>
+         <HBox prefHeight="251.0" prefWidth="835.0" BorderPane.alignment="CENTER">
+            <children>
+               <ImageView fx:id="image" fitHeight="298.0" fitWidth="450.0" pickOnBounds="true" preserveRatio="true" />
+               <VBox prefHeight="654.0" prefWidth="245.0">
+                  <children>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <Label text="Modello:">
+                              <padding>
+                                 <Insets top="10.0" />
+                              </padding>
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Label>
+                           <Label fx:id="modello" text="Label">
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <Label text="Marchio:">
+                              <padding>
+                                 <Insets top="10.0" />
+                              </padding>
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Label>
+                           <Label fx:id="marchio" text="Label">
+                              <padding>
+                                 <Insets top="10.0" />
+                              </padding>
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <Label text="Motore:">
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Label>
+                           <Label fx:id="motore" text="Label">
+                              <padding>
+                                 <Insets top="10.0" />
+                              </padding>
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <Label text="Dimensione:">
+                              <padding>
+                                 <Insets top="10.0" />
+                              </padding>
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Label>
+                           <Label fx:id="dimensione" text="dimensione">
+                              <padding>
+                                 <Insets top="10.0" />
+                              </padding>
+                              <font>
+                                 <Font size="20.0" />
+                              </font>
+                           </Label>
+                        </children>
+                     </HBox>
+                     <HBox prefHeight="100.0" prefWidth="200.0">
+                        <children>
+                           <Button fx:id="impiegatoButton" mnemonicParsing="false" onAction="#impiegatoPress" text="SEGNALA PAGAMENTO" />
+                        </children>
+                     </HBox>
+                  </children>
+               </VBox>
+            </children>
+         </HBox>
+         <VBox fx:id="priceDetails" prefHeight="200.0" prefWidth="809.0">
+            <children>
+               <HBox prefHeight="40.0" prefWidth="835.0">
+                  <children>
+                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="415.0" text="Descrizione" textAlignment="CENTER">
+                        <font>
+                           <Font size="20.0" />
+                        </font>
+                     </Label>
+                     <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="415.0" text="Prezzo" textAlignment="CENTER">
+                        <font>
+                           <Font size="20.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </HBox>
+               <HBox prefHeight="37.0" prefWidth="200.0">
+                  <children>
+                     <Label fx:id="modello" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="415.0" textAlignment="CENTER">
+                        <font>
+                           <Font size="20.0" />
+                        </font>
+                     </Label>
+                     <Label fx:id="prezzoBase" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="415.0" text="Prezzo" textAlignment="CENTER">
+                        <font>
+                           <Font size="20.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </HBox>
+            </children>
+         </VBox>
+      </VBox>
+   </left>
+</BorderPane>

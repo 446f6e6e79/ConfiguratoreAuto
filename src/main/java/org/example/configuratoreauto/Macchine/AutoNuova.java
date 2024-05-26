@@ -1,5 +1,6 @@
 package org.example.configuratoreauto.Macchine;
 
+import javafx.scene.image.Image;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 
 import java.io.Serializable;
@@ -166,5 +167,17 @@ public class AutoNuova extends Auto implements Serializable {
 
     public String getBasePriceAsString(){
         return Preventivo.getPriceAsString(costoBase);
+    }
+
+    /**
+     * Metodo che permette di ottenere l'immagine di default di un auto nuova
+     * @return Restituisce l'immagine di DEFAULT dell'auto
+     */
+    public Image getDefaultImage(){
+        ArrayList<Immagine> immagini = this.getImmagini();
+        if(!immagini.isEmpty()){
+            return this.getImmagini().get(0).getImage();
+        }
+        return new Image(getClass().getResourceAsStream("/img/no_data.png"));
     }
 }

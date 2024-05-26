@@ -105,16 +105,6 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         return false;
     }
 
-    /*
-    *   Verifica se la data di consena è passata. In tal caso dovrà essere cambiato lo stato del preventivo
-    * */
-    private boolean isDisponibileAlRitiro(){
-        if(new Date().after(consegna)){
-            return true;
-        }
-        return false;
-    }
-
     //Ritorna la data nel formato DD/MM/YYYY
     private String getDataAsString(Date d){
         return new SimpleDateFormat("dd-MM-yyyy").format(d);
@@ -205,17 +195,15 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     /*
      *   Aggiorna automaticamente lo stato del preventivo:
      *      -Se sono passati 20 giorni, e non è stato pagato il preventivo, viene assegnato lo stato SCADUTO
-     *      -Se è stata superata la data del RITIRO ed il preventivo risulta PAGATO, assegnato lo stato DISPONIBILE_AL_RITIRO
-     *
      *   Tale funzione sarà chiamata ogni qualvolta viene caricato il RegistroModel, tenendo aggiornati i dati
      * */
     public void updateStatoAutomatico(){
         if(stato == StatoPreventivo.FINALIZZATO && isScaduto()){
             setStato(StatoPreventivo.SCADUTO);
         }
-        if(stato == StatoPreventivo.PAGATO && isDisponibileAlRitiro()){
-            setStato(StatoPreventivo.DISPONIBILE_AL_RITIRO);
-        }
+//        if(stato == StatoPreventivo.PAGATO && isDisponibileAlRitiro()){
+//            setStato(StatoPreventivo.DISPONIBILE_AL_RITIRO);
+//        }
     }
 
     /*Calcola il costo Totale del Preventivo

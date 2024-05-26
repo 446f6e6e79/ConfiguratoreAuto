@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handlerClick" prefHeight="100.0" prefWidth="950.0" spacing="10.0" styleClass="clickableElement" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.PreventivoElementController">
+<HBox fx:id="mainElement" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handlerClick" prefHeight="100.0" prefWidth="950.0" spacing="10.0" styleClass="clickableElement" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.PreventivoElementController">
    <children>
       <BorderPane prefHeight="182.0" prefWidth="1100.0">
          <left>

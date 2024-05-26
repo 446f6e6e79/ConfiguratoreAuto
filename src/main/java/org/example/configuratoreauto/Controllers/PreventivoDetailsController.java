@@ -1,6 +1,8 @@
 package org.example.configuratoreauto.Controllers;
 
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -28,6 +30,13 @@ import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
 
 public class PreventivoDetailsController {
+
+    @FXML
+    private ImageView image;
+    @FXML
+    private VBox priceDetails;
+    @FXML
+    private Label prezzoBase;
 
     @FXML
     private Label cliente;
@@ -96,16 +105,27 @@ public class PreventivoDetailsController {
         if(user.getCurrentUser() instanceof Impiegato){
            impiegatoButton.setVisible(true);
            if(preventivo.getStato()==StatoPreventivo.FINALIZZATO){
-               impiegatoButton.setText("Inserisci Pagamento");
+               impiegatoButton.setText("Segnala pagato");
            }
            if(preventivo.getStato()==StatoPreventivo.PAGATO){
-               impiegatoButton.setText("Segnala possibilità di ritiro");
+               impiegatoButton.setText("Segnala da ritirare");
            }
            if(preventivo.getStato()==StatoPreventivo.DISPONIBILE_AL_RITIRO){
                impiegatoButton.setText("Il veicolo è stato ritirato");
            }
         }
         this.preventivo = preventivo;
+
+        /*
+        *   Carico i dati per da mostrare nella pagina
+        * */
+        image.setImage(preventivo.getAcquisto().getDefaultImage());
+        prezzoBase.setText(preventivo.getAcquisto().getBasePriceAsString());
+        //Per ogni optional aggiunto
+        for(Optional o: preventivo.getOptionals()){
+
+        }
+
         cliente.setText(preventivo.getCliente().getName() + " " + preventivo.getCliente().getSurname());
         sede.setText(preventivo.getSede().toString());
         data.setText(preventivo.getDataPreventivoAsString());
@@ -127,36 +147,28 @@ public class PreventivoDetailsController {
         motore.setText(preventivo.getMotoreScelto().getInfoMotore());
         dimensione.setText(preventivo.getAcquisto().getDimensione().toSimpleString());
 
-        if (preventivo.getUsata() != null) {
-            isUsato.setText("Si");
-            labelUsato.setText(preventivo.getUsata().getModello() + " " + preventivo.getUsata().getMarca());
-            kmResult.setText("" + preventivo.getUsata().getKm() + "km");
-            targa.setText(preventivo.getUsata().getTarga());
-        } else {
-            isUsato.setText("No");
-            labelUsato.setText("");
-            usatoModello.setText("");
-            kmLabel.setText("");
-            kmResult.setText("");
-            targa.setText("");
-            targaLabel.setText("");
-        }
+//        if (preventivo.getUsata() != null) {
+//            isUsato.setText("Si");
+//            labelUsato.setText(preventivo.getUsata().getModello() + " " + preventivo.getUsata().getMarca());
+//            kmResult.setText("" + preventivo.getUsata().getKm() + "km");
+//            targa.setText(preventivo.getUsata().getTarga());
+//        } else {
+//            isUsato.setText("No");
+//            labelUsato.setText("");
+//            usatoModello.setText("");
+//            kmLabel.setText("");
+//            kmResult.setText("");
+//            targa.setText("");
+//            targaLabel.setText("");
+//        }
         String s = "";
-        if (preventivo.getOptionals().isEmpty()) {
-            optional.setText("No");
-        } else {
-            for (Optional opt : preventivo.getOptionals()) {
-                s += opt.toString() + "\n";
-                optional.setText(s);
-            }
-        }
     }
 
 
     @FXML
     private void goBack() {
         try {
-            TabPane tabPane = (TabPane) optional.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+            TabPane tabPane = (TabPane) image.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
             Tab tab= tabPane.getTabs().get(1); // Ottieni il riferimento al tab "Catalogo"
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
             BorderPane preventiviList;

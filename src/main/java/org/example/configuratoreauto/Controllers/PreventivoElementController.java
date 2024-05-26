@@ -8,6 +8,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
@@ -20,7 +21,7 @@ import java.io.IOException;
 
 public class PreventivoElementController {
     @FXML
-    private Image icon;
+    private HBox mainElement;
     @FXML
     private Label modello;
     @FXML
@@ -34,7 +35,6 @@ public class PreventivoElementController {
     @FXML
     private ImageView openIcon;
     UserModel utenti = UserModel.getInstance();
-    RegistroModel registro = RegistroModel.getInstance();
     private Preventivo preventivo;
 
     public void setPreventivo(Preventivo preventivo) {
@@ -49,6 +49,12 @@ public class PreventivoElementController {
         stato.setText(preventivo.getStato().toString());
         setStatoColor(stato);
 
+        //Se è in disponibile al ritiro, coloro di verde l'intero elento
+        if(preventivo.getStato() == StatoPreventivo.DISPONIBILE_AL_RITIRO){
+            mainElement.getStyleClass().clear();
+            mainElement.getStyleClass().add("clickableElementGreen");
+        }
+
         if(utenti.getCurrentUser() instanceof Impiegato || utenti.getCurrentUser() instanceof Segretario){
             cliente.setText(preventivo.getCliente().getName() + " " + preventivo.getCliente().getSurname());
         }
@@ -60,13 +66,10 @@ public class PreventivoElementController {
     //Funzione che permette la gestione del click sulla componente
     @FXML
     public void handlerClick(){
-        System.out.println("CLICCATO");
-
-            //Apertura pagina
         try {
                 TabPane tabPane = (TabPane) consegna.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
                 Tab preventivoTab = tabPane.getTabs().get(1); // Ottieni il riferimento al tab "Catalogo"
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventivoView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventivoDetails.fxml"));
                 BorderPane preventivoNode = loader.load();
                 PreventivoDetailsController controller = loader.getController();
                 controller.setPreventivo(preventivo);

@@ -40,10 +40,10 @@ public class AutoElementController {
         Prezzo.setText(auto.getBasePriceAsString());
         // Carica l'immagine e imposta sull'ImageView
         if(auto.getImmagini().size()!= 0){
-            autoImage.setImage(auto.getImmagini().get(0).getImage());
+            autoImage.setImage(auto.getDefaultImage());
         }
         else{
-            Image image = new Image(getClass().getResourceAsStream("/img/test.png"));
+            Image image = new Image(getClass().getResourceAsStream("/img/no_data.png"));
             autoImage.setImage(image);
         }
         String iconPath = (utenti.getCurrentUser() instanceof Segretario) ? "/img/icons/edit-icon.png" : "/img/icons/right-arrow.png";

@@ -82,7 +82,19 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.5, 0.2, 1); /* Change shadow on hover */
     -fx-border-color: DARKGREY; /* Change border color on hover */
 }
-
+.clickableElementGreen {
+    -fx-background-color: #008000; /* Green background color */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.2, 1);
+    -fx-border-color: #006400; /* Dark green border color */
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+.clickableElementGreen:hover {
+    -fx-background-color: #00A000; /* Lighter green background color on hover */
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.5, 0.2, 1); /* Change shadow on hover */
+    -fx-border-color: #004B23; /* Darker green border color on hover */
+}
 /*============== Choice Box ================*/
 .choice-box {
     -fx-background-color: #ffffff;
@@ -152,4 +164,37 @@
     -fx-border-color: #B0BEC5 transparent transparent #B0BEC5;
     -fx-border-width: 2px 0 0 2px;
     -fx-background-color: #FAFAFA;
+}
+
+
+/*================ TABELLA ================*/
+.tableVBox {
+    -fx-spacing: 5;
+    -fx-padding: 10; /* Padding around the table */
+    -fx-background-color: #F8F8F8; /* Background color of the table */
+    -fx-border-color: #CCCCCC; /* Border color of the table */
+    -fx-border-width: 2; /* Border width */
+    -fx-border-radius: 5; /* Rounded corners of the border */
+}
+
+/* Style for each HBox row */
+.tableRow {
+    -fx-spacing: 10; /* Space between labels */
+    -fx-padding: 5; /* Padding within each row */
+    -fx-background-color: #FFFFFF; /* Background color of each row */
+    -fx-border-color: #DDDDDD; /* Border color of each row */
+    -fx-border-width: 1; /* Border width of each row */
+    -fx-border-radius: 5; /* Rounded corners of each row */
+}
+
+/* Style for labels within each row */
+.tableRowLabel {
+    -fx-font-size: 14px; /* Font size for the labels */
+    -fx-text-fill: #333333; /* Text color of the labels */
+}
+
+/* Hover effect for each row */
+.tableRow:hover {
+    -fx-background-color: #E0E0E0; /* Change background color on hover */
+    -fx-border-color: #BBBBBB; /* Change border color on hover */
 }
