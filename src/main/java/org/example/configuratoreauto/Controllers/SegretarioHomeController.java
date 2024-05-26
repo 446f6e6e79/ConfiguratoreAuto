@@ -55,7 +55,7 @@ public class SegretarioHomeController {
 
         // Show the dialog and wait for user response
         confirmation.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.OK) {
+            if (response == ButtonType.YES) {
                 // User clicked OK, proceed with logout
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/loginPage.fxml"));

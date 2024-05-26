@@ -107,7 +107,7 @@ public class LoginController {
                     setPage("clienteView/homepageCliente");
                 }
                 if (userModel.getCurrentUser() instanceof Impiegato) {
-                    setPage("impiegatoView/homepage");
+                    setPage("impiegatoView/homepageImpiegato");
                 }
                 if (userModel.getCurrentUser() instanceof Segretario) {
                     setPage("segretarioView/homepageSegretario");

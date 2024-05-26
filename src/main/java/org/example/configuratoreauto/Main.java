@@ -54,9 +54,8 @@ public class Main extends Application {
         System.out.println("Caricato userModel");
         registroModel.uploadData();
         System.out.println("Caricato registro model");
-        for(Preventivo p: registroModel.getAllData()){
-            System.out.println(p);
-        }
+
+
         catalogoModel.uploadData();
         System.out.println("Caricato catalogo model");
     }

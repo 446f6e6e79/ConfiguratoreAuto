@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class AutoUsataElementController {
 
     private final IntegerProperty currentImageIndex = new SimpleIntegerProperty(0);
-    RegistroModel registo = RegistroModel.getInstance();
+    RegistroModel registro = RegistroModel.getInstance();
     Preventivo preventivo;
     @FXML
     Label modello;
@@ -57,6 +57,7 @@ public class AutoUsataElementController {
         try {
             double valutazioneValue = Double.parseDouble(valutazione.getText());
             preventivo.setValutazione(valutazioneValue);
+
             //Apertura pagina
             try {
                 TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
@@ -71,7 +72,6 @@ public class AutoUsataElementController {
         } catch (NumberFormatException e) {
             valutazione.setText("");
             validation.setText("Errore nell'inserimento della valutazione");
-
         }
     }
     /**
