@@ -198,3 +198,7 @@
     -fx-background-color: #E0E0E0; /* Change background color on hover */
     -fx-border-color: #BBBBBB; /* Change border color on hover */
 }
+.logout-tab {
+    -fx-background-color: #ff0000; /* Background color of the Logout tab */
+    -fx-text-fill: white; /* Text color of the Logout tab */
+}
