@@ -122,26 +122,31 @@ public class Immagine implements Serializable{
                    ...
                    -TARGA_N
     */
-    public void addAutoUsata(AutoUsata auto){
-        Path target = Paths.get("src", "main", "resources", "img", "usedCarImages", String.valueOf(auto.getTarga()));
+    public void addAutoUsata(AutoUsata auto) {
+        Path baseRoot = Paths.get("src", "main", "resources", "img", "usedCarImages");
+        Path target = baseRoot.resolve(auto.getTarga());
         Path source = Paths.get(this.path);
-        
+        System.out.println("Arrivato 1");
+        // Create the target directory if it does not exist
         if (Files.notExists(target)) {
             try {
                 Files.createDirectories(target);
             } catch (IOException e) {
-                System.err.println("Error creating directories: " + e.getMessage());
+                System.err.println("Error creating target directory: " + e.getMessage());
                 return;
             }
         }
+        System.out.println("Arrivato 2");
+        // Copy the source file to the target directory
         try {
             Files.copy(source, target.resolve(source.getFileName()), StandardCopyOption.REPLACE_EXISTING);
-            //Aggiorno il path dell'immagine
+            System.out.println("Arrivato 3");
+            // Update the path of the image to the new location
             this.path = String.valueOf(target.resolve(source.getFileName()));
         } catch (FileAlreadyExistsException e) {
-            System.err.println("File already exists in target directory");
+            System.err.println("File already exists in target directory: " + e.getMessage());
         } catch (NoSuchFileException e) {
-            System.err.println("Source file not found");
+            System.err.println("Source file not found: " + e.getMessage());
         } catch (IOException e) {
             System.err.println("Error copying file: " + e.getMessage());
         }

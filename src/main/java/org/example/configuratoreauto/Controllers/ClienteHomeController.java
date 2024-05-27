@@ -69,6 +69,7 @@ public class ClienteHomeController {
         // Show the dialog and wait for user response
         confirmation.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
+                userModel.clearCurrentUser();
                 // User clicked OK, proceed with logout
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/loginPage.fxml"));

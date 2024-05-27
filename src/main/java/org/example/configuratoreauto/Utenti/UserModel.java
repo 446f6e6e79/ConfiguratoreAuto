@@ -64,4 +64,5 @@
             return currentUser;
         }
 
+        public void clearCurrentUser(){ currentUser=null;}
     }

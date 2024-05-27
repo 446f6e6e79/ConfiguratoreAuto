@@ -48,6 +48,15 @@ public class RegistroModel extends AbstractModel<Preventivo> {
         return false;
     }
 
+    public void updateData(Preventivo preventivo){
+        for (int i = 0; i < data.size(); i++) {
+            if (data.get(i).equals(preventivo)) {
+                data.set(i, preventivo);
+                break;
+            }
+        }
+    }
+
     public ArrayList<Preventivo> getPreventiviByBrand(Marca brand){
         return super.data.stream()
                 .filter(t -> t.getAcquisto().getMarca() == brand)

@@ -58,6 +58,7 @@ public class AutoUsataElementController {
             double valutazioneValue = Double.parseDouble(valutazione.getText());
             preventivo.setValutazione(valutazioneValue);
 
+            registro.updateData(preventivo);
             //Apertura pagina
             try {
                 TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane

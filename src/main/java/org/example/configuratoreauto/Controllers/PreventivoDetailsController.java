@@ -22,6 +22,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
+import org.example.configuratoreauto.Macchine.AutoUsata;
 import org.example.configuratoreauto.Macchine.Optional;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
@@ -235,6 +236,7 @@ public class PreventivoDetailsController {
             else if(preventivo.getStato()==StatoPreventivo.DISPONIBILE_AL_RITIRO){
                 preventivo.setStato(StatoPreventivo.RITIRATO);
             }
+            registro.updateData(preventivo);
         }
         goBack();
     }
@@ -243,122 +245,123 @@ public class PreventivoDetailsController {
 
     @FXML
     private void onPdf() {
-        // Crea un nuovo documento PDF
+        // Create a new PDF document
         try (PDDocument document = new PDDocument()) {
             PDPage page = new PDPage();
             document.addPage(page);
 
-            // Creazione di un contenuto per la pagina PDF
+            // Create content for the PDF page
             try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
-                // Use a different font that supports a wider range of characters
-
+                // Header
                 contentStream.beginText();
-                contentStream.newLineAtOffset(100, 700);
-                //Intitolazione
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 18);
-                contentStream.showText("          PREVENTIVO CONCESSIONARIO AUTO          ");
+                contentStream.newLineAtOffset(100, 750);
+                contentStream.showText("PREVENTIVO CONCESSIONARIO AUTO");
                 contentStream.setFont(PDType1Font.HELVETICA, 12);
+                contentStream.newLineAtOffset(0, -40);
+
+                // Customer Details
+                contentStream.showText("Cliente: " + preventivo.getCliente());
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.newLineAtOffset(0, -20);
-                // Scrittura dei dati del preventivo nel PDF
-                contentStream.showText("Cliente: " + preventivo.getCliente() );
-                contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Sede: " + preventivo.getSede().getNome()+" "+preventivo.getSede().getIndirizzo());
+                contentStream.showText("Sede: " + preventivo.getSede().getNome() + " " + preventivo.getSede().getIndirizzo());
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Data Preventivo: " + preventivo.getDataPreventivoAsString());
                 contentStream.newLineAtOffset(0, -20);
-                if(preventivo.getStato() != StatoPreventivo.RICHIESTO){
-                    contentStream.showText("Data Consegna: " + preventivo.getDataConsegnaAsString());
-                }else{
-                    contentStream.showText("Data di Consegna: da definire");
-                }
+                contentStream.showText("Data Consegna: " + (preventivo.getStato() != StatoPreventivo.RICHIESTO ? preventivo.getDataConsegnaAsString() : "da definire"));
                 contentStream.newLineAtOffset(0, -20);
-                if(preventivo.getStato() != StatoPreventivo.RICHIESTO) {
-                    contentStream.showText("Scadenza: " + preventivo.getDataScadenzaAsString());
-                }
+                contentStream.showText("Scadenza: " + (preventivo.getStato() != StatoPreventivo.RICHIESTO ? preventivo.getDataScadenzaAsString() : "da definire"));
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Stato: " + preventivo.getDataPreventivoAsString());
+                contentStream.showText("Stato: " + preventivo.getStato().toString());
                 contentStream.newLineAtOffset(0, -20);
 
-                contentStream.showText("Modello: " +  preventivo.getAcquisto().getModello());
+                // Car Details
+                contentStream.showText("Modello: " + preventivo.getAcquisto().getModello());
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Marchio: " + preventivo.getAcquisto().getMarca().toString());
                 contentStream.newLineAtOffset(0, -20);
 
+                // Engine Details
                 contentStream.showText("Motore: " + preventivo.getMotoreScelto().getNome());
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Alimentazione: " + preventivo.getMotoreScelto().getAlimentazione().toString());
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Cilindrata: " + preventivo.getMotoreScelto().getCilindrata()+"cc");
+                contentStream.showText("Cilindrata: " + preventivo.getMotoreScelto().getCilindrata() + "cc");
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Cavalli: " + preventivo.getMotoreScelto().getCavalli()+"HP");
+                contentStream.showText("Cavalli: " + preventivo.getMotoreScelto().getCavalli() + "HP");
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Potenza: " + preventivo.getMotoreScelto().getPotenzaKW()+"kW");
-                contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Dimensione:" );
-                contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("            Altezza -" + preventivo.getAcquisto().getDimensione().getAltezza()+"m");
-                contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("            Larghezza -" + preventivo.getAcquisto().getDimensione().getLarghezza()+"m");
-                contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("            Lunghezza -" + preventivo.getAcquisto().getDimensione().getLunghezza()+"m");
-                contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("            Peso -" + preventivo.getAcquisto().getDimensione().getPeso()+"kg");
-                contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("            Volume del Bagagliaio -" + preventivo.getAcquisto().getDimensione().getVolumeBagagliaglio()+"l");
+                contentStream.showText("Potenza: " + preventivo.getMotoreScelto().getPotenzaKW() + "kW");
                 contentStream.newLineAtOffset(0, -20);
 
-                if (!isUsato.getText().equals("No")) {
-                    contentStream.showText("Auto usata");
+                // Dimension Details
+                contentStream.showText("Dimensioni:");
+                contentStream.newLineAtOffset(20, -20);
+                contentStream.showText("Altezza: " + preventivo.getAcquisto().getDimensione().getAltezza() + "m");
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Larghezza: " + preventivo.getAcquisto().getDimensione().getLarghezza() + "m");
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Lunghezza: " + preventivo.getAcquisto().getDimensione().getLunghezza() + "m");
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Peso: " + preventivo.getAcquisto().getDimensione().getPeso() + "kg");
+                contentStream.newLineAtOffset(0, -20);
+                contentStream.showText("Volume del Bagagliaio: " + preventivo.getAcquisto().getDimensione().getVolumeBagagliaglio() + "l");
+                contentStream.newLineAtOffset(-20, -20);
+
+                // Used Car Details
+                if (preventivo.getUsata() != null) {
+                    AutoUsata usata = preventivo.getUsata();
+                    contentStream.showText("Auto usata:");
+                    contentStream.newLineAtOffset(20, -20);
+                    contentStream.showText("Modello/Marca: " + usata.getModello() + " " + usata.getMarca());
                     contentStream.newLineAtOffset(0, -20);
-                    contentStream.showText("      Modello/Marca: " + labelUsato.getText());
+                    contentStream.showText("Targa: " + usata.getTarga());
                     contentStream.newLineAtOffset(0, -20);
-                    contentStream.showText("      Targa: " + targa.getText());
-                    contentStream.newLineAtOffset(0, -20);
-                    contentStream.showText("      Km: " + kmResult.getText());
-                    contentStream.newLineAtOffset(0, -20);
+                    contentStream.showText("Km: " + usata.getKm());
+                    contentStream.newLineAtOffset(-20, -20);
                 }
-                contentStream.newLineAtOffset(0, -20);
 
+                // Cost Details Table Header
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 15);
-                contentStream.showText("          COSTO DETTAGLIATO");
+                contentStream.showText("COSTO DETTAGLIATO");
                 contentStream.setFont(PDType1Font.HELVETICA, 12);
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.newLineAtOffset(0, -20);
 
-
-                contentStream.showText("Costo Base - " + preventivo.getAcquisto().getCostoBase()+" €");
+                // Cost Details Table
+                contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
+                contentStream.showText(String.format("%-30s %10s", "Descrizione", "Costo (€)"));
                 contentStream.newLineAtOffset(0, -20);
-                if(preventivo.getAcquisto().getSconto(preventivo.getData())!=0){
-                    contentStream.showText("Sconto Mensile - " + preventivo.getAcquisto().getSconto(preventivo.getData())+" %");
+                contentStream.setFont(PDType1Font.HELVETICA, 12);
+                contentStream.showText(String.format("%-30s %10.2f", "Costo Base", preventivo.getAcquisto().getCostoBase()));
+                contentStream.newLineAtOffset(0, -20);
+                if (preventivo.getAcquisto().getSconto(preventivo.getData()) != 0) {
+                    contentStream.showText(String.format("%-30s %10.2f", "Sconto Mensile", preventivo.getAcquisto().getSconto(preventivo.getData())));
                     contentStream.newLineAtOffset(0, -20);
                 }
                 contentStream.showText("Costi Optionals:");
                 contentStream.newLineAtOffset(0, -20);
-                int c=0;
-                for(Optional opt : preventivo.getOptionalScelti()){
-                    if(opt!=null){
+
+                int c = 0;
+                for (Optional opt : preventivo.getOptionalScelti()) {
+                    if (opt != null) {
                         c++;
-                        contentStream.showText("   "+opt.getDescrizione() + ": "+ opt.getCosto()+" €");
+                        contentStream.showText(String.format("%-30s %10.2f", opt.getDescrizione(), opt.getCosto()));
                         contentStream.newLineAtOffset(0, -20);
                     }
                 }
-                if(c==0){
+                if (c == 0) {
                     contentStream.showText("   Nessun optional");
                     contentStream.newLineAtOffset(0, -20);
                 }
-                if(preventivo.getStato()!=StatoPreventivo.RICHIESTO && preventivo.getUsata()!=null){
-                    contentStream.showText("Valutazione dell'usato: "+preventivo.getValutazione() +" €");
+                if (preventivo.getStato() != StatoPreventivo.RICHIESTO && preventivo.getUsata() != null) {
+                    contentStream.showText(String.format("%-30s %10.2f", "Valutazione dell'usato", preventivo.getValutazione()));
                     contentStream.newLineAtOffset(0, -20);
                 }
+
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
-
-                contentStream.showText("Costo totale: "+preventivo.getCostoTotale()+" €");
-
+                contentStream.showText(String.format("%-30s %10.2f", "Costo totale", preventivo.getCostoTotale()));
                 contentStream.endText();
             }
 
-            // Salva il documento PDF su disco
+            // Save the PDF document to disk
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Salva PDF");
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF files", "*.pdf"));
@@ -371,5 +374,6 @@ public class PreventivoDetailsController {
             e.printStackTrace();
         }
     }
+
 
 }

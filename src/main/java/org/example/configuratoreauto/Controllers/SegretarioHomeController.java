@@ -10,6 +10,7 @@ import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 import org.example.configuratoreauto.Preventivi.SediModel;
+import org.example.configuratoreauto.Utenti.UserModel;
 
 import java.io.IOException;
 
@@ -56,6 +57,8 @@ public class SegretarioHomeController {
         // Show the dialog and wait for user response
         confirmation.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
+                UserModel userModel = UserModel.getInstance();
+                userModel.clearCurrentUser();
                 // User clicked OK, proceed with logout
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/loginPage.fxml"));

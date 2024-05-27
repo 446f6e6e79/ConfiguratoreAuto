@@ -227,14 +227,17 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
                 "STATO:" +getStato();
     }
     @Override
-    public boolean equals(Object o){
-        return o instanceof Preventivo other &&
-                this.acquisto.equals(other.acquisto) &&
-                ((this.usata == null && other.usata == null) || this.usata.equals(other.usata) ) &&
-                this.cliente.equals(other.cliente) &&
-                ((this.optionals == null && other.optionals == null) || this.optionals.equals(other.optionals) ) &&
-                this.sede.equals(other.sede);
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Preventivo that = (Preventivo) o;
+        return Objects.equals(acquisto, that.acquisto) &&
+                Objects.equals(usata, that.usata) &&
+                Objects.equals(cliente, that.cliente) &&
+                Objects.equals(optionals, that.optionals) &&
+                Objects.equals(sede, that.sede);
     }
+
 
     /**
      *  Ordina gli oggetti preventivo in base al loro stato.

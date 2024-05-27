@@ -56,7 +56,7 @@ public class AddAutoUsataController {
                 usedImages
         );
 
-        salvaButton.disableProperty().bind(formValid.not());
+
     }
 
     @FXML
@@ -81,6 +81,8 @@ public class AddAutoUsataController {
                 //Aggiungo l'immagine alla lista immagini aggiunte
                 if (!usedImages.contains(image)) {
                     usedImages.add(image);
+                    immagini.add(new Immagine("Unknown", null, imageFile.getAbsolutePath()));
+
                 }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
@@ -103,6 +105,7 @@ public class AddAutoUsataController {
             * */
             AutoUsata autoUsata = new AutoUsata(marca, modello, targa, km);
             for(Immagine img: immagini){
+                System.out.println("CHECK START");
                 autoUsata.addImage(img);
             }
             autoUsata.addToLocalImages();

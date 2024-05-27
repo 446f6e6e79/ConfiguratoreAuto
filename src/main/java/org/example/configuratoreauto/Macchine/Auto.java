@@ -77,8 +77,10 @@ public abstract class Auto implements Serializable{
         //Sto aggiungendo immagini per un autoUsata
         else {
             for(Immagine img:immagini){
+                System.out.println("CHECK");
                 img.addAutoUsata((AutoUsata) this);
             }
+            System.out.println("CHECK");
         }
     }
 

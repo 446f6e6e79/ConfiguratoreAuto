@@ -19,6 +19,8 @@ import org.example.configuratoreauto.Utenti.UserModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -166,6 +168,7 @@ public class PreventiviController {
     }
 
     private void getPreventivi(ArrayList<Preventivo> registroArg) {
+        Collections.sort(registroArg);
         if (registroArg.isEmpty()) {
             Label none = new Label();
             none.setText("Non è presente alcun preventivo che rispetti i filtri selezionati!");
