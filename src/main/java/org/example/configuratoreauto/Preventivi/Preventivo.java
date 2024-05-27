@@ -95,8 +95,8 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         return motoreScelto;
     }
 
-    /*
-        Verifica che il preventivo non sia scaduto. Un preventivo è scaduto dopo 20 giorni dalla finalizzazione
+    /**
+        Verifica che il preventivo non sia scaduto. Un preventivo è considerato scaduto dopo 20 giorni dalla finalizzazione
     */
     private boolean isScaduto(){
         if(new Date().after(scadenza)){
@@ -105,7 +105,10 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         return false;
     }
 
-    //Ritorna la data nel formato DD/MM/YYYY
+    /**
+     * @param d Data che vogliamo formattare
+     * @return  Data, nel formato dd-MM-yyyy
+     */
     private String getDataAsString(Date d){
         return new SimpleDateFormat("dd-MM-yyyy").format(d);
     }
@@ -142,7 +145,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         return valutazione;
     }
 
-    /*
+    /**
     *   Set della valutazione dell'usato. Una volta valutata verrano svolte automaticamente le seguenti operazioni:
     *       - stato impostato a FINALIZZATO
     *       - scadenza impostata a 20 giorna dalla data attuale
@@ -157,28 +160,6 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     public ArrayList<Optional> getOptionalScelti() {
         return optionals;
     }
-    public String getCostoDettagliato() {
-        StringBuilder dettagli = new StringBuilder();
-        double costoBase = this.acquisto.getCostoBase();
-        dettagli.append("Costo base: ").append(costoBase).append(" €\n");
-
-        if (optionals != null && !optionals.isEmpty()) {
-            dettagli.append("Optionals:\n");
-            for (Optional opt : optionals) {
-                dettagli.append("  - ").append(opt.getCategoria().toString()).append(": ").append(opt.getCosto()).append(" €\n");
-            }
-        }
-        if(stato!=StatoPreventivo.RICHIESTO && usata!=null){
-            dettagli.append("Valutazione usato: ").append(valutazione).append(" €\n");
-        }
-
-
-        double costoTotale = this.getCostoTotale();
-        dettagli.append("Costo totale: ").append(costoTotale).append(" €");
-
-        return dettagli.toString();
-    }
-
 
     public Sede getSede() {
         return sede;
@@ -206,7 +187,8 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
 //        }
     }
 
-    /*Calcola il costo Totale del Preventivo
+    /**
+    *    Calcola il costo Totale del Preventivo
     * Il costo è calcolato come la sottrazione tra:
     *   - costo tot (calcolato nella classe auto)
     *   - valutazione usato

@@ -37,7 +37,8 @@
             </children>
             <BorderPane.margin>
                <Insets top="10.0" />
-            </BorderPane.margin></HBox>
+            </BorderPane.margin>
+         </HBox>
       </top>
       <center>
          <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="900.0" spacing="10.0" BorderPane.alignment="CENTER">

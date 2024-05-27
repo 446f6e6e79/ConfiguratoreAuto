@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
@@ -46,61 +47,38 @@ public class PreventivoDetailsController {
     private Label marchio;
     @FXML
     private Label modelloDescription;
-
-
-
-
     @FXML
     private Label cliente;
-
     @FXML
     private Label sede;
-
     @FXML
     private Label data;
-
+    @FXML
+    private HBox datePreventivo;
     @FXML
     private Label consegna;
-
     @FXML
     private Label scadenza;
-
     @FXML
     private Label stato;
-
     @FXML
     private Label costo;
-
     @FXML
     private Label motore;
-
     @FXML
     private Label dimensione;
-
-
-
     @FXML
-    private Label isUsato;
-
-    @FXML
-    private Label labelUsato;
-
-    @FXML
-    private Label optional;
-
+    private Label usatoMarchio;
     @FXML
     private Label usatoModello;
-
     @FXML
-    Label kmResult;
+    private Label kmResult;
     @FXML
-    Label kmLabel;
+    private Label targa;
     @FXML
-    Label targa;
+    private VBox usatoVbox;
     @FXML
-    Label targaLabel;
-    @FXML
-    Button impiegatoButton;
+    private Button impiegatoButton;
 
     private UserModel user = UserModel.getInstance();
     private RegistroModel registro = RegistroModel.getInstance();
@@ -126,7 +104,7 @@ public class PreventivoDetailsController {
 
         /*
         *   Carico i dati per l'auto acquistata
-        *   TODO: recuperare il colore selezionato, in modo da personalizzare la lista
+        *   TODO: recuperare il colore selezionato, in modo da personalizzare l'immagine;
         * */
         image.setImage(preventivo.getAcquisto().getDefaultImage(null));
         modello.setText(preventivo.getAcquisto().getModello());
@@ -134,68 +112,78 @@ public class PreventivoDetailsController {
 
         //Per ogni optional scelto, aggiungo una riga nella tabella
         for(Optional o : preventivo.getOptionalScelti()){
-            HBox row = new HBox();
-            row.getStyleClass().add("tableRow");
-
-            // Creo la label per la descrizione dell'optional
-            Label description = new Label(o.getDescrizione());
-            description.setAlignment(Pos.CENTER);
-            description.getStyleClass().add("tableRowLabel");
-            description.setPrefWidth(prezzoBase.getPrefWidth());
-
-            // Creo la label per il prezzo dell'optional
-            Label price = new Label(Preventivo.getPriceAsString(o.getCosto()));
-            price.setAlignment(Pos.CENTER);
-            price.getStyleClass().add("tableRowLabel");
-
-            // Bind the width of the price label to the description label
-            price.prefWidthProperty().bind(description.widthProperty());
-
-            // Aggiungo gli elementi alla riga, aggiungo la riga alla tabella
-            row.getChildren().addAll(description, price);
-            priceDetails.getChildren().add(row);
+            addTableRow(o.getDescrizione(), Preventivo.getPriceAsString(o.getCosto()));
         }
 
+        //Aggiunto lo sconto, se presente
+        if(preventivo.getAcquisto().getSconto(preventivo.getData()) > 0){
+            addTableRow("Sconto", "TO DO: GENERA SCONTO");
+        }
+
+        //Aggiungo una colonna con il prezzo totale:
+        addTableRow("Totale", Preventivo.getPriceAsString(preventivo.getCostoTotale()));
+
         modelloDescription.setText(preventivo.getAcquisto().getModello());
+        marchio.setText(preventivo.getAcquisto().getMarca().toString());
+        motore.setText(preventivo.getMotoreScelto().getInfoMotore());
+        dimensione.setText(preventivo.getAcquisto().getDimensione().toSimpleString());
 
         /*
         *   Carico i dati relativi al preventivo
         * */
         cliente.setText(preventivo.getCliente().getName() + " " + preventivo.getCliente().getSurname());
-        sede.setText(preventivo.getSede().toString());
-        data.setText(preventivo.getDataPreventivoAsString());
-        if(preventivo.getStato()!=StatoPreventivo.RICHIESTO){
-            consegna.setText(preventivo.getDataConsegnaAsString());
-        }else{
-            consegna.setText("Da definire");
-        }
-        if (preventivo.getStato() != StatoPreventivo.RICHIESTO) {
-            scadenza.setText(preventivo.getDataScadenzaAsString());
-        } else {
-            scadenza.setText("...");
-        }
         stato.setText(preventivo.getStato().toString());
+        data.setText(preventivo.getDataPreventivoAsString());
+        sede.setText(preventivo.getSede().toString());
 
+        //Se il preventivo è già stato finalizzato:
+        if(preventivo.getStato()!=StatoPreventivo.RICHIESTO) {
+            consegna.setText(preventivo.getDataConsegnaAsString());
+            scadenza.setText(preventivo.getDataScadenzaAsString());
 
-        marchio.setText(preventivo.getAcquisto().getMarca().toString());
-        motore.setText(preventivo.getMotoreScelto().getInfoMotore());
-        dimensione.setText(preventivo.getAcquisto().getDimensione().toSimpleString());
+        }
+        else{
+            datePreventivo.getChildren().clear();
+            Text text = new Text("Attendi che l'usato venga valutato!");
+            text.setStyle("-fx-font-size: 24; -fx-font-weight: bold;-fx-fill: #FFD700");
+            datePreventivo.getChildren().add(text);
+        }
 
-//        if (preventivo.getUsata() != null) {
-//            isUsato.setText("Si");
-//            labelUsato.setText(preventivo.getUsata().getModello() + " " + preventivo.getUsata().getMarca());
-//            kmResult.setText("" + preventivo.getUsata().getKm() + "km");
-//            targa.setText(preventivo.getUsata().getTarga());
-//        } else {
-//            isUsato.setText("No");
-//            labelUsato.setText("");
-//            usatoModello.setText("");
-//            kmLabel.setText("");
-//            kmResult.setText("");
-//            targa.setText("");
-//            targaLabel.setText("");
-//        }
+        /*
+        *   Aggiungo le informazioni per l'auto ussata, se presenti
+        * */
+        if (preventivo.getUsata() != null) {
+            usatoMarchio.setText(preventivo.getUsata().getMarca().toString());
+            usatoModello.setText(preventivo.getUsata().getModello());
+            kmResult.setText(String.valueOf(preventivo.getUsata().getKm()));
+            targa.setText(preventivo.getUsata().getTarga());
+        }
+        //Se non è presente un auto usata, elimino l'elemento
+        else {
+            usatoVbox.getChildren().clear();
+        }
         String s = "";
+    }
+
+    private void addTableRow(String description, String price) {
+        HBox row = new HBox();
+        row.getStyleClass().add("tableRow");
+
+        // Creo la label per la descrizione dell'optional
+        Label descriptionLabel = new Label(description);
+        descriptionLabel.setAlignment(Pos.CENTER);
+        descriptionLabel.getStyleClass().add("tableRowLabel");
+        descriptionLabel.setPrefWidth(prezzoBase.getPrefWidth());
+
+        // Creo la label per il prezzo dell'optional
+        Label priceLabel = new Label(price);
+        priceLabel.setAlignment(Pos.CENTER);
+        priceLabel.getStyleClass().add("tableRowLabel");
+        priceLabel.prefWidthProperty().bind(descriptionLabel.widthProperty());
+
+        // Aggiungo gli elementi alla riga, aggiungo la riga alla tabella
+        row.getChildren().addAll(descriptionLabel, priceLabel);
+        priceDetails.getChildren().add(row);
     }
 
 
@@ -374,6 +362,4 @@ public class PreventivoDetailsController {
             e.printStackTrace();
         }
     }
-
-
 }

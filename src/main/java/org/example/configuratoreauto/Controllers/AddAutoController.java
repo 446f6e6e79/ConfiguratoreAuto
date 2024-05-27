@@ -144,7 +144,7 @@ public class AddAutoController implements Initializable {
             TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
             Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/catalogoView.fxml"));
-            AnchorPane catalogoNode;
+            BorderPane catalogoNode;
 
             catalogoNode = loader.load();
             tab.setContent(catalogoNode); // Imposta il nuovo contenuto del tab "Catalogo"

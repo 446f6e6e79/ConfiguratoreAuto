@@ -91,7 +91,7 @@ public class PreventivoElementController {
                 stato.setTextFill(Color.BLACK);
                 break;
             case RICHIESTO:
-                stato.setTextFill(Color.YELLOW);
+                stato.setTextFill(Color.web("#FFD700"));
                 break;
             default:
                 stato.setTextFill(Color.GREEN);

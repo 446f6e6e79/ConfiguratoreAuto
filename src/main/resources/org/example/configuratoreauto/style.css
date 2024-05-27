@@ -1,15 +1,28 @@
+.root{
+    -fx-font-family: "Arial";
+}
+.pageTitle{
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+}
+.boldText{
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
 #clickableText {
     -fx-underline: true;
     -fx-cursor: hand; /* Cambia il cursore, segnalando il testo cliccabile*/
 }
-
 /* ========= ButtoneVerde =============*/
 .greenButton {
-    -fx-background-color: #4CAF50; /* Green background color */
-    -fx-text-fill: white; /* Text color */
-    -fx-padding: 10px 20px; /* Padding */
-    -fx-border-radius: 5px; /* Border radius */
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.2, 1); /* Box shadow */
+    -fx-background-color: #4CAF50;
+    -fx-font-size: bold;
+    -fx-font-size: 30;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.2, 1);
 }
 .greenButton:hover {
     -fx-background-color: #45a049; /* Darker green on hover */
@@ -207,3 +220,24 @@
     -fx-text-fill: white; /* Text color of the Logout tab */
 }
 
+/*============ SEZIONI ======*/
+.section {
+    -fx-border-color: #CCCCCC;
+    -fx-background-color: #F8F8F8;
+    -fx-padding: 10px;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-border-style: solid;
+    -fx-padding: 10px;
+    -fx-margin: 10px;
+}
+
+.section-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+
+.section-content {
+    -fx-text-fill: #666666; /* Medium gray text */
+}

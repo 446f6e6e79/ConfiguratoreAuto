@@ -115,6 +115,7 @@ public class AddAutoOptionalsController implements Initializable {
                         Double.parseDouble(costoOptional.getText())
                 ));
         updateOptionalList();
+        cleanOptionalFields();
     }
 
     /**
@@ -161,6 +162,14 @@ public class AddAutoOptionalsController implements Initializable {
     }
 
     /**
+     * Pulisce i campi di input per l'aggiunta di un optional
+     */
+    private void cleanOptionalFields(){
+        descrizioneOptional.clear();
+        costoOptional.clear();
+    }
+
+    /**
      * Aggiunge un motore alla lista di TempAuto.
      * Aggiorna inoltre il DISPLAY della lista di motori
      */
@@ -175,6 +184,9 @@ public class AddAutoOptionalsController implements Initializable {
                 )
         );
         updateMotoriList();
+
+        //Pulisco i campi di input
+        cleanMotoreFields();
     }
 
     private void updateMotoriList() {
@@ -214,6 +226,16 @@ public class AddAutoOptionalsController implements Initializable {
         }
 
         motoreScrollPane.setContent(container);
+    }
+
+    /**
+     * Resetta tutti i campi di input riguardanti l'inserimento di un nuovo motore
+     */
+    private void cleanMotoreFields(){
+        nomeMotore.clear();
+        potenzaMotore.clear();
+        cilindrata.clear();
+        consumi.clear();
     }
 
     @FXML

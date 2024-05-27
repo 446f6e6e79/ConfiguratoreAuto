@@ -38,10 +38,9 @@ public class AutoUsataElementController {
     private Label validation;
     @FXML
     ImageView images;
-
     ArrayList<Immagine> listaImmagini;
-    void setElement( Preventivo prev){
 
+    void setElement( Preventivo prev){
         validation.setText("");
         this.preventivo = prev;
         AutoUsata auto = prev.getUsata();
