@@ -377,7 +377,7 @@
    <bottom>
       <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="200.0" spacing="20.0" BorderPane.alignment="CENTER_LEFT">
          <children>
-            <Button fx:id="impiegatoButton" mnemonicParsing="false" onAction="#impiegatoPress" prefHeight="100.0" text="Segnala Pagato">
+            <Button fx:id="impiegatoButton" mnemonicParsing="false" prefHeight="100.0" text="Segnala Pagato">
                <font>
                   <Font size="30.0" />
                </font>

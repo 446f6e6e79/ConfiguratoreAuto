@@ -17,7 +17,7 @@
 /* ========= ButtoneVerde =============*/
 .greenButton {
     -fx-background-color: #4CAF50;
-    -fx-font-size: bold;
+    -fx-font-weight: bold;
     -fx-font-size: 30;
     -fx-text-fill: white;
     -fx-padding: 10px 20px;

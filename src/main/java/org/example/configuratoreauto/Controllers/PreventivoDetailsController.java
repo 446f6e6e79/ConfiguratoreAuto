@@ -92,12 +92,15 @@ public class PreventivoDetailsController {
            impiegatoButton.setVisible(true);
            if(preventivo.getStato()==StatoPreventivo.FINALIZZATO){
                impiegatoButton.setText("Segnala pagato");
+               impiegatoButton.setOnAction(t->setNewStato(StatoPreventivo.PAGATO));
            }
            if(preventivo.getStato()==StatoPreventivo.PAGATO){
                impiegatoButton.setText("Segnala da ritirare");
+               impiegatoButton.setOnAction(t->setNewStato(StatoPreventivo.DISPONIBILE_AL_RITIRO));
            }
            if(preventivo.getStato()==StatoPreventivo.DISPONIBILE_AL_RITIRO){
                impiegatoButton.setText("Il veicolo è stato ritirato");
+               impiegatoButton.setOnAction(t->setNewStato(StatoPreventivo.RITIRATO));
            }
         }
         this.preventivo = preventivo;
@@ -210,27 +213,12 @@ public class PreventivoDetailsController {
             e.printStackTrace();
         }
     }
-    @FXML
-    private void impiegatoPress(){
-        preventivo.setStato(StatoPreventivo.PAGATO);
-        if(user.getCurrentUser() instanceof Impiegato){
 
-            if(preventivo.getStato()==StatoPreventivo.FINALIZZATO){
-                preventivo.setStato(StatoPreventivo.PAGATO);
-            }
-            else if(preventivo.getStato()==StatoPreventivo.PAGATO){
-                preventivo.setStato(StatoPreventivo.DISPONIBILE_AL_RITIRO);
-            }
-            else if(preventivo.getStato()==StatoPreventivo.DISPONIBILE_AL_RITIRO){
-                preventivo.setStato(StatoPreventivo.RITIRATO);
-            }
-            registro.updateData(preventivo);
-        }
-        goBack();
+    private void setNewStato(StatoPreventivo newStato){
+       preventivo.setStato(newStato);
+       registro.updateData(preventivo);
+       goBack();
     }
-
-
-
     @FXML
     private void onPdf() {
         // Create a new PDF document
