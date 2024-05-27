@@ -98,8 +98,13 @@ public class AddAutoUsataController {
             String targa = targaTextField.getText();
             int km = Integer.parseInt(kmTextField.getText());
 
+            /*
+            *   Aggiungo all'auto usata le immagini inserite
+            * */
             AutoUsata autoUsata = new AutoUsata(marca, modello, targa, km);
-
+            for(Immagine img: immagini){
+                autoUsata.addImage(img);
+            }
             autoUsata.addToLocalImages();
 
             saveLabel.setText("Auto usata salvata con successo!");
