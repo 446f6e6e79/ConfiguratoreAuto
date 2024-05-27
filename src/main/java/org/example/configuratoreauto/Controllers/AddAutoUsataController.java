@@ -67,7 +67,8 @@ public class AddAutoUsataController {
 
         fileChooser.getExtensionFilters().addAll(
                 new FileChooser.ExtensionFilter("Image files", "*.png"),
-                new FileChooser.ExtensionFilter("Image files", "*.jpg")
+                new FileChooser.ExtensionFilter("Image files", "*.jpg"),
+                new FileChooser.ExtensionFilter("Image files", "*.jpeg")
         );
 
         File imageFile = fileChooser.showOpenDialog(new Stage());
@@ -77,13 +78,19 @@ public class AddAutoUsataController {
             try {
                 String imageUrl = imageFile.toURI().toString();
                 Image image = new Image(imageUrl);
-                clickedImageView.setImage(image);
+
+
+                if(usedImages.size()>=4){
+                    int index = usedImages.indexOf(clickedImageView.getImage());
+                    usedImages.set(index, image);
+                    immagini.set(index,new Immagine("Unknown", null, imageFile.getAbsolutePath()));
+                }
                 //Aggiungo l'immagine alla lista immagini aggiunte
-                if (!usedImages.contains(image)) {
+                else if (!usedImages.contains(image)) {
                     usedImages.add(image);
                     immagini.add(new Immagine("Unknown", null, imageFile.getAbsolutePath()));
-
                 }
+                clickedImageView.setImage(image);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
