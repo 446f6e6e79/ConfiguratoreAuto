@@ -5,10 +5,12 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.*;
@@ -35,6 +37,8 @@ public class AddAutoUsataController {
     @FXML
     private Label saveLabel;
     @FXML
+    private GridPane imageGrid;
+    @FXML
     private Button salvaButton;
 
     private List<Immagine> immagini = new ArrayList<>();
@@ -42,7 +46,6 @@ public class AddAutoUsataController {
     @FXML
     private void initialize() {
         marcaComboBox.getItems().setAll(Marca.values());
-
 
         formValid = Bindings.createBooleanBinding(() ->
                         isValidTarga(targaTextField.getText()) &&
@@ -55,8 +58,6 @@ public class AddAutoUsataController {
                 kmTextField.textProperty(),
                 usedImages
         );
-
-
     }
 
     @FXML
@@ -78,17 +79,15 @@ public class AddAutoUsataController {
             try {
                 String imageUrl = imageFile.toURI().toString();
                 Image image = new Image(imageUrl);
+                int index = usedImages.indexOf(clickedImageView.getImage());
 
-
-                if(usedImages.size()>=4){
-                    int index = usedImages.indexOf(clickedImageView.getImage());
-                    usedImages.set(index, image);
-                    immagini.set(index,new Immagine("Unknown", null, imageFile.getAbsolutePath()));
-                }
-                //Aggiungo l'immagine alla lista immagini aggiunte
-                else if (!usedImages.contains(image)) {
+                //Se è stata inserita una nuova immagine
+                if(index == -1){
                     usedImages.add(image);
-                    immagini.add(new Immagine("Unknown", null, imageFile.getAbsolutePath()));
+                }
+                //è stata sovrascritta un immagine
+                else{
+                    usedImages.set(index, image);
                 }
                 clickedImageView.setImage(image);
             } catch (Exception e) {
@@ -111,9 +110,9 @@ public class AddAutoUsataController {
             *   Aggiungo all'auto usata le immagini inserite
             * */
             AutoUsata autoUsata = new AutoUsata(marca, modello, targa, km);
-            for(Immagine img: immagini){
-                System.out.println("CHECK START");
-                autoUsata.addImage(img);
+            for(Image img: usedImages){
+                System.out.println(img.getUrl().toString().substring(5));
+                autoUsata.addImage(new Immagine("", null, img.getUrl().toString().substring(5)));
             }
             autoUsata.addToLocalImages();
 
@@ -123,7 +122,6 @@ public class AddAutoUsataController {
             ((Stage) saveLabel.getScene().getWindow()).close();
         } else {
             // Se il form non è valido, visualizza un messaggio di errore e evidenzia i campi non validi
-            ;
             highlightInvalidFields();
         }
     }
@@ -162,6 +160,4 @@ public class AddAutoUsataController {
         String regex = "^[A-Z]{2}[0-9]{3}[A-Z]{2}$";
         return Pattern.matches(regex, targa);
     }
-
-
 }
