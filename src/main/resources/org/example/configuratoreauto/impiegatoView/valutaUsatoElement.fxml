@@ -78,13 +78,28 @@
    </HBox>
    <VBox alignment="CENTER" prefHeight="43.0" prefWidth="700.0" styleClass="topBorder">
       <children>
-         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
             <children>
-               <TextField fx:id="valutazione" prefHeight="26.0" prefWidth="100.0" promptText="Inserisci valutazione:" />
-               <Button mnemonicParsing="false" onAction="#conferma" text="Conferma" />
+               <TextField fx:id="valutazione" promptText="Inserisci valutazione:">
+                  <font>
+                     <Font size="20.0" />
+                  </font></TextField>
+               <Button mnemonicParsing="false" onAction="#conferma" styleClass="greenButton" text="Conferma">
+                  <font>
+                     <Font size="20.0" />
+                  </font></Button>
             </children>
          </HBox>
-         <Label fx:id="validation" text="ERROR" />
+         <Label fx:id="validation" styleClass="section-subTitle" text="ERROR">
+            <VBox.margin>
+               <Insets top="20.0" />
+            </VBox.margin>
+            <padding>
+               <Insets bottom="10.0" />
+            </padding></Label>
       </children>
+      <padding>
+         <Insets bottom="5.0" />
+      </padding>
    </VBox>
 </VBox>

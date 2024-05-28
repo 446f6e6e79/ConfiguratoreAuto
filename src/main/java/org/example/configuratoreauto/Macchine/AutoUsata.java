@@ -28,4 +28,12 @@ public class AutoUsata extends Auto implements Serializable {
     public int getKm(){
         return km;
     }
+
+    @Override
+    public void addToLocalImages() {
+        for(Immagine img:super.getImmagini()){
+            System.out.println("CHECK");
+            img.addAutoUsata((AutoUsata) this);
+        }
+    }
 }

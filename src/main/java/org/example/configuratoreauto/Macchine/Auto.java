@@ -58,31 +58,8 @@ public abstract class Auto implements Serializable{
                 -targaAuto2
                 ...
      */
-    public void addToLocalImages() {
-        if (this instanceof AutoNuova autoNuova) {
 
-            //Aggiungo tutte le immagini relative alla macchina nella cartella temporanea
-            for (Immagine img : immagini) {
-                img.addAutoNuova(autoNuova);
-            }
-
-            //Sposto la directory tempImages carImages/auto.getId
-            try {
-                Immagine.cleanAndRenameDirectory(autoNuova);
-            } catch (IOException e) {
-                System.err.println("Error moving images to target directory: " + e.getMessage());
-            }
-        }
-
-        //Sto aggiungendo immagini per un autoUsata
-        else {
-            for(Immagine img:immagini){
-                System.out.println("CHECK");
-                img.addAutoUsata((AutoUsata) this);
-            }
-            System.out.println("CHECK");
-        }
-    }
+    abstract void addToLocalImages();
 
     /**
      *  Rimuove un immagine dalla lista di immagini dell'auto.

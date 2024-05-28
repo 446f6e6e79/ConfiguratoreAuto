@@ -3,6 +3,7 @@ package org.example.configuratoreauto.Macchine;
 import javafx.scene.image.Image;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -196,5 +197,20 @@ public class AutoNuova extends Auto implements Serializable {
             return this.getImmagini().get(0).getImage();
         }
         return new Image(getClass().getResourceAsStream("/img/no_data.png"));
+    }
+
+    @Override
+    public void addToLocalImages() {
+        //Aggiungo tutte le immagini relative alla macchina nella cartella temporanea
+        for (Immagine img : super.getImmagini()) {
+            img.addAutoNuova(this);
+        }
+
+        //Sposto la directory tempImages carImages/auto.getId
+        try {
+            Immagine.cleanAndRenameDirectory(this);
+        } catch (IOException e) {
+            System.err.println("Error moving images to target directory: " + e.getMessage());
+        }
     }
 }
