@@ -71,10 +71,7 @@ public class LoginController {
 
     @FXML
     protected void onGuestClick() {
-        //userModel.validation("davide@gmail.com", "1234");
-        //setPage("clienteView/homepageCliente");
-        userModel.validation("impiegato@gmail.com", "1234");
-        setPage("impiegatoView/homepageImpiegato");
+        setPage("clienteView/homepageCliente");
     }
 
     @FXML

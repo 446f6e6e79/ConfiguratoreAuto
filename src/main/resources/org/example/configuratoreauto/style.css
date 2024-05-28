@@ -254,80 +254,57 @@
     -fx-padding: 10 0 0 0;
 }
 
-
-
-/* Focused Text */
+/*======== TEXT AREA =========*/
 .text-field:focused .text-input {
     -fx-background-color: transparent;
 }
-
-/* Disabled Text */
 .text-field:disabled .text-input {
     -fx-background-color: transparent;
 }
-/* Text Area */
 .text-area {
     -fx-background-color: #f4f4f4;
     -fx-border-color: #ccc;
     -fx-border-radius: 5px;
     -fx-font-size: 13px;
     -fx-padding: 8px;
-    -fx-prompt-text-fill: #999999; /* Color of the prompt text */
+    -fx-prompt-text-fill: #999999;
 }
-
 .text-area:hover,
 .text-area:focused {
     -fx-background-color: #e6e6e6;
 }
-
 .text-area:disabled {
     -fx-opacity: 0.5;
 }
-
-/* Prompt Text */
 .text-area .prompt-text {
     -fx-fill: #999999;
 }
-
-/* Content Text */
 .text-area .content {
     -fx-fill: #333333;
 }
-
-/* Selected Text */
 .text-area .text-input {
     -fx-background-color: transparent;
 }
-
-/* Hovered Text */
 .text-area:hover .text-input {
     -fx-background-color: transparent;
 }
-
-/* Focused Text */
 .text-area:focused .text-input {
     -fx-background-color: transparent;
 }
-
-/* Disabled Text */
 .text-area:disabled .text-input {
     -fx-background-color: transparent;
 }
-/* GridPane  */
+/*========== SCONTO per MESE ========*/
 #selectedMesi {
     -fx-background-color: #f2f2f2; /* Background color */
     -fx-border-color: #ccc; /* Border color */
     -fx-border-radius: 5px; /* Border radius */
-    -fx-padding: 10px; /* Padding */
 }
-
 /* ToggleButton */
 #selectedMesi ToggleButton {
     -fx-background-color: #ffffff; /* Background color */
     -fx-border-color: #ccc; /* Border color */
     -fx-border-radius: 5px; /* Border radius */
-    -fx-padding: 10px; /* Padding */
-    -fx-font-size: 12px; /* Font size */
 }
 
 #selectedMesi ToggleButton:hover {

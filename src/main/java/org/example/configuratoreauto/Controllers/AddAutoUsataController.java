@@ -5,7 +5,6 @@ import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,7 +13,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.*;
-import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 
 import java.io.File;
@@ -176,24 +174,24 @@ public class AddAutoUsataController {
 
     private boolean isValidTarga(String targa) {
         String regex = "^[A-Z]{2}[0-9]{3}[A-Z]{2}$";
-        return Pattern.matches(regex, targa) && !isTargaDirectoryExists(targa);
+        return Pattern.matches(regex, targa) && !targaAlreadyPresent(targa);
     }
 
-    private boolean isTargaDirectoryExists(String targa) {
-        File directory = new File( "/home/blushi/IdeaProjects/ConfiguratoreAuto/src/main/resources/img/usedCarImages");
+    private boolean targaAlreadyPresent(String targa) {
+        File directory = new File( "/src/main/resources/img/usedCarImages");
         if (!directory.exists() || !directory.isDirectory()) {
             return false;
         }
-
+        //Creo una lista di tutte le sotto-directory esistenti
         File[] files = directory.listFiles();
         if (files != null) {
+            //Controllo, per ogni directory, se combacia con la targa inserita
             for (File file : files) {
                 if (file.isDirectory() && file.getName().contains(targa)) {
                     return true;
                 }
             }
         }
-
         return false;
     }
 }

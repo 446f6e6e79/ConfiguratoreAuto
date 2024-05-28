@@ -13,62 +13,69 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="main" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.CustomizeAutoController">
+<AnchorPane fx:id="main" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.CustomizeAutoController">
     <children>
-      <BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="900.0" prefWidth="1600.0">
+      <BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1497.0">
          <left>
-              <VBox fx:id="left" prefHeight="900.0" prefWidth="717.0" BorderPane.alignment="CENTER">
+              <VBox fx:id="left" prefHeight="800.0" prefWidth="765.0" BorderPane.alignment="CENTER">
                   <children>
                   <ImageView fitHeight="30.0" fitWidth="30.0" onMouseClicked="#backClicked" pickOnBounds="true" preserveRatio="true">
                       <Image url="@../../../../img/icons/back-icon.png" />
                   </ImageView>
-                  <VBox prefHeight="152.0" prefWidth="805.0">
+                  <VBox prefHeight="475.0" prefWidth="854.0" styleClass="section">
                      <children>
-                              <Text fx:id="modelID" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 55" text="Modello" />
-                              <Text fx:id="descrizione" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrizione">
+                        <VBox prefHeight="416.0" prefWidth="860.0" styleClass="container">
+                           <children>
+                                    <Text fx:id="modelID" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 55" text="Modello" />
+                                    <Text fx:id="descrizione" strokeType="OUTSIDE" strokeWidth="0.0" text="Descrizione">
+                                 <VBox.margin>
+                                    <Insets top="10.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="22.0" />
+                                 </font>
+                              </Text>
+                              <StackPane prefHeight="315.0" prefWidth="801.0">
+                                 <children>
+                                     <ImageView fx:id="images" fitHeight="330.0" fitWidth="560.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image fx:id="singleimage" url="@../../../../img/no_data.png" />
+                                            </image>
+                                        </ImageView>
+                                    <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="583.0">
+                                       <right>
+                                          <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#nextImage" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                              <Image url="@../../../../img/icons/right-arrow.png">
+                            </Image>
+                                             <BorderPane.margin>
+                                                <Insets right="5.0" />
+                                             </BorderPane.margin>
+                                          </ImageView>
+                                       </right>
+                                       <left>
+                                           <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#prevImage" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
+                                               <Image url="@../../../../img/icons/right-arrow.png" />
+                                             <BorderPane.margin>
+                                                <Insets left="5.0" />
+                                             </BorderPane.margin>
+                                           </ImageView>
+                                       </left>
+                                    </BorderPane>
+                                 </children>
+                              </StackPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                           </padding>
                            <VBox.margin>
-                              <Insets top="10.0" />
+                              <Insets top="20.0" />
                            </VBox.margin>
-                           <font>
-                              <Font size="22.0" />
-                           </font>
-                        </Text>
+                        </VBox>
                      </children>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets left="15.0" />
                      </VBox.margin>
                   </VBox>
-                  <StackPane prefHeight="478.0" prefWidth="770.0">
-                     <children>
-                         <ImageView fx:id="images" fitHeight="330.0" fitWidth="589.0" pickOnBounds="true" preserveRatio="true">
-                                <image>
-                                    <Image fx:id="singleimage" url="@../../../../img/no_data.png" />
-                                </image>
-                            </ImageView>
-                        <BorderPane prefHeight="478.0" prefWidth="750.0">
-                           <right>
-                              <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#nextImage" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                                  <Image url="@../../../../img/icons/right-arrow.png">
-                            </Image>
-                                 <BorderPane.margin>
-                                    <Insets right="5.0" />
-                                 </BorderPane.margin>
-                              </ImageView>
-                           </right>
-                           <left>
-                               <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#prevImage" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
-                                   <Image url="@../../../../img/icons/right-arrow.png" />
-                                 <BorderPane.margin>
-                                    <Insets left="5.0" />
-                                 </BorderPane.margin>
-                               </ImageView>
-                           </left>
-                        </BorderPane>
-                     </children>
-                  </StackPane>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <children>
                             <Text fx:id="infoPrezzo" strokeType="OUTSIDE" strokeWidth="0.0" text="Info Prezzo:" wrappingWidth="491.7294921875">
@@ -85,6 +92,9 @@
                      <padding>
                         <Insets left="20.0" top="20.0" />
                      </padding>
+                     <VBox.margin>
+                        <Insets left="15.0" />
+                     </VBox.margin>
                   </VBox>
                   </children>
               </VBox>
