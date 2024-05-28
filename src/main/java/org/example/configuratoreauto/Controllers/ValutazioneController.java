@@ -26,6 +26,9 @@ public class ValutazioneController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
+        /*
+        *   Resize dinamico della componente FlowPane, in modo da occupare l'intero schermo
+        * */
         list.prefWidthProperty().bind(mainComponent.widthProperty());
         list.prefHeightProperty().bind(mainComponent.heightProperty());
 
@@ -52,22 +55,21 @@ public class ValutazioneController implements Initializable {
         }
     }
 
-    /*
-     *   Se l'utente è di tipo SEGRETARIO, introduce, in cima alla lista di auto
-     *   un nuovo elemento cliccabile, con la possibilità di aggiungere un nuovo modello di auto
-     * */
-
-
+    /**
+     *  Aggiunge una componente AutoUsata per la sua valutazione
+     * @param p Preventivo da valutare
+     * @throws IOException
+     */
     private void loadCarComponent(Preventivo p) throws IOException {
-        // Carica la componente autoElement.fxml
+        // Carica la componente valutaUsato.fxml
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/impiegatoView/valutaUsatoElement.fxml"));
-        HBox autoComponent = loader.load();
+        VBox autoComponent = loader.load();
 
-        // Configura il controller dell'autoComponent con i dati dell'auto
+        // Configura il controller usatoComponent con i dati dell'auto
         AutoUsataElementController controller = loader.getController();
         controller.setElement(p);
 
-        // Aggiungi l'autoComponent al VBox
+        // Aggiungi l'usatoComponent al FlowPane
         list.getChildren().add(autoComponent);
     }
 

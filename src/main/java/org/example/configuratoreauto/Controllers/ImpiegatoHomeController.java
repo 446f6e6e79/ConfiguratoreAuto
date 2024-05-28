@@ -27,7 +27,6 @@ public class ImpiegatoHomeController {
         mainPage.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
     }
 
-
     @FXML
     private void logout() {
         mainPage.getSelectionModel().selectFirst();

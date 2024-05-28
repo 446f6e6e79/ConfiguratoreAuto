@@ -49,7 +49,7 @@ public class AutoUsataElementController {
         modello.setText(auto.getModello());
         targa.setText(auto.getTarga());
         marca.setText(auto.getMarca().toString());
-        km.setText(auto.getKm()+"");
+        km.setText(auto.getKm()+" km");
     }
     @FXML
     void conferma() {
