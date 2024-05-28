@@ -220,7 +220,7 @@ public class CustomizeAutoController implements Initializable {
             Preventivo p = new Preventivo(auto, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), chosen);
             registro.currentPreventivo = p;
             openUsataView();
-            System.out.println("INSERITO PREVENTIVO");
+            catalogo.setSelectedAuto(null);
             this.backClicked();
         }else{
             valido.setText("Non hai inserito i campi correttamente\n");

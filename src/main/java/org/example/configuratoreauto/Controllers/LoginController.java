@@ -103,6 +103,7 @@ public class LoginController {
             email.clear();
             password.clear();
             if (userModel.validation(emailText, passText)) {
+                System.out.println(userModel.getCurrentUser());
                 if (userModel.getCurrentUser() instanceof Cliente && catalogo.getSelectedAuto()==null) {
                     setPage("clienteView/homepageCliente");
                 }

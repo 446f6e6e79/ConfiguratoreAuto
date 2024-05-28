@@ -5,8 +5,38 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/AddAutoUsataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/AddAutoUsataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/ClienteHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/ClienteHomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/CustomizeAutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/CustomizeAutoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/PreventiviController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/PreventiviController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/PreventivoDetailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/PreventivoDetailsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/data/registro.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/registro.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX680AX/Screenshot_20240403_223623.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX680AX/alpine.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX680AX/back-car.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX680AX/red_bull.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX680EW/Screenshot_20240403_223623.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX680EW/alpine.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX680EW/aston martin.coloured.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX680EW/red_bull.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/FF287PN/alpine.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/FF287PN/aston martin.coloured.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/FF287PN/left-car.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/FF287PN/red_bull.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/FF287PN/right-car.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/FF297ON/alpine.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/FF297ON/aston martin.coloured.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/FF297ON/red_bull.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/GC018VR/-1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/GC018VR/0.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/GC018VR/2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/GC018VR/configuratoreauto.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/GC018VR/icons8-back-50.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/GC018VR/uml_v2.png" beforeDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -210,8 +240,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
-        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
+        <option value="jdk-19.0.2-azul-19.0.2-4caba194b151-27577346" />
       </set>
     </attachedChunks>
   </component>
@@ -324,6 +353,7 @@
       <workItem from="1716817518948" duration="1501000" />
       <workItem from="1716840071542" duration="740000" />
       <workItem from="1716842284314" duration="2493000" />
+      <workItem from="1716921562374" duration="5051000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />

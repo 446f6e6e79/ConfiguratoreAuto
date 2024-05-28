@@ -14,6 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.*;
+import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 
 import java.io.File;
@@ -79,20 +80,36 @@ public class AddAutoUsataController {
             try {
                 String imageUrl = imageFile.toURI().toString();
                 Image image = new Image(imageUrl);
-                int index = usedImages.indexOf(clickedImageView.getImage());
 
-                //Se è stata inserita una nuova immagine
-                if(index == -1){
-                    usedImages.add(image);
+                // Verifica che l'immagine non sia già dentro l'array
+                boolean imageAlreadyUsed = false;
+                for (Image usedImage : usedImages) {
+                    if (usedImage.getUrl().equals(image.getUrl())) {
+                        imageAlreadyUsed = true;
+                        break;
+                    }
                 }
-                //è stata sovrascritta un immagine
-                else{
-                    usedImages.set(index, image);
+                //Se non ho provato ad inserire la stessa immagine
+                if (!imageAlreadyUsed) {
+                    saveLabel.setText("Immagine inserita correttamente");
+                    // If the image is not already used, proceed with adding or updating
+                    int index = usedImages.indexOf(image);
+                    // Se l'immagine è nuova
+                    if (index == -1) {
+                        usedImages.add(image);
+                    }
+                    // Se c'è un'immagine viene sovrascritta
+                    else {
+                        usedImages.set(index, image);
+                    }
+                    clickedImageView.setImage(image);
+                } else {
+                    saveLabel.setText("Questa immagine è già stata inserita");
                 }
-                clickedImageView.setImage(image);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
+
         }
     }
 
@@ -137,6 +154,7 @@ public class AddAutoUsataController {
         }
         if (!isValidTarga(targaTextField.getText())) {
             targaTextField.setStyle("-fx-border-color: red;");
+            saveLabel.setText("Targa errata o già presente nel registro");
         }
         if (modelloTextField.getText().isEmpty()) {
             modelloTextField.setStyle("-fx-border-color: red;");
@@ -158,6 +176,24 @@ public class AddAutoUsataController {
 
     private boolean isValidTarga(String targa) {
         String regex = "^[A-Z]{2}[0-9]{3}[A-Z]{2}$";
-        return Pattern.matches(regex, targa);
+        return Pattern.matches(regex, targa) && !isTargaDirectoryExists(targa);
+    }
+
+    private boolean isTargaDirectoryExists(String targa) {
+        File directory = new File( "/home/blushi/IdeaProjects/ConfiguratoreAuto/src/main/resources/img/usedCarImages");
+        if (!directory.exists() || !directory.isDirectory()) {
+            return false;
+        }
+
+        File[] files = directory.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isDirectory() && file.getName().contains(targa)) {
+                    return true;
+                }
+            }
+        }
+
+        return false;
     }
 }

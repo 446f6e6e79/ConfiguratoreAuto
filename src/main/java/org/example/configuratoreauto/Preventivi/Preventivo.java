@@ -23,6 +23,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     private Cliente cliente;
     private Date scadenza;
     private double valutazione;
+    private double scontoAuto;
 
     public Preventivo(AutoNuova acquisto, Sede sede, Cliente cliente, Date d, Motore motore, ArrayList optionalScelti){
         this.data = d;
@@ -31,6 +32,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         this.sede = sede;
         this.cliente = cliente;
         this.motoreScelto = motore;
+        this.scontoAuto = this.acquisto.getSconto(this.data);
         if(optionalScelti != null){
             this.optionals.addAll(optionalScelti);
         }
@@ -58,6 +60,10 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
             setScadenza(new Date());
             setConsegna();
         }
+    }
+
+    public double getScontoAuto() {
+        return scontoAuto;
     }
 
     /**

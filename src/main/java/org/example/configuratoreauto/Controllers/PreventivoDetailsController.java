@@ -119,8 +119,8 @@ public class PreventivoDetailsController {
         }
 
         //Aggiunto lo sconto, se presente
-        if(preventivo.getAcquisto().getSconto(preventivo.getData()) > 0){
-            addTableRow("Sconto", "TO DO: GENERA SCONTO");
+        if(preventivo.getScontoAuto() > 0){
+            addTableRow("Sconto", Double.toString(preventivo.getScontoAuto())+"%");
         }
 
         //Aggiungo una colonna con il prezzo totale:
@@ -201,10 +201,12 @@ public class PreventivoDetailsController {
             PreventiviController controller = loader.getController();
 
             if(user.getCurrentUser() instanceof Cliente){
+                controller.resetFilter();
                 controller.loadPrevs(registro.getPreventiviByCliente((Cliente) user.getCurrentUser()));
             }else if(user.getCurrentUser() instanceof Segretario){
                 controller.loadPrevs(registro.getAllData());
             }else if(user.getCurrentUser() instanceof Impiegato && preventivo.getStato()!=StatoPreventivo.RITIRATO){
+                registro.currentPreventivo=preventivo;
                 controller.loadPrevs(registro.getPreventiviByStato(preventivo.getStato()));
             }else if(user.getCurrentUser() instanceof Impiegato && preventivo.getStato()==StatoPreventivo.RITIRATO){
                 controller.loadPrevs((registro.getPreventiviByStato(StatoPreventivo.FINALIZZATO)));
@@ -309,8 +311,8 @@ public class PreventivoDetailsController {
                 contentStream.setFont(PDType1Font.HELVETICA, 12);
                 contentStream.showText(String.format("%-30s %10.2f", "Costo Base", preventivo.getAcquisto().getCostoBase()));
                 contentStream.newLineAtOffset(0, -20);
-                if (preventivo.getAcquisto().getSconto(preventivo.getData()) != 0) {
-                    contentStream.showText(String.format("%-30s %10.2f", "Sconto Mensile", preventivo.getAcquisto().getSconto(preventivo.getData())));
+                if (preventivo.getScontoAuto() != 0) {
+                    contentStream.showText(String.format("%-30s %10.2f", "Sconto Applicato(%)", preventivo.getScontoAuto()));
                     contentStream.newLineAtOffset(0, -20);
                 }
                 contentStream.showText("Costi Optionals:");

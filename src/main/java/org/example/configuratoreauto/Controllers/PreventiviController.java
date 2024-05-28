@@ -79,7 +79,7 @@ public class PreventiviController {
         choiceStato.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 actualStato = newValue;
-                titleMain.setText("Gestione Preventivi - " + newValue);
+                titleMain.setText("Gestione Preventivi");
                 loadPrevs(registro.getPreventiviByStato(newValue));
             }
         });
@@ -127,6 +127,10 @@ public class PreventiviController {
     public void loadPrevs(ArrayList<Preventivo> registroArg) {
         // Resetto la lista presente in precedenza
         mainView.getChildren().clear();
+        if(registro.currentPreventivo!=null){
+            choiceStato.setValue(registro.currentPreventivo.getStato());
+            registro.currentPreventivo=null;
+        }
         if (utente.getCurrentUser() != null) {
             getPreventivi(registroArg);
         } else {
