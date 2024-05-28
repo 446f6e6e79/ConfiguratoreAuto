@@ -19,7 +19,6 @@ import org.example.configuratoreauto.Utenti.UserModel;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -48,15 +47,8 @@ public class PreventiviController {
     @FXML
     private TextField clienteField;
     @FXML
-    private Label statoLabel;
-    @FXML
-    private ChoiceBox<StatoPreventivo> stateChoiceBox;
-    @FXML
-    private Label impiegatoStatoLabel;
-    @FXML
     private void initialize() {
-        impiegatoStatoLabel.setVisible(false);
-        stateChoiceBox.setVisible(false);
+        initializeChoiceBoxes();
         if (utente.getCurrentUser() instanceof Segretario) {
             choiceSede.setVisible(true);
             clienteField.setVisible(true);
@@ -72,40 +64,41 @@ public class PreventiviController {
             choiceSede.setVisible(true);
             clienteField.setVisible(true);
             sedeLabel.setVisible(true);
-            impiegatoStatoLabel.setVisible(true);
-            stateChoiceBox.setVisible(true);
             clienteLabel.setVisible(true);
-            choiceStato.setVisible(false);
-            statoLabel.setVisible(false);
             titleMain.setText("Gestione Preventivi");
 
-            initializeStateChoiceBox();
+            initializaImpiegatoChoiceBox();
             actualStato = StatoPreventivo.FINALIZZATO; // Default state
             loadPrevs(registro.getPreventiviByStato(StatoPreventivo.FINALIZZATO));
         }
-        initializeChoiceBoxes();
+
     }
 
-    private void initializeStateChoiceBox() {
-        stateChoiceBox.getItems().setAll(StatoPreventivo.FINALIZZATO, StatoPreventivo.PAGATO, StatoPreventivo.DISPONIBILE_AL_RITIRO);
-        stateChoiceBox.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+    private void initializaImpiegatoChoiceBox() {
+        choiceStato.getItems().setAll(StatoPreventivo.FINALIZZATO, StatoPreventivo.PAGATO, StatoPreventivo.DISPONIBILE_AL_RITIRO);
+        choiceStato.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 actualStato = newValue;
                 titleMain.setText("Gestione Preventivi - " + newValue);
                 loadPrevs(registro.getPreventiviByStato(newValue));
             }
         });
-        stateChoiceBox.getSelectionModel().selectFirst(); // Default to the first state
+        choiceStato.getSelectionModel().selectFirst();
     }
 
     @FXML
     public void resetFilter() {
         // Reset the values of ChoiceBoxes and TextField
-        choiceStato.getSelectionModel().clearSelection();
+        if(utente.getCurrentUser() instanceof Impiegato){
+            choiceStato.getSelectionModel().select(0);
+        }
+        else{
+            choiceStato.getSelectionModel().clearSelection();
+        }
         choiceMarca.getSelectionModel().clearSelection();
         choiceSede.getSelectionModel().clearSelection();
         clienteField.clear();
-        stateChoiceBox.getSelectionModel().select(0);
+
         filterPreventivi();
         if(utente.getCurrentUser()instanceof Impiegato){
             loadPrevs(registro.getPreventiviByStato(StatoPreventivo.FINALIZZATO));

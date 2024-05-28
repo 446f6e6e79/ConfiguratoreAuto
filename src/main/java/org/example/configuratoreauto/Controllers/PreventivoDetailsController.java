@@ -194,11 +194,12 @@ public class PreventivoDetailsController {
     private void goBack() {
         try {
             TabPane tabPane = (TabPane) image.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
-            Tab tab= tabPane.getTabs().get(1); // Ottieni il riferimento al tab "Catalogo"
+            Tab tab = tabPane.getTabs().get(1);                                       // Ottieni il riferimento al tab "Preventivi"
+
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
-            BorderPane preventiviList;
-            preventiviList = loader.load();
+            BorderPane preventiviList = loader.load();
             PreventiviController controller = loader.getController();
+
             if(user.getCurrentUser() instanceof Cliente){
                 controller.loadPrevs(registro.getPreventiviByCliente((Cliente) user.getCurrentUser()));
             }else if(user.getCurrentUser() instanceof Segretario){
