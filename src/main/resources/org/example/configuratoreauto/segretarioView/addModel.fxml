@@ -41,13 +41,13 @@
          </HBox>
       </top>
       <center>
-         <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="900.0" spacing="10.0" BorderPane.alignment="CENTER">
+         <VBox styleClass="section" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="602.0" prefWidth="900.0" spacing="10.0" BorderPane.alignment="CENTER">
             <children>
                <HBox prefHeight="57.0" prefWidth="900.0" spacing="20.0">
                   <children>
                      <TextField fx:id="modello" maxWidth="500.0" promptText="Modello">
                         <font>
-                           <Font size="30.0" />
+                           <Font size="20.0" />
                         </font>
                         <HBox.margin>
                            <Insets right="20.0" />
@@ -58,7 +58,7 @@
                      <Insets />
                   </VBox.margin>
                </HBox>
-               <TextArea fx:id="descrizione" prefHeight="80.0" prefWidth="900.0" promptText="Descrizione">
+               <TextArea styleClass="section" fx:id="descrizione" prefHeight="80.0" prefWidth="900.0" promptText="Descrizione">
                   <VBox.margin>
                      <Insets right="40.0" />
                   </VBox.margin>
@@ -68,24 +68,24 @@
                </TextArea>
                <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="5.0">
                   <children>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Dimensioni:">
+                     <Text styleClass="boldText" strokeType="OUTSIDE" strokeWidth="0.0" text="Dimensioni:">
                         <font>
                            <Font size="22.0" />
                         </font></Text>
-                     <TextField fx:id="lunghezza" maxWidth="-Infinity" prefHeight="30.0" prefWidth="360.0" promptText="Lunghezza [m]">
+                     <TextField styleClass="text-field" fx:id="lunghezza" maxWidth="-Infinity" prefHeight="30.0" prefWidth="360.0" promptText="Lunghezza [m]">
                         <font>
                            <Font size="16.0" />
                         </font>
                      </TextField>
-                     <TextField fx:id="altezza" maxWidth="-Infinity" prefHeight="30.0" prefWidth="360.0" promptText="Altezza [m]">
+                     <TextField styleClass="text-field" fx:id="altezza" maxWidth="-Infinity" prefHeight="30.0" prefWidth="360.0" promptText="Altezza [m]">
                         <font>
                            <Font size="16.0" />
                         </font></TextField>
-                     <TextField fx:id="larghezza" maxWidth="-Infinity" prefHeight="0.0" prefWidth="360.0" promptText="Largezza [m]">
+                     <TextField styleClass="text-field" fx:id="larghezza" maxWidth="-Infinity" prefHeight="0.0" prefWidth="360.0" promptText="Largezza [m]">
                         <font>
                            <Font size="16.0" />
                         </font></TextField>
-                     <TextField fx:id="peso" maxWidth="-Infinity" prefWidth="360.0" promptText="Peso [m]">
+                     <TextField styleClass="text-field" fx:id="peso" maxWidth="-Infinity" prefWidth="360.0" promptText="Peso [m]">
                         <font>
                            <Font size="16.0" />
                         </font></TextField>
@@ -97,7 +97,7 @@
                </VBox>
                <VBox prefHeight="237.0" prefWidth="900.0">
                   <children>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Costo:">
+                     <Text styleClass="boldText" strokeType="OUTSIDE" strokeWidth="0.0" text="Costo:">
                         <font>
                            <Font size="22.0" />
                         </font></Text>
@@ -110,7 +110,7 @@
                               <HBox.margin>
                                  <Insets right="50.0" />
                               </HBox.margin></TextField>
-                           <GridPane fx:id="selectedMesi" prefHeight="210.0" prefWidth="373.0">
+                           <GridPane styleClass="#selectedMesi" fx:id="selectedMesi" prefHeight="210.0" prefWidth="373.0">
                              <columnConstraints>
                                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
                                <ColumnConstraints hgrow="ALWAYS" minWidth="10.0" prefWidth="100.0" />
