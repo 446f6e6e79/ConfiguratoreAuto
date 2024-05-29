@@ -14,12 +14,12 @@ public class AutoNuova extends Auto implements Serializable {
     private Dimensione dimensione;
     private double costoBase;
     /**Array di 12 double, rappresentano ogni mese lo scontoApplicato*/
-    private double [] scontoPerMese;
+    private int [] scontoPerMese;
     /** ArrayList contenente tutti i motori disponibili per il modello*/
     private ArrayList<Motore> motoriDisponibili = new ArrayList<>();
     private TreeSet<Optional> optionalDisponibili = new TreeSet<>();
 
-    public AutoNuova(int id, Marca marca, String modello, Dimensione dimensione, String descrizione, double costoBase, double [] scontoPerMese){
+    public AutoNuova(int id, Marca marca, String modello, Dimensione dimensione, String descrizione, double costoBase, int [] scontoPerMese){
         super(marca, modello);
         this.id = id;
         this.dimensione = dimensione;
@@ -70,10 +70,10 @@ public class AutoNuova extends Auto implements Serializable {
     }
 
     //GET e SET Sconto per mese
-    public double[] getScontoPerMese() {
+    public int[] getScontoPerMese() {
         return scontoPerMese;
     }
-    public void setScontoPerMese(double[] scontoPerMese) {
+    public void setScontoPerMese(int[] scontoPerMese) {
         this.scontoPerMese = scontoPerMese;
     }
 

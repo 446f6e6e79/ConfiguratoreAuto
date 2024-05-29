@@ -56,7 +56,7 @@ public class MainTests {
         Dimensione dim911 = new Dimensione(1.90, 1.32, 4.57, 1525, 0);
         Motore motore911 = new Motore("V8 TURBO", Alimentazione.BENZINA, 386, 3966,13.4);
         String descrizione911 = "Macchina molto bella";
-        double [] scontoPerMese = {0, 10, 10, 0, 10, 20, 7, 10, 0, 0 , 0, 0};
+        int [] scontoPerMese = {0, 10, 10, 0, 10, 20, 7, 10, 0, 0 , 0, 0};
         AutoNuova a1 = new AutoNuova(10, Marca.Porsche, "911 GT3 RS", dim911, descrizione911, 258536, scontoPerMese);
         a1.addMotore(motore911);
         catalogo.addData(a1);
@@ -64,7 +64,7 @@ public class MainTests {
         Dimensione dimFerrari = new Dimensione(1.85, 1.30, 4.60, 1550, 0);
         Motore motoreFerrari = new Motore("MuitJet", Alimentazione.BENZINA, 400, 4000, 14.0);
         String descrizioneFerrari = "Auto Ferrari molto potente";
-        double[] scontoPerMeseFerrari = {0, 5, 8, 5, 5, 10, 12, 10, 5, 0, 0, 0};
+        int[] scontoPerMeseFerrari = {0, 5, 8, 5, 5, 10, 12, 10, 5, 0, 0, 0};
         AutoNuova ferrari = new AutoNuova(20, Marca.Ferrari, "F8 Tributo", dimFerrari, descrizioneFerrari, 280000, scontoPerMeseFerrari);
         ferrari.addMotore(motoreFerrari);
         catalogo.addData(ferrari);
@@ -72,7 +72,7 @@ public class MainTests {
         Dimensione dimLamborghini = new Dimensione(1.92, 1.38, 4.80, 1650, 0);
         Motore motoreLamborghini = new Motore("V18", Alimentazione.BENZINA, 420, 6000, 15.0);
         String descrizioneLamborghini = "Auto Lamborghini ad alte prestazioni";
-        double[] scontoPerMeseLamborghini = {0, 8, 8, 5, 5, 10, 15, 15, 8, 0, 0, 0};
+        int[] scontoPerMeseLamborghini = {0, 8, 8, 5, 5, 10, 15, 15, 8, 0, 0, 0};
         AutoNuova lamborghini = new AutoNuova(30, Marca.Lamborghini, "Aventador SVJ", dimLamborghini, descrizioneLamborghini, 550000, scontoPerMeseLamborghini);
         lamborghini.addMotore(motoreLamborghini);
         catalogo.addData(lamborghini);
@@ -80,7 +80,7 @@ public class MainTests {
         Dimensione dimAudi = new Dimensione(1.75, 1.30, 4.65, 1550, 0);
         Motore motoreAudi = new Motore("VolksWagneMotor", Alimentazione.BENZINA, 350, 4000, 13.5);
         String descrizioneAudi = "Auto Audi di lusso e prestazioni elevate";
-        double[] scontoPerMeseAudi = {0, 8, 8, 5, 5, 10, 12, 10, 5, 0, 0, 0};
+        int[] scontoPerMeseAudi = {0, 8, 8, 5, 5, 10, 12, 10, 5, 0, 0, 0};
         AutoNuova audi = new AutoNuova(40, Marca.Audi, "R8 V10 Plus", dimAudi, descrizioneAudi, 180000, scontoPerMeseAudi);
         audi.addMotore(motoreAudi);
         catalogo.addData(audi);
@@ -88,7 +88,7 @@ public class MainTests {
         Dimensione dimMercedes = new Dimensione(1.78, 1.30, 4.70, 1600, 0);
         Motore motoreMercedes = new Motore("Renault type A", Alimentazione.BENZINA, 400, 4500, 14.0);
         String descrizioneMercedes = "Auto Mercedes-Benz ad alte prestazioni";
-        double[] scontoPerMeseMercedes = {0, 8, 8, 5, 5, 10, 12, 10, 5, 0, 0, 0};
+        int[] scontoPerMeseMercedes = {0, 8, 8, 5, 5, 10, 12, 10, 5, 0, 0, 0};
         AutoNuova mercedes = new AutoNuova(50, Marca.Mercedes, "AMG GT R", dimMercedes, descrizioneMercedes, 190000, scontoPerMeseMercedes);
         mercedes.addMotore(motoreMercedes);
         catalogo.addData(mercedes);
@@ -96,7 +96,7 @@ public class MainTests {
         Dimensione dimTesla = new Dimensione(1.75, 1.30, 4.70, 1700, 0);
         Motore motoreTesla = new Motore("ElonMusk", Alimentazione.ELETTRICA, 700, 0, 15.0);
         String descrizioneTesla = "Auto Tesla ad alte prestazioni";
-        double[] scontoPerMeseTesla = {0, 10, 12, 8, 5, 5, 10, 12, 8, 0, 0, 0};
+        int[] scontoPerMeseTesla = {0, 10, 12, 8, 5, 5, 10, 12, 8, 0, 0, 0};
         AutoNuova tesla = new AutoNuova(60, Marca.Tesla, "Model S Plaid", dimTesla, descrizioneTesla, 125000, scontoPerMeseTesla);
         tesla.addMotore(motoreTesla);
         catalogo.addData(tesla);
@@ -104,7 +104,7 @@ public class MainTests {
         Dimensione dimFord = new Dimensione(1.75, 1.30, 4.70, 1500, 0);
         Motore motoreFord = new Motore("Siesta",Alimentazione.BENZINA, 300, 4000, 12.0);
         String descrizioneFord = "Auto Ford dal design sportivo";
-        double[] scontoPerMeseFord = {0, 8, 8, 5, 5, 10, 10, 10, 5, 0, 0, 0};
+        int[] scontoPerMeseFord = {0, 8, 8, 5, 5, 10, 10, 10, 5, 0, 0, 0};
         AutoNuova ford = new AutoNuova(70, Marca.Ford, "Mustang GT", dimFord, descrizioneFord, 55000, scontoPerMeseFord);
         ford.addMotore(motoreFord);
         catalogo.addData(ford);
@@ -112,7 +112,7 @@ public class MainTests {
         dimFerrari = new Dimensione(2.02, 1.58, 4.97, 2033, 0);
         motoreFerrari = new Motore("F140IA V12", Alimentazione.BENZINA, 715, 8000, 6.5);
         descrizioneFerrari = "Ferrari Purosangue con prestazioni eccezionali";
-        scontoPerMeseFerrari = new double[]{0, 5, 5, 5, 5, 10, 10, 10, 5, 0, 0, 0};
+        scontoPerMeseFerrari = new int[]{0, 5, 5, 5, 5, 10, 10, 10, 5, 0, 0, 0};
         ferrari = new AutoNuova(85, Marca.Ferrari, "Purosangue", dimFerrari, descrizioneFerrari, 350000, scontoPerMeseFerrari);
         ferrari.addMotore(motoreFerrari);
         catalogo.addData(ferrari);
