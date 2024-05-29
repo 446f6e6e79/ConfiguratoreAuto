@@ -1,10 +1,8 @@
 Back-end:
-1) Controllo sull'input dello sconto per mese, [0, 100) e che 0
-    permetta di resettare lo sconto per tale mese
 
-2) Controllo sull'aggiunta delle immagini per auto. Fare in modo che,
-    se rimosse tutte le immagini per un colore, venga anche rimosso
-    tale colore dagli optional
+V) Controllo sull'aggiunta delle immagini per auto(DA TESTARE)
+    Impostato in maniera tale che se elimini l'ultima immagine allora viene eliminato l'intero optional ed è
+    da reinserire
 
 
 Front - end:
@@ -13,7 +11,8 @@ Front - end:
     - sconto (%) - quanto è lo sconto effettivo
     - se presente una valutazione, allora mostrarla nel preventivo
     - nascondere la vBox usato se non sono presenti autoUsate
-
+3)Settare background color fisso su nero al TextField scontiInput durante lo styling
+4) Sistemare dimensioni e posizione tasto elimina
 
 
 BUGS: alcune volte, le liste di preventivi sono doppie

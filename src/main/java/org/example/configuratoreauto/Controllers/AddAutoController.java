@@ -3,14 +3,19 @@ package org.example.configuratoreauto.Controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Mesi;
+import org.example.configuratoreauto.Utenti.UserModel;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -48,6 +53,8 @@ public class AddAutoController implements Initializable {
     private Button addScontoButton;
     @FXML
     private Text message;
+    @FXML
+    private Button eliminaButton;
 
     CatalogoModel catalogo = CatalogoModel.getInstance();
     double[] sconti = new double[12];
@@ -59,6 +66,7 @@ public class AddAutoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
         mainBorderPane.prefWidthProperty().bind(mainPane.widthProperty());
         mainBorderPane.prefHeightProperty().bind(mainPane.heightProperty());
         /*
@@ -114,6 +122,7 @@ public class AddAutoController implements Initializable {
         });
 
         AutoNuova tempAuto = catalogo.getTempAuto();
+        eliminaButton.setVisible(false);
         //Ottengo la copia dell'auto, solo se non già presente
         if(tempAuto == null){
             catalogo.generateTempAuto(catalogo.getSelectedAuto());
@@ -123,6 +132,7 @@ public class AddAutoController implements Initializable {
         *   In caso il segretario stia modificando un auto, carico i dati già presenti
         * */
         if(catalogo.getSelectedAuto() != null || tempAuto.getModello() != null){
+            eliminaButton.setVisible(true);
             sconti = tempAuto.getScontoPerMese();
             setScontiOutput();
             modello.setText(tempAuto.getModello());
@@ -197,6 +207,26 @@ public class AddAutoController implements Initializable {
         }
     }
 
+    @FXML
+    private void eliminaAuto(){
+        // Create a confirmation dialog
+        Alert confirmation = new Alert(Alert.AlertType.WARNING);
+        confirmation.setTitle("Elimina");
+        confirmation.setHeaderText("Sei sicuro di voler eliminare quest'auto?");
+
+
+        // Customize the buttons in the dialog
+        confirmation.getButtonTypes().clear();
+        confirmation.getButtonTypes().addAll(ButtonType.YES, ButtonType.CANCEL);
+
+        // Show the dialog and wait for user response
+        confirmation.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.YES) {
+                catalogo.getAllData().remove(catalogo.getSelectedAuto());
+                goBack();
+            }
+        });
+    }
     @FXML
     private void addModello() {
         if (isValidModello(modello) && isValidDouble(lunghezza) && isValidDouble(altezza) && isValidDouble(larghezza)

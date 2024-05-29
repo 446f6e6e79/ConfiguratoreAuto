@@ -143,7 +143,12 @@ public class AddAutoImagesController implements Initializable {
         if (imagesCurrentColor.isEmpty()) {
             currentIndex.set(-1);
             addedImagesView.setImage(new Image(getClass().getResourceAsStream("/img/icons/addImage.png")));
-            //DOVREI CONTROLLARE SE IL COLORE ERA GIA' stato aggiunto ed in caso cancellarlo???
+            for(Optional optional : tempAuto.getOptionalDisponibili()){
+                if(optional.getDescrizione().equals(coloreInput.getValue())){
+                    tempAuto.getOptionalDisponibili().remove(optional);
+                }
+            }
+            coloreInput.setValue(null);
         }
         else {
             if (currentIndex.get() >= imagesCurrentColor.size()) {
