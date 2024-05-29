@@ -124,6 +124,7 @@ public class AddAutoController implements Initializable {
         * */
         if(catalogo.getSelectedAuto() != null || tempAuto.getModello() != null){
             sconti = tempAuto.getScontoPerMese();
+            setScontiOutput();
             modello.setText(tempAuto.getModello());
             brand.setValue(tempAuto.getMarca());
             descrizione.setText(tempAuto.getDescrizione());
@@ -152,23 +153,50 @@ public class AddAutoController implements Initializable {
             e.printStackTrace();
         }
     }
-
-    @FXML
-    private void addSconto(){
+    private void setScontiOutput(){
         for (int r = 0; r < 3; r++) {
             for (int c = 0; c < 4; c++) {
                 int i = r * 4 + c;
                 ToggleButton toggleButton = (ToggleButton) selectedMesi.getChildren().get(i);
-                if (toggleButton.isSelected()) {
-                    sconti[i] = Double.parseDouble(scontoInput.getText());
-                    toggleButton.setSelected(false);
-                }
-                if(sconti[i] != 0) {
+                if (sconti[i] != 0) {
                     toggleButton.setText(Mesi.values()[i].toString() + "\n" + sconti[i] + "%");
                 }
             }
         }
     }
+    @FXML
+    private void addSconto() {
+        try {
+            int scontoValue = Integer.parseInt(scontoInput.getText());
+
+            if (scontoValue >= 0 && scontoValue <= 100) {
+                for (int r = 0; r < 3; r++) {
+                    for (int c = 0; c < 4; c++) {
+                        int i = r * 4 + c;
+                        ToggleButton toggleButton = (ToggleButton) selectedMesi.getChildren().get(i);
+                        if (toggleButton.isSelected()) {
+                            sconti[i] = Double.parseDouble(scontoInput.getText());
+                            toggleButton.setSelected(false);
+                        }
+                        if (sconti[i] != 0) {
+                            toggleButton.setText(Mesi.values()[i].toString() + "\n" + sconti[i] + "%");
+                        }
+                    }
+                }
+                // Reset the style if the input is valid
+                scontoInput.setStyle("");
+            } else {
+                throw new NumberFormatException("Sconto fuori intervallo");
+            }
+        } catch (NumberFormatException e) {
+            scontoInput.clear();
+            if (scontoInput != null) {
+                scontoInput.setStyle("-fx-border-color: red;");
+            }
+            scontoInput.setAccessibleHelp("Inserire un valore tra 0 e 100");
+        }
+    }
+
     @FXML
     private void addModello() {
         if (isValidModello(modello) && isValidDouble(lunghezza) && isValidDouble(altezza) && isValidDouble(larghezza)
