@@ -1,0 +1,19 @@
+Back-end:
+1) Controllo sull'input dello sconto per mese, [0, 100) e che 0
+    permetta di resettare lo sconto per tale mese
+
+2) Controllo sull'aggiunta delle immagini per auto. Fare in modo che,
+    se rimosse tutte le immagini per un colore, venga anche rimosso
+    tale colore dagli optional
+
+
+Front - end:
+1) Implementazione view per customAuto
+2) Implementazione su dettagli del preventivo:
+    - sconto (%) - quanto è lo sconto effettivo
+    - se presente una valutazione, allora mostrarla nel preventivo
+    - nascondere la vBox usato se non sono presenti autoUsate
+
+
+
+BUGS: alcune volte, le liste di preventivi sono doppie
