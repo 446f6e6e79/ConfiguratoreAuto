@@ -66,9 +66,7 @@ public class AddAutoImagesController implements Initializable {
         }
 
         //Quando cambia il valore di color, viene aggiornata la lista di immagini per il Colore disponibile
-        coloreInput.valueProperty().addListener((observable, oldValue, newValue) -> {
-            updateDataForSelectedColor();
-        });
+        coloreInput.valueProperty().addListener((observable, oldValue, newValue) -> updateDataForSelectedColor());
 
         /*
          *   Collego la visibilità dei bottoni al valore di currentIndex:
@@ -109,9 +107,7 @@ public class AddAutoImagesController implements Initializable {
                 .size(imagesCurrentColor).isEqualTo(0)
         );
 
-        colorPrice.addEventFilter(KeyEvent.KEY_TYPED, event -> {
-            checkValidDouble(event, colorPrice);
-        });
+        colorPrice.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidDouble(event, colorPrice));
     }
 
     //Aggiorna la ImageView alla foto sucessiva, aggiornando l'index
@@ -143,11 +139,7 @@ public class AddAutoImagesController implements Initializable {
         if (imagesCurrentColor.isEmpty()) {
             currentIndex.set(-1);
             addedImagesView.setImage(new Image(getClass().getResourceAsStream("/img/icons/addImage.png")));
-            for(Optional optional : tempAuto.getOptionalDisponibili()){
-                if(optional.getDescrizione().equals(coloreInput.getValue())){
-                    tempAuto.getOptionalDisponibili().remove(optional);
-                }
-            }
+            tempAuto.getOptionalDisponibili().removeIf(optional -> optional.getDescrizione().equals(coloreInput.getValue()));
             coloreInput.setValue(null);
         }
         else {

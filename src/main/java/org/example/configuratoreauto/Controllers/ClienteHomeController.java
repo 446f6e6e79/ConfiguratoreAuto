@@ -22,7 +22,7 @@ public class ClienteHomeController {
     BorderPane preventiviNode;
     PreventiviController preventiviController;
     @FXML
-    private  Label userName;
+    private Label userName;
     @FXML
     private TabPane mainPage;
     @FXML

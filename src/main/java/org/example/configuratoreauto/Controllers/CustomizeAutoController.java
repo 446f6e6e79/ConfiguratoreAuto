@@ -127,9 +127,7 @@ public class CustomizeAutoController implements Initializable {
         vetri.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
         cerchi.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
 
-        colori.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-             updateImagesForColor(newValue.getDescrizione());
-        });
+        colori.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateImagesForColor(newValue.getDescrizione()));
         if(colori.getValue()!=null)
             updateImagesForColor(colori.getValue().getDescrizione());
     }
@@ -217,8 +215,7 @@ public class CustomizeAutoController implements Initializable {
             if(user.getCurrentUser() == null){
                 openRegistratiView();
             }
-            Preventivo p = new Preventivo(auto, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), chosen);
-            registro.currentPreventivo = p;
+            registro.currentPreventivo = new Preventivo(auto, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), chosen);
             openUsataView();
             catalogo.setSelectedAuto(null);
             this.backClicked();

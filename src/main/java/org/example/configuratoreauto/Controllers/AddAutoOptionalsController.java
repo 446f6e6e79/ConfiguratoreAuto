@@ -70,13 +70,9 @@ public class AddAutoOptionalsController implements Initializable {
                 descrizioneOptional.textProperty().isEmpty()
                         .or(costoOptional.textProperty().isEmpty())
         );
-        addOptional.setOnAction(t-> {
-            addOptional();
-        });
+        addOptional.setOnAction(t-> addOptional());
 
-        costoOptional.addEventFilter(KeyEvent.KEY_TYPED, event -> {
-            checkValidDouble(event, costoOptional);
-        });
+        costoOptional.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidDouble(event, costoOptional));
 
 
 
@@ -98,9 +94,7 @@ public class AddAutoOptionalsController implements Initializable {
             }
         });
 
-        addMotore.setOnAction(t-> {
-            addMotore();
-        });
+        addMotore.setOnAction(t-> addMotore());
     }
 
     /**
@@ -217,7 +211,7 @@ public class AddAutoOptionalsController implements Initializable {
 
             binImg.setOnMouseClicked(event -> {
 
-                tempAuto.getOptionalDisponibili().remove(m);
+                tempAuto.getMotoriDisponibili().remove(m);
                 updateMotoriList();
             });
 

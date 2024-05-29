@@ -15,7 +15,6 @@ import org.example.configuratoreauto.Macchine.Immagine;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 
-import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
