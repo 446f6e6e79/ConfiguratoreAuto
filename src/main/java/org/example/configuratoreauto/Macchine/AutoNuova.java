@@ -30,6 +30,17 @@ public class AutoNuova extends Auto implements Serializable {
         this.optionalDisponibili = new TreeSet<>();
     }
 
+    //Copia della macchina
+    public AutoNuova(AutoNuova original) {
+        super(original.getMarca(), original.getModello());
+        this.id = original.getId();
+        this.descrizione = original.getDescrizione();
+        this.dimensione = original.getDimensione();
+        this.costoBase = original.getCostoBase();
+        this.scontoPerMese = Arrays.copyOf(original.getScontoPerMese(), original.getScontoPerMese().length);
+        this.motoriDisponibili = new ArrayList<>(original.getMotoriDisponibili());
+        this.optionalDisponibili = new TreeSet<>(original.getOptionalDisponibili());
+    }
     public AutoNuova(int id){
         this.id = id;
     }
