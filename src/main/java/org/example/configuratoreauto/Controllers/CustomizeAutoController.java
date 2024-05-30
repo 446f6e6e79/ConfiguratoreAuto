@@ -100,7 +100,6 @@ public class CustomizeAutoController implements Initializable {
         });
         motori.setValue(motori.getItems().get(0));
 
-        sedi.getItems().addAll(sediModel.getAllData());
 
         //Creo una lista delle choiceBox per gli optional
         List<ChoiceBox> choiceBoxes = Arrays.asList(colori, interni, vetri, cerchi);

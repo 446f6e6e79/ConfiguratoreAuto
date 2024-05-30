@@ -6,6 +6,8 @@ CHECK) Controllo sull'aggiunta delle immagini per auto(DA TESTARE)
 
 CHECK)  Optional di tipo COLORE, con prezzo = 0 non variano il tempo di consegna
 
+1)Nella creazione/modifica di modello auto, implementare tempAuto con il nuovo costruttore creato.
+
 Front - end:
 1) Implementazione viewOptional per customAuto:
     modifica dei singoli componenti optional
@@ -22,4 +24,4 @@ Front - end:
 3) Finire implementazione per addModel e addOptional
 
 BUGS:
-
+    Tasto accedi ancora buggato
