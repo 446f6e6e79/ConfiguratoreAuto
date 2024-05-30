@@ -23,7 +23,6 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     private Cliente cliente;
     private Date scadenza;
     private double valutazione;
-    private double scontoAuto;
 
     public Preventivo(AutoNuova acquisto, Sede sede, Cliente cliente, Date d, Motore motore, ArrayList optionalScelti){
         this.data = d;
@@ -32,7 +31,6 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         this.sede = sede;
         this.cliente = cliente;
         this.motoreScelto = motore;
-        this.scontoAuto = this.acquisto.getSconto(this.data);
         if(optionalScelti != null){
             this.optionals.addAll(optionalScelti);
         }
@@ -62,10 +60,18 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         }
     }
 
+    /**
+     * Sconto è in data in cui il preventivo è stato richiesto.
+     * @return Ritorna la percentuale di sconto dell'auto richiesta.
+     *
+     */
     public double getScontoAuto() {
-        return scontoAuto;
+        return acquisto.getSconto(data);
     }
 
+    public String getScontoAutoFormatted(){
+        return getPriceAsString(acquisto.getCostoTotale(optionals, data) - acquisto.getPrezzoNoSconto(optionals, data));
+    }
     /**
     *  Calcola la data di consegna effettiva della macchina.
     *  La data è calcolata come:
@@ -157,6 +163,9 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     *       - scadenza impostata a 20 giorna dalla data attuale
     * */
     public void setValutazione(double valutazione) {
+        if(usata == null){
+            throw new RuntimeException();
+        }
         this.valutazione = valutazione;
         setStato(StatoPreventivo.FINALIZZATO);
         setScadenza(new Date());

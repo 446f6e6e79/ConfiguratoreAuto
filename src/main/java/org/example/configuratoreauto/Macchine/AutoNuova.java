@@ -146,9 +146,9 @@ public class AutoNuova extends Auto implements Serializable {
 
     /**
      * @param data Una certa data
-     * @return sconto per la data inserita
+     * @return sconto percentuale valido per la data inserita
      */
-    public double getSconto(Date data){
+    public int getSconto(Date data){
         return this.getScontoPerMese()[data.getMonth()];
     }
 
@@ -159,16 +159,31 @@ public class AutoNuova extends Auto implements Serializable {
      *             - PREVENTIVO: data = data richiesta preventivo
      *             - Modifica auto: data = data attuale
      * @return double costo totale, calcolato come:
-     *      costo di base + costo Optional (- valutazione usato) - sconto
+     *      costo di base + costo Optional - sconto
      */
     public double getCostoTotale(ArrayList<Optional> chosenOtionals, Date data){
+        double tot = getPrezzoNoSconto(chosenOtionals, data);
+        return tot - (tot*getSconto(data) / 100);
+    }
+
+
+    /**
+     * Calcola il costo Totale di un auto, privo di sconti:
+     * @param chosenOtionals lista di optional SELEZIONATI
+     * @param data data in cui è calcolato il prezzo:
+     *             - PREVENTIVO: data = data richiesta preventivo
+     *             - Modifica auto: data = data attuale
+     * @return double costo totale, calcolato come:
+     *      costo di base + costo Optional
+     */
+    public double getPrezzoNoSconto(ArrayList<Optional> chosenOtionals, Date data){
         double tot = this.costoBase;
         for(Optional optional : chosenOtionals){
             tot += optional.getCosto();
         }
-        tot -= (tot*getSconto(data) / 100);
         return tot;
     }
+
 
     /*
     *   Due auto sono considerate uguali se condividono lo stesso id

@@ -6,16 +6,13 @@ V) Controllo sull'aggiunta delle immagini per auto(DA TESTARE)
 
 
 Front - end:
-1) Implementazione view per customAuto
+1) Implementazione viewOptional per customAuto
 
+BUGS:
+    - alcune volte, le liste di preventivi sono doppie
+    - se richiesto un preventivo,
+        fatto logout,
+        login con segretario,
+            modifica auto
 
-2) Implementazione su dettagli del preventivo:
-    - sconto (%) - quanto è lo sconto effettivo
-    - se presente una valutazione, allora mostrarla nel preventivo
-    - nascondere la vBox usato se non sono presenti autoUsate
-3)Settare background color fisso su nero al TextField scontiInput durante lo styling
-
-4) Sistemare dimensioni e posizione tasto elimina
-
-
-BUGS: alcune volte, le liste di preventivi sono doppie
+    il preventivo è variato

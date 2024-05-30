@@ -8,13 +8,16 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
@@ -46,59 +49,50 @@ public class CustomizeAutoController implements Initializable {
     @FXML
     private AnchorPane main;
     @FXML
-    private VBox left;
+    private Text modelID;
     @FXML
-    private VBox right;
-    @FXML
-    private BorderPane borderPane;
-
-    @FXML
-    Text modelID;
-    @FXML
-    Text descrizione;
+    private Text descrizione;
     @FXML
     private ImageView images;
     @FXML
-    Text prezzo;
+    private VBox priceDetails;
     @FXML
-    Text infoPrezzo;
+    private Label prezzoBase;
     @FXML
-    ChoiceBox<Motore> motori;
+    private Label modello;
     @FXML
-    ChoiceBox<Optional> colori;
+    private ChoiceBox<Motore> motori;
     @FXML
-    ChoiceBox<Optional> interni;
+    private ChoiceBox<Optional> colori;
     @FXML
-    ChoiceBox<Optional> vetri;
+    private ChoiceBox<Optional> interni;
     @FXML
-    ChoiceBox<Optional> cerchi;
+    private ChoiceBox<Optional> vetri;
     @FXML
-    Text motoreInfo;
+    private ChoiceBox<Optional> cerchi;
     @FXML
-    Text dimensioni;
+    private Text motoreInfo;
     @FXML
-    Text valido;
+    private Text dimensioni;
     @FXML
-    ChoiceBox<Sede> sedi;
+    private Text valido;
+    @FXML
+    private ChoiceBox<Sede> sedi;
+
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        //============RESIZING
-        borderPane.prefWidthProperty().bind(main.widthProperty());
-        borderPane.prefHeightProperty().bind(main.heightProperty());
-        left.prefWidthProperty().bind(borderPane.widthProperty().divide(2));
-        right.prefWidthProperty().bind(borderPane.widthProperty().divide(2));
-        images.fitWidthProperty().bind(left.prefWidthProperty());
-        //================================
 
+        /* Imposto il valore dei campi di base */
         modelID.setText(auto.getModello());
+        modello.setText(auto.getModello());
+        prezzoBase.setText(auto.getBasePriceAsString());
         String dim = auto.getDimensione().toString();
         dimensioni.setText(dim);
         descrizione.setText(auto.getDescrizione());
-        String price = Preventivo.getPriceAsString(auto.getCostoTotale(new ArrayList<>(), new Date()));
-        prezzo.setText(price);
         motori.getItems().addAll(auto.getMotoriDisponibili());
-        updatePriceInfo(new ArrayList<>());
+        updatePriceTableInfo(new ArrayList<>());
+
 
         motori.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
@@ -121,6 +115,12 @@ public class CustomizeAutoController implements Initializable {
         if (!colori.getItems().isEmpty()) {
             colori.setValue(colori.getItems().get(0));
         }
+
+        /*
+        *   Imposto i listener per l'aggiornamento dinamico del prezzo.
+        *   Ogni qualvolta vienew aggiornato un optional, di conseguenza è aggiornata
+        *   la tabella con la descrizione dei costi
+        * */
         ChangeListener<Optional> priceUpdateListener = (observable, oldValue, newValue) -> getDynamicPrice();
         colori.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
         interni.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
@@ -226,7 +226,7 @@ public class CustomizeAutoController implements Initializable {
 
     /**
      * Genera dinamicamente il prezzo.
-     * Recupera gli optional scelti, mostrando il prezzo aggiornato ad ogni scelta
+     * Recupera gli optional scelti, aggiornando la tabella dei prezzi dinamicamente
      */
     public void getDynamicPrice() {
         ArrayList<Optional> selezionati = new ArrayList<>();
@@ -238,24 +238,35 @@ public class CustomizeAutoController implements Initializable {
             selezionati.add(vetri.getValue());
         if(cerchi.getValue()!=null)
             selezionati.add(cerchi.getValue());
-        double costoTotale =auto.getCostoTotale(selezionati, new Date());
-        updatePriceInfo(selezionati);
-        prezzo.setText(Preventivo.getPriceAsString(costoTotale));
+        updatePriceTableInfo(selezionati);
+        
     }
-    /**
-     *
-    **/
-    public void updatePriceInfo(ArrayList<Optional> selezionati) {
-        String s= "Costo base: "+auto.getBasePriceAsString()+"\n";
 
+    /**
+     *  Aggiorna la tabella dei prezzi attuali
+     * @param selezionati Lista di optional selezionati
+     */
+    private void updatePriceTableInfo(ArrayList<Optional> selezionati) {
+
+        //Rimuovo gli optional precedenti
+        if (priceDetails.getChildren().size() > 2) {
+            priceDetails.getChildren().subList(2, priceDetails.getChildren().size()).clear();
+        }
+
+        //Genero dinamicamente la nuova tabella del prezzo
         for(Optional o : selezionati) {
             if(o!=null){
-                s+= o.toString() + "\n";
+                addTableRow(o.getDescrizione(), Preventivo.getPriceAsString(o.getCosto()));
             }
         }
-        String sconto = "\nSconto applicato: "+ auto.getSconto(new Date()) +"%";
-        s+=sconto;
-        infoPrezzo.setText(s);
+
+        int sconto = auto.getSconto(new Date());
+        double prezzoTotale = auto.getCostoTotale(selezionati, new Date());
+        //Se è presente uno sconto
+        if(sconto > 0){
+            addTableRow("Sconto "+auto.getSconto(new Date())+"%", Preventivo.getPriceAsString(prezzoTotale - auto.getPrezzoNoSconto(selezionati, new Date())));
+        }
+        addTableRow("Costo totale:", Preventivo.getPriceAsString(prezzoTotale));
     }
 
     @FXML
@@ -311,5 +322,26 @@ public class CustomizeAutoController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private void addTableRow(String description, String price) {
+        HBox row = new HBox();
+        row.getStyleClass().add("tableRow");
+
+        // Creo la label per la descrizione dell'optional
+        Label descriptionLabel = new Label(description);
+        descriptionLabel.setAlignment(Pos.CENTER);
+        descriptionLabel.getStyleClass().add("tableRowLabel");
+        descriptionLabel.setPrefWidth(prezzoBase.getPrefWidth());
+
+        // Creo la label per il prezzo dell'optional
+        Label priceLabel = new Label(price);
+        priceLabel.setAlignment(Pos.CENTER);
+        priceLabel.getStyleClass().add("tableRowLabel");
+        priceLabel.prefWidthProperty().bind(descriptionLabel.widthProperty());
+
+        // Aggiungo gli elementi alla riga, aggiungo la riga alla tabella
+        row.getChildren().addAll(descriptionLabel, priceLabel);
+        priceDetails.getChildren().add(row);
     }
 }

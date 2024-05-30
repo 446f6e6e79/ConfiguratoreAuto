@@ -10,13 +10,9 @@ import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.pdmodel.PDPage;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType1Font;
-
 import javafx.stage.FileChooser;
-
-
 import java.io.File;
 import java.io.IOException;
-
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
@@ -62,8 +58,6 @@ public class PreventivoDetailsController {
     @FXML
     private Label stato;
     @FXML
-    private Label costo;
-    @FXML
     private Label motore;
     @FXML
     private Label dimensione;
@@ -88,16 +82,23 @@ public class PreventivoDetailsController {
     public void setPreventivo(Preventivo preventivo) {
         impiegatoButton.setVisible(false);
 
+        //Se l'utente è IMPIEGATO, allora imposto i comportamenti per il bottone
         if(user.getCurrentUser() instanceof Impiegato){
            impiegatoButton.setVisible(true);
+
+           //Se il preventivo era finalizzato, può settarlo come PAGATO
            if(preventivo.getStato()==StatoPreventivo.FINALIZZATO){
                impiegatoButton.setText("Segnala pagato");
                impiegatoButton.setOnAction(t->setNewStato(StatoPreventivo.PAGATO));
            }
+
+           //Se il preventivo era PAGATO, può settarlo come DISPONIBILE_AL_RITIRO
            if(preventivo.getStato()==StatoPreventivo.PAGATO){
                impiegatoButton.setText("Segnala da ritirare");
                impiegatoButton.setOnAction(t->setNewStato(StatoPreventivo.DISPONIBILE_AL_RITIRO));
            }
+
+           //Se il preventivo era DISPONIBILE_AL_RITIRO, può segnalarlo come RITIRATO
            if(preventivo.getStato()==StatoPreventivo.DISPONIBILE_AL_RITIRO){
                impiegatoButton.setText("Il veicolo è stato ritirato");
                impiegatoButton.setOnAction(t->setNewStato(StatoPreventivo.RITIRATO));
@@ -105,11 +106,10 @@ public class PreventivoDetailsController {
         }
         this.preventivo = preventivo;
 
-        /*
-        *   Carico i dati per l'auto acquistata
-        *   TODO: recuperare il colore selezionato, in modo da personalizzare l'immagine;
-        * */
+        //Carico i dati per l'auto acquistata
         image.setImage(preventivo.getAcquisto().getDefaultImage(null));
+
+        //Genero la tabella con i dettagli sui prezzi
         modello.setText(preventivo.getAcquisto().getModello());
         prezzoBase.setText(preventivo.getAcquisto().getBasePriceAsString());
 
@@ -120,7 +120,12 @@ public class PreventivoDetailsController {
 
         //Aggiunto lo sconto, se presente
         if(preventivo.getScontoAuto() > 0){
-            addTableRow("Sconto", Double.toString(preventivo.getScontoAuto())+"%");
+            addTableRow("Sconto "+preventivo.getScontoAuto()+"%", preventivo.getScontoAutoFormatted());
+        }
+
+        //Se è stato valutato l'usato
+        if(preventivo.getValutazione() > 0){
+            addTableRow("Valutazione usato", "-"+Preventivo.getPriceAsString(preventivo.getValutazione()));
         }
 
         //Aggiungo una colonna con il prezzo totale:
@@ -131,9 +136,7 @@ public class PreventivoDetailsController {
         motore.setText(preventivo.getMotoreScelto().getInfoMotore());
         dimensione.setText(preventivo.getAcquisto().getDimensione().toSimpleString());
 
-        /*
-        *   Carico i dati relativi al preventivo
-        * */
+        //Carico i dati relativi al preventivo
         cliente.setText(preventivo.getCliente().getName() + " " + preventivo.getCliente().getSurname());
         stato.setText(preventivo.getStato().toString());
         data.setText(preventivo.getDataPreventivoAsString());
@@ -164,8 +167,8 @@ public class PreventivoDetailsController {
         //Se non è presente un auto usata, elimino l'elemento
         else {
             usatoVbox.getChildren().clear();
+            usatoVbox.setVisible(false);
         }
-        String s = "";
     }
 
     private void addTableRow(String description, String price) {
