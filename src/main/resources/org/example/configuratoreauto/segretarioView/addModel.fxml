@@ -46,7 +46,7 @@
                      <Insets />
                   </VBox.margin>
                </HBox>
-               <TextArea fx:id="descrizione" prefHeight="80.0" prefWidth="900.0" promptText="Descrizione" styleClass="section">
+               <TextArea fx:id="descrizione" prefHeight="80.0" prefWidth="900.0" promptText="Descrizione" styleClass="content">
                   <VBox.margin>
                      <Insets right="40.0" />
                   </VBox.margin>
