@@ -7,6 +7,8 @@ V) Controllo sull'aggiunta delle immagini per auto(DA TESTARE)
 
 Front - end:
 1) Implementazione viewOptional per customAuto
+2) Implementazione view per agiunta auto usata
+3) Finire implementazione per addModel e addOptional
 
 BUGS:
     - alcune volte, le liste di preventivi sono doppie
@@ -14,5 +16,4 @@ BUGS:
         fatto logout,
         login con segretario,
             modifica auto
-
     il preventivo è variato
