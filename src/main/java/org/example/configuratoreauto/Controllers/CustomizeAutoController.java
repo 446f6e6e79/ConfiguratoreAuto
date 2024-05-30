@@ -91,7 +91,7 @@ public class CustomizeAutoController implements Initializable {
         dimensioni.setText(dim);
         descrizione.setText(auto.getDescrizione());
         motori.getItems().addAll(auto.getMotoriDisponibili());
-        updatePriceTableInfo(new ArrayList<>());
+        updatePriceTableInfo();
 
 
         motori.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
@@ -121,7 +121,7 @@ public class CustomizeAutoController implements Initializable {
         *   Ogni qualvolta vienew aggiornato un optional, di conseguenza è aggiornata
         *   la tabella con la descrizione dei costi
         * */
-        ChangeListener<Optional> priceUpdateListener = (observable, oldValue, newValue) -> getDynamicPrice();
+        ChangeListener<Optional> priceUpdateListener = (observable, oldValue, newValue) -> updatePriceTableInfo();
         colori.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
         interni.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
         vetri.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
@@ -201,15 +201,7 @@ public class CustomizeAutoController implements Initializable {
     }
 
     public void createPreventivo() {
-        ArrayList<Optional> chosen = new ArrayList<>();
-        if(colori.getValue()!=null)
-            chosen.add(colori.getValue());
-        if(interni.getValue()!=null)
-            chosen.add(interni.getValue());
-        if(vetri.getValue()!=null)
-            chosen.add(vetri.getValue());
-        if(cerchi.getValue()!=null)
-            chosen.add(cerchi.getValue());
+        ArrayList<Optional> chosen = getChoseOptional();
         if(motori.getValue()!=null && sedi.getValue()!=null){
             valido.setText("");
             if(user.getCurrentUser() == null){
@@ -224,29 +216,26 @@ public class CustomizeAutoController implements Initializable {
         }
     }
 
-    /**
-     * Genera dinamicamente il prezzo.
-     * Recupera gli optional scelti, aggiornando la tabella dei prezzi dinamicamente
-     */
-    public void getDynamicPrice() {
-        ArrayList<Optional> selezionati = new ArrayList<>();
+    private ArrayList<Optional> getChoseOptional() {
+        ArrayList<Optional> chosen = new ArrayList<>();
         if(colori.getValue()!=null)
-            selezionati.add(colori.getValue());
+            chosen.add(colori.getValue());
         if(interni.getValue()!=null)
-            selezionati.add(interni.getValue());
+            chosen.add(interni.getValue());
         if(vetri.getValue()!=null)
-            selezionati.add(vetri.getValue());
+            chosen.add(vetri.getValue());
         if(cerchi.getValue()!=null)
-            selezionati.add(cerchi.getValue());
-        updatePriceTableInfo(selezionati);
-        
+            chosen.add(cerchi.getValue());
+        return chosen;
     }
 
     /**
-     *  Aggiorna la tabella dei prezzi attuali
-     * @param selezionati Lista di optional selezionati
+     *  Aggiorna la tabella dei prezzi attuali, generando dinamicamente il prezzo
+     * @param
      */
-    private void updatePriceTableInfo(ArrayList<Optional> selezionati) {
+    private void updatePriceTableInfo() {
+        //Recupero gli optional selezionati
+        ArrayList<Optional> chosen = getChoseOptional();
 
         //Rimuovo gli optional precedenti
         if (priceDetails.getChildren().size() > 2) {
@@ -254,17 +243,18 @@ public class CustomizeAutoController implements Initializable {
         }
 
         //Genero dinamicamente la nuova tabella del prezzo
-        for(Optional o : selezionati) {
+        for(Optional o : chosen) {
             if(o!=null){
                 addTableRow(o.getDescrizione(), Preventivo.getPriceAsString(o.getCosto()));
             }
         }
 
         int sconto = auto.getSconto(new Date());
-        double prezzoTotale = auto.getCostoTotale(selezionati, new Date());
+        double prezzoTotale = auto.getCostoTotale(chosen, new Date());
+
         //Se è presente uno sconto
         if(sconto > 0){
-            addTableRow("Sconto "+auto.getSconto(new Date())+"%", Preventivo.getPriceAsString(prezzoTotale - auto.getPrezzoNoSconto(selezionati, new Date())));
+            addTableRow("Sconto "+auto.getSconto(new Date())+"%", Preventivo.getPriceAsString(prezzoTotale - auto.getPrezzoNoSconto(chosen, new Date())));
         }
         addTableRow("Costo totale:", Preventivo.getPriceAsString(prezzoTotale));
     }
