@@ -23,6 +23,7 @@ import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.*;
+import org.example.configuratoreauto.Macchine.Optional;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 import org.example.configuratoreauto.Preventivi.Sede;
@@ -32,9 +33,7 @@ import org.example.configuratoreauto.Utenti.UserModel;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class CustomizeAutoController implements Initializable {
     CatalogoModel catalogo = CatalogoModel.getInstance();
@@ -60,6 +59,8 @@ public class CustomizeAutoController implements Initializable {
     private Label prezzoBase;
     @FXML
     private Label modello;
+    @FXML
+    private VBox optionalList;
     @FXML
     private ChoiceBox<Motore> motori;
     @FXML
@@ -93,28 +94,49 @@ public class CustomizeAutoController implements Initializable {
         motori.getItems().addAll(auto.getMotoriDisponibili());
         updatePriceTableInfo();
 
-
+        //Alla selezione del motore, aggiorno le informazioni
         motori.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 motoreInfo.setText(newValue.getInfoMotore());
             }
         });
         motori.setValue(motori.getItems().get(0));
+
+        //Aggiungo i colori agli optional
         colori.getItems().addAll(auto.getOptionalByCategory(TipoOptional.Colore));
 
-        interni.getItems().add(null);
-        interni.getItems().addAll(auto.getOptionalByCategory(TipoOptional.Interni));
+        //Creo una lista delle choiceBox per gli optional
+        List<ChoiceBox> choiceBoxes = Arrays.asList(colori, interni, vetri, cerchi);
 
-        vetri.getItems().add(null);
-        vetri.getItems().addAll(auto.getOptionalByCategory(TipoOptional.Vetri));
+        int addedOptional = 1;
+        ArrayList<Optional> optionalByType ;
+        for(TipoOptional tO: TipoOptional.values()) {
+            //Recuper tutti gli optional per quella data categoria
+            optionalByType = auto.getOptionalByCategory(tO);
 
-        cerchi.getItems().add(null);
-        cerchi.getItems().addAll(auto.getOptionalByCategory(TipoOptional.Cerchi));
-        sedi.getItems().addAll(sediModel.getAllData());
-
-        if (!colori.getItems().isEmpty()) {
-            colori.setValue(colori.getItems().get(0));
+            //Se sono presenti degli optional per quel tipo
+            if(!optionalByType.isEmpty()) {
+                addedOptional++;
+                //Recupero la choicheBox per quell'optional
+                ChoiceBox currCB = choiceBoxes.get(tO.ordinal());
+                //Aggiungo gli optional disponibili per quel tipo
+                currCB.getItems().addAll(auto.getOptionalByCategory(tO));
+            }
+            else{
+                //Rimuovo l'elemento per quel tipo di optional
+                optionalList.getChildren().remove(addedOptional);
+            }
         }
+//        vetri.getItems().add(null);
+//        vetri.getItems().addAll(auto.getOptionalByCategory(TipoOptional.Vetri));
+//
+//        cerchi.getItems().add(null);
+//        cerchi.getItems().addAll(auto.getOptionalByCategory(TipoOptional.Cerchi));
+//        sedi.getItems().addAll(sediModel.getAllData());
+//
+//        if (!colori.getItems().isEmpty()) {
+//            colori.setValue(colori.getItems().get(0));
+//        }
 
         /*
         *   Imposto i listener per l'aggiornamento dinamico del prezzo.
@@ -231,7 +253,6 @@ public class CustomizeAutoController implements Initializable {
 
     /**
      *  Aggiorna la tabella dei prezzi attuali, generando dinamicamente il prezzo
-     * @param
      */
     private void updatePriceTableInfo() {
         //Recupero gli optional selezionati
