@@ -177,7 +177,7 @@
                         <Button mnemonicParsing="false" onAction="#resetChoices" text="Reset" BorderPane.alignment="CENTER" />
                      </left>
                      <right>
-                        <Button mnemonicParsing="false" onAction="#createPreventivo" text="Richiedi preventivo" BorderPane.alignment="CENTER">
+                        <Button mnemonicParsing="false" onAction="#createPreventivo" prefHeight="85.0" prefWidth="144.0" styleClass="greenButton" text="Richiedi preventivo" BorderPane.alignment="CENTER">
                            <BorderPane.margin>
                               <Insets right="200.0" />
                            </BorderPane.margin>
