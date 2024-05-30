@@ -244,7 +244,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
      */
     @Override
     public int compareTo(Preventivo o) {
-        int diff = this.stato.compareTo(o.stato);
+        int diff = o.stato.compareTo(this.stato);
         if(diff != 0){
             return diff;
         }

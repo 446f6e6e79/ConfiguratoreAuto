@@ -93,6 +93,7 @@ public class CustomizeAutoController implements Initializable {
         descrizione.setText(auto.getDescrizione());
         motori.getItems().addAll(auto.getMotoriDisponibili());
         updatePriceTableInfo();
+        sedi.getItems().addAll(sediModel.getAllData());
 
         //Alla selezione del motore, aggiorno le informazioni
         motori.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
