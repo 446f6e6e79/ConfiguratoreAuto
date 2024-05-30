@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AddAutoUsataController">
+<BorderPane prefHeight="648.0" prefWidth="933.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AddAutoUsataController">
     <top>
         <Label fx:id="maintitle" text="Inserisci la tua auto usata" BorderPane.alignment="CENTER">
          <font>
@@ -25,8 +25,8 @@
     <bottom>
         <HBox alignment="CENTER" prefHeight="82.0" prefWidth="800.0" spacing="10.0" BorderPane.alignment="CENTER">
             <Label fx:id="saveLabel" text="Devi riempire il form prima di salvare" />
+            <Button onAction="#saltaButton" prefHeight="60.0" prefWidth="119.0" styleClass="resetButton" text="Salta" />
             <Button fx:id="salvaButton" onAction="#salvaButton" text="Salva" />
-            <Button onAction="#saltaButton" text="Salta" />
         </HBox>
     </bottom>
    <center>
@@ -56,7 +56,7 @@
         </VBox>
    </center>
    <right>
-      <GridPane fx:id="imageGrid" prefHeight="413.0" prefWidth="434.0" BorderPane.alignment="CENTER">
+      <GridPane fx:id="imageGrid" alignment="CENTER" prefHeight="527.0" prefWidth="514.0" BorderPane.alignment="CENTER">
         <columnConstraints>
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
           <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -66,22 +66,42 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <ImageView fitHeight="218.0" fitWidth="217.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../img/icons/left-car.png" />
-               </image></ImageView>
-             <ImageView fitHeight="174.0" fitWidth="200.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1">
-               <image>
-                  <Image url="@../../../../img/icons/front-car.png" />
-               </image></ImageView>
-            <ImageView fitHeight="215.0" fitWidth="307.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true" GridPane.rowIndex="1">
-               <image>
-                  <Image url="@../../../../img/icons/right-car.png" />
-               </image></ImageView>
-            <ImageView fitHeight="217.0" fitWidth="453.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <image>
-                  <Image url="@../../../../img/icons/back-car.png" />
-               </image></ImageView>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="clickableElement">
+               <children>
+                  <ImageView fitHeight="236.0" fitWidth="225.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../img/icons/left-car.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+               <children>
+                   <ImageView fitHeight="206.0" fitWidth="225.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../img/icons/front-car.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="252.0" prefWidth="261.0" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fitHeight="215.0" fitWidth="307.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../img/icons/right-car.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+               <children>
+                  <ImageView fitHeight="217.0" fitWidth="453.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../img/icons/back-car.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </VBox>
          </children>
       </GridPane>
    </right>

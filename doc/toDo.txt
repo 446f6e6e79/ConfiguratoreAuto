@@ -25,3 +25,4 @@ Front - end:
 
 BUGS:
     Tasto accedi ancora buggato
+    autoUsata non prende i css
