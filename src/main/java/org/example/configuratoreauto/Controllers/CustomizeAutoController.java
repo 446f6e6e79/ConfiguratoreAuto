@@ -218,7 +218,7 @@ public class CustomizeAutoController implements Initializable {
             registro.currentPreventivo = new Preventivo(auto, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), chosen);
             openUsataView();
             catalogo.setSelectedAuto(null);
-            this.backClicked();
+            goBack();
         }else{
             valido.setText("Non hai inserito i campi correttamente\n");
         }
@@ -270,7 +270,7 @@ public class CustomizeAutoController implements Initializable {
     }
 
     @FXML
-    public void backClicked(){
+    public void goBack(){
         try {
             TabPane tabPane = (TabPane) modelID.getScene().lookup("#mainPage");
             Tab tab= tabPane.getTabs().get(0);
