@@ -1,10 +1,10 @@
 Back-end:
 
-V) Controllo sull'aggiunta delle immagini per auto(DA TESTARE)
+CHECK) Controllo sull'aggiunta delle immagini per auto(DA TESTARE)
     Impostato in maniera tale che se elimini l'ultima immagine allora viene eliminato l'intero optional ed è
     da reinserire
 
-2)Optional di tipo COLORE, con prezzo = 0 non variano il tempo di consegna
+CHECK)  Optional di tipo COLORE, con prezzo = 0 non variano il tempo di consegna
 
 Front - end:
 1) Implementazione viewOptional per customAuto:
@@ -18,10 +18,10 @@ Front - end:
     bottoni
     input testuale ridimensionato
     aggiunta delle immagini più carina
+
 3) Finire implementazione per addModel e addOptional
 
 BUGS:
-    - alcune volte, le liste di preventivi sono doppie
     - se richiesto un preventivo,
         fatto logout,
         login con segretario,

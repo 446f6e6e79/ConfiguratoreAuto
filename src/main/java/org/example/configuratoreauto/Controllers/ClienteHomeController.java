@@ -44,9 +44,7 @@ public class ClienteHomeController {
             //Setting dinamico delle dimensioni della pagina preventivi
             preventiviNode.prefWidthProperty().bind(mainPage.widthProperty());
             preventiviNode.prefHeightProperty().bind(mainPage.heightProperty());
-            preventiviController = preventiviLoader.getController();
             preventiviTab.setContent(preventiviNode);
-            preventiviController.loadPrevs(registro.getPreventiviByCliente(currentUser));
         }
         catch (IOException e) {
             e.printStackTrace();

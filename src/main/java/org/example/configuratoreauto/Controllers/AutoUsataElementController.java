@@ -59,11 +59,29 @@ public class AutoUsataElementController {
             registro.updateData(preventivo);
             //Apertura pagina
             try {
-                TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
-                Tab valutazioneTab = tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/impiegatoView/valutazioniView.fxml"));
-                BorderPane valutazione = loader.load();
-                valutazioneTab.setContent(valutazione);
+                // Carico la TabPane
+                TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage");
+                Tab tab = tabPane.getTabs().get(0);
+
+                // Carico catalogoView
+                FXMLLoader valutazioneLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/impiegatoView/valutazioniView.fxml"));
+                BorderPane valutazioneNode = valutazioneLoader.load();
+
+                // Carico preventiviView.fxml
+                FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
+                BorderPane preventiviNode = preventiviLoader.load();
+
+                // Carico il controller di preventiviView
+                PreventiviController contr = preventiviLoader.getController();
+                contr.resetFilter();
+
+                // Pulisco la tab di preventivi view
+                Tab tab1 = tabPane.getTabs().get(1);
+                tab1.setContent(null);
+
+                // Ricarico le pagine nella tabPane
+                tab1.setContent(preventiviNode);
+                tab.setContent(valutazioneNode);
             }catch (IOException e){
                 e.printStackTrace();
             }

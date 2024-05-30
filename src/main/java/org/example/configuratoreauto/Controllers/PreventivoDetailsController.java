@@ -201,19 +201,6 @@ public class PreventivoDetailsController {
 
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
             BorderPane preventiviList = loader.load();
-            PreventiviController controller = loader.getController();
-
-            if(user.getCurrentUser() instanceof Cliente){
-                controller.resetFilter();
-                controller.loadPrevs(registro.getPreventiviByCliente((Cliente) user.getCurrentUser()));
-            }else if(user.getCurrentUser() instanceof Segretario){
-                controller.loadPrevs(registro.getAllData());
-            }else if(user.getCurrentUser() instanceof Impiegato && preventivo.getStato()!=StatoPreventivo.RITIRATO){
-                registro.currentPreventivo=preventivo;
-                controller.loadPrevs(registro.getPreventiviByStato(preventivo.getStato()));
-            }else if(user.getCurrentUser() instanceof Impiegato && preventivo.getStato()==StatoPreventivo.RITIRATO){
-                controller.loadPrevs((registro.getPreventiviByStato(StatoPreventivo.FINALIZZATO)));
-            }
             tab.setContent(preventiviList); // Imposta il nuovo contenuto del tab "Catalogo"
         }catch (IOException e){
             e.printStackTrace();

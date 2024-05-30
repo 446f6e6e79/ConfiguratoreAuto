@@ -1,8 +1,6 @@
 package org.example.configuratoreauto.Preventivi;
 
-import org.example.configuratoreauto.Macchine.AutoNuova;
-import org.example.configuratoreauto.Macchine.AutoUsata;
-import org.example.configuratoreauto.Macchine.Motore;
+import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Macchine.Optional;
 import org.example.configuratoreauto.Utenti.Cliente;
 
@@ -82,7 +80,10 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         dataDiConsegna.setTime(data);
         dataDiConsegna.add(Calendar.MONTH, 1);
         if(optionals != null){
-            dataDiConsegna.add(Calendar.DAY_OF_MONTH, 10 * optionals.size());
+            long count = optionals.stream()
+                    .filter(optional -> optional.getCosto() == 0 && optional.getCategoria() == TipoOptional.Colore)
+                    .count();
+            dataDiConsegna.add(Calendar.DAY_OF_MONTH, 10 * (int) count);
         }
         this.consegna = dataDiConsegna.getTime();
     }

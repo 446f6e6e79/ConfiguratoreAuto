@@ -32,9 +32,6 @@ public class SegretarioHomeController {
             //Setting dinamico delle dimensioni della pagina preventivi
             preventiviNode.prefWidthProperty().bind(mainPage.widthProperty());
             preventiviNode.prefHeightProperty().bind(mainPage.heightProperty());
-            preventiviController = preventiviLoader.getController();
-            //GET 0 MOMENTANEO
-            preventiviController.loadPrevs(registro.getPreventiviBySede(SediModel.getInstance().getAllData().get(0)));
         }
         catch (IOException e) {
             e.printStackTrace();

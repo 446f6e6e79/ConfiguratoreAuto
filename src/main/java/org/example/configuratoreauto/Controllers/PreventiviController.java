@@ -50,28 +50,40 @@ public class PreventiviController {
     private void initialize() {
         initializeChoiceBoxes();
         if (utente.getCurrentUser() instanceof Segretario) {
-            choiceSede.setVisible(true);
-            clienteField.setVisible(true);
-            sedeLabel.setVisible(true);
-            clienteLabel.setVisible(true);
-            loadPrevs(registro.getAllData());
+            setupForSegretario();
         } else if (utente.getCurrentUser() instanceof Cliente) {
-            choiceSede.setVisible(false);
-            clienteField.setVisible(false);
-            sedeLabel.setVisible(false);
-            clienteLabel.setVisible(false);
+            setupForCliente();
         } else if (utente.getCurrentUser() instanceof Impiegato) {
-            choiceSede.setVisible(true);
-            clienteField.setVisible(true);
-            sedeLabel.setVisible(true);
-            clienteLabel.setVisible(true);
-            titleMain.setText("Gestione Preventivi");
-
-            initializaImpiegatoChoiceBox();
-            actualStato = StatoPreventivo.FINALIZZATO; // Default state
-            loadPrevs(registro.getPreventiviByStato(StatoPreventivo.FINALIZZATO));
+            setupForImpiegato();
         }
+    }
 
+    private void setupForSegretario() {
+        choiceSede.setVisible(true);
+        clienteField.setVisible(true);
+        sedeLabel.setVisible(true);
+        clienteLabel.setVisible(true);
+        loadPrevs(registro.getAllData());
+    }
+
+    private void setupForCliente() {
+        choiceSede.setVisible(false);
+        clienteField.setVisible(false);
+        sedeLabel.setVisible(false);
+        clienteLabel.setVisible(false);
+        loadPrevs(registro.getPreventiviByCliente((Cliente) utente.getCurrentUser()));
+    }
+
+    private void setupForImpiegato() {
+        choiceSede.setVisible(true);
+        clienteField.setVisible(true);
+        sedeLabel.setVisible(true);
+        clienteLabel.setVisible(true);
+        titleMain.setText("Gestione Preventivi");
+
+        initializaImpiegatoChoiceBox();
+        actualStato = StatoPreventivo.FINALIZZATO; // Default state
+        loadPrevs(registro.getPreventiviByStato(StatoPreventivo.FINALIZZATO));
     }
 
     private void initializaImpiegatoChoiceBox() {

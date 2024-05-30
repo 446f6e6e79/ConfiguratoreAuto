@@ -15,10 +15,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -102,6 +99,8 @@ public class CustomizeAutoController implements Initializable {
             }
         });
         motori.setValue(motori.getItems().get(0));
+
+        sedi.getItems().addAll(sediModel.getAllData());
 
         //Creo una lista delle choiceBox per gli optional
         List<ChoiceBox> choiceBoxes = Arrays.asList(colori, interni, vetri, cerchi);
@@ -280,22 +279,33 @@ public class CustomizeAutoController implements Initializable {
     @FXML
     public void goBack(){
         try {
+            // Carico la TabPane
             TabPane tabPane = (TabPane) modelID.getScene().lookup("#mainPage");
-            Tab tab= tabPane.getTabs().get(0);
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/catalogoView.fxml"));
-            BorderPane catalogoNode;
-            BorderPane preventiviNode;
-            catalogoNode = loader.load();
-            loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
-            preventiviNode = loader.load();
-            PreventiviController contr = loader.getController();
-            contr.loadPrevs(registro.getPreventiviByCliente((Cliente) user.getCurrentUser()));
+            Tab tab = tabPane.getTabs().get(0);
+
+            // Carico catalogoView
+            FXMLLoader catalogoLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/catalogoView.fxml"));
+            BorderPane catalogoNode = catalogoLoader.load();
+
+            // Carico preventiviView.fxml
+            FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
+            BorderPane preventiviNode = preventiviLoader.load();
+
+            // Carico il controller di preventiviView
+            PreventiviController contr = preventiviLoader.getController();
+            contr.resetFilter();
+
+            // Pulisco la tab di preventivi view
             Tab tab1 = tabPane.getTabs().get(1);
+            tab1.setContent(null);
+
+            // Ricarico le pagine nella tabPane
             tab1.setContent(preventiviNode);
             tab.setContent(catalogoNode);
-        }catch (IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     private void openRegistratiView() {
