@@ -150,8 +150,11 @@
                         </HBox>
                      </children>
                      <VBox.margin>
-                        <Insets top="20.0" />
+                        <Insets />
                      </VBox.margin>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
                   </VBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
