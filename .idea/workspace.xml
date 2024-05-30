@@ -7,6 +7,9 @@
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/CustomizeAutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/CustomizeAutoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/10/Verde/purosangue_rosso2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/autoCustomization.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/clienteView/autoCustomization.fxml" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -210,7 +213,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-19.0.2-azul-19.0.2-4caba194b151-3b9f6195" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
       </set>
     </attachedChunks>
   </component>
@@ -328,6 +332,8 @@
       <workItem from="1717054011674" duration="5862000" />
       <workItem from="1717063233174" duration="543000" />
       <workItem from="1717064018405" duration="410000" />
+      <workItem from="1717078093891" duration="329000" />
+      <workItem from="1717078459409" duration="774000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />

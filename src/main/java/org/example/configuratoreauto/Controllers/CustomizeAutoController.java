@@ -102,16 +102,13 @@ public class CustomizeAutoController implements Initializable {
         });
         motori.setValue(motori.getItems().get(0));
 
-        //Aggiungo i colori agli optional
-        colori.getItems().addAll(auto.getOptionalByCategory(TipoOptional.Colore));
-
         //Creo una lista delle choiceBox per gli optional
         List<ChoiceBox> choiceBoxes = Arrays.asList(colori, interni, vetri, cerchi);
-
         int addedOptional = 1;
-        ArrayList<Optional> optionalByType ;
+
+        ArrayList<Optional> optionalByType;
         for(TipoOptional tO: TipoOptional.values()) {
-            //Recuper tutti gli optional per quella data categoria
+            //Recupero tutti gli optional per quella data categoria
             optionalByType = auto.getOptionalByCategory(tO);
 
             //Se sono presenti degli optional per quel tipo
@@ -123,20 +120,18 @@ public class CustomizeAutoController implements Initializable {
                 currCB.getItems().addAll(auto.getOptionalByCategory(tO));
             }
             else{
+                choiceBoxes.remove(tO);
                 //Rimuovo l'elemento per quel tipo di optional
                 optionalList.getChildren().remove(addedOptional);
             }
         }
-//        vetri.getItems().add(null);
-//        vetri.getItems().addAll(auto.getOptionalByCategory(TipoOptional.Vetri));
-//
-//        cerchi.getItems().add(null);
-//        cerchi.getItems().addAll(auto.getOptionalByCategory(TipoOptional.Cerchi));
-//        sedi.getItems().addAll(sediModel.getAllData());
-//
-//        if (!colori.getItems().isEmpty()) {
-//            colori.setValue(colori.getItems().get(0));
-//        }
+
+        /*
+        * TODO: una volta aggiunti i colori ad ogni auto, l'if può essere rimosso
+        * */
+        if (!colori.getItems().isEmpty()) {
+            colori.setValue(colori.getItems().get(0));
+        }
 
         /*
         *   Imposto i listener per l'aggiornamento dinamico del prezzo.
@@ -149,6 +144,7 @@ public class CustomizeAutoController implements Initializable {
         vetri.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
         cerchi.getSelectionModel().selectedItemProperty().addListener(priceUpdateListener);
 
+        //Al cambiamento della selezione del colore, sono aggiornate dinamicamente le immagini
         colori.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateImagesForColor(newValue.getDescrizione()));
         if(colori.getValue()!=null)
             updateImagesForColor(colori.getValue().getDescrizione());
