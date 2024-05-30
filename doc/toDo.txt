@@ -22,8 +22,4 @@ Front - end:
 3) Finire implementazione per addModel e addOptional
 
 BUGS:
-    - se richiesto un preventivo,
-        fatto logout,
-        login con segretario,
-            modifica auto
-    il preventivo è variato
+

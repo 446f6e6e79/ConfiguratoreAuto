@@ -69,6 +69,7 @@ public class ClienteHomeController {
             if (response == ButtonType.YES) {
                 userModel = UserModel.getInstance();
                 userModel.clearCurrentUser();
+                logout.setText("Logout");
                 // User clicked OK, proceed with logout
                 try {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/loginPage.fxml"));

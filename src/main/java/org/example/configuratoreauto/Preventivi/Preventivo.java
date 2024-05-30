@@ -81,7 +81,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         dataDiConsegna.add(Calendar.MONTH, 1);
         if(optionals != null){
             long count = optionals.stream()
-                    .filter(optional -> optional.getCosto() == 0 && optional.getCategoria() == TipoOptional.Colore)
+                    .filter(optional -> !(optional.getCosto() == 0 && optional.getCategoria() == TipoOptional.Colore))
                     .count();
             dataDiConsegna.add(Calendar.DAY_OF_MONTH, 10 * (int) count);
         }

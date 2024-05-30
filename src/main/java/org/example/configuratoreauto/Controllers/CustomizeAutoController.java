@@ -218,6 +218,20 @@ public class CustomizeAutoController implements Initializable {
         sedi.setValue(null);
     }
 
+    //Crea una copia perdendo così il riferimento
+    private AutoNuova createAutoCopy(AutoNuova original) {
+        AutoNuova autoCopy = new AutoNuova(original.getId());
+        autoCopy.setMarca(original.getMarca());
+        autoCopy.setModello(original.getModello());
+        autoCopy.setDimensione(original.getDimensione());
+        autoCopy.setDescrizione(original.getDescrizione());
+        autoCopy.setCostoBase(original.getCostoBase());
+        autoCopy.setScontoPerMese(Arrays.copyOf(original.getScontoPerMese(), original.getScontoPerMese().length));
+        autoCopy.setMotoriDisponibili(new ArrayList<>(original.getMotoriDisponibili()));
+        autoCopy.setOptionalDisponibili(new TreeSet<>(original.getOptionalDisponibili()));
+        return autoCopy;
+    }
+
     public void createPreventivo() {
         ArrayList<Optional> chosen = getChoseOptional();
         if(motori.getValue()!=null && sedi.getValue()!=null){
@@ -225,7 +239,11 @@ public class CustomizeAutoController implements Initializable {
             if(user.getCurrentUser() == null){
                 openRegistratiView();
             }
-            registro.currentPreventivo = new Preventivo(auto, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), chosen);
+
+
+            //Creo una copia per scollegare il preventivo dall'auto
+            AutoNuova copia = createAutoCopy(auto);
+            registro.currentPreventivo = new Preventivo(copia, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), chosen);
             openUsataView();
             catalogo.setSelectedAuto(null);
             goBack();
