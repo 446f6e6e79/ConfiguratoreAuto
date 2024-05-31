@@ -116,27 +116,7 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
         }
         //Se sto modificando una macchina, copio tutti i parametri di autoToModify in tempAuto
         if(autoToModify != null ){
-            tempAuto.setMarca(autoToModify.getMarca());
-            tempAuto.setModello(autoToModify.getModello());
-            tempAuto.setDescrizione(autoToModify.getDescrizione());
-            tempAuto.setDimensione(new Dimensione(
-                        autoToModify.getDimensione().getLarghezza(),
-                        autoToModify.getDimensione().getAltezza(),
-                        autoToModify.getDimensione().getLunghezza(),
-                        autoToModify.getDimensione().getPeso(),
-                        autoToModify.getDimensione().getVolumeBagagliaglio()
-                    ));
-            tempAuto.setCostoBase(autoToModify.getCostoBase());
-            tempAuto.setScontoPerMese(Arrays.copyOf(autoToModify.getScontoPerMese(), 12));
-
-            tempAuto.setImmagini(new ArrayList<>());
-            tempAuto.getImmagini().addAll(autoToModify.getImmagini());
-
-            tempAuto.setMotoriDisponibili(new ArrayList<>());
-            tempAuto.getMotoriDisponibili().addAll(autoToModify.getMotoriDisponibili());
-
-            tempAuto.setOptionalDisponibili(new TreeSet<>());
-            tempAuto.getOptionalDisponibili().addAll(autoToModify.getOptionalDisponibili());
+            tempAuto = new AutoNuova(autoToModify);
         }
     }
 
