@@ -1,7 +1,5 @@
 package org.example.configuratoreauto.Utenti;
 
-import org.example.configuratoreauto.Controllers.RegistrazioneController;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -12,37 +10,42 @@ class UserModelTest {
     @Test
     @DisplayName("Registrazione utenti")
     void registraCliente(){
-        Assertions.assertEquals(false, u.registraCliente(new Cliente("davidedona@gmail.com", "1234", "A", "A")));
-        Assertions.assertEquals(true, u.registraCliente(new Cliente("aaa@gmail.com", "1234", "a", "b")));
+        //Registro una mail già presente
+        assertFalse(u.registraCliente(new Cliente("davide@gmail.com", "1234", "A", "A")));
+        assertFalse(u.registraCliente(new Cliente("DaViDe@GmAiL.cOm", "1234", "A", "A")));
+
+        //Registro una mail non ancora presente
+        assertTrue(u.registraCliente(new Cliente("aaa@gmail.com", "1234", "a", "b")));
+
+        // TODO: Registrazione con email non valide / nomi non validi;
     }
 
     @Test
     @DisplayName("Login")
     void validation() {
-        Assertions.assertEquals(false, u.validation("", ""));
-        Assertions.assertEquals(false, u.validation(null, null));
-        Assertions.assertEquals(true, u.validation("segretario@gmail.com", "1234"));
-        Assertions.assertEquals(true, u.validation("guest", "guest"));
+        assertFalse(u.validation("", ""));
+        assertFalse(u.validation(null, null));
+        assertTrue(u.validation("segretario@gmail.com", "1234"));
+        assertTrue(u.validation("davide@gmail.com", "1234"));
+        assertTrue(u.validation("DaViDe@GmAiL.cOm", "1234"));
     }
 
     @Test
     @DisplayName("Current user check")
     void getCurrentUser() {
-        Assertions.assertEquals(true, u.validation("guest", "guest"));
-        Assertions.assertEquals(true, u.getCurrentUser() instanceof Cliente);
-        Assertions.assertEquals(false, u.getCurrentUser() instanceof Impiegato);
+        assertTrue(u.validation("davide@gmail.com", "1234"));
+        assertInstanceOf(Cliente.class, u.getCurrentUser());
+        assertFalse(u.getCurrentUser() instanceof Impiegato);
         u.validation("segretario@gmail.com", "1234");
-        Assertions.assertEquals(true, u.getCurrentUser() instanceof Segretario);
+        assertInstanceOf(Segretario.class, u.getCurrentUser());
 
     }
     @Test
     @DisplayName("validEmail")
     void checkValidEmail(){
-        Assertions.assertEquals(false, RegistrazioneController.isValidEmail(""));
-        Assertions.assertEquals(true, RegistrazioneController.isValidEmail("davide@gmail.com"));
-        Assertions.assertEquals(false, RegistrazioneController.isValidEmail("andrea@.com"));
-        Assertions.assertEquals(false, RegistrazioneController.isValidEmail("@gmail.com"));
-
-
+        assertFalse(Persona.isValidEmail(""));
+        assertTrue(Persona.isValidEmail("davide@gmail.com"));
+        assertFalse(Persona.isValidEmail("andrea@.com"));
+        assertFalse(Persona.isValidEmail("@gmail.com"));
     }
 }

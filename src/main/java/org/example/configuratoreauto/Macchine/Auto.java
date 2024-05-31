@@ -1,6 +1,5 @@
 package org.example.configuratoreauto.Macchine;
 
-import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -18,6 +17,7 @@ public abstract class Auto implements Serializable{
         this.modello = modello;
         this.immagini = new ArrayList<>();
     }
+
     protected Auto(){}
 
     //GET e SET per l'attrito MARCA
@@ -58,7 +58,6 @@ public abstract class Auto implements Serializable{
                 -targaAuto2
                 ...
      */
-
     abstract void addToLocalImages();
 
     /**

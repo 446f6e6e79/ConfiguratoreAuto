@@ -19,6 +19,8 @@ import org.example.configuratoreauto.Preventivi.RegistroModel;
 import java.io.File;
 import java.util.regex.Pattern;
 
+import static org.example.configuratoreauto.Macchine.AutoUsata.isValidTarga;
+
 public class AddAutoUsataController {
     RegistroModel registro = RegistroModel.getInstance();
     /** ArrayList osservabile, contenente le immagini inserite */
@@ -203,41 +205,4 @@ public class AddAutoUsataController {
         registro.addData(registro.currentPreventivo);
         ((Stage) saveLabel.getScene().getWindow()).close();
     }
-
-    /**
-     *  Controlla la validità di una targa. Una targa è considerata valida se:
-     *      1) La targa è composta correttamente
-     *      2) La targa non è mai stata inserita all'interno di altri Preventivi
-     * @param targa targa inserita da input
-     * @return TRUE se la targa è VALIDA, FALSE altrimenti
-     */
-    private boolean isValidTarga(String targa) {
-        String regex = "^[A-Z]{2}[0-9]{3}[A-Z]{2}$";
-        return Pattern.matches(regex, targa) && !targaAlreadyPresent(targa);
-    }
-
-    /**
-     * Controlla se la targa è già stata inserita in altri preventivi. In tal caso, lo segnala ritornando true
-     * @param targa Targa che vogliamo verificare
-     * @return TRUE se già presente, FALSE altrimenti
-     */
-    private boolean targaAlreadyPresent(String targa) {
-        File directory = new File( "/src/main/resources/img/usedCarImages");
-        if (!directory.exists() || !directory.isDirectory()) {
-            return false;
-        }
-        //Creo una lista di tutte le sotto-directory  di usedCarImages esistenti
-        File[] files = directory.listFiles();
-        if (files != null) {
-            //Controllo, per ogni directory, se combacia con la targa inserita
-            for (File file : files) {
-                if (file.isDirectory() && file.getName().contains(targa)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
-
 }

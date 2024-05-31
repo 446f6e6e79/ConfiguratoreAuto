@@ -10,16 +10,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Utenti.Cliente;
+import org.example.configuratoreauto.Utenti.Persona;
 import org.example.configuratoreauto.Utenti.UserModel;
 
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class RegistrazioneController {
     UserModel u = UserModel.getInstance();
-    private static final String EMAIL_PATTERN =
-            "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
 
     @FXML
     private Label responseText;
@@ -68,7 +65,7 @@ public class RegistrazioneController {
         passwordConferma.textProperty().addListener(textChangeListener);
 
         email.textProperty().addListener((obs, oldText, newText) -> {
-            if (isValidEmail(newText)) {
+            if (Persona.isValidEmail(newText)) {
                 isEmailValid.set(true);
             } else {
                 isEmailValid.set(false);
@@ -133,16 +130,7 @@ public class RegistrazioneController {
             responseText.setText("Attenzione! Email non valida");
         }
     }
-    /*
-    *   Controllo sulla validità dell'email inserita
-    * */
-    public static boolean isValidEmail(String email) {
-        System.out.println(email);
-        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
-        Matcher matcher = pattern.matcher(email);
-        System.out.println(matcher.matches());
-        return matcher.matches();
-    }
+
     @FXML
     public void onLogin(){
         try {

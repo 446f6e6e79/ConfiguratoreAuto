@@ -2,7 +2,6 @@ package org.example.configuratoreauto.Macchine;
 
 import javafx.scene.image.Image;
 import org.example.configuratoreauto.Preventivi.Preventivo;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.*;
@@ -21,6 +20,7 @@ public class AutoNuova extends Auto implements Serializable {
 
     public AutoNuova(int id, Marca marca, String modello, Dimensione dimensione, String descrizione, double costoBase, int [] scontoPerMese){
         super(marca, modello);
+        //Se id è già presente, segnalo l'errore
         this.id = id;
         this.dimensione = dimensione;
         this.descrizione = descrizione;
@@ -31,19 +31,20 @@ public class AutoNuova extends Auto implements Serializable {
     }
 
     /**
-     *  Crea un nuovo oggetto Auto, copia di quella passata come parametro
+     *  Crea una nuova istanza classe Auto, copia di quella passata come parametro
      * */
-    public AutoNuova(AutoNuova original) {
-        super(original.getMarca(), original.getModello());
-        this.id = original.getId();
-        this.descrizione = original.getDescrizione();
-        this.dimensione = original.getDimensione();
-        this.costoBase = original.getCostoBase();
-        this.scontoPerMese = Arrays.copyOf(original.getScontoPerMese(), original.getScontoPerMese().length);
-        this.motoriDisponibili = new ArrayList<>(original.getMotoriDisponibili());
-        this.optionalDisponibili = new TreeSet<>(original.getOptionalDisponibili());
-        super.setImmagini(new ArrayList<>(original.getImmagini()));
+    public AutoNuova(AutoNuova modelToCopy) {
+        super(modelToCopy.getMarca(), modelToCopy.getModello());
+        this.id = modelToCopy.getId();
+        this.descrizione = modelToCopy.getDescrizione();
+        this.dimensione = modelToCopy.getDimensione();
+        this.costoBase = modelToCopy.getCostoBase();
+        this.scontoPerMese = Arrays.copyOf(modelToCopy.getScontoPerMese(), modelToCopy.getScontoPerMese().length);
+        this.motoriDisponibili = new ArrayList<>(modelToCopy.getMotoriDisponibili());
+        this.optionalDisponibili = new TreeSet<>(modelToCopy.getOptionalDisponibili());
+        super.setImmagini(new ArrayList<>(modelToCopy.getImmagini()));
     }
+
     public AutoNuova(int id){
         this.id = id;
     }
@@ -176,7 +177,7 @@ public class AutoNuova extends Auto implements Serializable {
      *      costo di base + costo Optional - sconto
      */
     public double getCostoTotale(ArrayList<Optional> chosenOtionals, Date data){
-        double tot = getPrezzoNoSconto(chosenOtionals, data);
+        double tot = getPrezzoNoSconto(chosenOtionals);
         return tot - (tot*getSconto(data) / 100);
     }
 
@@ -184,13 +185,10 @@ public class AutoNuova extends Auto implements Serializable {
     /**
      * Calcola il costo Totale di un auto, privo di sconti:
      * @param chosenOtionals lista di optional SELEZIONATI
-     * @param data data in cui è calcolato il prezzo:
-     *             - PREVENTIVO: data = data richiesta preventivo
-     *             - Modifica auto: data = data attuale
      * @return double costo totale, calcolato come:
      *      costo di base + costo Optional
      */
-    public double getPrezzoNoSconto(ArrayList<Optional> chosenOtionals, Date data){
+    public double getPrezzoNoSconto(ArrayList<Optional> chosenOtionals){
         double tot = this.costoBase;
         for(Optional optional : chosenOtionals){
             tot += optional.getCosto();
@@ -217,17 +215,21 @@ public class AutoNuova extends Auto implements Serializable {
      * @return Restituisce l'immagine di DEFAULT dell'auto
      */
     public Image getDefaultImage(String colore){
-        ArrayList<Immagine> immagini;
-        if(colore != null){
-            immagini = getImageByColor(colore);
+        if(colore == null){
+            throw new IllegalArgumentException("Il colore non può essere nullo");
         }
-        immagini = getImmagini();
+        ArrayList<Immagine> immagini = getImageByColor(colore);
+
+        //Se è presente almeno un immagine per quel colore, la restituisco
         if(!immagini.isEmpty()){
             return this.getImmagini().get(0).getImage();
         }
         return new Image(getClass().getResourceAsStream("/img/no_data.png"));
     }
 
+    /**
+     * Salva tutte le immagini, memorizzate nell'arrayList in memoria interna del progetto
+     */
     @Override
     public void addToLocalImages() {
         //Aggiungo tutte le immagini relative alla macchina nella cartella temporanea
@@ -241,5 +243,27 @@ public class AutoNuova extends Auto implements Serializable {
         } catch (IOException e) {
             System.err.println("Error moving images to target directory: " + e.getMessage());
         }
+    }
+
+    /**
+     * Compara le auto in base al loro costo base.
+     * Di base ordina per prezzo CRESCENTE. E' possibile ottenere la lista
+     * in ordine deCrescente, sfruttando il metodo reversed
+     */
+    public static Comparator<AutoNuova> orderByPrezzoCrescente(){
+        return new Comparator<>() {
+
+            //Ordino in
+            @Override
+            public int compare(AutoNuova o1, AutoNuova o2) {
+                return Double.compare(o1.getCostoBase(), o2.getCostoBase());
+            }
+
+            //Permette l'ordinamento decrescente
+            @Override
+            public Comparator<AutoNuova> reversed() {
+                return Comparator.super.reversed();
+            }
+        };
     }
 }

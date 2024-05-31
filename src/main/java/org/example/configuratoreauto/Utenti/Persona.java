@@ -1,18 +1,34 @@
 package org.example.configuratoreauto.Utenti;
 
 import java.io.Serializable;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Persona implements Serializable{
-    //Email della persona, utilizzata come credenziale per il login
+    private static final String EMAIL_PATTERN =
+            "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    /** Email della persona, utilizzata come credenziale per il login */
     private String email;
-    //Password, utilizzata per l'accesso
+    /** Password, utilizzata per l'accesso */
     private String password;
 
     public Persona(String email, String password){
-        this.email = email;
+        this.email = email.toLowerCase();
         this.password = password;
     }
-    /*
+
+    /**
+    *   Controllo sulla validità dell'email inserita
+    * */
+    public static boolean isValidEmail(String email) {
+        System.out.println(email);
+        Pattern pattern = Pattern.compile(EMAIL_PATTERN);
+        Matcher matcher = pattern.matcher(email);
+        System.out.println(matcher.matches());
+        return matcher.matches();
+    }
+
+    /**
     *   Due oggetti della classe persona sono considerabili equals se condividono stessa mail.
     *   La definizione di tale metodo permette di mantenere l'univocità della email e di
     *   semplice la ricerca dell'utente durante la fase di login
@@ -24,23 +40,13 @@ public class Persona implements Serializable{
                 this.email.equals(otherPersona.email);
     }
 
-    /*
+    /**
     *   Metodo che verifica la correttezza delle credenziali inserite.
     *   Dato un oggetto Persona, passato come parametro, verifica che combacino:
     *     - email
     *     - password
     * */
     public boolean controlloCredenziali(Persona p){
-        return this.email.equals(p.email) &&
-                this.password.equals(p.password);
-    }
-    //Ridefiniamo il metodo hashCode, coerente con il metodo equals, in modo da poter inserire gli oggetti persona in un hashSet
-    @Override
-    public int hashCode(){
-        return email.hashCode();
-    }
-
-    public String toString(){
-        return this.email;
+        return equals(p);
     }
 }

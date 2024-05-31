@@ -75,7 +75,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     }
 
     public String getScontoAutoFormatted(){
-        return getPriceAsString(acquisto.getCostoTotale(optionals, data) - acquisto.getPrezzoNoSconto(optionals, data));
+        return getPriceAsString(acquisto.getCostoTotale(optionals, data) - acquisto.getPrezzoNoSconto(optionals));
     }
     /**
     *  Calcola la data di consegna effettiva della macchina.

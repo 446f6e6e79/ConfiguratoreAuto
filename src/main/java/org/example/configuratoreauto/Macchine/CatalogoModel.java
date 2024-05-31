@@ -8,20 +8,31 @@ import java.util.stream.Collectors;
 
 public class CatalogoModel extends AbstractModel<AutoNuova> {
 
+    /** Istanza univoca della classe */
     private static CatalogoModel instance;
 
     private AutoNuova selectedAuto;
     private AutoNuova tempAuto;
+
     private static Set<Integer> usedIds = new HashSet<>();
     private static Set<Marca> usedBrands = new HashSet<>();
 
-    //Percorso al file contenete le informazioni riguardante il catalogo
+    /**Percorso al file contenete le informazioni riguardante il catalogo*/
     private static final String CATATLOGO_PATH = "src/main/resources/data/catalogo.ser";
 
+    /**
+     * Costruttore privato. In questo modo possiamo implementare il pattern SINGLETON.
+     *  Verrà crerata un istanza unica della classe CatalogoModel, utilizzata per
+     *  l'intera durata dell'esecuzione
+     */
     private CatalogoModel() {
         super();
     }
 
+    /**
+     *  Restituisce un istanza della classe catalogo.
+     * @return istanza di Catalogo
+     */
     public static CatalogoModel getInstance() {
         if (instance == null) {
             instance = new CatalogoModel();
@@ -29,14 +40,19 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
         return instance;
     }
 
+    /**
+     * @return PATH al file in cui sono salvate le informazioni relative alle auto
+     */
     @Override
     protected String getPathToData() {
         return CATATLOGO_PATH;
     }
 
-    /*
-    *   Override del metodo addData. In questo modo, al caricamento del model verranno salvati
-    *   in un set tutti gli ID già in uso
+    /**
+    *   Override del metodo addData. In questo modo, al primo caricamento del model
+     *   verranno salvatiin un set:
+     *      - tutti gli ID già in uso
+     *      - tutti i modelli usati
     * */
     @Override
     public boolean addData(AutoNuova newData){
@@ -47,7 +63,8 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
         }
         return false;
     }
-    /*
+
+    /**
     *   Passatogli come parametro una ArrayList di auto, restituisce un ArrayList contenente solamente le auto
     *   del brand passato come parametro
     * */
@@ -63,17 +80,24 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public ArrayList<AutoNuova> filterAutoByPowerRange(int min, int max, ArrayList<AutoNuova> data) {
+    /**
+     *
+     * @param min Prezzo MASSIMO
+     * @param max Prezzo MASSIMO
+     * @param data Lista di auto, da FILTRARE
+     * @return  Restituisce una lista di auto, ordinate in base al prezzo
+     */
+    public static ArrayList<AutoNuova> filterAutoByPrice(int min, int max, ArrayList<AutoNuova> data) {
         return data.stream()
-                .filter(t -> {
-                    for (Motore motore : t.getMotoriDisponibili()) {
-                        int potenzaKW = motore.getPotenzaKW();
-                        return potenzaKW >= min && potenzaKW <= max;
-                    }
-                    return false;
-                }).collect(Collectors.toCollection(ArrayList::new));
+                .filter(t -> t.getCostoBase() > min && t.getCostoBase() < max)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
+    /**
+     * Ritorna l'insieme di Brand per cui è presente almeno un modello di Auto.
+     * In questo modo è possibile popolare i filtri con i modelli strettamente necessari
+     * @return Set dei brand in uso
+     */
     public Set<Marca> getUsedBrands() {
         return usedBrands;
     }

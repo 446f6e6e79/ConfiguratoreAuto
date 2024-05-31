@@ -273,7 +273,7 @@ public class CustomizeAutoController implements Initializable {
 
         //Se è presente uno sconto
         if(sconto > 0){
-            addTableRow("Sconto "+auto.getSconto(new Date())+"%", Preventivo.getPriceAsString(prezzoTotale - auto.getPrezzoNoSconto(chosen, new Date())));
+            addTableRow("Sconto "+auto.getSconto(new Date())+"%", Preventivo.getPriceAsString(prezzoTotale - auto.getPrezzoNoSconto(chosen)));
         }
         addTableRow("Totale", Preventivo.getPriceAsString(prezzoTotale));
     }
