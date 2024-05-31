@@ -48,6 +48,13 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         return euroFormat.format(price);
     }
 
+    /**
+     *  Metodo per l'aggiunta di un auto usata al preventivo.
+     *  In caso non sia stata aggiunta alcuna auto (usata = NULL), il preventivo viene impostato a FINALIZZATO e vengono impostate:
+     *      -data di scadenza del preventivo
+     *      -data di consegna
+     * @param usata Auto usata, da aggiungere al preventivo
+     */
     public void setUsata(AutoUsata usata){
         this.usata = usata;
         if(usata == null){

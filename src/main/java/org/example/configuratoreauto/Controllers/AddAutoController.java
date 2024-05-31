@@ -16,6 +16,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import static org.example.configuratoreauto.Controllers.InputController.checkValidDouble;
+import static org.example.configuratoreauto.Controllers.InputController.checkValidInt;
+
 public class AddAutoController implements Initializable {
     @FXML
     private AnchorPane mainPane;
@@ -245,7 +248,7 @@ public class AddAutoController implements Initializable {
         }
     }
 
-    private boolean isValidDouble(TextField tf){
+    private boolean isValidDouble(TextField tf ){
         try {
             double value = Double.parseDouble(tf.getText());
             if(value < 0){
@@ -282,47 +285,6 @@ public class AddAutoController implements Initializable {
             tab.setContent(imageNode); // Imposta il nuovo contenuto del tab "Catalogo"
         }catch (IOException e){
             e.printStackTrace();
-        }
-    }
-
-    /**
-     *  Funzione che blocca input non validi, nei TextField che richiedono l'inserimento di campi double
-     * @param event evento KeyEvent, rappresenta la pressione di un tasto
-     * @param tf TextField, campo di input
-     */
-    private void checkValidDouble(KeyEvent event, TextField tf){
-        //Leggo il carattere che ha generato l'evento
-        String character = event.getCharacter();
-
-        /*
-            Blocco l'input di un qualsiasi tasto, diverso da:
-                - numero da 0 - 9
-                - punto
-         */
-        if (!character.matches("[0-9.]")) {
-            event.consume();
-        }
-        //Blocca la presenza di più punti
-        if (character.equals(".") && tf.getText().contains(".")) {
-            event.consume();
-        }
-    }
-
-    /**
-     *  Funzione che blocca input non validi, nei TextField che richiedono l'inserimento di campi integer
-     * @param event evento KeyEvent, rappresenta la pressione di un tasto
-     * @param tf TextField, campo di input
-     */
-    private void checkValidInt(KeyEvent event, TextField tf) {
-        // Leggo il carattere che ha generato l'evento
-        String character = event.getCharacter();
-
-        /*
-            Blocco l'input di un qualsiasi tasto, diverso da:
-                - numero da 0 - 9
-         */
-        if (!character.matches("[0-9]")) {
-            event.consume();
         }
     }
 }

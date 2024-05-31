@@ -30,7 +30,9 @@ public class AutoNuova extends Auto implements Serializable {
         this.optionalDisponibili = new TreeSet<>();
     }
 
-    //Copia della macchina
+    /**
+     *  Crea un nuovo oggetto Auto, copia di quella passata come parametro
+     * */
     public AutoNuova(AutoNuova original) {
         super(original.getMarca(), original.getModello());
         this.id = original.getId();

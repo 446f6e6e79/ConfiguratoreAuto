@@ -25,36 +25,19 @@
             <Insets bottom="20.0" />
          </BorderPane.margin></Label>
     </top>
-    <bottom>
-        <HBox alignment="CENTER" prefHeight="82.0" prefWidth="800.0" spacing="10.0" BorderPane.alignment="CENTER">
-            <Label fx:id="saveLabel" text="Devi riempire il form prima di salvare" />
-            <Button onAction="#saltaButton" prefHeight="60.0" prefWidth="119.0" styleClass="resetButton" text="Salta">
-            <font>
-               <Font name="System Bold" size="30.0" />
-            </font></Button>
-            <Button fx:id="salvaButton" onAction="#salvaButton" styleClass="greenButton" text="Salva" />
-         <BorderPane.margin>
-            <Insets top="20.0" />
-         </BorderPane.margin>
-        </HBox>
-    </bottom>
    <center>
-        <VBox alignment="CENTER" prefHeight="555.0" prefWidth="224.0" spacing="10.0" BorderPane.alignment="CENTER">
-            <HBox spacing="10.0">
-                <Label text="Marca:" />
-                <ComboBox fx:id="marcaComboBox" prefWidth="150.0" />
+        <VBox alignment="CENTER" prefHeight="499.0" prefWidth="391.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" spacing="10.0">
+                <ComboBox fx:id="marcaComboBox" prefHeight="50.0" prefWidth="250.0" promptText="Marca" />
             </HBox>
-            <HBox spacing="10.0">
-                <Label text="Modello:" />
-                <TextField fx:id="modelloTextField" prefWidth="150.0" />
+            <HBox alignment="CENTER" spacing="10.0">
+                <TextField fx:id="modelloTextField" prefHeight="50.0" prefWidth="250.0" promptText="Modello" />
             </HBox>
-            <HBox spacing="10.0">
-                <Label text="Targa:" />
-                <TextField fx:id="targaTextField" prefWidth="150.0" />
+            <HBox alignment="CENTER" spacing="10.0">
+                <TextField fx:id="targaTextField" prefHeight="50.0" prefWidth="250.0" promptText="Targa" />
             </HBox>
-            <HBox spacing="10.0">
-                <Label text="Kilometri:" />
-                <TextField fx:id="kmTextField" prefWidth="150.0" />
+            <HBox alignment="CENTER" spacing="10.0">
+                <TextField fx:id="kmTextField" prefHeight="50.0" prefWidth="250.0" promptText="Kilometri" />
             </HBox>
          <opaqueInsets>
             <Insets />
@@ -65,9 +48,9 @@
         </VBox>
    </center>
    <right>
-      <HBox prefHeight="598.0" prefWidth="569.0" styleClass="section" BorderPane.alignment="CENTER">
+      <HBox fx:id="imageGrid" prefHeight="598.0" prefWidth="569.0" styleClass="section" BorderPane.alignment="CENTER">
          <children>
-            <GridPane fx:id="imageGrid" alignment="CENTER" hgap="10.0" prefHeight="472.0" prefWidth="541.0" vgap="10.0">
+            <GridPane alignment="CENTER" hgap="10.0" prefHeight="472.0" prefWidth="541.0" vgap="10.0">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -124,4 +107,25 @@
          </BorderPane.margin>
       </HBox>
    </right>
+   <bottom>
+      <VBox alignment="CENTER" prefHeight="164.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+         <children>
+               <Label fx:id="saveLabel" styleClass="section-subTitle" />
+              <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="1000.0" spacing="30.0">
+                  <Button onAction="#saltaButton" prefHeight="80.0" prefWidth="200.0" styleClass="resetButton" text="Salta">
+                  <font>
+                     <Font name="System Bold" size="30.0" />
+                  </font>
+               </Button>
+                  <Button fx:id="salvaButton" onAction="#salvaButton" prefHeight="80.0" prefWidth="200.0" styleClass="greenButton" text="Salva" />
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+              </HBox>
+         </children>
+      </VBox>
+   </bottom>
 </BorderPane>

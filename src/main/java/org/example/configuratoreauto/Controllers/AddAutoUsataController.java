@@ -8,22 +8,23 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.regex.Pattern;
 
 public class AddAutoUsataController {
-
     RegistroModel registro = RegistroModel.getInstance();
+    /** ArrayList osservabile, contenente le immagini inserite */
     private final ObservableList<Image> usedImages = FXCollections.observableArrayList();
+
+
     private BooleanBinding formValid;
     @FXML
     private ComboBox<Marca> marcaComboBox;
@@ -36,15 +37,22 @@ public class AddAutoUsataController {
     @FXML
     private Label saveLabel;
     @FXML
-    private GridPane imageGrid;
-    @FXML
-    private Button salvaButton;
-
-    private List<Immagine> immagini = new ArrayList<>();
+    private HBox imageGrid;
 
     @FXML
     private void initialize() {
         marcaComboBox.getItems().setAll(Marca.values());
+
+        //Impongo lettere upperCase nel input della targa
+        targaTextField.textProperty().addListener((observable, oldValue, newValue) -> {
+            //Se è stato inserito un carattere, lo trasforma in upperCase
+            if (newValue != null){
+                targaTextField.setText(newValue.toUpperCase());
+            }
+        });
+
+        //Impongo numeri interi
+        kmTextField.addEventFilter(KeyEvent.KEY_TYPED, event -> InputController.checkValidInt(event, kmTextField));
 
         formValid = Bindings.createBooleanBinding(() ->
                         isValidTarga(targaTextField.getText()) &&
@@ -111,7 +119,10 @@ public class AddAutoUsataController {
         }
     }
 
-
+    /**
+     *  Salva la macchina usata appena inserita all'interno del preventivo.
+     *  Prima di fare ciò,
+     */
     @FXML
     private void salvaButton() {
         if (formValid.get()) {
@@ -135,36 +146,57 @@ public class AddAutoUsataController {
             registro.currentPreventivo.setUsata(autoUsata);
             registro.addData(registro.currentPreventivo);
             ((Stage) saveLabel.getScene().getWindow()).close();
-        } else {
+        }
+        else{
             // Se il form non è valido, visualizza un messaggio di errore e evidenzia i campi non validi
-            highlightInvalidFields();
+            highlightFields();
         }
     }
 
-    private void highlightInvalidFields() {
+    /**
+     * Segnala i campi errati, con un messaggio di errore, in modo
+     * da aiutare l'utente nell'inserimento
+     */
+    private void highlightFields() {
         marcaComboBox.setStyle("-fx-border-color: black;");
         modelloTextField.setStyle("-fx-border-color: black;");
         targaTextField.setStyle("-fx-border-color: black;");
         kmTextField.setStyle("-fx-border-color: black;");
+        imageGrid.setStyle("");
 
-        if (marcaComboBox.getValue() == null) {
-            marcaComboBox.setStyle("-fx-border-color: red;");
+        String errorMessage = "Completa tutti i campi!";
+
+        if(usedImages.size() != 4){
+            imageGrid.setStyle("-fx-border-color: red; -fx-border-width: 3");
+            errorMessage =  "Inserisci le immagini richieste!";
         }
         if (!isValidTarga(targaTextField.getText())) {
             targaTextField.setStyle("-fx-border-color: red;");
-            saveLabel.setText("Targa errata o già presente nel registro");
+            errorMessage = "Targa errata o già presente nel registro";
+        }
+        if (marcaComboBox.getValue() == null) {
+            marcaComboBox.setStyle("-fx-border-color: red;");
+            errorMessage = "Inserisci tutti i campi!";
         }
         if (modelloTextField.getText().isEmpty()) {
             modelloTextField.setStyle("-fx-border-color: red;");
+            errorMessage = "Inserisci tutti i campi!";
         }
         if (targaTextField.getText().isEmpty()) {
             targaTextField.setStyle("-fx-border-color: red;");
+            errorMessage = "Inserisci tutti i campi!";
         }
         if (kmTextField.getText().isEmpty()) {
             kmTextField.setStyle("-fx-border-color: red;");
+            errorMessage = "Inserisci tutti i campi!";
         }
+        saveLabel.setText(errorMessage);
     }
 
+    /**
+     * Non viene aggiunta alcuna auto usata. Viene impostato lo stato del preventivo e
+     *  vengono aggiornate le date di scadenza/consegna
+     */
     @FXML
     private void saltaButton() {
         registro.currentPreventivo.setUsata(null);
@@ -172,17 +204,29 @@ public class AddAutoUsataController {
         ((Stage) saveLabel.getScene().getWindow()).close();
     }
 
+    /**
+     *  Controlla la validità di una targa. Una targa è considerata valida se:
+     *      1) La targa è composta correttamente
+     *      2) La targa non è mai stata inserita all'interno di altri Preventivi
+     * @param targa targa inserita da input
+     * @return TRUE se la targa è VALIDA, FALSE altrimenti
+     */
     private boolean isValidTarga(String targa) {
         String regex = "^[A-Z]{2}[0-9]{3}[A-Z]{2}$";
         return Pattern.matches(regex, targa) && !targaAlreadyPresent(targa);
     }
 
+    /**
+     * Controlla se la targa è già stata inserita in altri preventivi. In tal caso, lo segnala ritornando true
+     * @param targa Targa che vogliamo verificare
+     * @return TRUE se già presente, FALSE altrimenti
+     */
     private boolean targaAlreadyPresent(String targa) {
         File directory = new File( "/src/main/resources/img/usedCarImages");
         if (!directory.exists() || !directory.isDirectory()) {
             return false;
         }
-        //Creo una lista di tutte le sotto-directory esistenti
+        //Creo una lista di tutte le sotto-directory  di usedCarImages esistenti
         File[] files = directory.listFiles();
         if (files != null) {
             //Controllo, per ogni directory, se combacia con la targa inserita
@@ -194,4 +238,6 @@ public class AddAutoUsataController {
         }
         return false;
     }
+
+
 }

@@ -8,6 +8,8 @@ CHECK)  Optional di tipo COLORE, con prezzo = 0 non variano il tempo di consegna
 
 1)Nella creazione/modifica di modello auto, implementare tempAuto con il nuovo costruttore creato.
 
+2) Revisione codice e implementazione testing
+
 Front - end:
 1) Implementazione viewOptional per customAuto:
     modifica dei singoli componenti optional
@@ -15,13 +17,10 @@ Front - end:
     dimensione
     bottoni
 
-2) Implementazione view per agiunta auto usata:
-    terrei le stesse dimensioni
-    bottoni
-    input testuale ridimensionato
-    aggiunta delle immagini più carina
+2) Finire implementazione per addModel e addOptional
 
-3) Finire implementazione per addModel e addOptional
+3)Implementazione controlli su bottoni e campi di input di tutte le pagine!(forse meglio in un unica classe esterna)
+
 
 BUGS:
     Tasto accedi ancora buggato
