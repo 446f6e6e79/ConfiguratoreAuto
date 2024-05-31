@@ -42,6 +42,7 @@ public class AutoNuova extends Auto implements Serializable {
         this.scontoPerMese = Arrays.copyOf(original.getScontoPerMese(), original.getScontoPerMese().length);
         this.motoriDisponibili = new ArrayList<>(original.getMotoriDisponibili());
         this.optionalDisponibili = new TreeSet<>(original.getOptionalDisponibili());
+        super.setImmagini(new ArrayList<>(original.getImmagini()));
     }
     public AutoNuova(int id){
         this.id = id;

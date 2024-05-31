@@ -6,7 +6,7 @@ CHECK) Controllo sull'aggiunta delle immagini per auto(DA TESTARE)
 
 CHECK)  Optional di tipo COLORE, con prezzo = 0 non variano il tempo di consegna
 
-1)Nella creazione/modifica di modello auto, implementare tempAuto con il nuovo costruttore creato.
+1) Eliminare sei sicuro di volerti disconnettere, quando facciamo login
 
 2) Revisione codice e implementazione testing
 
@@ -21,7 +21,5 @@ Front - end:
 
 3)Implementazione controlli su bottoni e campi di input di tutte le pagine!(forse meglio in un unica classe esterna)
 
-
+4) Implementazione messaggio popUp quando usciamo da aggiungiModello
 BUGS:
-    Tasto accedi ancora buggato
-    autoUsata non prende i css
