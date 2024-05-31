@@ -3,6 +3,7 @@ package org.example.configuratoreauto.Controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -17,11 +18,19 @@ public class ImpiegatoHomeController {
 
     @FXML
     private TabPane mainPage;
-
+    @FXML
+    private Tab logout;
     //Setting degli event handlers, la funzione viene eseguita quando viene caricata la relativa pagina FXML
     @FXML
     private void initialize() {
         mainPage.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+        mainPage.getSelectionModel().selectedItemProperty().addListener((observable, oldTab, newTab) -> {
+            if (newTab.equals(logout)) {
+                // Se clicca il tab logout richiamo il suo metodo
+                mainPage.getSelectionModel().select(oldTab);//Mantengo il tab corrente
+                logout();
+            }
+        });
     }
 
     @FXML

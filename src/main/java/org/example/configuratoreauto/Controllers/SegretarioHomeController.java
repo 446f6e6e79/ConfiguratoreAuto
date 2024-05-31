@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Tab;
 import javafx.scene.layout.*;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
@@ -22,10 +23,19 @@ public class SegretarioHomeController {
     PreventiviController preventiviController;
     @FXML
     private TabPane mainPage;
+    @FXML
+    private Tab logout;
 
     @FXML
     private void initialize() throws InterruptedException {
         mainPage.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+        mainPage.getSelectionModel().selectedItemProperty().addListener((observable, oldTab, newTab) -> {
+            if (newTab.equals(logout)) {
+                // Se clicca il tab logout richiamo il suo metodo
+                mainPage.getSelectionModel().select(oldTab);//Mantengo il tab corrente
+                logout();
+            }
+        });
         try{
             FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
             preventiviNode = preventiviLoader.load();

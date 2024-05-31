@@ -19,7 +19,7 @@
         </Tab>
 
     </tabs>
-    <Tab fx:id="logout" onSelectionChanged="#logout" text="Logout" >
+    <Tab fx:id="logout" onSelectionChanged="#logout" text="Logout"  >
         <graphic>
             <ImageView fitHeight="20" fitWidth="20">
                 <Image url="@../../../../img/icons/right-arrow.png" />

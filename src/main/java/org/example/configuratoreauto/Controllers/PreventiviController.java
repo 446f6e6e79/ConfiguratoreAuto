@@ -55,6 +55,10 @@ public class PreventiviController {
             setupForCliente();
         } else if (utente.getCurrentUser() instanceof Impiegato) {
             setupForImpiegato();
+        } else{
+            Hyperlink registratiLink = new Hyperlink("Accedi per vedere i tuoi preventivi!");
+            registratiLink.setOnAction(event -> openRegistratiView());
+            mainView.getChildren().add(registratiLink);
         }
     }
 

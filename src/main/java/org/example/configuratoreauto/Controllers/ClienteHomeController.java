@@ -4,6 +4,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.event.EventHandler;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
@@ -35,8 +37,17 @@ public class ClienteHomeController {
     @FXML
     public void initialize() throws InterruptedException {
         mainPage.setTabClosingPolicy(TabPane.TabClosingPolicy.UNAVAILABLE);
+
+        mainPage.getSelectionModel().selectedItemProperty().addListener((observable, oldTab, newTab) -> {
+            if (newTab.equals(logout)) {
+                // Se clicca il tab logout richiamo il suo metodo
+                mainPage.getSelectionModel().select(oldTab);//Mantengo il tab corrente
+                logout();
+            }
+        });
         if(currentUser==null){
             logout.setText("Accedi");
+            logout.setStyle("-fx-background-color: lightgreen;");
         }
         try{
             FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
@@ -53,7 +64,22 @@ public class ClienteHomeController {
 
     @FXML
     private void logout() {
-        mainPage.getSelectionModel().selectFirst();
+        //Se è ospite
+        if(userModel.getCurrentUser() == null){
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/loginPage.fxml"));
+                VBox loginPane = loader.load();
+                Stage stage = (Stage) mainPage.getScene().getWindow();
+
+                Scene scene = new Scene(loginPane);
+                stage.setScene(scene);
+                stage.setTitle("Login");
+
+                stage.centerOnScreen();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         // Create a confirmation dialog
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
         confirmation.setTitle("Logout");

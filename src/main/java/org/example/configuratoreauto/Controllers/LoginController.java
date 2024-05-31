@@ -13,10 +13,7 @@ import javafx.scene.paint.Color;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
-import org.example.configuratoreauto.Utenti.Cliente;
-import org.example.configuratoreauto.Utenti.Impiegato;
-import org.example.configuratoreauto.Utenti.Segretario;
-import org.example.configuratoreauto.Utenti.UserModel;
+import org.example.configuratoreauto.Utenti.*;
 
 import java.io.IOException;
 
@@ -99,9 +96,12 @@ public class LoginController {
             String passText = password.getText();
             email.clear();
             password.clear();
+            Persona before = userModel.getCurrentUser();
             if (userModel.validation(emailText, passText)) {
                 System.out.println(userModel.getCurrentUser());
-                if (userModel.getCurrentUser() instanceof Cliente && catalogo.getSelectedAuto()==null) {
+                if (userModel.getCurrentUser() instanceof Cliente ) {
+                    if(before != null)
+                        catalogo.setSelectedAuto(null);
                     setPage("clienteView/homepageCliente");
                 }
                 if (userModel.getCurrentUser() instanceof Impiegato) {
