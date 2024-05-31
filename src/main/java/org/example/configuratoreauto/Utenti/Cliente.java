@@ -6,6 +6,10 @@ public class Cliente extends Persona implements Serializable {
     private String name;
     private String surname;
 
+    /**
+     * Crea un'istanza della classe Cliente. Viene verificato che
+     * nome e cognome siano validi.
+     */
     public Cliente(String email, String password,String name, String surname){
         super(email, password);
         if(!name.matches("[a-zA-ZàèéìòùÀÈÉÌÒÙ]+")){

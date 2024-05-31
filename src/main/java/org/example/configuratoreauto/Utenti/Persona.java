@@ -13,6 +13,9 @@ public class Persona implements Serializable{
     private String password;
 
     public Persona(String email, String password){
+        if(!isValidEmail(email)){
+            throw new IllegalArgumentException("Email non valida");
+        }
         this.email = email.toLowerCase();
         this.password = password;
     }
@@ -21,10 +24,8 @@ public class Persona implements Serializable{
     *   Controllo sulla validità dell'email inserita
     * */
     public static boolean isValidEmail(String email) {
-        System.out.println(email);
         Pattern pattern = Pattern.compile(EMAIL_PATTERN);
         Matcher matcher = pattern.matcher(email);
-        System.out.println(matcher.matches());
         return matcher.matches();
     }
 

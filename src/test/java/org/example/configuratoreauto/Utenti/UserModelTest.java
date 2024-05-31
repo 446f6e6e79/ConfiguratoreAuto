@@ -18,6 +18,7 @@ class UserModelTest {
         assertTrue(u.registraCliente(new Cliente("aaa@gmail.com", "1234", "a", "b")));
 
         // TODO: Registrazione con email non valide / nomi non validi;
+
     }
 
     @Test
