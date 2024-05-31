@@ -11,15 +11,7 @@ CHECK)  Optional di tipo COLORE, con prezzo = 0 non variano il tempo di consegna
 2) Revisione codice e implementazione testing
 
 Front - end:
-1) Implementazione viewOptional per customAuto:
-    modifica dei singoli componenti optional
-    motore
-    dimensione
-    bottoni
+1)Implementazione controlli su bottoni e campi di input di tutte le pagine!(forse meglio in un unica classe esterna)
 
-2) Finire implementazione per addModel e addOptional
-
-3)Implementazione controlli su bottoni e campi di input di tutte le pagine!(forse meglio in un unica classe esterna)
-
-4) Implementazione messaggio popUp quando usciamo da aggiungiModello
+2) Implementazione messaggio popUp quando usciamo da aggiungiModello
 BUGS:

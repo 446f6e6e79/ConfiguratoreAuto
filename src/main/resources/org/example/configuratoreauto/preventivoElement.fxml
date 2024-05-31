@@ -13,7 +13,7 @@
    <children>
       <BorderPane prefHeight="182.0" prefWidth="1100.0">
          <left>
-            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="577.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="478.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
                   <Label fx:id="cliente" text="">
                      <padding>
@@ -30,12 +30,12 @@
                               <Font size="14.0" />
                            </font>
                         </Text>
-                        <Label fx:id="data" text="DAta RICHIESTA" textAlignment="CENTER">
+                        <Label fx:id="data" text="Data RICHIESTA" textAlignment="CENTER">
                            <padding>
                               <Insets left="10.0" />
                            </padding>
                            <font>
-                              <Font size="20.0" />
+                              <Font size="18.0" />
                            </font>
                            <VBox.margin>
                               <Insets top="22.0" />
@@ -48,14 +48,14 @@
                         <Insets left="10.0" />
                      </padding>
                      <font>
-                        <Font name="System Bold" size="24.0" />
+                        <Font name="System Bold" size="21.0" />
                      </font>
                   </Label>
                </children>
             </HBox>
          </left>
          <center>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="386.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="451.0" BorderPane.alignment="CENTER">
                <children>
                   <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="155.0">
                      <children>
@@ -66,7 +66,7 @@
                         </Text>
                         <Label fx:id="consegna" text="CONSEGNA">
                            <font>
-                              <Font size="20.0" />
+                              <Font size="18.0" />
                            </font>
                            <VBox.margin>
                               <Insets top="22.0" />
@@ -74,12 +74,12 @@
                         </Label>
                      </children>
                   </VBox>
-                  <Label fx:id="stato" text="STATO">
+                  <Label fx:id="stato" alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="200.0" text="Disponibile al ritiro">
                      <padding>
                         <Insets left="10.0" />
                      </padding>
                      <font>
-                        <Font name="System Bold" size="30.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font>
                   </Label>
                   <ImageView fx:id="openIcon" fitHeight="30.0" fitWidth="30.0">

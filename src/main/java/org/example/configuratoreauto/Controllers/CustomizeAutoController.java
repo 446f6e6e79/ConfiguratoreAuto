@@ -214,7 +214,6 @@ public class CustomizeAutoController implements Initializable {
         interni.setValue(null);
         vetri.setValue(null);
         cerchi.setValue(null);
-        sedi.setValue(null);
     }
 
 
@@ -276,7 +275,7 @@ public class CustomizeAutoController implements Initializable {
         if(sconto > 0){
             addTableRow("Sconto "+auto.getSconto(new Date())+"%", Preventivo.getPriceAsString(prezzoTotale - auto.getPrezzoNoSconto(chosen, new Date())));
         }
-        addTableRow("Costo totale:", Preventivo.getPriceAsString(prezzoTotale));
+        addTableRow("Totale", Preventivo.getPriceAsString(prezzoTotale));
     }
 
     @FXML
