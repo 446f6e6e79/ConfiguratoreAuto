@@ -17,7 +17,6 @@ import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 
 import java.io.File;
-import java.util.regex.Pattern;
 
 import static org.example.configuratoreauto.Macchine.AutoUsata.isValidTarga;
 
@@ -54,7 +53,7 @@ public class AddAutoUsataController {
         });
 
         //Impongo numeri interi
-        kmTextField.addEventFilter(KeyEvent.KEY_TYPED, event -> InputController.checkValidInt(event, kmTextField));
+        kmTextField.addEventFilter(KeyEvent.KEY_TYPED, event -> InputValidation.checkValidInt(event, kmTextField));
 
         formValid = Bindings.createBooleanBinding(() ->
                         isValidTarga(targaTextField.getText()) &&

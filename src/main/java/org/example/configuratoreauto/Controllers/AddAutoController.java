@@ -16,8 +16,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static org.example.configuratoreauto.Controllers.InputController.checkValidDouble;
-import static org.example.configuratoreauto.Controllers.InputController.checkValidInt;
+import static org.example.configuratoreauto.Controllers.InputValidation.checkValidDouble;
+import static org.example.configuratoreauto.Controllers.InputValidation.checkValidInt;
 
 public class AddAutoController implements Initializable {
     @FXML

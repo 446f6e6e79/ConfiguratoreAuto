@@ -3,7 +3,7 @@ package org.example.configuratoreauto.Controllers;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
-public class InputController {
+public class InputValidation {
 
     /**
      *  Funzione che blocca input non validi, nei TextField che richiedono l'inserimento di campi integer

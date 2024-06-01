@@ -11,6 +11,7 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
     /** Istanza univoca della classe */
     private static CatalogoModel instance;
 
+    /** Rappresenta l'auto selezionata */
     private AutoNuova selectedAuto;
     private AutoNuova tempAuto;
 
