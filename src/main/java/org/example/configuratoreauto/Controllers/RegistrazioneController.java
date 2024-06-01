@@ -79,21 +79,27 @@ public class RegistrazioneController {
         String nomeText = nome.getText();
         String cognomeText = cognome.getText();
 
+        //Se tutti i campi sono stati completati
         if (isInputValid.get()) {
             if (passText.equals(passConfirmationText)) {
-                if (u.registraCliente(new Cliente(emailText, passText, nomeText, cognomeText))) {
-                    responseText.setTextFill(Color.GREEN);
-                    responseText.setText("Cliente registrato correttamente!");
-                    u.validation(emailText, passText);
-                    onLogin();
-                } else {
-                    showError("Email già in uso!");
+                try{
+                    if (u.registraCliente(new Cliente(emailText, passText, nomeText, cognomeText))) {
+                        responseText.setTextFill(Color.GREEN);
+                        responseText.setText("Cliente registrato correttamente!");
+                        u.validation(emailText, passText);
+                        onLogin();
+                    } else {
+                        showError("Email già in uso!");
+                    }
                 }
-            } else {
+                catch (Exception e){
+                    showError(e.getMessage());
+                }
+            }
+            //Le due password non combaciano!
+            else {
                 showError("Attenzione! Le due password non combaciano");
             }
-        } else if (!isEmailValid.get()) {
-            showError("Attenzione! Email non valida");
         }
     }
 
