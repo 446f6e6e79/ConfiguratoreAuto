@@ -157,27 +157,7 @@ public class PreventiviController {
     }
 
     private void openRegistratiView() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/loginPage.fxml"));
-            VBox loginPane = loader.load();
-
-            // Create a new Stage for the popup dialog
-            Stage popupStage = new Stage();
-            popupStage.setTitle("Registrati/Login");
-
-            // Set the scene with the loaded FXML
-            Scene scene = new Scene(loginPane);
-            popupStage.setScene(scene);
-
-            // Make the dialog modal and set its owner to the current window
-            popupStage.initModality(Modality.WINDOW_MODAL);
-            popupStage.initOwner(mainView.getScene().getWindow());
-
-            // Show the dialog and wait until it is closed
-            popupStage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        PageLoader.openDialog("/org/example/configuratoreauto/loginPage.fxml", "Registrati/Login", mainView);
     }
 
     private void getPreventivi(ArrayList<Preventivo> registroArg) {

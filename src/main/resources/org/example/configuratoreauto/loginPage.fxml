@@ -34,7 +34,7 @@
                 </ButtonBar>
           <HBox alignment="CENTER" prefWidth="640.0">
               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sei un nuovo utente? " />
-              <Hyperlink fx:id="clickableText" onMouseClicked="#goRegistrazione" text="Registrati!" />
+              <Text fx:id="clickableText" onMouseClicked="#goRegistrazione" text="Registrati!" style="-fx-fill: #0086aa; -fx-underline: true;" />
           </HBox>
           <Label fx:id="responseText" alignment="CENTER" prefHeight="17.0" prefWidth="196.0" textAlignment="CENTER" />
       </children>

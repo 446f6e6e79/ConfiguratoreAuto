@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -219,12 +220,16 @@ public class CustomizeAutoController implements Initializable {
 
 
     public void createPreventivo() {
+
         ArrayList<Optional> chosen = getChoseOptional();
         if(motori.getValue()!=null && sedi.getValue()!=null){
-            valido.setText("");
             if(user.getCurrentUser() == null){
                 openRegistratiView();
+                if(user.getCurrentUser() == null){
+                    return;
+                }
             }
+            valido.setText("");
             //Creo una copia per scollegare il preventivo dall'auto
             AutoNuova copia = new AutoNuova(auto);
             registro.currentPreventivo = new Preventivo(copia, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), chosen);
@@ -311,37 +316,11 @@ public class CustomizeAutoController implements Initializable {
     }
 
     private void openRegistratiView() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/loginPage.fxml"));
-            VBox loginPane = loader.load();
-
-            Stage popupStage = new Stage();
-            popupStage.setTitle("Registrati/Login");
-            Scene scene = new Scene(loginPane);
-            popupStage.setScene(scene);
-            popupStage.initModality(Modality.WINDOW_MODAL);
-            popupStage.initOwner(main.getScene().getWindow());
-            popupStage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        PageLoader.openDialog("/org/example/configuratoreauto/loginPage.fxml", "Registrati/Login", main);
     }
 
-    private void openUsataView() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/addAutoUsata.fxml"));
-            BorderPane usataView = loader.load();
-
-            Stage popupStage = new Stage();
-            popupStage.setTitle("Auto Usata");
-            Scene scene = new Scene(usataView);
-            popupStage.setScene(scene);
-            popupStage.initModality(Modality.WINDOW_MODAL);
-            popupStage.initOwner(main.getScene().getWindow());
-            popupStage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void openUsataView() {
+        PageLoader.openDialog("/org/example/configuratoreauto/clienteView/addAutoUsata.fxml", "Auto Usata", main);
     }
 
     private void addTableRow(String description, String price) {
