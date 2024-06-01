@@ -65,6 +65,16 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
         return false;
     }
 
+    /** Metodo per la generazione di codiciUnivoci, assegnabili alle macchine */
+    public int getUniqueId(){
+        int newId;
+        //Continua a generare codici casuali, fino a che non ne trova uno nuovo > 0
+        do {
+            newId = UUID.randomUUID().hashCode();
+        } while (usedIds.contains(newId) && newId < 0);
+        return newId;
+    }
+
     /**
     *   Passatogli come parametro una ArrayList di auto, restituisce un ArrayList contenente solamente le auto
     *   del brand passato come parametro
@@ -88,9 +98,23 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
      * @param data Lista di auto, da FILTRARE
      * @return  Restituisce una lista di auto, ordinate in base al prezzo
      */
-    public static ArrayList<AutoNuova> filterAutoByPrice(int min, int max, ArrayList<AutoNuova> data) {
+    public static ArrayList<AutoNuova> filterAutoByPrice(String min, String max, ArrayList<AutoNuova> data) {
+        //Ritorno tutte le auto con prezzo minore di maxPrice
+        if(min.isEmpty()){
+            return data.stream()
+                    .filter(t ->  t.getCostoBase() < Integer.parseInt(max))
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }
+        //Ritorno le auto con prezzo maggiore di minPrice
+        else if(max.isEmpty()){
+            return data.stream()
+                    .filter(t -> t.getCostoBase() > Integer.parseInt(min) )
+                    .collect(Collectors.toCollection(ArrayList::new));
+        }
+
+        //Entrambi i campi sono valorizzati
         return data.stream()
-                .filter(t -> t.getCostoBase() > min && t.getCostoBase() < max)
+                .filter(t -> t.getCostoBase() > Integer.parseInt(min) && t.getCostoBase() < Integer.parseInt(max))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
@@ -103,26 +127,7 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
         return usedBrands;
     }
 
-    public static Set<Alimentazione> getUsedAlimentazione(ArrayList<AutoNuova> data) {
-        HashSet<Alimentazione> usedAlimentazione = new HashSet<>();
-        for(AutoNuova t : data){
-            for(Motore m: t.getMotoriDisponibili()) {
-                usedAlimentazione.add(m.getAlimentazione());
-            }
-        }
-        return usedAlimentazione;
-    }
-
-    //Metodo per generare codiciUnivoci, assegnabili alle macchine
-    public int getUniqueId(){
-        int newId;
-        //Continua a generare codici casuali, fino a che non ne trova uno nuovo > 0
-        do {
-            newId = UUID.randomUUID().hashCode();
-        } while (usedIds.contains(newId) && newId < 0);
-        return newId;
-    }
-
+    //Metodi GET e SET per selectedAuto
     public AutoNuova getSelectedAuto() {
         return selectedAuto;
     }
@@ -176,12 +181,11 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
         setTempAuto(null);
     }
 
+    //Metodi GET e SET per tempAuto
     public void setTempAuto(AutoNuova tempAuto) {
         this.tempAuto = tempAuto;
     }
-
     public AutoNuova getTempAuto(){
         return tempAuto;
     }
-
 }

@@ -1,5 +1,7 @@
 package org.example.configuratoreauto.Controllers;
 
+import javafx.animation.PauseTransition;
+import javafx.beans.value.ChangeListener;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -7,10 +9,12 @@ import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
@@ -30,6 +34,11 @@ public class CatalogoController implements Initializable {
     private ChoiceBox<Marca> brandList;
     @FXML
     private ChoiceBox<Alimentazione> alimentazioneList;
+    @FXML
+    private TextField minPrice;
+    @FXML
+    private TextField maxPrice;
+
 
     private CatalogoModel catalogo = CatalogoModel.getInstance();
     private UserModel user = UserModel.getInstance();
@@ -40,12 +49,37 @@ public class CatalogoController implements Initializable {
         autoList.prefWidthProperty().bind(catalogoComponent.widthProperty());
         autoList.prefHeightProperty().bind(catalogoComponent.heightProperty());
 
+        //Aggiungo i valori alle choiceBox usate per i filtri
         brandList.getItems().addAll(catalogo.getUsedBrands());
-        alimentazioneList.getItems().addAll(CatalogoModel.getUsedAlimentazione(catalogo.getAllData()));
+        alimentazioneList.getItems().addAll(Alimentazione.values());
 
+        //Listener per l'implementazione dei filtri
         brandList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> filterAndLoadCars());
         alimentazioneList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> filterAndLoadCars());
+//        minPrice.textProperty().addListener((observable, oldValue, newValue) -> filterAndLoadCars());
+//        maxPrice.textProperty().addListener((observable, oldValue, newValue) -> filterAndLoadCars());
 
+        PauseTransition pause = new PauseTransition(Duration.millis(1000)); // Adjust the delay as needed
+        pause.setOnFinished(event -> filterAndLoadCars());
+
+        ChangeListener<String> listener = (observable, oldValue, newValue) -> {
+            pause.playFromStart();
+        };
+
+        minPrice.textProperty().addListener(listener);
+        maxPrice.textProperty().addListener(listener);
+
+        minPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                filterAndLoadCars();
+            }
+        });
+
+        maxPrice.focusedProperty().addListener((observable, oldValue, newValue) -> {
+            if (!newValue) {
+                filterAndLoadCars();
+            }
+        });
         filterAndLoadCars();
     }
 
@@ -60,6 +94,9 @@ public class CatalogoController implements Initializable {
             filteredList = CatalogoModel.filterAutoByAlimentazione(alimentazioneList.getValue(), filteredList);
         }
 
+        if (!minPrice.getText().isEmpty() || !maxPrice.getText().isEmpty()) {
+            filteredList = CatalogoModel.filterAutoByPrice(minPrice.getText(), maxPrice.getText(), filteredList);
+        }
         loadCars();
     }
 
@@ -126,6 +163,7 @@ public class CatalogoController implements Initializable {
     private void resetFilters() {
         brandList.setValue(null);
         alimentazioneList.setValue(null);
-        filterAndLoadCars();
+        minPrice.clear();
+        maxPrice.clear();
     }
 }

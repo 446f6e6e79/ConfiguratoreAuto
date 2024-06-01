@@ -3,6 +3,10 @@ package org.example.configuratoreauto.Macchine;
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * Classe DIMENSIONE: descrive le principali informazioni per la dimensione
+ * di un auto
+ */
 public class Dimensione implements Serializable {
     private double larghezza;
     private double altezza;
@@ -18,49 +22,32 @@ public class Dimensione implements Serializable {
         this.volumeBagagliaglio = volumeBagagliaglio;
     }
 
-    public Dimensione(){
-        this.altezza = 0;
-        this.lunghezza = 0;
-        this.larghezza = 0;
-        this.peso = 0;
-        this.volumeBagagliaglio = 0;
-    }
-
+    //Metodi GET per tutti i campi della classe Dimensione
     public double getAltezza() {
         return altezza;
     }
-
     public double getLunghezza() {
         return lunghezza;
     }
-
     public double getLarghezza() {
         return larghezza;
     }
-
     public double getPeso() {
         return peso;
     }
-
     public double getVolumeBagagliaglio() {
         return volumeBagagliaglio;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        return o instanceof Dimensione other &&
-                this.larghezza == other.larghezza &&
-                this.altezza == other.altezza &&
-                this.peso == other.peso &&
-                this.volumeBagagliaglio == other.volumeBagagliaglio;
-
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(larghezza, altezza, lunghezza, peso, volumeBagagliaglio);
-    }
-
+    /**
+     *
+     * @return Stringa formattata come:
+     * <p>  - Larghezza val m
+     * <p>  - Altezza val m
+     * <p>  - Lunghezza val m
+     * <p>  - Peso val kg
+     * <p>  - Volume del bagagliaio  val l
+     */
     public String toString() {
         return
                 "\nLarghezza:" + larghezza +
@@ -69,6 +56,11 @@ public class Dimensione implements Serializable {
                 "m\nPeso:" + peso +
                 "kg\nVolume del Bagagliaglio:" + volumeBagagliaglio +"l";
     }
+
+    /**
+     * @return Stringa che riassume le dimensioni della macchina:
+     *  larghezza x altezza x lunghezza
+     */
     public String toSimpleString(){
         return larghezza+"m x "+altezza+"m x "+lunghezza+"m";
     }

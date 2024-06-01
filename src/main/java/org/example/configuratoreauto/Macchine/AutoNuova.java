@@ -16,7 +16,7 @@ public class AutoNuova extends Auto implements Serializable {
     private int [] scontoPerMese;
     /** ArrayList contenente tutti i motori disponibili per il modello*/
     private ArrayList<Motore> motoriDisponibili = new ArrayList<>();
-    private TreeSet<Optional> optionalDisponibili = new TreeSet<>();
+    private ArrayList<Optional> optionalDisponibili = new ArrayList<>();
 
     public AutoNuova(int id, Marca marca, String modello, Dimensione dimensione, String descrizione, double costoBase, int [] scontoPerMese){
         super(marca, modello);
@@ -27,7 +27,7 @@ public class AutoNuova extends Auto implements Serializable {
         this.costoBase = costoBase;
         this.scontoPerMese = scontoPerMese;
         this.motoriDisponibili = new ArrayList<>();
-        this.optionalDisponibili = new TreeSet<>();
+        this.optionalDisponibili = new ArrayList<>();
     }
 
     /**
@@ -41,7 +41,7 @@ public class AutoNuova extends Auto implements Serializable {
         this.costoBase = modelToCopy.getCostoBase();
         this.scontoPerMese = Arrays.copyOf(modelToCopy.getScontoPerMese(), modelToCopy.getScontoPerMese().length);
         this.motoriDisponibili = new ArrayList<>(modelToCopy.getMotoriDisponibili());
-        this.optionalDisponibili = new TreeSet<>(modelToCopy.getOptionalDisponibili());
+        this.optionalDisponibili = new ArrayList<>(modelToCopy.getOptionalDisponibili());
         super.setImmagini(new ArrayList<>(modelToCopy.getImmagini()));
     }
 
@@ -101,10 +101,10 @@ public class AutoNuova extends Auto implements Serializable {
     }
 
     //GET E SET OPTIONAL
-    public TreeSet<Optional> getOptionalDisponibili() {
+    public ArrayList<Optional> getOptionalDisponibili() {
         return optionalDisponibili;
     }
-    public void setOptionalDisponibili(TreeSet<Optional> optionalDisponibili){
+    public void setOptionalDisponibili(ArrayList<Optional> optionalDisponibili){
         this.optionalDisponibili = optionalDisponibili;
     }
 

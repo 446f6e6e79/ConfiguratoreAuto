@@ -5,6 +5,8 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.HBox?>
@@ -12,7 +14,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<BorderPane fx:id="catalogoComponent" prefHeight="500.0" prefWidth="970.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.CatalogoController">
+<BorderPane fx:id="catalogoComponent" prefHeight="500.0" prefWidth="970.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.CatalogoController">
    <center>
       <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="381.0" prefWidth="525.0" styleClass="scrollPaneBorder" BorderPane.alignment="CENTER">
          <content>
@@ -34,11 +36,11 @@
                   <Insets left="5.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <VBox prefHeight="241.0" prefWidth="280.0" styleClass="borderTopBottom">
+            <VBox prefHeight="346.0" prefWidth="280.0" styleClass="borderTopBottom">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="335.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="66.0" text="Marca:">
+                        <Label prefHeight="24.0" prefWidth="66.0" styleClass="section-content" text="Marca:">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -51,7 +53,7 @@
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="335.0">
                      <children>
-                        <Label text="Alimentazione:">
+                        <Label styleClass="section-content" text="Alimentazione:">
                            <font>
                               <Font size="19.0" />
                            </font>
@@ -62,6 +64,29 @@
                         <ChoiceBox fx:id="alimentazioneList" prefHeight="30.0" prefWidth="150.0" />
                      </children>
                   </HBox>
+                  <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="335.0" spacing="10.0">
+                     <children>
+                        <TextField fx:id="minPrice" promptText="prezzo min" />
+                        <TextField fx:id="maxPrice" promptText="prezzo max" />
+                     </children>
+                     <padding>
+                        <Insets left="40.0" right="40.0" />
+                     </padding>
+                  </HBox>
+                  <VBox prefHeight="51.0" prefWidth="280.0">
+                     <children>
+                        <Label text="Ordina per prezzo:" />
+                        <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="280.0" spacing="10.0">
+                           <padding>
+                              <Insets left="40.0" right="40.0" />
+                           </padding>
+                           <children>
+                              <ToggleButton mnemonicParsing="false" text="Crescente" />
+                              <ToggleButton mnemonicParsing="false" text="Decrescente" />
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
                   <VBox alignment="CENTER" prefHeight="62.0" prefWidth="280.0">
                      <children>
                         <Button fx:id="resetFiltri" mnemonicParsing="false" onAction="#resetFilters" styleClass="resetButton" text="Reset">

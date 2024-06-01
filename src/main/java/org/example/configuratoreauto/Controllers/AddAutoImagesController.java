@@ -225,7 +225,7 @@ public class AddAutoImagesController implements Initializable {
 
         //Gestione dell'immagine appena aggiunta
         if (imageFile != null) {
-            Immagine img = new Immagine(coloreInput.getValue(), tempAuto, imageFile.toURI().toString().substring(5));
+            Immagine img = new Immagine(coloreInput.getValue(), imageFile.toURI().toString().substring(5));
 
             //Aggiunge l'immagine all'auto temporanea
             tempAuto.addImage(img);

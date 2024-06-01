@@ -9,20 +9,18 @@ import java.io.Serializable;
 import java.nio.file.*;
 import java.util.Comparator;
 
-/*
-*   PATH: percorso assoluto all'immagine, inserita come input
-*   COLORE: colore optional, a cui l'immagine fa riferimento
-* */
 public class Immagine implements Serializable{
+    /** percorso assoluto all'immagine, inserita come input */
     private String path;
+    /** colore optional, a cui l'immagine fa riferimento */
     private String colore;
-    private Auto auto;
+
+    /** Percorso alla cartella di immagini Temporanee */
     private static Path tempImages = Paths.get("src", "main", "resources", "img", "carImages", "tempImages");
 
-    public Immagine(String colore, Auto auto, String absolutePath){
+    public Immagine(String colore, String absolutePath){
         this.colore=colore;
         this.path=absolutePath;
-        this.auto=auto;
     }
 
     public String getColor(){
@@ -30,7 +28,7 @@ public class Immagine implements Serializable{
     }
 
     /**
-     * Restituisce l'oggetto Image, assegnabile ad ImageView
+     * Restituisce l'oggetto  di tipo Image, assegnabile ad ImageView
      * @return Image relativa all'immagine
      */
     public Image getImage() {
@@ -70,6 +68,11 @@ public class Immagine implements Serializable{
     }
 
 
+
+    /* Il fatto di mantenere una cartella TEMPORANEA mi permette di
+    *  mantenere una directory pulita. Andando, con maggiore semplicità a gestire
+    *  l'eliminazione di immagini, semplicemente sovrascrivedo la cartella target
+    */
     public void addAutoNuova(AutoNuova auto){
         Path baseRoot = Paths.get("src", "main", "resources", "img", "carImages");
         Path target = tempImages.resolve(colore);
