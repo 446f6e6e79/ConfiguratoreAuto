@@ -10,11 +10,9 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
 import org.example.configuratoreauto.Utenti.*;
-
 import java.io.IOException;
 
 import static org.example.configuratoreauto.Main.setPage;
@@ -24,15 +22,13 @@ public class LoginController {
     CatalogoModel catalogo = CatalogoModel.getInstance();
     @FXML
     private Label responseText;
-
     @FXML
     private TextField email;
-
     @FXML
     private PasswordField password;
     @FXML
     private Button login;
-    private ReadOnlyBooleanWrapper isInputValid = new ReadOnlyBooleanWrapper(false);
+    private final ReadOnlyBooleanWrapper isInputValid = new ReadOnlyBooleanWrapper(false);
 
     //Setting degli event handlers, la funzione viene eseguita quando viene caricata la relativa pagina FXML
     @FXML

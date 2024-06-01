@@ -1,17 +1,11 @@
 Back-end:
 
-CHECK) Controllo sull'aggiunta delle immagini per auto(DA TESTARE)
-    Impostato in maniera tale che se elimini l'ultima immagine allora viene eliminato l'intero optional ed è
-    da reinserire
-
-CHECK)  Optional di tipo COLORE, con prezzo = 0 non variano il tempo di consegna
-
-1) Eliminare sei sicuro di volerti disconnettere, quando facciamo login
-
+1)Aggiunta della macchina malfunzionamento
 2) Revisione codice e implementazione testing
 
 Front - end:
 1)Implementazione controlli su bottoni e campi di input di tutte le pagine!(forse meglio in un unica classe esterna)
 
 2) Implementazione messaggio popUp quando usciamo da aggiungiModello
+
 BUGS:
