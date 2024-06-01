@@ -12,6 +12,10 @@ public class Persona implements Serializable{
     /** Password, utilizzata per l'accesso */
     private String password;
 
+    /**
+     * Costruttore per la classe PERSONA
+     * @throws IllegalArgumentException se l'indirizzo email inserito non è valido
+     */
     public Persona(String email, String password){
         if(!isValidEmail(email)){
             throw new IllegalArgumentException("Email non valida");
@@ -42,7 +46,8 @@ public class Persona implements Serializable{
     }
 
     /**
-    *   Metodo che verifica la correttezza delle credenziali inserite.
+    *   Metodo che verifica la correttezza delle credenziali inserite, implementando
+     *   la funzione di LOGIN
     *   Dato un oggetto Persona, passato come parametro, verifica che combacino:
     *     - email
     *     - password

@@ -18,13 +18,18 @@ class UserModelTest {
         assertTrue(u.registraCliente(new Cliente("aaa@gmail.com", "1234", "a", "b")));
 
         // TODO: Registrazione con email non valide / nomi non validi;
-
+        assertThrowsExactly(IllegalArgumentException.class, () -> new Cliente("@gmail.com", "1234", "a", "b"));
+        assertThrowsExactly(IllegalArgumentException.class, () -> new Cliente("aaa@.com", "1234", "a", "b"));
+        assertThrowsExactly(IllegalArgumentException.class, () -> new Cliente("aaa@gmail.com", "1234", "12adad12", "AA"));
+        assertThrowsExactly(IllegalArgumentException.class, () -> new Cliente("aaa@gmail.com", "1234", "aa", "121dad29"));
+        assertThrowsExactly(IllegalArgumentException.class, () -> new Cliente("aaa@gmail.com", "1234", "aa", "121dad29"));
+        assertDoesNotThrow(() -> new Cliente("aaa@gmail.com", "1234", "ABc-D'efG", "Donà"));
     }
 
     @Test
     @DisplayName("Login")
     void validation() {
-        assertFalse(u.validation("", ""));
+        assertThrowsExactly(IllegalArgumentException.class, () -> u.validation("", ""));
         assertFalse(u.validation(null, null));
         assertTrue(u.validation("segretario@gmail.com", "1234"));
         assertTrue(u.validation("davide@gmail.com", "1234"));

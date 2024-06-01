@@ -8,5 +8,6 @@ Front - end:
 1)Implementazione controlli su bottoni e campi di input di tutte le pagine!(forse meglio in un unica classe esterna)
 2) Implementazione messaggio popUp quando usciamo da aggiungiModello
 3) Blocco del tasto accessoOspite dopo aver cliccato login
+4) Controllo dell'eccezzioni lanciate da registrazione
 
 BUGS:

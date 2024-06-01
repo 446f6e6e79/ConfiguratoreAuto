@@ -44,7 +44,7 @@ public abstract class Auto implements Serializable{
     }
 
     /**
-     Aggiunge l'immagine alla DIRECTORY interna al progetto:
+     Aggiunge la lista di immagini alla DIRECTORY interna al progetto:
         - Le cartelle sono gestite nel seguente modo:
             -carImages
                 -idAuto_1
