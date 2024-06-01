@@ -7,14 +7,11 @@
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/toDo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/doc/toDo.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/ClienteHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/ClienteHomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/ImpiegatoHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/ImpiegatoHomeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/SegretarioHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/SegretarioHomeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoNuova.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoNuova.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/CatalogoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/CatalogoModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/data/registro.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/registro.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/userData.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/userData.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/loginPage.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/loginPage.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/segretarioView/addModel.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/org/example/configuratoreauto/segretarioView/addModel.fxml" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -357,6 +354,7 @@
       <workItem from="1717180547426" duration="22000" />
       <workItem from="1717181109015" duration="4550000" />
       <workItem from="1717189886718" duration="1684000" />
+      <workItem from="1717240053092" duration="1235000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />

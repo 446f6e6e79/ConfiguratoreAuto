@@ -1,11 +1,12 @@
 Back-end:
-
-1)Aggiunta della macchina malfunzionamento
-2) Revisione codice e implementazione testing
-
+1) Revisione codice e implementazione testing
+2) Implementare getDefaultImage in modo che:
+    - In catalogo dia la prima immagine (bisognerebbe capire quale colore ha costo 0)
+    - in preventivo dia la prima immagine in base al colore scelto!
+    
 Front - end:
 1)Implementazione controlli su bottoni e campi di input di tutte le pagine!(forse meglio in un unica classe esterna)
-
 2) Implementazione messaggio popUp quando usciamo da aggiungiModello
+3) Blocco del tasto accessoOspite dopo aver cliccato login
 
 BUGS:

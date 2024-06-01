@@ -218,7 +218,10 @@ public class AutoNuova extends Auto implements Serializable {
         if(colore == null){
             //throw new IllegalArgumentException("Il colore non può essere nullo");
         }
-        ArrayList<Immagine> immagini = getImageByColor(colore);
+        //ArrayList<Immagine> immagini = getImageByColor(colore);
+
+        //FIX TEMP:
+        ArrayList<Immagine> immagini = getImmagini();
 
         //Se è presente almeno un immagine per quel colore, la restituisco
         if(!immagini.isEmpty()){

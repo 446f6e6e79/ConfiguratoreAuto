@@ -151,7 +151,9 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
         //Se stavo aggiungendo un nuovo modello, genero una nuova autoNuova
         if(selectedAuto == null){
             selectedAuto = new AutoNuova(getUniqueId());
+            addData(selectedAuto);
         }
+
         //Salvo i dati all'interno di selectedAuto
         selectedAuto.setMarca(tempAuto.getMarca());
         selectedAuto.setModello(tempAuto.getModello());
@@ -170,7 +172,7 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
         selectedAuto.setOptionalDisponibili(tempAuto.getOptionalDisponibili());
 
         //Resetto tempAuto per le successive aggiunte
-        tempAuto = null;
+        setTempAuto(null);
     }
 
     public void setTempAuto(AutoNuova tempAuto) {
