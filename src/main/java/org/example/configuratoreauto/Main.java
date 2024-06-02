@@ -46,8 +46,8 @@ public class Main extends Application {
             scene.getStylesheets().add(Main.class.getResource("style.css").toExternalForm());
             stage.setScene(scene);
             if(!pageName.equals("loginPage")){
-                stage.setFullScreen(true);
                 stage.setFullScreenExitHint("");
+                stage.setFullScreen(true);
             }
         } catch (Exception e) {
             e.printStackTrace();
