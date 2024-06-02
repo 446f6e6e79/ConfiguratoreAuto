@@ -36,7 +36,7 @@
                   <Insets left="5.0" top="5.0" />
                </VBox.margin>
             </Label>
-            <VBox prefHeight="346.0" prefWidth="280.0" styleClass="borderTopBottom">
+            <VBox prefHeight="377.0" prefWidth="280.0" styleClass="borderTopBottom">
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="335.0">
                      <children>
@@ -75,19 +75,25 @@
                   </HBox>
                   <VBox prefHeight="51.0" prefWidth="280.0">
                      <children>
-                        <Label text="Ordina per prezzo:" />
+                        <Label styleClass="section-content" text="Ordina per prezzo:" />
                         <HBox alignment="CENTER_LEFT" prefHeight="63.0" prefWidth="280.0" spacing="10.0">
                            <padding>
-                              <Insets left="40.0" right="40.0" />
+                              <Insets left="20.0" right="20.0" />
                            </padding>
                            <children>
-                              <ToggleButton mnemonicParsing="false" text="Crescente" />
-                              <ToggleButton mnemonicParsing="false" text="Decrescente" />
+                              <ToggleButton fx:id="orderCrescente" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Crescente">
+                                 <font>
+                                    <Font size="20.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets top="5.0" />
+                                 </HBox.margin></ToggleButton>
+                              <ToggleButton fx:id="orderDecrescente" mnemonicParsing="false" prefHeight="39.0" prefWidth="120.0" text="Decrescente" />
                            </children>
                         </HBox>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="62.0" prefWidth="280.0">
+                  <VBox alignment="CENTER" prefHeight="85.0" prefWidth="280.0">
                      <children>
                         <Button fx:id="resetFiltri" mnemonicParsing="false" onAction="#resetFilters" styleClass="resetButton" text="Reset">
                            <font>

@@ -7,9 +7,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TextField;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -22,6 +22,7 @@ import org.example.configuratoreauto.Utenti.UserModel;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.ResourceBundle;
 
 public class CatalogoController implements Initializable {
@@ -38,11 +39,14 @@ public class CatalogoController implements Initializable {
     private TextField minPrice;
     @FXML
     private TextField maxPrice;
-
+    @FXML
+    private ToggleButton orderCrescente;
+    @FXML
+    private ToggleButton orderDecrescente;
 
     private CatalogoModel catalogo = CatalogoModel.getInstance();
     private UserModel user = UserModel.getInstance();
-    private ArrayList<AutoNuova> filteredList;
+    private ArrayList<AutoNuova> currentFilteredList;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -56,10 +60,8 @@ public class CatalogoController implements Initializable {
         //Listener per l'implementazione dei filtri
         brandList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> filterAndLoadCars());
         alimentazioneList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> filterAndLoadCars());
-//        minPrice.textProperty().addListener((observable, oldValue, newValue) -> filterAndLoadCars());
-//        maxPrice.textProperty().addListener((observable, oldValue, newValue) -> filterAndLoadCars());
 
-        PauseTransition pause = new PauseTransition(Duration.millis(1000)); // Adjust the delay as needed
+        PauseTransition pause = new PauseTransition(Duration.millis(1000));
         pause.setOnFinished(event -> filterAndLoadCars());
 
         ChangeListener<String> listener = (observable, oldValue, newValue) -> {
@@ -80,30 +82,79 @@ public class CatalogoController implements Initializable {
                 filterAndLoadCars();
             }
         });
+
+        //Imposto il comportamento di orderCrescente
+        orderCrescente.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            //Se è stato selezionato, ordino la lista in modo crescente
+            if (newValue) {
+                orderDecrescente.setSelected(false);
+                sortAndLoadCars(true);
+            }
+            else{
+                orderCrescente.setSelected(false);
+                filterAndLoadCars();
+            }
+        });
+
+        //Imposto il comportamento di orderDecrescente
+        orderDecrescente.selectedProperty().addListener((observable, oldValue, newValue) -> {
+            //Se è stato selezionato, ordino la lista in modo decrescente
+            if (newValue) {
+                //Deseleziono l'altra opzione
+                orderCrescente.setSelected(false);
+                //Ordino la lista di auto
+                sortAndLoadCars(false);
+            }
+            else{
+                orderDecrescente.setSelected(false);
+                filterAndLoadCars();
+            }
+        });
+
+
         filterAndLoadCars();
     }
 
     private void filterAndLoadCars() {
-        filteredList = catalogo.getAllData();
-
+        currentFilteredList = new ArrayList<>(catalogo.getAllData());
         if (brandList.getValue() != null) {
-            filteredList = CatalogoModel.filterAutoByBrand(brandList.getValue(), filteredList);
+            currentFilteredList = CatalogoModel.filterAutoByBrand(brandList.getValue(), currentFilteredList);
         }
 
         if (alimentazioneList.getValue() != null) {
-            filteredList = CatalogoModel.filterAutoByAlimentazione(alimentazioneList.getValue(), filteredList);
+            currentFilteredList = CatalogoModel.filterAutoByAlimentazione(alimentazioneList.getValue(), currentFilteredList);
         }
 
         if (!minPrice.getText().isEmpty() || !maxPrice.getText().isEmpty()) {
-            filteredList = CatalogoModel.filterAutoByPrice(minPrice.getText(), maxPrice.getText(), filteredList);
+            currentFilteredList = CatalogoModel.filterAutoByPrice(minPrice.getText(), maxPrice.getText(), currentFilteredList);
         }
+
+        //Se ho selezionato un'ordinamento, ordi
+        if (orderCrescente.isSelected()) {
+            sortAndLoadCars(true);
+        } else if (orderDecrescente.isSelected()) {
+            sortAndLoadCars(false);
+        }
+        else {
+            System.out.println(currentFilteredList);
+            loadCars();
+        }
+    }
+
+    private void sortAndLoadCars(boolean crescente) {
+        Comparator<AutoNuova> c = AutoNuova.getComparatorByPrice();
+        if (!crescente) {
+            c = c.reversed();
+        }
+        currentFilteredList.sort(c);
         loadCars();
     }
+
 
     private void loadCars() {
         autoList.getChildren().clear();
 
-        if (filteredList.isEmpty()) {
+        if (currentFilteredList.isEmpty()) {
             autoList.getChildren().add(new Text("Non è presente alcuna auto che rispetta i seguenti filtri"));
         }
 
@@ -111,7 +162,7 @@ public class CatalogoController implements Initializable {
             addInsertAutoElement();
         }
 
-        for (AutoNuova auto : filteredList) {
+        for (AutoNuova auto : currentFilteredList) {
             try {
                 loadCarComponent(auto);
             } catch (Exception e) {
@@ -120,6 +171,11 @@ public class CatalogoController implements Initializable {
         }
     }
 
+    /**
+     * Aggiunge un elemento cliccabile in cima alla lista. Tale
+     * elemnto, una volta cliccato permette l'aggiunta di un
+     * nuovo modello alla
+     */
     private void addInsertAutoElement() {
         HBox imageContainer = new HBox();
         imageContainer.setPrefSize(542, 240);
@@ -142,19 +198,29 @@ public class CatalogoController implements Initializable {
         autoList.getChildren().add(imageContainer);
     }
 
-    private void loadCarComponent(AutoNuova a) throws IOException {
+    /**
+     * Carica il componente per la singola auto all'interno del catalogo
+     *
+     * @param autoToDisplay AutoNuova, da aggiungere al catalogo
+     */
+    private void loadCarComponent(AutoNuova autoToDisplay) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/autoElement.fxml"));
         HBox autoComponent = loader.load();
         AutoElementController controller = loader.getController();
-        controller.setAuto(a);
+        controller.setAuto(autoToDisplay);
         autoList.getChildren().add(autoComponent);
     }
 
+    /**
+     * Resetta i filtri e gli ordinamenti selezionati
+     */
     @FXML
     private void resetFilters() {
         brandList.setValue(null);
         alimentazioneList.setValue(null);
         minPrice.clear();
         maxPrice.clear();
+        orderCrescente.setSelected(false);
+        orderDecrescente.setSelected(false);
     }
 }

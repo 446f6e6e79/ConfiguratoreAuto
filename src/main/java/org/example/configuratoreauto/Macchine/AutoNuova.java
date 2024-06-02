@@ -253,7 +253,7 @@ public class AutoNuova extends Auto implements Serializable {
      * Di base ordina per prezzo CRESCENTE. E' possibile ottenere la lista
      * in ordine deCrescente, sfruttando il metodo reversed
      */
-    public static Comparator<AutoNuova> orderByPrezzoCrescente(){
+    public static Comparator<AutoNuova> getComparatorByPrice(){
         return new Comparator<>() {
 
             //Ordino in
