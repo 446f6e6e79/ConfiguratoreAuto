@@ -11,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Mesi;
+import org.example.configuratoreauto.Utenti.UserModel;
 
 import java.io.IOException;
 import java.net.URL;
@@ -266,9 +267,20 @@ public class AddAutoController implements Initializable {
 
     @FXML
     public void goBack(){
-        //Resetto tempAuto a null, cancellando tutte le modifiche effettuate
-        catalogo.setTempAuto(null);
-        TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
-        PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/catalogoView.fxml" );
+        Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.setTitle("Logout");
+        confirmation.setHeaderText("Sei sicuro di voler abbandonare? Perderai tutte le modifiche");
+        confirmation.getButtonTypes().clear();
+        confirmation.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
+
+        confirmation.showAndWait().ifPresent(response -> {
+            if (response == ButtonType.YES) {
+                //Resetto tempAuto a null, cancellando tutte le modifiche effettuate
+                catalogo.setTempAuto(null);
+                TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+                PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/catalogoView.fxml" );
+            }
+        });
+
     }
 }

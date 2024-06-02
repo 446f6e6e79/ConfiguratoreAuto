@@ -10,10 +10,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import org.example.configuratoreauto.Macchine.AutoNuova;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
+import org.example.configuratoreauto.Macchine.Optional;
+import org.example.configuratoreauto.Macchine.TipoOptional;
 import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
 
 import java.io.IOException;
+import java.util.List;
 
 public class AutoElementController {
     @FXML
@@ -35,13 +38,17 @@ public class AutoElementController {
         NomeModello.setText(auto.getModello());
         Marca.setText(auto.getMarca().toString());
         Prezzo.setText(auto.getBasePriceAsString());
+        if(auto.getDefaultColor() == null){
+            autoImage.setImage(auto.getDefaultImage(null));
+        }else{
+            autoImage.setImage(auto.getDefaultImage(auto.getDefaultColor().getDescrizione()));
 
-        // Carica l'immagine e imposta sull'ImageView
-        autoImage.setImage(auto.getDefaultImage(null));
+        }
 
         String iconPath = (utenti.getCurrentUser() instanceof Segretario) ? "/img/icons/edit-icon.png" : "/img/icons/right-arrow.png";
         Image icon = new Image(getClass().getResourceAsStream(iconPath));
         dynamicIcon.setImage(icon);
+
     }
 
     //Funzione che permette la gestione del click sulla componente

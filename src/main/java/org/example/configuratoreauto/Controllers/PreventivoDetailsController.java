@@ -21,6 +21,7 @@ import javafx.scene.control.TabPane;
 import javafx.scene.layout.BorderPane;
 import org.example.configuratoreauto.Macchine.AutoUsata;
 import org.example.configuratoreauto.Macchine.Optional;
+import org.example.configuratoreauto.Macchine.TipoOptional;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 import org.example.configuratoreauto.Preventivi.StatoPreventivo;
@@ -115,6 +116,10 @@ public class PreventivoDetailsController {
 
         //Per ogni optional scelto, aggiungo una riga nella tabella
         for(Optional o : preventivo.getOptionalScelti()){
+            if(o.getCategoria() == TipoOptional.Colore){
+                System.out.println(o.getDescrizione());
+                image.setImage(preventivo.getAcquisto().getDefaultImage(o.getDescrizione()));
+            }
             addTableRow(o.getDescrizione(), Preventivo.getPriceAsString(o.getCosto()));
         }
 

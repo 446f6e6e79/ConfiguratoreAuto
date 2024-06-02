@@ -210,18 +210,38 @@ public class AutoNuova extends Auto implements Serializable {
         return Preventivo.getPriceAsString(costoBase);
     }
 
+/*
+    Prende il primo colore col costo minore e lo consideriamo come colore di default
+ */
+    public Optional getDefaultColor(){
+        List<Optional> availableColors = this.getOptionalByCategory(TipoOptional.Colore);
+        Optional selectedColor = null;
+        if (availableColors != null && !availableColors.isEmpty()) {
+            selectedColor = availableColors.get(0);
+
+            for (Optional color : availableColors) {
+                if (color.getCosto() == 0) {
+                    selectedColor = color;
+                    break;
+                } else if (color.getCosto() < selectedColor.getCosto()) {
+                    selectedColor = color;
+                }
+            }
+        }
+        return selectedColor;
+    }
     /**
      * Metodo che permette di ottenere l'immagine di default di un auto nuova
      * @return Restituisce l'immagine di DEFAULT dell'auto
      */
     public Image getDefaultImage(String colore){
         if(colore == null){
+            return new Image(getClass().getResourceAsStream("/img/no_data.png"));
             //throw new IllegalArgumentException("Il colore non può essere nullo");
         }
-        //ArrayList<Immagine> immagini = getImageByColor(colore);
+        ArrayList<Immagine> immagini = getImageByColor(colore);
 
-        //FIX TEMP:
-        ArrayList<Immagine> immagini = getImmagini();
+        //ArrayList<Immagine> immagini = getImmagini();
 
         //Se è presente almeno un immagine per quel colore, la restituisco
         if(!immagini.isEmpty()){
