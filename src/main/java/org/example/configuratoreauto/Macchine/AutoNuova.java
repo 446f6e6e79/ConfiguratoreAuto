@@ -18,16 +18,17 @@ public class AutoNuova extends Auto implements Serializable {
     private ArrayList<Motore> motoriDisponibili = new ArrayList<>();
     private ArrayList<Optional> optionalDisponibili = new ArrayList<>();
 
-    public AutoNuova(int id, Marca marca, String modello, Dimensione dimensione, String descrizione, double costoBase, int [] scontoPerMese){
-        super(marca, modello);
-        //Se id è già presente, segnalo l'errore
+
+    /**
+     *  Costruttore dell'oggetto di classe AutoNuova
+     * @param id
+     * @throws IllegalArgumentException se l'id selezionato è già in uso
+     */
+    public AutoNuova(int id){
+        if(!CatalogoModel.getInstance().checkId(id)){
+            throw new IllegalArgumentException("Id non valido!");
+        }
         this.id = id;
-        this.dimensione = dimensione;
-        this.descrizione = descrizione;
-        this.costoBase = costoBase;
-        this.scontoPerMese = scontoPerMese;
-        this.motoriDisponibili = new ArrayList<>();
-        this.optionalDisponibili = new ArrayList<>();
     }
 
     /**
@@ -45,8 +46,17 @@ public class AutoNuova extends Auto implements Serializable {
         super.setImmagini(new ArrayList<>(modelToCopy.getImmagini()));
     }
 
-    public AutoNuova(int id){
+
+    //COSTRUTTORE DA DEMOLIRE NON APPENA FINITA FASE DI TESTING
+    protected AutoNuova(int id, Marca marca, String modello, Dimensione dimensione, String descrizione, double costoBase, int[] scontoPerMese) {
+        super(marca, modello);
         this.id = id;
+        this.dimensione = dimensione;
+        this.descrizione = descrizione;
+        this.costoBase = costoBase;
+        this.scontoPerMese = scontoPerMese;
+        this.motoriDisponibili = new ArrayList<>();
+        this.optionalDisponibili = new ArrayList<>();
     }
 
     /**
@@ -65,6 +75,9 @@ public class AutoNuova extends Auto implements Serializable {
         return costoBase;
     }
     public void setCostoBase(double costoBase) {
+        if(costoBase < 0){
+            throw new IllegalArgumentException("Costo base non valido!");
+        }
         this.costoBase = costoBase;
     }
 
@@ -73,6 +86,9 @@ public class AutoNuova extends Auto implements Serializable {
         return dimensione;
     }
     public void setDimensione(Dimensione dimensione) {
+        if(dimensione == null){
+            throw new IllegalArgumentException("Dimensione non valida!");
+        }
         this.dimensione = dimensione;
     }
 
@@ -81,6 +97,9 @@ public class AutoNuova extends Auto implements Serializable {
         return descrizione;
     }
     public void setDescrizione(String descrizione) {
+        if(this.descrizione == null || this.descrizione.isEmpty()){
+            throw new IllegalArgumentException("Descrizione non valida!");
+        }
         this.descrizione = descrizione;
     }
 
@@ -97,7 +116,19 @@ public class AutoNuova extends Auto implements Serializable {
         return motoriDisponibili;
     }
     public void setMotoriDisponibili(ArrayList<Motore> motoriDisponibili){
+        if(motoriDisponibili == null || motoriDisponibili.isEmpty()){
+            throw new IllegalArgumentException("Non è presente alcun motore!");
+        }
         this.motoriDisponibili = motoriDisponibili;
+    }
+
+    /**
+     * Aggiunge un motore a quelli disponibili.
+     * Se tale motore era già presente, lo sostituisce con quello nuovo
+     * @param motore motore da aggiungere alla lista
+     */
+    public void addMotore(Motore motore){
+        motoriDisponibili.add(motore);
     }
 
     //GET E SET OPTIONAL
@@ -120,14 +151,6 @@ public class AutoNuova extends Auto implements Serializable {
         optionalDisponibili.add(optional);
     }
 
-    /**
-     * Aggiunge un motore a quelli disponibili.
-     * Se tale motore era già presente, lo sostituisce con quello nuovo
-     * @param motore motore da aggiungere alla lista
-     */
-    public void addMotore(Motore motore){
-        motoriDisponibili.add(motore);
-    }
 
     /**
      * Data una specifica categoria, ritorna tutti gli optional disponibili per essa
@@ -136,27 +159,6 @@ public class AutoNuova extends Auto implements Serializable {
      */
     public ArrayList<Optional> getOptionalByCategory(TipoOptional category){
         return optionalDisponibili.stream().filter(optional -> optional.getCategoria().equals(category)).collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    /**
-     * @return Restituisce un arrayList contenente tutti i colori aggiunti per tale macchina
-     */
-    public ArrayList<String> getUsedColors() {
-        return getOptionalByCategory(TipoOptional.Colore)
-                .stream()
-                .map(Optional::getDescrizione)
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    /**
-     *  Restituisce tutte le immagini presenti per il modello,
-     * @param color colore
-     * @return  Lista di immagini Auto, relative al colore
-     */
-    public ArrayList<Immagine> getImageByColor(String color){
-        return super.getImmagini().stream()
-                .filter(t-> t.getColor().equals(color))
-                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     /**
@@ -196,60 +198,85 @@ public class AutoNuova extends Auto implements Serializable {
         return tot;
     }
 
-
-    /*
-    *   Due auto sono considerate uguali se condividono lo stesso id
-    * */
+    /**
+     * Due auto sono considerate uguali se condividono lo stesso ID.
+     * In questo modo possiamo verificarne l'univocità.
+     */
     @Override
     public boolean equals(Object o){
         return o instanceof AutoNuova other &&
                 this.id == other.id;
     }
 
+    /**
+     *  Restituisce il campo CostoBase, formattato
+     * @return
+     */
     public String getBasePriceAsString(){
         return Preventivo.getPriceAsString(costoBase);
     }
 
-/*
-    Prende il primo colore col costo minore e lo consideriamo come colore di default
- */
+    /**
+     * @return Restituisce un arrayList contenente tutti i colori aggiunti per tale macchina
+     */
+    public ArrayList<String> getUsedColors() {
+        return getOptionalByCategory(TipoOptional.Colore)
+                .stream()
+                .map(Optional::getDescrizione)
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+     *  Restituisce tutte le immagini presenti per il modello,
+     * @param color colore
+     * @return  Lista di immagini Auto, relative al colore
+     */
+    public ArrayList<Immagine> getImagesByColor(String color){
+        return super.getImmagini().stream()
+                .filter(t-> t.getColor().equals(color))
+                .collect(Collectors.toCollection(ArrayList::new));
+    }
+
+    /**
+        Restituisce l'optional COLORE di default. Consideriamo come colore di DEFAULT:
+        <p>- primo colore con prezzo = 0 nella lista
+        <p>- colore con prezzo più basso nella lista
+        <p>Tale metodo restituisce <u>NULL</u> se non è stato trovato alcun colore tra gli optional
+    */
     public Optional getDefaultColor(){
         List<Optional> availableColors = this.getOptionalByCategory(TipoOptional.Colore);
-        Optional selectedColor = null;
-        if (availableColors != null && !availableColors.isEmpty()) {
-            selectedColor = availableColors.get(0);
-
+        Optional defaultColor = null;
+        if (!availableColors.isEmpty()){
             for (Optional color : availableColors) {
+                //Se trovo un colore con prezzo = 0, ho finito
                 if (color.getCosto() == 0) {
-                    selectedColor = color;
-                    break;
-                } else if (color.getCosto() < selectedColor.getCosto()) {
-                    selectedColor = color;
+                    return defaultColor;
+                }
+                //Se trovo un colore con prezzo ancora minore, aggiorno il default color
+                else if (defaultColor == null || color.getCosto() < defaultColor.getCosto()) {
+                    defaultColor = color;
                 }
             }
         }
-        return selectedColor;
+        //Restituisce null
+        return defaultColor;
     }
+
     /**
      * Metodo che permette di ottenere l'immagine di default di un auto nuova
      * @return Restituisce l'immagine di DEFAULT dell'auto
      */
     public Image getDefaultImage(String colore){
-        if(colore == null){
+        if(colore != null) {
+            ArrayList<Immagine> imgColor = getImagesByColor(colore);
+            //Se è presente almeno un immagine per quel colore, la restituisco
+            if (!imgColor.isEmpty()) {
+                return imgColor.get(0).getImage();
+            }
+        }
             return new Image(getClass().getResourceAsStream("/img/no_data.png"));
-            //throw new IllegalArgumentException("Il colore non può essere nullo");
-        }
-        ArrayList<Immagine> imgColor = getImageByColor(colore);
-
-        //ArrayList<Immagine> immagini = getImmagini();
-
-        //Se è presente almeno un immagine per quel colore, la restituisco
-        if(!imgColor.isEmpty()){
-            return imgColor.get(0).getImage();
-        }
-        return new Image(getClass().getResourceAsStream("/img/no_data.png"));
     }
-
+    
     /**
      * Salva tutte le immagini, memorizzate nell'arrayList in memoria interna del progetto
      */

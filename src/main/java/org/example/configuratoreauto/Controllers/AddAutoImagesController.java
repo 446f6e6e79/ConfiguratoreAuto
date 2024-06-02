@@ -160,7 +160,7 @@ public class AddAutoImagesController implements Initializable {
         //Carico le immagini già presenti per il Colore scelto
         String selectedColor = coloreInput.getValue();
         if (selectedColor != null ) {
-            imagesCurrentColor.addAll(tempAuto.getImageByColor(selectedColor));
+            imagesCurrentColor.addAll(tempAuto.getImagesByColor(selectedColor));
 
             //Se erano già presenti delle immagini aggiorno di conseguenza tutti i campi
             if (!imagesCurrentColor.isEmpty()) {

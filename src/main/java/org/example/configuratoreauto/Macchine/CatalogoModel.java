@@ -76,6 +76,18 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
     }
 
     /**
+     * Controlla che il campo id non sia già presente all'interno del catalogo
+     * @param id
+     * @return  <u>TRUE</u>
+     */
+    public boolean checkId(int id){
+        if(usedIds.contains(id)){
+            return false;
+        }
+        return true;
+    }
+
+    /**
     *   Passatogli come parametro una ArrayList di auto, restituisce un ArrayList contenente solamente le auto
     *   del brand passato come parametro
     * */
