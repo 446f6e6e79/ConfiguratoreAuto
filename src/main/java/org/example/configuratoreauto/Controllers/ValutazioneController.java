@@ -8,7 +8,6 @@ import javafx.scene.text.Text;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 import org.example.configuratoreauto.Preventivi.StatoPreventivo;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;

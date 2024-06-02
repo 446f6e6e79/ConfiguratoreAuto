@@ -6,19 +6,14 @@ import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Macchine.Optional;
@@ -28,8 +23,6 @@ import org.example.configuratoreauto.Preventivi.Sede;
 import org.example.configuratoreauto.Preventivi.SediModel;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.UserModel;
-
-import java.io.IOException;
 import java.net.URL;
 import java.util.*;
 
@@ -292,7 +285,7 @@ public class CustomizeAutoController implements Initializable {
     }
 
     private void openRegistratiView() {
-        PageLoader.openDialog("/org/example/configuratoreauto/loginPage.fxml", "Registrati/Login", (Stage) main.getScene().getWindow());
+        PageLoader.openDialog("/org/example/configuratoreauto/loginPage.fxml", "Registrati/Login", main);
     }
 
     public void openUsataView() {

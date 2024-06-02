@@ -10,9 +10,6 @@ import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
 import org.example.configuratoreauto.Utenti.*;
-
-import org.example.configuratoreauto.Controllers.PageLoader;
-
 import static org.example.configuratoreauto.Main.setPage;
 
 public class LoginController {

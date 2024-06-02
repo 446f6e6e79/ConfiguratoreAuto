@@ -45,22 +45,6 @@ public class PageLoader {
         alert.setContentText(message);
         alert.showAndWait();
     }
-
-        //Prende la root per evitare sovracarichi della pagina principale
-    public static void openDialog(String fxmlPath, String title, Stage owner){
-        try {
-            FXMLLoader loader = new FXMLLoader(PageLoader.class.getResource(fxmlPath));
-            Parent root = loader.load();
-            Stage dialogStage = new Stage();
-            dialogStage.setTitle(title);
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(owner);
-            dialogStage.setScene(new Scene(root));
-            dialogStage.showAndWait();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     public static void openDialog(String fxmlPath, String title, Parent parentContainer) {
         try {
             FXMLLoader loader = new FXMLLoader(PageLoader.class.getResource(fxmlPath));

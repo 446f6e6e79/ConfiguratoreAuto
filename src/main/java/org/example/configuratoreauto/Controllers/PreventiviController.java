@@ -3,20 +3,16 @@ package org.example.configuratoreauto.Controllers;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.Marca;
 import org.example.configuratoreauto.Preventivi.*;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.Impiegato;
 import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -29,7 +25,6 @@ public class PreventiviController {
     private SediModel sedi = SediModel.getInstance();
     private UserModel utente = UserModel.getInstance();
 
-    private StatoPreventivo actualStato;
     @FXML
     private Label titleMain;
     @FXML
@@ -87,7 +82,6 @@ public class PreventiviController {
         titleMain.setText("Gestione Preventivi");
 
         initializaImpiegatoChoiceBox();
-        actualStato = StatoPreventivo.FINALIZZATO; // Default state
         loadPrevs(registro.getPreventiviByStato(StatoPreventivo.FINALIZZATO));
     }
 
@@ -95,7 +89,6 @@ public class PreventiviController {
         choiceStato.getItems().setAll(StatoPreventivo.FINALIZZATO, StatoPreventivo.PAGATO, StatoPreventivo.DISPONIBILE_AL_RITIRO);
         choiceStato.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                actualStato = newValue;
                 titleMain.setText("Gestione Preventivi");
                 loadPrevs(registro.getPreventiviByStato(newValue));
             }

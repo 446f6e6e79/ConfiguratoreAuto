@@ -13,7 +13,6 @@ import javafx.stage.Stage;
 import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.Persona;
 import org.example.configuratoreauto.Utenti.UserModel;
-import org.example.configuratoreauto.Controllers.PageLoader;
 
 public class RegistrazioneController {
     private final UserModel u = UserModel.getInstance();

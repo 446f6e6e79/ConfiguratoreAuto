@@ -86,4 +86,5 @@ public abstract class Auto implements Serializable{
     public String toString(){
         return this.modello;
     }
+
 }

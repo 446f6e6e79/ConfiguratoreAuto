@@ -2,16 +2,13 @@ package org.example.configuratoreauto.Controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Label;
 import javafx.scene.control.Tab;
 import javafx.scene.layout.BorderPane;
-import org.example.configuratoreauto.Preventivi.RegistroModel;
 import org.example.configuratoreauto.Utenti.Cliente;
 
 import java.io.IOException;
 
 public class ClienteHomeController extends BaseHomeController {
-    RegistroModel registro = RegistroModel.getInstance();
     Cliente currentUser = (Cliente) userModel.getCurrentUser();
 
     BorderPane preventiviNode;

@@ -1,22 +1,14 @@
 package org.example.configuratoreauto.Controllers;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.AnchorPane;
 import org.example.configuratoreauto.Macchine.AutoNuova;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
-import org.example.configuratoreauto.Macchine.Optional;
-import org.example.configuratoreauto.Macchine.TipoOptional;
 import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
-
-import java.io.IOException;
-import java.util.List;
 
 public class AutoElementController {
     @FXML
