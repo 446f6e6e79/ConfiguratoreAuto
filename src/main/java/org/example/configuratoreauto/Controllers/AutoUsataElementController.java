@@ -3,19 +3,14 @@ package org.example.configuratoreauto.Controllers;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Tab;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import org.example.configuratoreauto.Macchine.AutoUsata;
 import org.example.configuratoreauto.Macchine.Immagine;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
-
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class AutoUsataElementController {
@@ -55,40 +50,12 @@ public class AutoUsataElementController {
         try {
             double valutazioneValue = Double.parseDouble(valutazione.getText());
             preventivo.setValutazione(valutazioneValue);
-
             registro.updateData(preventivo);
-            //Apertura pagina
-            try {
-                // Carico la TabPane
-                TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage");
-                Tab tab = tabPane.getTabs().get(0);
-
-                // Carico catalogoView
-                FXMLLoader valutazioneLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/impiegatoView/valutazioniView.fxml"));
-                BorderPane valutazioneNode = valutazioneLoader.load();
-
-                // Carico preventiviView.fxml
-                FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
-                BorderPane preventiviNode = preventiviLoader.load();
-
-                // Carico il controller di preventiviView
-                PreventiviController contr = preventiviLoader.getController();
-                contr.resetFilter();
-
-                // Pulisco la tab di preventivi view
-                Tab tab1 = tabPane.getTabs().get(1);
-                tab1.setContent(null);
-
-                // Ricarico le pagine nella tabPane
-                tab1.setContent(preventiviNode);
-                tab.setContent(valutazioneNode);
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-
+            TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage");
+            PageLoader.updateTabContent(tabPane, 0,"/org/example/configuratoreauto/impiegatoView/valutazioniView.fxml");
+            PageLoader.updateTabContent(tabPane, 1, "/org/example/configuratoreauto/preventiviView.fxml");
         } catch (NumberFormatException e) {
-            valutazione.setText("");
-            validation.setText("Errore nell'inserimento della valutazione");
+            PageLoader.showErrorPopup("Errore", "Hai inserito una valutazione non valida!!");
         }
     }
     /**

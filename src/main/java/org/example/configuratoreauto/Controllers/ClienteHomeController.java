@@ -15,10 +15,7 @@ public class ClienteHomeController extends BaseHomeController {
     Cliente currentUser = (Cliente) userModel.getCurrentUser();
 
     BorderPane preventiviNode;
-    @FXML
-    private Label userName;
-    @FXML
-    private Tab catalogoTab;
+
     @FXML
     private Tab preventiviTab;
 
@@ -26,7 +23,6 @@ public class ClienteHomeController extends BaseHomeController {
     @Override
     protected void initialize() {
         super.initialize();
-
         try {
             FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
             preventiviNode = preventiviLoader.load();

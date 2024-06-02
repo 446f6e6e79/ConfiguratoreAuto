@@ -127,16 +127,9 @@ public class CatalogoController implements Initializable {
         imageContainer.getStyleClass().add("clickableElement");
 
         imageContainer.setOnMouseClicked(event -> {
-            try {
                 catalogo.setSelectedAuto(null);
                 TabPane tabPane = (TabPane) autoList.getScene().lookup("#mainPage");
-                Tab editCatalogoTab = tabPane.getTabs().get(0);
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addModel.fxml"));
-                AnchorPane autocustomNode = loader.load();
-                editCatalogoTab.setContent(autocustomNode);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+                PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/segretarioView/addModel.fxml");
         });
 
         ImageView inserisciAuto = new ImageView();
@@ -152,10 +145,8 @@ public class CatalogoController implements Initializable {
     private void loadCarComponent(AutoNuova a) throws IOException {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/autoElement.fxml"));
         HBox autoComponent = loader.load();
-
         AutoElementController controller = loader.getController();
         controller.setAuto(a);
-
         autoList.getChildren().add(autoComponent);
     }
 

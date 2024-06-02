@@ -57,17 +57,7 @@ public abstract class BaseHomeController {
     }
 
     private void loadLoginPage() {
-        try {
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/loginPage.fxml"));
-            VBox loginPane = loader.load();
-            Stage stage = (Stage) mainPage.getScene().getWindow();
-            Scene scene = new Scene(loginPane);
-            stage.setScene(scene);
-            stage.setTitle("Login");
-            stage.centerOnScreen();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        PageLoader.loadPage("/org/example/configuratoreauto/loginPage.fxml","Login", (Stage) mainPage.getScene().getWindow());
     }
 
     protected abstract void customizeLogoutTab();

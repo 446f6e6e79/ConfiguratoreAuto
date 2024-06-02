@@ -195,16 +195,8 @@ public class PreventivoDetailsController {
 
     @FXML
     private void goBack() {
-        try {
-            TabPane tabPane = (TabPane) image.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
-            Tab tab = tabPane.getTabs().get(1);                                       // Ottieni il riferimento al tab "Preventivi"
-
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
-            BorderPane preventiviList = loader.load();
-            tab.setContent(preventiviList); // Imposta il nuovo contenuto del tab "Catalogo"
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        TabPane tabPane = (TabPane) image.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+        PageLoader.updateTabContent(tabPane, 1, "/org/example/configuratoreauto/preventiviView.fxml");
     }
 
     private void setNewStato(StatoPreventivo newStato){

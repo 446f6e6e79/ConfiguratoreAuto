@@ -130,22 +130,6 @@ public class AddAutoController implements Initializable {
             setScontiOutput();
         }
     }
-    @FXML
-    public void goBack(){
-        //Resetto tempAuto a null, cancellando tutte le modifiche effettuate
-        catalogo.setTempAuto(null);
-        try {
-            TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
-            Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/catalogoView.fxml"));
-            BorderPane catalogoNode;
-
-            catalogoNode = loader.load();
-            tab.setContent(catalogoNode); // Imposta il nuovo contenuto del tab "Catalogo"
-        }catch (IOException e){
-            e.printStackTrace();
-        }
-    }
 
     private void setScontiOutput(){
         for (int r = 0; r < 3; r++) {
@@ -273,18 +257,18 @@ public class AddAutoController implements Initializable {
         return false;
     }
 
-    //Carico la pagina successiva
+    //NAVIGATORI
+    @FXML
     private void loadAddImagesPage() {
-        try {
-            TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
-            Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addImages.fxml"));
-            AnchorPane imageNode;
-            imageNode = loader.load();
+        TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage");
+        PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/segretarioView/addImages.fxml" );
+    }
 
-            tab.setContent(imageNode); // Imposta il nuovo contenuto del tab "Catalogo"
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+    @FXML
+    public void goBack(){
+        //Resetto tempAuto a null, cancellando tutte le modifiche effettuate
+        catalogo.setTempAuto(null);
+        TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+        PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/catalogoView.fxml" );
     }
 }

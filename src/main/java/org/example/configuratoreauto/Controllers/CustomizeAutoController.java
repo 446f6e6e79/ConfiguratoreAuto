@@ -234,10 +234,11 @@ public class CustomizeAutoController implements Initializable {
             AutoNuova copia = new AutoNuova(auto);
             registro.currentPreventivo = new Preventivo(copia, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), chosen);
             openUsataView();
+            System.out.println("FINIO");
             catalogo.setSelectedAuto(null);
             goBack();
         }else{
-            valido.setText("Non hai inserito i campi correttamente\n");
+            PageLoader.showErrorPopup("Errore", "Non hai inserito i campi obbligatori");
         }
     }
 
@@ -285,38 +286,13 @@ public class CustomizeAutoController implements Initializable {
 
     @FXML
     public void goBack(){
-        try {
-            // Carico la TabPane
-            TabPane tabPane = (TabPane) modelID.getScene().lookup("#mainPage");
-            Tab tab = tabPane.getTabs().get(0);
-
-            // Carico catalogoView
-            FXMLLoader catalogoLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/catalogoView.fxml"));
-            BorderPane catalogoNode = catalogoLoader.load();
-
-            // Carico preventiviView.fxml
-            FXMLLoader preventiviLoader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/preventiviView.fxml"));
-            BorderPane preventiviNode = preventiviLoader.load();
-
-            // Carico il controller di preventiviView
-            PreventiviController contr = preventiviLoader.getController();
-            contr.resetFilter();
-
-            // Pulisco la tab di preventivi view
-            Tab tab1 = tabPane.getTabs().get(1);
-            tab1.setContent(null);
-
-            // Ricarico le pagine nella tabPane
-            tab1.setContent(preventiviNode);
-            tab.setContent(catalogoNode);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
+        TabPane tabPane = (TabPane) modelID.getScene().lookup("#mainPage");
+        PageLoader.updateTabContent(tabPane, 0,"/org/example/configuratoreauto/catalogoView.fxml");
+        PageLoader.updateTabContent(tabPane, 1,"/org/example/configuratoreauto/preventiviView.fxml");
     }
 
     private void openRegistratiView() {
-        PageLoader.openDialog("/org/example/configuratoreauto/loginPage.fxml", "Registrati/Login", main);
+        PageLoader.openDialog("/org/example/configuratoreauto/loginPage.fxml", "Registrati/Login", (Stage) main.getScene().getWindow());
     }
 
     public void openUsataView() {

@@ -26,9 +26,6 @@ public class AutoElementController {
     private Label Marca;
     @FXML
     private Label Prezzo;
-
-    private FXMLLoader loader; // Variabile per memorizzare il caricatore
-
     UserModel utenti = UserModel.getInstance();
     CatalogoModel catalogo = CatalogoModel.getInstance();
     private AutoNuova auto;
@@ -51,36 +48,15 @@ public class AutoElementController {
     @FXML
     public void handleHBoxClicked(){
         catalogo.setSelectedAuto(auto);
+        TabPane tabPane = (TabPane) autoImage.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
         //Controllo sul tipo di utente che ha cliccato
         if(utenti.getCurrentUser() instanceof Segretario){
-            //Pagina modifica aut
-            try{
-                TabPane tabPane = (TabPane) autoImage.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
-                Tab catalogoTab = tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addModel.fxml"));
-                AnchorPane autoeditor;
-
-                autoeditor = loader.load();
-                catalogoTab.setContent(autoeditor); // Imposta il nuovo contenuto del tab "Catalogo"
-            }catch (IOException e){
-                e.printStackTrace();
-            }
-
+            //Pagina modifica auto impostata
+            PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/segretarioView/addModel.fxml" );
         }
         else{
-            //Apertura pagina
-            try {
-                TabPane tabPane = (TabPane) autoImage.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
-                Tab catalogoTab = tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/autoCustomization.fxml"));
-                AnchorPane autocustomNode;
-
-                autocustomNode = loader.load();
-                catalogoTab.setContent(autocustomNode); // Imposta il nuovo contenuto del tab "Catalogo"
-
-            }catch (IOException e){
-                e.printStackTrace();
-            }
+            //Apertura pagina personalizzazione e richeista auto
+            PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/clienteView/autoCustomization.fxml" );
         }
     }
 }

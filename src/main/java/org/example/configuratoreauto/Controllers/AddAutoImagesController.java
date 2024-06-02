@@ -245,36 +245,18 @@ public class AddAutoImagesController implements Initializable {
     @FXML
     private void nextPage(){
         if(!tempAuto.getUsedColors().isEmpty()) {
-            try {
-                TabPane tabPane = (TabPane) colorPrice.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
-                Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addOptionals.fxml"));
-                AnchorPane catalogoNode;
-
-                catalogoNode = loader.load();
-                tab.setContent(catalogoNode); // Imposta il nuovo contenuto del tab "Catalogo"
-            }catch (IOException e){
-                e.printStackTrace();
-            }
+            TabPane tabPane = (TabPane) colorPrice.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+            PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/segretarioView/addOptionals.fxml");
         }
         else{
-            //Mostra un errore!
+            PageLoader.showErrorPopup("Errore", "Devi aggiungere almeno un colore per procedere.");
         }
     }
 
     //Carica la pagina precedente
     public void goBack(){
-        try {
-            TabPane tabPane = (TabPane) colorPrice.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
-            Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addModel.fxml"));
-            AnchorPane modelNode;
-
-            modelNode = loader.load();
-            tab.setContent(modelNode); // Imposta il nuovo contenuto del tab "Catalogo"
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        TabPane tabPane = (TabPane) colorPrice.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+        PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/segretarioView/addModel.fxml");
     }
 
     private void checkValidDouble(KeyEvent event, TextField tf){

@@ -60,6 +60,7 @@ public class PreventiviController {
             registratiLink.setOnAction(event -> openRegistratiView());
             mainView.getChildren().add(registratiLink);
         }
+        resetFilter();
     }
 
     private void setupForSegretario() {

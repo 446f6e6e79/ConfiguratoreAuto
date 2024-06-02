@@ -234,33 +234,16 @@ public class AddAutoOptionalsController implements Initializable {
 
     @FXML
     public void goBack(){
-        try {
-            TabPane tabPane = (TabPane) consumi.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
-            Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/segretarioView/addImages.fxml"));
-            AnchorPane modelNode;
-            modelNode = loader.load();
-            tab.setContent(modelNode); // Imposta il nuovo contenuto del tab "Catalogo"
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        TabPane tabPane = (TabPane) consumi.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+        PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/segretarioView/addImages.fxml");
     }
     @FXML
     public void nextPage(){
         //Salvo i dati memorizzati nell'auto temporanea, nel relativo oggetto auto
         catalogo.saveTempData();
-        try {
-            catalogo.setSelectedAuto(null);
-            TabPane tabPane = (TabPane) consumi.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
-            Tab tab= tabPane.getTabs().get(0); // Ottieni il riferimento al tab "Catalogo"
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/catalogoView.fxml"));
-            BorderPane catalogoNode;
-
-            catalogoNode = loader.load();
-            tab.setContent(catalogoNode); // Imposta il nuovo contenuto del tab "Catalogo"
-        }catch (IOException e){
-            e.printStackTrace();
-        }
+        catalogo.setSelectedAuto(null);
+        TabPane tabPane = (TabPane) consumi.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+        PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/catalogoView.fxml");
     }
     private void checkValidDouble(KeyEvent event, TextField tf){
         //Leggo il carattere che ha generato l'evento

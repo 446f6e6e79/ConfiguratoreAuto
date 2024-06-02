@@ -68,8 +68,9 @@ public class LoginController {
     private void handleSuccessfulLogin(Persona before) {
         Persona currentUser = userModel.getCurrentUser();
         if (currentUser instanceof Cliente) {
-            if (before != null)
+            if (before != null) {
                 catalogo.setSelectedAuto(null);
+            }
             setPage("clienteView/homepageCliente");
         } else if (currentUser instanceof Impiegato) {
             setPage("impiegatoView/homepageImpiegato");
