@@ -12,10 +12,11 @@ public class AutoUsata extends Auto implements Serializable {
     public AutoUsata(Marca marca, String modello, String targa, int km) {
         super(marca, modello);
         //Segnalo il caso di targaVuota o non valida
-        if (targa == null || isValidTarga(targa)) {
+        if (targa == null || !isValidTarga(targa)) {
             throw new IllegalArgumentException("Targa non valida");
         }
         this.targa=targa;
+
         if(km<0){
             throw new IllegalArgumentException("Km negativo");
         }
