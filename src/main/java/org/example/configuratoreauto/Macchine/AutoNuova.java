@@ -108,6 +108,12 @@ public class AutoNuova extends Auto implements Serializable {
         return scontoPerMese;
     }
     public void setScontoPerMese(int[] scontoPerMese) {
+        //Controllo che non sian presenti sconti negativi o che eccedano il 100%
+        for(int sconto: scontoPerMese){
+            if (sconto < 0 || sconto > 100){
+                throw new IllegalArgumentException("Sconto non valido!");
+            }
+        }
         this.scontoPerMese = scontoPerMese;
     }
 
@@ -136,6 +142,9 @@ public class AutoNuova extends Auto implements Serializable {
         return optionalDisponibili;
     }
     public void setOptionalDisponibili(ArrayList<Optional> optionalDisponibili){
+        if(optionalDisponibili == null || optionalDisponibili.isEmpty()){
+            throw new IllegalArgumentException("Non è presente alcun optional!");
+        }
         this.optionalDisponibili = optionalDisponibili;
     }
 
@@ -210,7 +219,7 @@ public class AutoNuova extends Auto implements Serializable {
 
     /**
      *  Restituisce il campo CostoBase, formattato
-     * @return
+     * @return Stringa che rappresenta il costo base, formattato
      */
     public String getBasePriceAsString(){
         return Preventivo.getPriceAsString(costoBase);
