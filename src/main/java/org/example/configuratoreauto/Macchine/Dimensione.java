@@ -1,5 +1,6 @@
 package org.example.configuratoreauto.Macchine;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -8,6 +9,9 @@ import java.util.Objects;
  * di un auto
  */
 public class Dimensione implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+    
     private double larghezza;
     private double altezza;
     private double lunghezza;

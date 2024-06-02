@@ -4,12 +4,16 @@ import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Macchine.Optional;
 import org.example.configuratoreauto.Utenti.Cliente;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class Preventivo implements Serializable, Comparable<Preventivo>{
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private Date data;
     private Date consegna;
     private StatoPreventivo stato;

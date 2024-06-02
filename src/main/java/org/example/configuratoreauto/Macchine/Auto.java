@@ -1,5 +1,6 @@
 package org.example.configuratoreauto.Macchine;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -8,6 +9,9 @@ import java.util.ArrayList;
  * AutoNuova e AutoUsata.
  */
 public abstract class Auto implements Serializable{
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private Marca marca;
     private String modello;
     private ArrayList<Immagine> immagini = new ArrayList<>();

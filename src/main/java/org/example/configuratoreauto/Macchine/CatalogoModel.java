@@ -3,10 +3,13 @@ package org.example.configuratoreauto.Macchine;
 import org.example.configuratoreauto.AbstractModel;
 
 import java.io.IOException;
+import java.io.Serial;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class CatalogoModel extends AbstractModel<AutoNuova> {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     /** Istanza univoca della classe */
     private static CatalogoModel instance;
@@ -81,10 +84,7 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
      * @return  <u>TRUE</u>
      */
     public boolean checkId(int id){
-        if(usedIds.contains(id)){
-            return false;
-        }
-        return true;
+        return !usedIds.contains(id);
     }
 
     /**

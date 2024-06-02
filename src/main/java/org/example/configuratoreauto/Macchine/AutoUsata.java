@@ -1,10 +1,13 @@
 package org.example.configuratoreauto.Macchine;
 
 import java.io.File;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.regex.Pattern;
 
 public class AutoUsata extends Auto implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private final String targa;
     private final int km;

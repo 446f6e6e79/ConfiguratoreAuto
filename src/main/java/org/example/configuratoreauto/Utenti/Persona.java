@@ -1,10 +1,14 @@
 package org.example.configuratoreauto.Utenti;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Persona implements Serializable{
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private static final String EMAIL_PATTERN =
             "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
     /** Email della persona, utilizzata come credenziale per il login */
@@ -53,6 +57,7 @@ public class Persona implements Serializable{
     *     - password
     * */
     public boolean controlloCredenziali(Persona p){
-        return equals(p);
+        return this.email.equals(p.email) &&
+                this.password.equals(p.password);
     }
 }

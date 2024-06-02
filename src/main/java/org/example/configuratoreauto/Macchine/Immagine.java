@@ -2,17 +2,17 @@ package org.example.configuratoreauto.Macchine;
 
 import javafx.scene.image.Image;
 
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.Serializable;
+import java.io.*;
 import java.nio.file.*;
 import java.util.Comparator;
 
 public class Immagine implements Serializable{
-    /** percorso assoluto all'immagine, inserita come input */
+    @Serial
+    private static final long serialVersionUID = 1L;
+
+    /** Percorso assoluto all'immagine, inserita come input */
     private String path;
-    /** colore optional, a cui l'immagine fa riferimento */
+    /** Colore optional, a cui l'immagine fa riferimento */
     private String colore;
 
     /** Percorso alla cartella di immagini Temporanee */

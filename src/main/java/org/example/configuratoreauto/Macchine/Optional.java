@@ -2,9 +2,12 @@ package org.example.configuratoreauto.Macchine;
 
 import org.example.configuratoreauto.Preventivi.Preventivo;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Optional implements Serializable{
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private TipoOptional categoria;
     private String descrizione;

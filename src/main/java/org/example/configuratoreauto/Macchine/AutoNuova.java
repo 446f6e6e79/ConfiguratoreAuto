@@ -3,11 +3,15 @@ package org.example.configuratoreauto.Macchine;
 import javafx.scene.image.Image;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import java.io.IOException;
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.*;
 import java.util.stream.Collectors;
 
 public class AutoNuova extends Auto implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private int id;
     private String descrizione;
     private Dimensione dimensione;
@@ -48,7 +52,7 @@ public class AutoNuova extends Auto implements Serializable {
 
 
     //COSTRUTTORE DA DEMOLIRE NON APPENA FINITA FASE DI TESTING
-    protected AutoNuova(int id, Marca marca, String modello, Dimensione dimensione, String descrizione, double costoBase, int[] scontoPerMese) {
+    public AutoNuova(int id, Marca marca, String modello, Dimensione dimensione, String descrizione, double costoBase, int[] scontoPerMese) {
         super(marca, modello);
         this.id = id;
         this.dimensione = dimensione;

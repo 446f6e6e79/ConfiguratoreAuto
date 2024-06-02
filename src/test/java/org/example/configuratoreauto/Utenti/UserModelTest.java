@@ -34,6 +34,10 @@ class UserModelTest {
         assertTrue(u.validation("segretario@gmail.com", "1234"));
         assertTrue(u.validation("davide@gmail.com", "1234"));
         assertTrue(u.validation("DaViDe@GmAiL.cOm", "1234"));
+
+        //Login con password errate
+        assertFalse(u.validation("davide@gmail.com", ""));
+        assertFalse(u.validation("davide@gmail.com", "12"));
     }
 
     @Test

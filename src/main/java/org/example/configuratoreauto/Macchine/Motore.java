@@ -1,9 +1,12 @@
 package org.example.configuratoreauto.Macchine;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
 public class Motore implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private Alimentazione alimentazione;
     private int potenzaKW;

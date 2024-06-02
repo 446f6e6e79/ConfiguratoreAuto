@@ -1,9 +1,12 @@
 package org.example.configuratoreauto.Preventivi;
 
+import java.io.Serial;
 import java.io.Serializable;
 import java.util.Objects;
 
 public class Sede implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
 
     private String nome;
     private String indirizzo;

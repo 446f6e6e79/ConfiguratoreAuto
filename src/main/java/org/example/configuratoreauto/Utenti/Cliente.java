@@ -1,8 +1,12 @@
 package org.example.configuratoreauto.Utenti;
 
+import java.io.Serial;
 import java.io.Serializable;
 
 public class Cliente extends Persona implements Serializable {
+    @Serial
+    private static final long serialVersionUID = 1L;
+
     private final String name;
     private final String surname;
     private static final String NAME_SURNAME_REGEX = "[a-zA-ZàèéìòùÀÈÉÌÒÙ'\\s\\-]+";
