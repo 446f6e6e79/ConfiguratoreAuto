@@ -30,6 +30,9 @@ public class AutoElementController {
         NomeModello.setText(auto.getModello());
         Marca.setText(auto.getMarca().toString());
         Prezzo.setText(auto.getBasePriceAsString());
+        /*
+         * TODO: una volta aggiunti i colori ad ogni auto, l'if può essere rimosso
+         * */
         if(auto.getDefaultColor() == null){
             autoImage.setImage(auto.getDefaultImage(null));
         }else{

@@ -111,7 +111,7 @@ public class PreventivoDetailsController {
         modello.setText(preventivo.getAcquisto().getModello());
         prezzoBase.setText(preventivo.getAcquisto().getBasePriceAsString());
 
-        //Per ogni optional scelto, aggiungo una riga nella tabella
+        //Per ogni optional scelto, aggiungo una riga nella tabella, nel caso fosse il colore aggiorno l'immagine di default
         for(Optional o : preventivo.getOptionalScelti()){
             if(o.getCategoria() == TipoOptional.Colore){
                 System.out.println(o.getDescrizione());

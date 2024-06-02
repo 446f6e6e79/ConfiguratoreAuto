@@ -4,6 +4,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
 import org.example.configuratoreauto.Preventivi.Preventivo;
@@ -44,6 +45,10 @@ public class Main extends Application {
             Scene scene = new Scene(root);
             scene.getStylesheets().add(Main.class.getResource("style.css").toExternalForm());
             stage.setScene(scene);
+            if(!pageName.equals("loginPage")){
+                stage.setFullScreen(true);
+                stage.setFullScreenExitHint("");
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
