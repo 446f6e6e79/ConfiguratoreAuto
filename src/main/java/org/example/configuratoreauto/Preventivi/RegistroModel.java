@@ -55,6 +55,9 @@ public class RegistroModel extends AbstractModel<Preventivo> {
     * */
     @Override
     public boolean addData(Preventivo newPreventivo){
+        if(newPreventivo == null){
+            throw new IllegalArgumentException("Preventivo nullo inserito");
+        }
         if(!data.contains(newPreventivo)){
             newPreventivo.updateStatoAutomatico();
             return data.add(newPreventivo);
@@ -70,6 +73,9 @@ public class RegistroModel extends AbstractModel<Preventivo> {
      * @param preventivo
      */
     public void updateData(Preventivo preventivo){
+        if(preventivo == null){
+            throw new IllegalArgumentException("Preventivo nullo inserito");
+        }
         for (int i = 0; i < data.size(); i++) {
             if (data.get(i).equals(preventivo)) {
                 data.set(i, preventivo);
@@ -83,24 +89,36 @@ public class RegistroModel extends AbstractModel<Preventivo> {
      * @return
      */
     public ArrayList<Preventivo> getPreventiviByBrand(Marca brand){
+        if(brand == null){
+            throw new IllegalArgumentException("Marca nulla inserito");
+        }
         return super.data.stream()
                 .filter(t -> t.getAcquisto().getMarca() == brand)
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<Preventivo> getPreventiviByCliente(Cliente cliente){
+        if(cliente == null){
+            throw new IllegalArgumentException("Cliente nullo inserito");
+        }
         return super.data.stream()
                 .filter(t -> t.getCliente().equals(cliente))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<Preventivo> getPreventiviBySede(Sede sede){
+        if(sede == null){
+            throw new IllegalArgumentException("Sede nulla inserito");
+        }
         return super.data.stream()
                 .filter(t -> t.getSede().equals(sede))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public ArrayList<Preventivo> getPreventiviByStato(StatoPreventivo stato){
+        if(stato == null){
+            throw new IllegalArgumentException("Stato nullo inserito");
+        }
         return super.data.stream()
                 .filter(t -> t.getStato() == stato)
                 .collect(Collectors.toCollection(ArrayList::new));

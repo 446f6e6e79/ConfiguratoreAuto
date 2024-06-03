@@ -48,9 +48,6 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
      * @return  ritorna il toString del prezzo passato come parametro, formattato secondo lo standard
      */
     public static String getPriceAsString(double price){
-        if(price<0){
-            throw new IllegalArgumentException("Prezzo incorretto inserito");
-        }
         NumberFormat euroFormat = NumberFormat.getCurrencyInstance(Locale.ITALY);
         return euroFormat.format(price);
     }
