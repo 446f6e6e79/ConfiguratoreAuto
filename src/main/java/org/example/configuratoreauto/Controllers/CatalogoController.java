@@ -136,7 +136,6 @@ public class CatalogoController implements Initializable {
             sortAndLoadCars(false);
         }
         else {
-            System.out.println(currentFilteredList);
             loadCars();
         }
     }
