@@ -12,7 +12,7 @@ class CatalogoTest{
     AutoNuova test = new AutoNuova();
     @Test
     @DisplayName("Unique ID generator")
-    void setValutazioneAutomatica(){
+    void getUniqueID(){
         HashSet<Integer> test = new HashSet<>();
         int nTests = 10000;
         for(int i = 0; i < nTests; i++){
