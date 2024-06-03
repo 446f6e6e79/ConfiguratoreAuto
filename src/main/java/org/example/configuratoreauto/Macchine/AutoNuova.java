@@ -270,7 +270,7 @@ public class AutoNuova extends Auto implements Serializable {
             for (Optional color : availableColors) {
                 //Se trovo un colore con prezzo = 0, ho finito
                 if (color.getCosto() == 0) {
-                    return defaultColor;
+                    return color;
                 }
                 //Se trovo un colore con prezzo ancora minore, aggiorno il default color
                 else if (defaultColor == null || color.getCosto() < defaultColor.getCosto()) {

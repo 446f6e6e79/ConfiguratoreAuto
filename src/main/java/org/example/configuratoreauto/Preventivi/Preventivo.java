@@ -26,6 +26,10 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     private Date scadenza;
     private double valutazione;
 
+    /*
+     * Costruttore della classe preventivo, usato solamente per testing. Permette di creare un preventivo
+     * in una data, passata come parametro
+     */
     public Preventivo(AutoNuova acquisto, Sede sede, Cliente cliente, Date d, Motore motore, ArrayList optionalScelti){
         this.data = d;
         this.stato = StatoPreventivo.RICHIESTO;

@@ -16,7 +16,6 @@ import org.example.configuratoreauto.Utenti.UserModel;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.stream.Collectors;
 
 public class PreventiviController {
@@ -195,15 +194,17 @@ public class PreventiviController {
         mainView.getChildren().add(preventivoComponent);
     }
 
+    /**
+     * Filtra la lista di preventivi, a seconda dei filtri selezionati
+     */
     private void filterPreventivi() {
-        List<Preventivo> filteredList;
+        ArrayList<Preventivo> filteredList;
         if(utente.isCliente()){
             filteredList = registro.getPreventiviByCliente((Cliente) utente.getCurrentUser());
         }
         else{
             filteredList = registro.getAllData();
         }
-        List<Preventivo> tempFilteredList;
 
         StatoPreventivo selectedStato = choiceStato.getValue();
         Marca selectedMarca = choiceMarca.getValue();
@@ -211,15 +212,13 @@ public class PreventiviController {
         String clienteQuery = clienteField.getText().toLowerCase();
 
         if (selectedStato != null) {
-            filteredList = registro.getPreventiviByStato(selectedStato);
+            filteredList = registro.filterPreventiviByStato(selectedStato, filteredList);
         }
         if (selectedMarca != null) {
-            tempFilteredList = registro.getPreventiviByBrand(selectedMarca);
-            filteredList = unisciList(filteredList, tempFilteredList);
+            filteredList = registro.filterPreventiviByBrand(selectedMarca,filteredList);
         }
         if (selectedSede != null) {
-            tempFilteredList = registro.getPreventiviBySede(selectedSede);
-            filteredList = unisciList(filteredList, tempFilteredList);
+            filteredList = registro.filterPreventiviBySede(selectedSede, filteredList);
         }
         if (!clienteQuery.isEmpty()) {
             filteredList = filteredList.stream()
@@ -227,21 +226,8 @@ public class PreventiviController {
                         String fullName = preventivo.getCliente().getName().toLowerCase() + " " + preventivo.getCliente().getSurname().toLowerCase();
                         return fullName.contains(clienteQuery);
                     })
-                    .collect(Collectors.toList());
+                    .collect(Collectors.toCollection(ArrayList::new));
         }
-
-        loadPrevs(new ArrayList<>(filteredList));
+        loadPrevs(filteredList);
     }
-
-    private List<Preventivo> unisciList(List<Preventivo> list1, List<Preventivo> list2) {
-        List<Preventivo> intersection = new ArrayList<>();
-        for (Preventivo p : list1) {
-            if (list2.contains(p)) {
-                intersection.add(p);
-            }
-        }
-        return intersection;
-    }
-
-
 }

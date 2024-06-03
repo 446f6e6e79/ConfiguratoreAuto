@@ -20,7 +20,7 @@ class CatalogoTest{
             c.addData(new AutoNuova(id));
             test.add(c.getUniqueId());
         }
-        assertEquals(test.size(), nTests);
+        assertEquals(nTests, test.size());
     }
 
     @Test
@@ -63,7 +63,7 @@ class CatalogoTest{
         assertDoesNotThrow(() -> test.setDescrizione("Descrizione test"));
         assertThrowsExactly(IllegalArgumentException.class, () -> test.setDescrizione(""));
         assertThrowsExactly(IllegalArgumentException.class, () -> test.setDescrizione(null));
-        assertEquals(test.getDescrizione(), "Descrizione test");
+        assertEquals("Descrizione test", test.getDescrizione());
     }
 
     @Test
@@ -110,6 +110,9 @@ class CatalogoTest{
     @Test
     @DisplayName("Controllo aggiunta colori")
     void controlloAggiuntaColori(){
-        assertEquals(1,2);
+        assertDoesNotThrow(() -> test.addOptional( new Optional(TipoOptional.Colore, "Verde", 1000)));
+        assertDoesNotThrow(() -> test.addOptional( new Optional(TipoOptional.Colore, "Blu", 0)));
+
+        assertEquals("Blu", test.getDefaultColor().getDescrizione());
     }
 }

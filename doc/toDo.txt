@@ -1,6 +1,5 @@
 Back-end:
 1) Revisione codice e implementazione testing
-2) Pulizia codice filtri preventivi
 Front - end:
 
 BUGS:
