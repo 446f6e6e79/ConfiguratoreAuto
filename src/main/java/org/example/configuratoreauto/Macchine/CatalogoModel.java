@@ -74,7 +74,7 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
         //Continua a generare codici casuali, fino a che non ne trova uno nuovo > 0
         do {
             newId = UUID.randomUUID().hashCode();
-        } while (usedIds.contains(newId) && newId < 0);
+        } while (usedIds.contains(newId) || newId <= 0);
         return newId;
     }
 

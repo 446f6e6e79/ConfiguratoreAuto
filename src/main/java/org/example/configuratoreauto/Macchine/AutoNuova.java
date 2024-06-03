@@ -29,6 +29,7 @@ public class AutoNuova extends Auto implements Serializable {
      * @throws IllegalArgumentException se l'id selezionato è già in uso
      */
     public AutoNuova(int id){
+        //Se l'id generato non è valido:
         if(!CatalogoModel.getInstance().checkId(id)){
             throw new IllegalArgumentException("Id non valido!");
         }
