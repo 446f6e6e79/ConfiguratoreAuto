@@ -2,6 +2,5 @@ Back-end:
 1) Revisione codice e implementazione testing
 2) Pulizia codice filtri preventivi
 Front - end:
-1)Implementazione controlli su bottoni e campi di input di tutte le pagine!(forse meglio in un unica classe esterna)
 
 BUGS:

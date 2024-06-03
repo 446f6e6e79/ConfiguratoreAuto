@@ -9,6 +9,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
+import org.example.configuratoreauto.Main;
 import org.example.configuratoreauto.Utenti.*;
 import static org.example.configuratoreauto.Main.setPage;
 
@@ -24,6 +25,8 @@ public class LoginController {
     private PasswordField password;
     @FXML
     private Button login;
+    @FXML
+    private Button guestButton;
 
     @FXML
     private void initialize() {
@@ -33,6 +36,9 @@ public class LoginController {
         password.textProperty().addListener((obs, oldVal, newVal) -> responseText.setText(""));
         email.setOnAction(event -> logIn());
         password.setOnAction(event -> logIn());
+        if(catalogo.getSelectedAuto() != null){
+            guestButton.setDisable(true);
+        }
     }
 
     @FXML
