@@ -7,11 +7,14 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import org.example.configuratoreauto.Macchine.AutoUsata;
 import org.example.configuratoreauto.Macchine.Immagine;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 import java.util.ArrayList;
+
+import static org.example.configuratoreauto.Controllers.InputValidation.checkValidInt;
 
 public class AutoUsataElementController {
 
@@ -44,6 +47,9 @@ public class AutoUsataElementController {
         targa.setText(auto.getTarga());
         marca.setText(auto.getMarca().toString());
         km.setText(auto.getKm()+" km");
+
+        //Permetto solamente input interi per il campo valutazione
+        valutazione.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidInt(event, valutazione));
     }
     @FXML
     void conferma() {

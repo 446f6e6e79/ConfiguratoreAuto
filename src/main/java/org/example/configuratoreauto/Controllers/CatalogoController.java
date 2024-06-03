@@ -12,6 +12,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
@@ -24,6 +25,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.ResourceBundle;
+
+import static org.example.configuratoreauto.Controllers.InputValidation.checkValidInt;
 
 public class CatalogoController implements Initializable {
 
@@ -61,6 +64,11 @@ public class CatalogoController implements Initializable {
         brandList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> filterAndLoadCars());
         alimentazioneList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> filterAndLoadCars());
 
+        //Permetto solamente input interi nei campi prezzoMin e prezzoMax dei filtri
+        minPrice.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidInt(event, minPrice));
+        maxPrice.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidInt(event, maxPrice));
+
+        //Impostazione per il filtro del prezzo
         PauseTransition pause = new PauseTransition(Duration.millis(1000));
         pause.setOnFinished(event -> filterAndLoadCars());
 
