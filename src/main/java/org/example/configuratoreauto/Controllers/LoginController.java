@@ -74,7 +74,8 @@ public class LoginController {
             if (before != null) {
                 catalogo.setSelectedAuto(null);
             }
-            setPage("clienteView/homepageCliente");
+            if(!guestButton.isDisabled())
+                setPage("clienteView/homepageCliente");
         } else if (currentUser instanceof Impiegato) {
             setPage("impiegatoView/homepageImpiegato");
         } else if (currentUser instanceof Segretario) {

@@ -36,6 +36,9 @@ public class ClienteHomeController extends BaseHomeController {
         if (currentUser == null) {
             logout.setText("Accedi");
             logout.setStyle("-fx-background-color: lightgreen;");
+        }else{
+            logout.setText("Logout");
+            logout.setStyle("-fx-background-color: ffcccc;");
         }
     }
 }

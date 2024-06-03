@@ -282,6 +282,7 @@ public class CustomizeAutoController implements Initializable {
         TabPane tabPane = (TabPane) modelID.getScene().lookup("#mainPage");
         PageLoader.updateTabContent(tabPane, 0,"/org/example/configuratoreauto/catalogoView.fxml");
         PageLoader.updateTabContent(tabPane, 1,"/org/example/configuratoreauto/preventiviView.fxml");
+
     }
 
     private void openRegistratiView() {
