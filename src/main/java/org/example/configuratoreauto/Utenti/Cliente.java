@@ -30,7 +30,7 @@ public class Cliente extends Persona implements Serializable {
     }
 
     public String toString(){
-        return super.toString() + ", nome: "+name;
+        return surname+" "+name;
     }
 
     public String getName(){
