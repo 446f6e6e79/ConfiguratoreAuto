@@ -80,7 +80,7 @@ public class AutoNuova extends Auto implements Serializable {
         return costoBase;
     }
     public void setCostoBase(double costoBase) {
-        if(costoBase < 0){
+        if(costoBase <= 0){
             throw new IllegalArgumentException("Costo base non valido!");
         }
         this.costoBase = costoBase;
@@ -102,7 +102,7 @@ public class AutoNuova extends Auto implements Serializable {
         return descrizione;
     }
     public void setDescrizione(String descrizione) {
-        if(this.descrizione == null || this.descrizione.isEmpty()){
+        if(descrizione == null || descrizione.isEmpty()){
             throw new IllegalArgumentException("Descrizione non valida!");
         }
         this.descrizione = descrizione;
@@ -114,6 +114,9 @@ public class AutoNuova extends Auto implements Serializable {
     }
     public void setScontoPerMese(int[] scontoPerMese) {
         //Controllo che non sian presenti sconti negativi o che eccedano il 100%
+        if(scontoPerMese.length != 12){
+            throw new IllegalArgumentException("Sconto non valido!");
+        }
         for(int sconto: scontoPerMese){
             if (sconto < 0 || sconto > 100){
                 throw new IllegalArgumentException("Sconto non valido!");

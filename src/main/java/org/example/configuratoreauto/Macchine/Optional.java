@@ -26,6 +26,7 @@ public class Optional implements Serializable{
             throw new IllegalArgumentException("Categoria non valida");
         }
         this.categoria = categoria;
+
         if(descrizione == null || descrizione.isEmpty()){
             throw new IllegalArgumentException("Descrizione non valida");
         }
@@ -47,7 +48,6 @@ public class Optional implements Serializable{
     public String getDescrizione() {
         return descrizione;
     }
-
 
     public String toString(){
         return descrizione +": "+ Preventivo.getPriceAsString(costo);

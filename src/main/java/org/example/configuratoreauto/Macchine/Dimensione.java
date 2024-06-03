@@ -18,11 +18,41 @@ public class Dimensione implements Serializable {
     private double peso;
     private double volumeBagagliaglio;
 
+    /**
+     * Costruttore della classe Dimensione.
+     * @param larghezza
+     * @param altezza
+     * @param lunghezza
+     * @param peso
+     * @param volumeBagagliaglio
+     *
+     * @throws IllegalArgumentException se uno dei campi non è valido
+     */
     public Dimensione(double larghezza, double altezza, double lunghezza, double peso, double volumeBagagliaglio){
+        if(altezza <= 0){
+            throw new IllegalArgumentException("Altezza non valida");
+        }
         this.altezza = altezza;
+
+        if(lunghezza <= 0){
+            throw new IllegalArgumentException("Lunghezza non valida");
+        }
         this.lunghezza = lunghezza;
+
+        if(larghezza <= 0){
+            throw new IllegalArgumentException("Larghezza non valida");
+        }
         this.larghezza = larghezza;
+
+        if(peso <= 0){
+            throw new IllegalArgumentException("Peso non valido");
+        }
         this.peso = peso;
+
+        //Permettiamo il caso volume = 0 (Auto senza bagagliaio)
+        if(volumeBagagliaglio < 0){
+            throw new IllegalArgumentException("Volume bagagliaio non valido");
+        }
         this.volumeBagagliaglio = volumeBagagliaglio;
     }
 
