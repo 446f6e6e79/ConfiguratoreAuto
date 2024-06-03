@@ -60,9 +60,6 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
      * @param usata Auto usata, da aggiungere al preventivo
      */
     public void setUsata(AutoUsata usata){
-        if(usata == null){
-            throw new IllegalArgumentException("Auto usata nulla inserito");
-        }
         this.usata = usata;
         if(usata == null){
             //In caso non sia presente un auto usata, il preventivo è già finalizzato e posso impostare una scadenza

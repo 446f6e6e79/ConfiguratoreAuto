@@ -25,7 +25,6 @@ public class AutoNuova extends Auto implements Serializable {
 
     /**
      *  Costruttore dell'oggetto di classe AutoNuova
-     * @param id
      * @throws IllegalArgumentException se l'id selezionato è già in uso
      */
     public AutoNuova(int id){

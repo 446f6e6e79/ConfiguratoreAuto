@@ -80,5 +80,16 @@
             return currentUser;
         }
 
+        public boolean isCliente(){
+            return currentUser instanceof Cliente;
+        }
+
+        public boolean isImpiegato(){
+            return currentUser instanceof Impiegato;
+        }
+
+        public boolean isSegretario(){
+            return currentUser instanceof Segretario;
+        }
         public void clearCurrentUser(){ currentUser=null; }
     }

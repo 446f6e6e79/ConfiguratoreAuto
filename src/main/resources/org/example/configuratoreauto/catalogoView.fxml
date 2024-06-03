@@ -73,14 +73,18 @@
                               <Insets left="20.0" right="20.0" />
                            </padding>
                            <children>
-                              <ToggleButton styleClass="toggle-button" fx:id="orderCrescente" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Crescente">
+                              <ToggleButton styleClass="toggle-button" fx:id="orderCrescente" mnemonicParsing="false" prefHeight="39.0" prefWidth="120.0" text="Crescente">
                                  <font>
-                                    <Font size="20.0" />
+                                    <Font size="17.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets top="5.0" />
                                  </HBox.margin></ToggleButton>
-                              <ToggleButton styleClass="toggle-button" fx:id="orderDecrescente" mnemonicParsing="false" prefHeight="39.0" prefWidth="120.0" text="Decrescente" />
+                              <ToggleButton styleClass="toggle-button" fx:id="orderDecrescente" mnemonicParsing="false" prefHeight="39.0" prefWidth="120.0" text="Decrescente">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                              </ToggleButton>
                            </children>
                         </HBox>
                      </children>
@@ -90,7 +94,7 @@
                            <TextField styleClass="text-field" fx:id="maxPrice" promptText="prezzo max" />
                         </children>
                         <padding>
-                           <Insets left="40.0" right="40.0" />
+                           <Insets top="20" left="40.0" right="40.0" />
                         </padding>
                      </HBox>
                   </VBox>

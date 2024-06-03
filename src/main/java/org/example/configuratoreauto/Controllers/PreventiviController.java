@@ -196,7 +196,13 @@ public class PreventiviController {
     }
 
     private void filterPreventivi() {
-        List<Preventivo> filteredList = registro.getAllData();
+        List<Preventivo> filteredList;
+        if(utente.isCliente()){
+            filteredList = registro.getPreventiviByCliente((Cliente) utente.getCurrentUser());
+        }
+        else{
+            filteredList = registro.getAllData();
+        }
         List<Preventivo> tempFilteredList;
 
         StatoPreventivo selectedStato = choiceStato.getValue();

@@ -16,11 +16,6 @@ public class Motore implements Serializable {
 
     /**
      * Costruttore per la classe Motore.
-     * @param nome
-     * @param alimentazione
-     * @param potenzaKW
-     * @param cilindrata
-     * @param consumi
      * @throws IllegalArgumentException se uno dei campi ha un valore non valido
      */
     public Motore(String nome, Alimentazione alimentazione, int potenzaKW, int cilindrata, double consumi){

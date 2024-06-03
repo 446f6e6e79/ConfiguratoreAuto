@@ -107,4 +107,9 @@ class CatalogoTest{
         assertThrowsExactly(IllegalArgumentException.class, () -> new Optional(TipoOptional.Vetri, "TEST", -1000));
     }
 
+    @Test
+    @DisplayName("Controllo aggiunta colori")
+    void controlloAggiuntaColori(){
+        assertEquals(1,2);
+    }
 }
