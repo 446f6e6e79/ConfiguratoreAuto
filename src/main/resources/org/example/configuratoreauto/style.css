@@ -321,6 +321,39 @@
     -fx-opacity: 0.5; /* Reduce opacity when disabled */
 }
 
+/* Style for the root element */
+.root {
+    -fx-font-family: "Arial";
+}
+
+/* ToggleButton Styles */
+.toggle-button{
+    -fx-background-color: #f2f2f2; /* Background color */
+    -fx-border-color: #ccc; /* Border color */
+    -fx-border-radius: 5px; /* Border radius */
+    -fx-padding: 6;
+}
+
+.toggle-button {
+    -fx-background-color: #ffffff; /* Background color */
+    -fx-border-color: #ccc; /* Border color */
+    -fx-border-radius: 5px; /* Border radius */
+}
+
+.toggle-button:hover {
+    -fx-background-color: #e6e6e6; /* Background color on hover */
+}
+
+.toggle-button:selected {
+    -fx-background-color: #4CAF50; /* Background color when selected */
+    -fx-text-fill: white; /* Text color when selected */
+}
+
+.toggle-button:disabled {
+    -fx-opacity: 0.5; /* Reduce opacity when disabled */
+}
+
+
 
 
 

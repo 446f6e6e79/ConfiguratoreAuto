@@ -15,6 +15,7 @@
 <?import javafx.scene.text.Text?>
 
 <BorderPane fx:id="catalogoComponent" prefHeight="500.0" prefWidth="970.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.CatalogoController">
+
    <center>
       <ScrollPane fitToHeight="true" fitToWidth="true" prefHeight="381.0" prefWidth="525.0" styleClass="scrollPaneBorder" BorderPane.alignment="CENTER">
          <content>
@@ -64,15 +65,6 @@
                         <ChoiceBox fx:id="alimentazioneList" prefHeight="30.0" prefWidth="150.0" />
                      </children>
                   </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="335.0" spacing="10.0">
-                     <children>
-                        <TextField fx:id="minPrice" promptText="prezzo min" />
-                        <TextField fx:id="maxPrice" promptText="prezzo max" />
-                     </children>
-                     <padding>
-                        <Insets left="40.0" right="40.0" />
-                     </padding>
-                  </HBox>
                   <VBox prefHeight="51.0" prefWidth="280.0">
                      <children>
                         <Label styleClass="section-content" text="Ordina per prezzo:" />
@@ -81,17 +73,26 @@
                               <Insets left="20.0" right="20.0" />
                            </padding>
                            <children>
-                              <ToggleButton fx:id="orderCrescente" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Crescente">
+                              <ToggleButton styleClass="toggle-button" fx:id="orderCrescente" mnemonicParsing="false" prefHeight="30.0" prefWidth="120.0" text="Crescente">
                                  <font>
                                     <Font size="20.0" />
                                  </font>
                                  <HBox.margin>
                                     <Insets top="5.0" />
                                  </HBox.margin></ToggleButton>
-                              <ToggleButton fx:id="orderDecrescente" mnemonicParsing="false" prefHeight="39.0" prefWidth="120.0" text="Decrescente" />
+                              <ToggleButton styleClass="toggle-button" fx:id="orderDecrescente" mnemonicParsing="false" prefHeight="39.0" prefWidth="120.0" text="Decrescente" />
                            </children>
                         </HBox>
                      </children>
+                     <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="335.0" spacing="10.0">
+                        <children>
+                           <TextField styleClass="text-field" fx:id="minPrice" promptText="prezzo min" />
+                           <TextField styleClass="text-field" fx:id="maxPrice" promptText="prezzo max" />
+                        </children>
+                        <padding>
+                           <Insets left="40.0" right="40.0" />
+                        </padding>
+                     </HBox>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="85.0" prefWidth="280.0">
                      <children>
