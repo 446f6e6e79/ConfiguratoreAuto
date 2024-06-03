@@ -8,6 +8,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
+import javafx.stage.StageStyle;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Mesi;
 import java.net.URL;
@@ -186,6 +187,7 @@ public class AddAutoController implements Initializable {
     private void eliminaAuto(){
         // Create a confirmation dialog
         Alert confirmation = new Alert(Alert.AlertType.WARNING);
+        confirmation.initStyle(StageStyle.UTILITY);
         confirmation.setTitle("Elimina");
         confirmation.setHeaderText("Sei sicuro di voler eliminare quest'auto?");
 
@@ -264,6 +266,7 @@ public class AddAutoController implements Initializable {
     @FXML
     public void goBack(){
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.initStyle(StageStyle.UTILITY);
         confirmation.setTitle("Logout");
         confirmation.setHeaderText("Sei sicuro di voler abbandonare? Perderai tutte le modifiche");
         confirmation.getButtonTypes().clear();

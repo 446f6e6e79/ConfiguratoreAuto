@@ -6,9 +6,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -40,6 +40,7 @@ public class PageLoader {
 
     public static void showErrorPopup(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.initStyle(StageStyle.UTILITY);
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
