@@ -48,6 +48,9 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
      * @return  ritorna il toString del prezzo passato come parametro, formattato secondo lo standard
      */
     public static String getPriceAsString(double price){
+        if(price<0){
+            throw new IllegalArgumentException("Prezzo incorretto inserito");
+        }
         NumberFormat euroFormat = NumberFormat.getCurrencyInstance(Locale.ITALY);
         return euroFormat.format(price);
     }
@@ -60,6 +63,9 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
      * @param usata Auto usata, da aggiungere al preventivo
      */
     public void setUsata(AutoUsata usata){
+        if(usata == null){
+            throw new IllegalArgumentException("Auto usata nulla inserito");
+        }
         this.usata = usata;
         if(usata == null){
             //In caso non sia presente un auto usata, il preventivo è già finalizzato e posso impostare una scadenza
@@ -105,13 +111,19 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     *       2) Preventivo con autoUsata -> scadenza impostata a 20 giorni dalla finalizzazione
     * */
     private void setScadenza(Date d) {
+        if(d == null){
+            throw new IllegalArgumentException("Scadenza nulla inserito");
+        }
         Calendar scadenza = Calendar.getInstance();
         scadenza.setTime(data);
         scadenza.add(Calendar.DAY_OF_MONTH, 20);
         this.scadenza = scadenza.getTime();
     }
 
-    public void setMotoreScelto(Motore motoreScelto) {//Provvisorio
+    public void setMotoreScelto(Motore motoreScelto) {
+        if(motoreScelto == null){
+            throw new IllegalArgumentException("Motore nullo inserito");
+        }
         this.motoreScelto = motoreScelto;
     }
 
@@ -134,6 +146,9 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
      * @return  Data, nel formato dd-MM-yyyy
      */
     private String getDataAsString(Date d){
+        if(d == null){
+            throw new IllegalArgumentException("Data nulla inserita");
+        }
         return new SimpleDateFormat("dd-MM-yyyy").format(d);
     }
 
@@ -175,6 +190,9 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     *       - scadenza impostata a 20 giorna dalla data attuale
     * */
     public void setValutazione(double valutazione) {
+        if(valutazione<0){
+            throw new IllegalArgumentException("Valutazione incorretta");
+        }
         if(usata == null){
             throw new RuntimeException();
         }
@@ -197,6 +215,9 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     }
 
     public void setStato(StatoPreventivo stato) {
+        if(stato == null){
+            throw new IllegalArgumentException("Stato nullo inserito");
+        }
         this.stato = stato;
     }
 
