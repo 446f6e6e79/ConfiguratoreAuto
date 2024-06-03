@@ -36,13 +36,18 @@ public class Motore implements Serializable {
         this.potenzaKW = potenzaKW;
 
         //Se è stato inserito un motore ad alimentazione ELETTRICA, verifico che la sua cilindrata sia nulla
-        if(this.alimentazione == Alimentazione.ELETTRICA && cilindrata != 0){
-            throw new IllegalArgumentException("Non è possibile impostare una cilindrata per l'auto elettrica");
+        if (alimentazione == Alimentazione.ELETTRICA){
+            if (cilindrata != 0) {
+                throw new IllegalArgumentException("Non è possibile impostare una cilindrata per l'auto elettrica");
+            }
         }
-        if(cilindrata <= 0){
-            throw new IllegalArgumentException("Cilindrata non valida");
+        else{
+            if (cilindrata <= 0){
+                throw new IllegalArgumentException("Cilindrata non valida");
+            }
         }
         this.cilindrata = cilindrata;
+
 
         if(consumi <= 0){
             throw new IllegalArgumentException("Consumi non validi");

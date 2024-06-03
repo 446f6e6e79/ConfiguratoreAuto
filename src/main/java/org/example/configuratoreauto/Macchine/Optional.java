@@ -49,6 +49,18 @@ public class Optional implements Serializable{
         return descrizione;
     }
 
+    /**
+     * Consideriamo uguali due oggetti optional che condividono:
+     *  1)stessa categoria
+     *  2)stessa descrizione
+     */
+    @Override
+    public boolean equals(Object o){
+        return o instanceof Optional other &&
+                this.categoria == other.categoria &&
+                this.descrizione.equals(other.descrizione);
+    }
+
     public String toString(){
         return descrizione +": "+ Preventivo.getPriceAsString(costo);
     }
