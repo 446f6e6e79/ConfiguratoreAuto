@@ -225,7 +225,7 @@ public class CustomizeAutoController implements Initializable {
             valido.setText("");
             //Creo una copia per scollegare il preventivo dall'auto
             AutoNuova copia = new AutoNuova(auto);
-            registro.currentPreventivo = new Preventivo(copia, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), chosen);
+            registro.setCurrentPreventivo(new Preventivo(copia, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), chosen));
             openUsataView();
             System.out.println("FINIO");
             catalogo.setSelectedAuto(null);

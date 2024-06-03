@@ -23,6 +23,11 @@ public class Sede implements Serializable {
         return nome;
     }
 
+    /**
+     * La sede si definisce uguale se ha lo stesso nome ed indirizzo
+     * @param o oggetto sede che si vuole confrontare
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         return o instanceof Sede s &&
@@ -30,6 +35,10 @@ public class Sede implements Serializable {
                 this.nome.equals(s.nome);
     }
 
+    /**
+     * La sede è resa univoca dal suo nome ed indirizzo
+     * @return
+     */
     @Override
     public int hashCode() {
         return Objects.hash(nome, indirizzo);

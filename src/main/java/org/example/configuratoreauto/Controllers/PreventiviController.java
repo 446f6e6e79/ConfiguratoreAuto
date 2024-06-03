@@ -80,7 +80,6 @@ public class PreventiviController {
         sedeLabel.setVisible(true);
         clienteLabel.setVisible(true);
         titleMain.setText("Gestione Preventivi");
-
         initializaImpiegatoChoiceBox();
         loadPrevs(registro.getPreventiviByStato(StatoPreventivo.FINALIZZATO));
     }
@@ -134,12 +133,17 @@ public class PreventiviController {
         clienteField.textProperty().addListener((observable, oldValue, newValue) -> filterPreventivi());
     }
 
+    /**
+     * Metodo che si occupa di caricare la lista dei preventivi caricandone la singola componente FXML
+     *
+     * @param registroArg lista di preventivi di riferimento
+     */
     public void loadPrevs(ArrayList<Preventivo> registroArg) {
         // Resetto la lista presente in precedenza
         mainView.getChildren().clear();
-        if(registro.currentPreventivo!=null){
-            choiceStato.setValue(registro.currentPreventivo.getStato());
-            registro.currentPreventivo=null;
+        if(registro.getCurrentPreventivo()!=null){
+            choiceStato.setValue(registro.getCurrentPreventivo().getStato());
+            registro.setCurrentPreventivo(null);
         }
         if (utente.getCurrentUser() != null) {
             getPreventivi(registroArg);
@@ -192,19 +196,46 @@ public class PreventiviController {
     }
 
     private void filterPreventivi() {
+        List<Preventivo> filteredList = registro.getAllData();
+        List<Preventivo> tempFilteredList;
+
         StatoPreventivo selectedStato = choiceStato.getValue();
         Marca selectedMarca = choiceMarca.getValue();
         Sede selectedSede = choiceSede.getValue();
         String clienteQuery = clienteField.getText().toLowerCase();
 
-        List<Preventivo> filteredList = registro.getAllData().stream()
-                .filter(preventivo -> (selectedStato == null || preventivo.getStato() == selectedStato) &&
-                        (selectedMarca == null || preventivo.getAcquisto().getMarca() == selectedMarca) &&
-                        (selectedSede == null || preventivo.getSede().equals(selectedSede)) &&
-                        (clienteQuery.isEmpty() || (preventivo.getCliente().getName().toLowerCase().contains(clienteQuery) ||
-                                preventivo.getCliente().getSurname().toLowerCase().contains(clienteQuery))))
-                .collect(Collectors.toList());
+        if (selectedStato != null) {
+            filteredList = registro.getPreventiviByStato(selectedStato);
+        }
+        if (selectedMarca != null) {
+            tempFilteredList = registro.getPreventiviByBrand(selectedMarca);
+            filteredList = unisciList(filteredList, tempFilteredList);
+        }
+        if (selectedSede != null) {
+            tempFilteredList = registro.getPreventiviBySede(selectedSede);
+            filteredList = unisciList(filteredList, tempFilteredList);
+        }
+        if (!clienteQuery.isEmpty()) {
+            filteredList = filteredList.stream()
+                    .filter(preventivo -> {
+                        String fullName = preventivo.getCliente().getName().toLowerCase() + " " + preventivo.getCliente().getSurname().toLowerCase();
+                        return fullName.contains(clienteQuery);
+                    })
+                    .collect(Collectors.toList());
+        }
 
         loadPrevs(new ArrayList<>(filteredList));
     }
+
+    private List<Preventivo> unisciList(List<Preventivo> list1, List<Preventivo> list2) {
+        List<Preventivo> intersection = new ArrayList<>();
+        for (Preventivo p : list1) {
+            if (list2.contains(p)) {
+                intersection.add(p);
+            }
+        }
+        return intersection;
+    }
+
+
 }

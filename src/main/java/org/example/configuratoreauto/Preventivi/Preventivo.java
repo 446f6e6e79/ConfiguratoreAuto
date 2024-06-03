@@ -200,7 +200,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         this.stato = stato;
     }
 
-    /*
+    /**
      *   Aggiorna automaticamente lo stato del preventivo:
      *      -Se sono passati 20 giorni, e non è stato pagato il preventivo, viene assegnato lo stato SCADUTO
      *   Tale funzione sarà chiamata ogni qualvolta viene caricato il RegistroModel, tenendo aggiornati i dati
@@ -209,9 +209,6 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         if(stato == StatoPreventivo.FINALIZZATO && isScaduto()){
             setStato(StatoPreventivo.SCADUTO);
         }
-//        if(stato == StatoPreventivo.PAGATO && isDisponibileAlRitiro()){
-//            setStato(StatoPreventivo.DISPONIBILE_AL_RITIRO);
-//        }
     }
 
     /**
@@ -235,6 +232,17 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
                 "Data consegna: " +getDataConsegnaAsString() +"\n"+
                 "STATO:" +getStato();
     }
+
+    /**
+     * Un preventivo è definito uguale ad un altro preventivo solo nel caso in cui:
+     *      -L'auto che si vuole acquistare è uguale
+     *      -L'auto usata che si vuole valutare è uguale
+     *      -Il cliente che lo richiede è lo stesso
+     *      -Gli optional scelti sono gli stessi
+     *      -La sede di ritiro definita nel preventivo è la stessa
+     * @param o oggetto con cui effettuare il confronto
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

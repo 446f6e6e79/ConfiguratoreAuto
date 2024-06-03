@@ -6,9 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoNuova.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoNuova.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/CatalogoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/CatalogoModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Macchine/CatalogoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Macchine/CatalogoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/AddAutoUsataController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/AddAutoUsataController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/CustomizeAutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/CustomizeAutoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/PreventiviController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/PreventiviController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/RegistroModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/RegistroModel.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Sede.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Sede.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/StatoPreventivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/StatoPreventivo.java" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -151,7 +155,7 @@
       <recent name="org.example.configuratoreauto.Macchine" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.CatalogoTest">
+  <component name="RunManager" selected="Application.Default">
     <configuration name="Default" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.example.configuratoreauto.Main" />
       <module name="ConfiguratoreAuto" />
@@ -221,7 +225,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-19.0.2-azul-19.0.2-4caba194b151-3b9f6195" />
+        <option value="jdk-19.0.2-azul-19.0.2-4caba194b151-27577346" />
       </set>
     </attachedChunks>
   </component>
@@ -356,6 +360,7 @@
       <workItem from="1717270659625" duration="5745000" />
       <workItem from="1717327078042" duration="3009000" />
       <workItem from="1717394720247" duration="1424000" />
+      <workItem from="1717416320881" duration="1640000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />

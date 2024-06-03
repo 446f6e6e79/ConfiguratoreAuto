@@ -144,9 +144,7 @@ public class AddAutoUsataController {
             autoUsata.addToLocalImages();
 
             saveLabel.setText("Auto usata salvata con successo!");
-            registro.currentPreventivo.setUsata(autoUsata);
-            registro.addData(registro.currentPreventivo);
-            ((Stage) saveLabel.getScene().getWindow()).close();
+            saveCurrentPreventivo();
         }
         else{
             // Se il form non è valido, visualizza un messaggio di errore e evidenzia i campi non validi
@@ -200,8 +198,15 @@ public class AddAutoUsataController {
      */
     @FXML
     private void saltaButton() {
-        registro.currentPreventivo.setUsata(null);
-        registro.addData(registro.currentPreventivo);
+        saveCurrentPreventivo();
+    }
+
+    /**
+     * Metodo che si occupa di salvare nel registro il preventivo attuale con apportate modifiche
+     */
+    private void saveCurrentPreventivo(){
+        registro.getCurrentPreventivo().setUsata(null);
+        registro.addData(registro.getCurrentPreventivo());
         ((Stage) saveLabel.getScene().getWindow()).close();
     }
 }

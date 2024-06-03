@@ -9,8 +9,7 @@ public class Persona implements Serializable{
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private static final String EMAIL_PATTERN =
-            "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
+    private static final String EMAIL_PATTERN = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$";
     /** Email della persona, utilizzata come credenziale per il login */
     private String email;
     /** Password, utilizzata per l'accesso */
