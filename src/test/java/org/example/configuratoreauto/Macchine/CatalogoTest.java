@@ -84,13 +84,27 @@ class CatalogoTest{
     @Test
     @DisplayName("Set Motori")
     void setMotoriDisponibili(){
-        assertDoesNotThrow(() -> test.setDescrizione("Descrizione test"));
-        assertThrowsExactly(IllegalArgumentException.class, () -> test.setDescrizione(""));
-        assertThrowsExactly(IllegalArgumentException.class, () -> test.setDescrizione(null));
-        assertEquals(test.getDescrizione(), "Descrizione test");
+        assertThrowsExactly(IllegalArgumentException.class, () -> test.addMotore(new Motore("", Alimentazione.ELETTRICA, 10, 10, 10)));
+        assertThrowsExactly(IllegalArgumentException.class, () -> test.addMotore(new Motore("TEST", Alimentazione.ELETTRICA, 10, 10, 10)));
+        assertThrowsExactly(IllegalArgumentException.class, () -> test.addMotore(new Motore("TEST", Alimentazione.ELETTRICA, -10, 0, 10)));
+        assertThrowsExactly(IllegalArgumentException.class, () -> test.addMotore(new Motore("TEST", Alimentazione.ELETTRICA, 10, 0, -10)));
+        assertThrowsExactly(IllegalArgumentException.class, () -> test.addMotore(new Motore("TEST", Alimentazione.BENZINA, 10, -20, -10)));
+        assertDoesNotThrow(() -> test.addMotore(new Motore("TEST", Alimentazione.ELETTRICA, 10, 0, 10)));
     }
 
+    @Test
+    @DisplayName("set Optional")
+    void setOptionalDisponibili(){
+        int prezzoTest = 1000;
+        assertDoesNotThrow(() -> test.addOptional( new Optional(TipoOptional.Vetri, "Vetri oscurati", prezzoTest)));
+        assertEquals(prezzoTest, test.getOptionalDisponibili().get(0).getCosto());
+        assertDoesNotThrow(() -> test.addOptional( new Optional(TipoOptional.Vetri, "Vetri oscurati", 2000)));
 
-
+        //Controllo che il secondo addOptional abbia sovrascritto il primo optional
+        assertEquals(1, test.getOptionalDisponibili().size());
+        assertNotEquals(prezzoTest, test.getOptionalDisponibili().get(0).getCosto());
+        assertThrowsExactly(IllegalArgumentException.class, () -> new Optional(TipoOptional.Vetri, "", 10));
+        assertThrowsExactly(IllegalArgumentException.class, () -> new Optional(TipoOptional.Vetri, "TEST", -1000));
+    }
 
 }

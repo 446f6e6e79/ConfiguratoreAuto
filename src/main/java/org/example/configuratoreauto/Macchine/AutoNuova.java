@@ -140,8 +140,12 @@ public class AutoNuova extends Auto implements Serializable {
      * Aggiunge un motore a quelli disponibili.
      * Se tale motore era già presente, lo sostituisce con quello nuovo
      * @param motore motore da aggiungere alla lista
+     * @throws IllegalArgumentException se è aggiunto un dato non valido
      */
     public void addMotore(Motore motore){
+        if(motore == null){
+            throw new IllegalArgumentException("Motore aggiunto non valido");
+        }
         motoriDisponibili.add(motore);
     }
 
