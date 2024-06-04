@@ -6,67 +6,11 @@
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/CustomizeAutoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/CustomizeAutoController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoUsata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoUsata.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/registro.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/registro.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/-1681298592/Nero/purosangue1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/-1681298592/Nero/purosangue2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/-1681298592/Nero/purosangue3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/-1681298592/Nero/purosangue4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/-67888902/VErde/purosangue_rosso2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/10/Blu/alpine.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/10/Nero/front-car.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/20/Blu/alpine.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/20/Nero/back-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/36663244/Bianco/purosangue1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/36663244/Bianco/purosangue2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/36663244/Bianco/purosangue3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/36663244/Bianco/purosangue4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/662210581/Test/purosangue1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/85/Grigio/purosangue1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/85/Grigio/purosangue2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/85/Grigio/purosangue3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/85/Grigio/purosangue4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/85/Rosso/purosangue_rosso.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/85/Rosso/purosangue_rosso2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/test.jpeg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX287PN/alpine.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX287PN/back-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX287PN/image.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/TT000NM/CARTELLA_TEST.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX287PN/red_bull.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX680ER/alpine.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX680ER/image.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX680ER/left-car.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/AX680ER/red_bull.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/FF287PN/back-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/FF287PN/image.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/FF287PN/purosangue1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/FF287PN/purosangue2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/FF287PN/purosangue3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/FF287PN/purosangue4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/FF287PN/red_bull.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/LL298PN/alpine.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/LL298PN/back-icon.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/LL298PN/image.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/RR892OK/Screenshot_20240403_223623.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/RR892OK/alpine.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/RR892OK/image.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/RR892OK/red_bull.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/TT000NM/Screenshot_20240403_223623.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/TT000NM/image.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/TT000NM/red_bull.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/usedCarImages/TT000NM/right-car.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Preventivi/PreventiviTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Preventivi/PreventiviTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/doc/toDo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/doc/toDo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/BaseHomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/BaseHomeController.java" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
-    <list id="8a41f733-5ca9-48cd-9745-66ebc7f3f2b0" name="Changes by donny" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoNuova.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoNuova.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoUsata.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoUsata.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/MainTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/MainTests.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Preventivi/PreventiviTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Preventivi/PreventiviTest.java" afterDir="false" />
-    </list>
+    <list id="8a41f733-5ca9-48cd-9745-66ebc7f3f2b0" name="Changes by donny" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -105,31 +49,6 @@
         <option name="url" value="https://github.com/446f6e6e79/ConfiguratoreAuto.git" />
       </UrlAndAccount>
     </option>
-  </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/AutoUsata.java">
-      <ranges>
-        <range start1="5" end1="5" start2="5" end2="6" changelist="8a41f733-5ca9-48cd-9745-66ebc7f3f2b0" />
-        <range start1="64" end1="65" start2="65" end2="66" changelist="64212ea7-4dba-458d-912e-a2c9965aa8b9" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Preventivi/PreventiviTest.java">
-      <ranges>
-        <range start1="35" end1="42" start2="35" end2="35" changelist="8a41f733-5ca9-48cd-9745-66ebc7f3f2b0" />
-        <range start1="50" end1="51" start2="43" end2="44" changelist="8a41f733-5ca9-48cd-9745-66ebc7f3f2b0" />
-        <range start1="55" end1="55" start2="48" end2="56" changelist="8a41f733-5ca9-48cd-9745-66ebc7f3f2b0" />
-        <range start1="56" end1="63" start2="57" end2="57" changelist="8a41f733-5ca9-48cd-9745-66ebc7f3f2b0" />
-        <range start1="68" end1="69" start2="62" end2="64" changelist="8a41f733-5ca9-48cd-9745-66ebc7f3f2b0" />
-        <range start1="70" end1="70" start2="65" end2="66" changelist="8a41f733-5ca9-48cd-9745-66ebc7f3f2b0" />
-        <range start1="73" end1="74" start2="69" end2="71" changelist="8a41f733-5ca9-48cd-9745-66ebc7f3f2b0" />
-        <range start1="120" end1="121" start2="117" end2="117" changelist="8a41f733-5ca9-48cd-9745-66ebc7f3f2b0" />
-        <range start1="122" end1="122" start2="118" end2="120" changelist="8a41f733-5ca9-48cd-9745-66ebc7f3f2b0" />
-        <range start1="124" end1="126" start2="122" end2="122" changelist="8a41f733-5ca9-48cd-9745-66ebc7f3f2b0" />
-        <range start1="129" end1="136" start2="125" end2="129" changelist="64212ea7-4dba-458d-912e-a2c9965aa8b9" />
-        <range start1="137" end1="137" start2="130" end2="132" changelist="64212ea7-4dba-458d-912e-a2c9965aa8b9" />
-        <range start1="138" end1="141" start2="133" end2="135" changelist="64212ea7-4dba-458d-912e-a2c9965aa8b9" />
-      </ranges>
-    </file>
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -232,23 +151,10 @@
       <recent name="org.example.configuratoreauto.Macchine" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.PreventiviTest">
+  <component name="RunManager" selected="Application.Default">
     <configuration name="Default" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.example.configuratoreauto.Main" />
       <module name="ConfiguratoreAuto" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="MainTests" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="org.example.configuratoreauto.MainTests" />
-      <module name="ConfiguratoreAuto" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="org.example.configuratoreauto.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -288,21 +194,15 @@
     </configuration>
     <list>
       <item itemvalue="Application.Default" />
-      <item itemvalue="Application.MainTests" />
       <item itemvalue="JUnit.CatalogoTest" />
       <item itemvalue="JUnit.TestUsers" />
       <item itemvalue="JUnit.PreventiviTest" />
     </list>
-    <recent_temporary>
-      <list>
-        <item itemvalue="Application.MainTests" />
-      </list>
-    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-19.0.2-azul-19.0.2-4caba194b151-27577346" />
+        <option value="jdk-19.0.2-azul-19.0.2-4caba194b151-3b9f6195" />
       </set>
     </attachedChunks>
   </component>
@@ -441,6 +341,7 @@
       <workItem from="1717420964208" duration="1513000" />
       <workItem from="1717439932785" duration="2473000" />
       <workItem from="1717489293777" duration="2437000" />
+      <workItem from="1717502925780" duration="124000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />
@@ -568,7 +469,7 @@
         </breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/LoginController.java</url>
-          <line>32</line>
+          <line>35</line>
           <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>

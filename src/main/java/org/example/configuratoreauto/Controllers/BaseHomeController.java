@@ -6,6 +6,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.example.configuratoreauto.Utenti.UserModel;
 
 public abstract class BaseHomeController {
@@ -38,6 +39,7 @@ public abstract class BaseHomeController {
             return;
         }
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
+        confirmation.initStyle(StageStyle.UTILITY);
         confirmation.setTitle("Logout");
         confirmation.setHeaderText("Sei sicuro di volerti disconnettere?");
         confirmation.getButtonTypes().clear();
