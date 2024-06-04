@@ -11,12 +11,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PreventiviTest{
 
-    Preventivo test, example;
+    Preventivo test;
     CatalogoModel c = CatalogoModel.getInstance();
     AutoNuova auto = new AutoNuova(c.getUniqueId());
     Sede sede = SediModel.getInstance().getAllData().get(0);
     Motore motore = new Motore("Test", Alimentazione.ELETTRICA,10,0,10);
     Cliente cliente = new Cliente("tester@gmail.com","1234","Test","Test");
+    AutoUsata usata = new AutoUsata(Marca.Ferrari, "test", "TT268PN",0);
 
     @Test
     @DisplayName("Aggiornamento stato automatico")
@@ -28,11 +29,23 @@ class PreventiviTest{
         assertDoesNotThrow(() -> test.setUsata(null));
         assertDoesNotThrow(() ->  test.updateStatoAutomatico());
         assertEquals(test.getStato(), StatoPreventivo.SCADUTO);
+        //Verifico se setValutazione aggiorni correttamente i dati
+        assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, new Date(), motore, null));
+        assertDoesNotThrow(()->test.setUsata(usata));
+        assertEquals(test.getStato(), StatoPreventivo.RICHIESTO);
+        assertDoesNotThrow(() -> test.setValutazione(1000));
+        assertEquals(test.getStato(), StatoPreventivo.FINALIZZATO);
+        assertDoesNotThrow(() -> test.setStato(StatoPreventivo.PAGATO));
+        assertEquals(test.getStato(), StatoPreventivo.PAGATO);
+        //Gestione errori
+        assertThrowsExactly(IllegalArgumentException.class, ()->test.setStato(null));
+        assertThrowsExactly(IllegalArgumentException.class, ()->test.setValutazione(-30));
     }
 
     @Test
     @DisplayName("Creazione preventivi")
     void createPreventivo(){
+
         assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, motore, null));
 
         /* To Do:
@@ -70,6 +83,5 @@ class PreventiviTest{
         assertThrowsExactly(IllegalArgumentException.class, ()-> test.getDataScadenzaAsString());
         assertThrowsExactly(IllegalArgumentException.class, ()-> test.getDataConsegnaAsString());
         assertThrowsExactly(IllegalArgumentException.class, () -> test.setUsata(usata));
-
     }
 }
