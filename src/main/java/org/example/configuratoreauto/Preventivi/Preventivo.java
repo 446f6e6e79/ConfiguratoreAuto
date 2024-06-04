@@ -189,13 +189,15 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     *   Set della valutazione dell'usato. Una volta valutata verrano svolte automaticamente le seguenti operazioni:
     *       - stato impostato a FINALIZZATO
     *       - scadenza impostata a 20 giorna dalla data attuale
+     * @throws IllegalArgumentException se la valutazione è < 0
+     * @throws RuntimeException se valutiamo un preventivo, senza usato
     * */
     public void setValutazione(double valutazione) {
         if(valutazione<0){
             throw new IllegalArgumentException("Valutazione incorretta");
         }
         if(usata == null){
-            throw new RuntimeException();
+            throw new RuntimeException("Non si può effettuare una valutazione su tale preventivo");
         }
         this.valutazione = valutazione;
         setStato(StatoPreventivo.FINALIZZATO);
@@ -215,6 +217,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         return data;
     }
 
+    //TODO: Verifica che gli stati sian validi
     public void setStato(StatoPreventivo stato) {
         if(stato == null){
             throw new IllegalArgumentException("Stato nullo inserito");

@@ -1,6 +1,7 @@
 Back-end:
 1) Revisione codice e implementazione testing
 2)Rimozione costruttori inutilizzati
+3) Verifica di setStato in Preventivo
 Front - end:
 
 BUGS:

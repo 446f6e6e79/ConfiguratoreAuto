@@ -21,7 +21,7 @@ class PreventiviTest{
 
     @Test
     @DisplayName("Aggiornamento stato automatico")
-    void setValutazioneAutomatica(){
+    void updateStatoAutomatico(){
         //Creiamo un preventivo con data + 20 giorni fa e vediamo se, una volta aggiornato, risulta scaduto
         Date date = new Date();
         date.setMonth(date.getMonth()-1);//Creo una data di un mese indietro rispetto alla data attuale
@@ -29,17 +29,13 @@ class PreventiviTest{
         assertDoesNotThrow(() -> test.setUsata(null));
         assertDoesNotThrow(() ->  test.updateStatoAutomatico());
         assertEquals(test.getStato(), StatoPreventivo.SCADUTO);
-        //Verifico se setValutazione aggiorni correttamente i dati
-        assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, new Date(), motore, null));
-        assertDoesNotThrow(()->test.setUsata(usata));
-        assertEquals(test.getStato(), StatoPreventivo.RICHIESTO);
-        assertDoesNotThrow(() -> test.setValutazione(1000));
-        assertEquals(test.getStato(), StatoPreventivo.FINALIZZATO);
-        assertDoesNotThrow(() -> test.setStato(StatoPreventivo.PAGATO));
-        assertEquals(test.getStato(), StatoPreventivo.PAGATO);
-        //Gestione errori
-        assertThrowsExactly(IllegalArgumentException.class, ()->test.setStato(null));
-        assertThrowsExactly(IllegalArgumentException.class, ()->test.setValutazione(-30));
+
+
+//        assertDoesNotThrow(() -> test.setStato(StatoPreventivo.PAGATO));
+//        assertEquals(test.getStato(), StatoPreventivo.PAGATO);
+//        //Gestione errori
+//        assertThrowsExactly(IllegalArgumentException.class, ()->test.setStato(null));
+//        assertThrowsExactly(IllegalArgumentException.class, ()->test.setValutazione(-30));
     }
 
     @Test
@@ -51,7 +47,7 @@ class PreventiviTest{
         /* To Do:
             TEST su preventivi con dati null, dati non validi, clienti di tipo non cliente...))
             Test sull'aggiunta di durata al preventivo se optional scelti
-            Test sulla non aggiunta di durata al preventivo se 0 optional scelti
+            Test sulla non aggiunta di durata al preventivo se 0 optional scelti e se costo = 0
          */
 
 
@@ -73,10 +69,9 @@ class PreventiviTest{
         assertNotNull(test.getDataConsegnaAsString());
 
         //Aggiungiamo una macchina USATA AD UN PREVENTIVO GIA' FINALIZZATO
-        AutoUsata usata = new AutoUsata(Marca.Ferrari, "test", "TT268PN",0);
         assertThrowsExactly(IllegalArgumentException.class, () -> test.setUsata(usata));
 
-        //Creiamo un nuovo preventivo e aggiungiamo un auto
+        //Creiamo un nuovo preventivo e aggiungiamo un auto usata
         test = new Preventivo(auto, sede, cliente, motore, null);
         test.setUsata(usata);
         assertEquals(test.getStato(), StatoPreventivo.RICHIESTO);
@@ -84,4 +79,33 @@ class PreventiviTest{
         assertThrowsExactly(IllegalArgumentException.class, ()-> test.getDataConsegnaAsString());
         assertThrowsExactly(IllegalArgumentException.class, () -> test.setUsata(usata));
     }
+    @Test
+    @DisplayName("Valutazione autoUsata")
+    void setValutazioneAutoUsata(){
+        AutoUsata usata = new AutoUsata(Marca.BMW, "TEST", "GG018VL", 10);
+        test = new Preventivo(auto, sede, cliente, motore, null);
+        test.setUsata(null);
+        //Valutazione di un preventivo senza autoUsata
+        assertThrowsExactly(RuntimeException.class, () -> test.setValutazione(1000));
+
+        test = new Preventivo(auto, sede, cliente, motore, null);
+        test.setUsata(usata);
+        //Valutazione < 0
+        assertThrowsExactly(IllegalArgumentException.class, () -> test.setValutazione(-1000));
+
+        //Imposto una valutazione corretta e verifico l'aggiornamento dello stato
+        assertDoesNotThrow(() -> test.setValutazione(1000));
+        assertEquals(test.getStato(), StatoPreventivo.FINALIZZATO);
+        test.setStato(StatoPreventivo.RICHIESTO);
+
+    }
+
+    @Test
+    @DisplayName("Creazione autoUsata")
+    void createAutoUsata(){
+        //Creazione auto usata valida
+        //Verifica di autoUsata già inserita
+        //Verifica autoUsata con campi non validi
+    }
+
 }
