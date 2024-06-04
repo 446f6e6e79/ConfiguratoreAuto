@@ -17,6 +17,9 @@ public abstract class Auto implements Serializable{
     private ArrayList<Immagine> immagini = new ArrayList<>();
 
     public Auto(Marca marca, String modello){
+        if(marca==null || modello == null){
+            throw new IllegalArgumentException();
+        }
         this.marca = marca;
         this.modello = modello;
         this.immagini = new ArrayList<>();

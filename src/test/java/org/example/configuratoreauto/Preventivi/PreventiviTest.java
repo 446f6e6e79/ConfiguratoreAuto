@@ -49,7 +49,7 @@ class PreventiviTest{
         ArrayList<Optional> optionalsZero = new ArrayList<>();
         for(int i=0; i<20; i++){
             Optional optional = new Optional(TipoOptional.Vetri, "test"+i, 0+i*10);
-            Optional optional2 = new Optional(TipoOptional.Cerchi, "test"+i, 0);
+            Optional optional2 = new Optional(TipoOptional.Colore, "test"+i, 0);
             optionalsCost.add(optional);
             optionalsZero.add(optional2);
         }
@@ -122,9 +122,19 @@ class PreventiviTest{
 
     }
 
+    AutoUsata testUsata;
+    RegistroModel r = RegistroModel.getInstance();
     @Test
     @DisplayName("Creazione autoUsata")
     void createAutoUsata(){
+        assertDoesNotThrow(() -> testUsata = new AutoUsata(Marca.Ferrari, "test", "TT268PN",0));
+        assertThrowsExactly(IllegalArgumentException.class, () -> testUsata = new AutoUsata(Marca.Ferrari, "test", "TT268PN",-4));
+        assertThrowsExactly(IllegalArgumentException.class, () -> testUsata = new AutoUsata(null, "test", "TT268PN",10));
+        assertThrowsExactly(IllegalArgumentException.class, () -> testUsata = new AutoUsata(Marca.Ferrari, null, "TT268PN",10));
+        assertThrowsExactly(IllegalArgumentException.class, () -> testUsata = new AutoUsata(Marca.Ferrari, "test", "TT268PN",-4));
+        //Targa già presente
+        assertThrowsExactly(IllegalArgumentException.class, () -> testUsata = new AutoUsata(Marca.Ferrari, "test", "TT000NM",10));
+
 
         //Creazione auto usata valida
         //Verifica di autoUsata già inserita
