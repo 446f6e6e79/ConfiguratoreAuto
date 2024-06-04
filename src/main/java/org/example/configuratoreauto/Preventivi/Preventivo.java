@@ -31,6 +31,9 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
      * in una data, passata come parametro
      */
     public Preventivo(AutoNuova acquisto, Sede sede, Cliente cliente, Date d, Motore motore, ArrayList optionalScelti){
+        if(acquisto == null || sede == null || motore == null || cliente == null){
+            throw new IllegalArgumentException("Errore nella creazione del preventivo");
+        }
         this.data = d;
         this.stato = StatoPreventivo.RICHIESTO;
         this.acquisto = acquisto;
@@ -217,11 +220,21 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         return data;
     }
 
-    //TODO: Verifica che gli stati sian validi
+    /**
+     * Verifica se lo stato corrente risulta coerente con la modifica allo stato successivo
+     * Se si effettua la modifica
+     * @param stato
+     */
     public void setStato(StatoPreventivo stato) {
         if(stato == null){
             throw new IllegalArgumentException("Stato nullo inserito");
         }
+        /*
+        if(this.stato.compareTo(stato) < 0 || (this.stato == StatoPreventivo.DISPONIBILE_AL_RITIRO && stato== StatoPreventivo.RITIRATO) || stato == StatoPreventivo.SCADUTO || stato == StatoPreventivo.FINALIZZATO){
+            this.stato = stato;
+        }else{
+            throw new RuntimeException();
+        }*/
         this.stato = stato;
     }
 

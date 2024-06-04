@@ -2,9 +2,12 @@ package org.example.configuratoreauto.Preventivi;
 
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Utenti.Cliente;
+import org.example.configuratoreauto.Utenti.Impiegato;
+import org.example.configuratoreauto.Utenti.Persona;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,6 +15,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class PreventiviTest{
 
     Preventivo test;
+    Preventivo tester2;
     CatalogoModel c = CatalogoModel.getInstance();
     AutoNuova auto = new AutoNuova(c.getUniqueId());
     Sede sede = SediModel.getInstance().getAllData().get(0);
@@ -41,16 +45,34 @@ class PreventiviTest{
     @Test
     @DisplayName("Creazione preventivi")
     void createPreventivo(){
-
+        ArrayList<Optional> optionalsCost = new ArrayList<>();
+        ArrayList<Optional> optionalsZero = new ArrayList<>();
+        for(int i=0; i<20; i++){
+            Optional optional = new Optional(TipoOptional.Vetri, "test"+i, 0+i*10);
+            Optional optional2 = new Optional(TipoOptional.Cerchi, "test"+i, 0);
+            optionalsCost.add(optional);
+            optionalsZero.add(optional2);
+        }
         assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, motore, null));
+        //Inconsistenza dei dati
+        assertThrowsExactly(IllegalArgumentException.class, () -> test = new Preventivo(null, sede, cliente, motore, null));
+        assertThrowsExactly(IllegalArgumentException.class, () -> test = new Preventivo(auto, sede,null, motore, null));
+        assertThrowsExactly(IllegalArgumentException.class, () -> test = new Preventivo(auto, null,cliente, motore, null));
+        assertThrowsExactly(IllegalArgumentException.class, () -> test = new Preventivo(auto, sede,cliente, null, null));
+        //Preventivo senza optional
+        assertDoesNotThrow(() -> tester2 = new Preventivo(auto, sede, cliente, motore, null));
+        assertDoesNotThrow(() -> tester2.setUsata(null));
 
-        /* To Do:
-            TEST su preventivi con dati null, dati non validi, clienti di tipo non cliente...))
-            Test sull'aggiunta di durata al preventivo se optional scelti
-            Test sulla non aggiunta di durata al preventivo se 0 optional scelti e se costo = 0
-         */
-
-
+        //Preventivo con optional di costo zero
+        assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, motore, optionalsZero));
+        assertDoesNotThrow(() -> test.setUsata(null));
+        //Dovrebbero avere la stessa data di consegna
+        assertEquals(test.getDataConsegnaAsString(), tester2.getDataConsegnaAsString());
+        //Preventivi con optional con un costo
+        assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, motore, optionalsCost));
+        assertDoesNotThrow(() -> test.setUsata(null));
+        //Il preventivo senza dovrebbere avere una data di consegna diversa rispetto al preventivo con optional di valore
+        assertNotEquals(test.getDataConsegnaAsString(), tester2.getDataConsegnaAsString());
     }
 
     @Test
@@ -103,6 +125,7 @@ class PreventiviTest{
     @Test
     @DisplayName("Creazione autoUsata")
     void createAutoUsata(){
+
         //Creazione auto usata valida
         //Verifica di autoUsata già inserita
         //Verifica autoUsata con campi non validi
