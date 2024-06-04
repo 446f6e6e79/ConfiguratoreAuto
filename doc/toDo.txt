@@ -1,5 +1,6 @@
 Back-end:
 1) Revisione codice e implementazione testing
+2)Rimozione costruttori inutilizzati
 Front - end:
 
 BUGS:

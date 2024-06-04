@@ -62,8 +62,14 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
      *      -data di scadenza del preventivo
      *      -data di consegna
      * @param usata Auto usata, da aggiungere al preventivo
+     * @throws IllegalArgumentException se si tenta di aggiungere un auto usata:
+     *  <p>- a un preventivo già finalizzato
+     *  <p>- a un preventivo con già un auto usata
      */
     public void setUsata(AutoUsata usata){
+        if(stato == StatoPreventivo.FINALIZZATO || this.usata != null){
+            throw new IllegalArgumentException("Auto usata già presente");
+        }
         this.usata = usata;
         if(usata == null){
             //In caso non sia presente un auto usata, il preventivo è già finalizzato e posso impostare una scadenza
@@ -133,10 +139,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         Verifica che il preventivo non sia scaduto. Un preventivo è considerato scaduto dopo 20 giorni dalla finalizzazione
     */
     private boolean isScaduto(){
-        if(new Date().after(scadenza)){
-            return true;
-        }
-        return false;
+        return new Date().after(scadenza);
     }
 
     /**
