@@ -39,6 +39,9 @@ class PreventiviTest{
         assertEquals(test.getStato(), StatoPreventivo.FINALIZZATO);
         assertDoesNotThrow(() -> test.setStato(StatoPreventivo.PAGATO));
         assertEquals(test.getStato(), StatoPreventivo.PAGATO);
+        //Gestione errori
+        assertThrowsExactly(IllegalArgumentException.class, ()->test.setStato(null));
+        assertThrowsExactly(IllegalArgumentException.class, ()->test.setValutazione(-30));
     }
 
     @Test
@@ -46,10 +49,11 @@ class PreventiviTest{
     void createPreventivo(){
         //Creiamo un preventivo senza auto usata, uno con
         Date date = new Date();
-
         assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, date, motore, null)); //Costruttore 1
         assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, motore, null)); //Costruttore 2
         assertDoesNotThrow(() -> test.setUsata(null));
+        assertThrowsExactly(IllegalArgumentException.class, ()->test.setMotoreScelto(null));
+        assertThrowsExactly(RuntimeException.class, ()->test.setValutazione(300));
         assertDoesNotThrow(() -> test.setUsata(usata));
 
     }
