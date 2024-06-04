@@ -10,6 +10,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
@@ -287,6 +288,10 @@ public class CustomizeAutoController implements Initializable {
 
     private void openRegistratiView() {
         PageLoader.openDialog("/org/example/configuratoreauto/loginPage.fxml", "Registrati/Login", main);
+        TabPane tabPane = (TabPane) modelID.getScene().lookup("#mainPage");
+        Tab logout = tabPane.getTabs().get(2);
+        logout.setText("Logout");
+        logout.setStyle("-fx-background-color: ffcccc;");
     }
 
     public void openUsataView() {
