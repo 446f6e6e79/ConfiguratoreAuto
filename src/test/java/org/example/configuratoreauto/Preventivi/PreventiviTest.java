@@ -19,6 +19,8 @@ class PreventiviTest{
     Sede sede = new Sede("Test", "Via Test");
     Motore motore = new Motore("Test", Alimentazione.ELETTRICA,10,0,10);
     Cliente cliente = new Cliente("tester@gmail.com","1234","Test","Test");
+    AutoUsata usata = new AutoUsata(Marca.Ferrari, "test", "TT268PN",0);
+
     @Test
     @DisplayName("Aggiornamento stato automatico")
     void setValutazioneAutomatica(){
@@ -29,6 +31,14 @@ class PreventiviTest{
         assertDoesNotThrow(() -> test.setUsata(null));
         assertDoesNotThrow(() ->  test.updateStatoAutomatico());
         assertEquals(test.getStato(), StatoPreventivo.SCADUTO);
+        //Verifico se setValutazione aggiorni correttamente i dati
+        assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, new Date(), motore, null));
+        assertDoesNotThrow(()->test.setUsata(usata));
+        assertEquals(test.getStato(), StatoPreventivo.RICHIESTO);
+        assertDoesNotThrow(() -> test.setValutazione(1000));
+        assertEquals(test.getStato(), StatoPreventivo.FINALIZZATO);
+        assertDoesNotThrow(() -> test.setStato(StatoPreventivo.PAGATO));
+        assertEquals(test.getStato(), StatoPreventivo.PAGATO);
     }
 
     @Test
@@ -36,7 +46,6 @@ class PreventiviTest{
     void createPreventivo(){
         //Creiamo un preventivo senza auto usata, uno con
         Date date = new Date();
-        AutoUsata usata = new AutoUsata(Marca.Ferrari, "test", "TT268PN",0);
 
         assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, date, motore, null)); //Costruttore 1
         assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, motore, null)); //Costruttore 2
