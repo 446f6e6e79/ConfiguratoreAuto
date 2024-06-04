@@ -6,7 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Macchine/CatalogoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Macchine/CatalogoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Preventivi/Preventivo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Preventivi/PreventiviTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/org/example/configuratoreauto/Preventivi/PreventiviTest.java" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
@@ -150,7 +150,7 @@
       <recent name="org.example.configuratoreauto.Macchine" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Default">
+  <component name="RunManager" selected="JUnit.PreventiviTest">
     <configuration name="Default" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" value="org.example.configuratoreauto.Main" />
       <module name="ConfiguratoreAuto" />
@@ -358,7 +358,7 @@
       <workItem from="1717416320881" duration="3929000" />
       <workItem from="1717420964208" duration="1513000" />
       <workItem from="1717439932785" duration="2473000" />
-      <workItem from="1717489293777" duration="320000" />
+      <workItem from="1717489293777" duration="2437000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />

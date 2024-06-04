@@ -26,7 +26,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     private Date scadenza;
     private double valutazione;
 
-    /*
+    /**
      * Costruttore della classe preventivo, usato solamente per testing. Permette di creare un preventivo
      * in una data, passata come parametro
      */
