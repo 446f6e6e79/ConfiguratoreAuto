@@ -13,6 +13,7 @@ import java.util.Date;
 public class MainTests {
 
     public static void main(String[] args) {
+        /*
         UserModel u1 = (UserModel) UserModel.getInstance();
         RegistroModel r = RegistroModel.getInstance();
         CatalogoModel catalogo = CatalogoModel.getInstance();
@@ -132,5 +133,6 @@ public class MainTests {
         }
 
         r.uploadData();
+        */
     }
 }

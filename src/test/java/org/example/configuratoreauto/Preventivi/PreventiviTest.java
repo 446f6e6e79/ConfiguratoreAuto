@@ -33,13 +33,6 @@ class PreventiviTest{
         assertDoesNotThrow(() -> test.setUsata(null));
         assertDoesNotThrow(() ->  test.updateStatoAutomatico());
         assertEquals(test.getStato(), StatoPreventivo.SCADUTO);
-
-
-//        assertDoesNotThrow(() -> test.setStato(StatoPreventivo.PAGATO));
-//        assertEquals(test.getStato(), StatoPreventivo.PAGATO);
-//        //Gestione errori
-//        assertThrowsExactly(IllegalArgumentException.class, ()->test.setStato(null));
-//        assertThrowsExactly(IllegalArgumentException.class, ()->test.setValutazione(-30));
     }
 
     @Test
@@ -48,30 +41,34 @@ class PreventiviTest{
         ArrayList<Optional> optionalsCost = new ArrayList<>();
         ArrayList<Optional> optionalsZero = new ArrayList<>();
         for(int i=0; i<20; i++){
-            Optional optional = new Optional(TipoOptional.Vetri, "test"+i, 0+i*10);
+            Optional optional = new Optional(TipoOptional.Vetri, "test"+i, i*10);
             Optional optional2 = new Optional(TipoOptional.Colore, "test"+i, 0);
             optionalsCost.add(optional);
             optionalsZero.add(optional2);
         }
-        assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, motore, null));
+
         //Inconsistenza dei dati
         assertThrowsExactly(IllegalArgumentException.class, () -> test = new Preventivo(null, sede, cliente, motore, null));
         assertThrowsExactly(IllegalArgumentException.class, () -> test = new Preventivo(auto, sede,null, motore, null));
         assertThrowsExactly(IllegalArgumentException.class, () -> test = new Preventivo(auto, null,cliente, motore, null));
         assertThrowsExactly(IllegalArgumentException.class, () -> test = new Preventivo(auto, sede,cliente, null, null));
-        //Preventivo senza optional
-        assertDoesNotThrow(() -> tester2 = new Preventivo(auto, sede, cliente, motore, null));
+
+        //Creo un preventivo senza optional
+        assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, motore, null));
         assertDoesNotThrow(() -> tester2.setUsata(null));
 
         //Preventivo con optional di costo zero
         assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, motore, optionalsZero));
         assertDoesNotThrow(() -> test.setUsata(null));
-        //Dovrebbero avere la stessa data di consegna
+
+        //Preventivo senza optional e con optional di costo zero devono avere stessa data di consegna
         assertEquals(test.getDataConsegnaAsString(), tester2.getDataConsegnaAsString());
+
         //Preventivi con optional con un costo
         assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, motore, optionalsCost));
         assertDoesNotThrow(() -> test.setUsata(null));
-        //Il preventivo senza dovrebbere avere una data di consegna diversa rispetto al preventivo con optional di valore
+
+        //Il preventivo senza optional deve avere una data di consegna diversa rispetto al preventivo con optional di valore
         assertNotEquals(test.getDataConsegnaAsString(), tester2.getDataConsegnaAsString());
     }
 
@@ -118,27 +115,24 @@ class PreventiviTest{
         //Imposto una valutazione corretta e verifico l'aggiornamento dello stato
         assertDoesNotThrow(() -> test.setValutazione(1000));
         assertEquals(test.getStato(), StatoPreventivo.FINALIZZATO);
-        test.setStato(StatoPreventivo.RICHIESTO);
 
+        //Provo ad assegnare lo stato richiesto ad un preventivo già finalizzato
+        assertThrowsExactly(IllegalArgumentException.class, ()-> test.setStato(StatoPreventivo.RICHIESTO));
     }
 
-    AutoUsata testUsata;
-    RegistroModel r = RegistroModel.getInstance();
     @Test
     @DisplayName("Creazione autoUsata")
     void createAutoUsata(){
-        assertDoesNotThrow(() -> testUsata = new AutoUsata(Marca.Ferrari, "test", "TT268PN",0));
-        assertThrowsExactly(IllegalArgumentException.class, () -> testUsata = new AutoUsata(Marca.Ferrari, "test", "TT268PN",-4));
-        assertThrowsExactly(IllegalArgumentException.class, () -> testUsata = new AutoUsata(null, "test", "TT268PN",10));
-        assertThrowsExactly(IllegalArgumentException.class, () -> testUsata = new AutoUsata(Marca.Ferrari, null, "TT268PN",10));
-        assertThrowsExactly(IllegalArgumentException.class, () -> testUsata = new AutoUsata(Marca.Ferrari, "test", "TT268PN",-4));
-        //Targa già presente
-        assertThrowsExactly(IllegalArgumentException.class, () -> testUsata = new AutoUsata(Marca.Ferrari, "test", "TT000NM",10));
+        assertDoesNotThrow(() -> usata = new AutoUsata(Marca.Ferrari, "test", "TT268PN",0));
+        assertThrowsExactly(IllegalArgumentException.class, () -> usata = new AutoUsata(Marca.Ferrari, "test", "TT268PN",-4));
+        assertThrowsExactly(IllegalArgumentException.class, () -> usata = new AutoUsata(null, "test", "TT268PN",10));
+        assertThrowsExactly(IllegalArgumentException.class, () -> usata = new AutoUsata(Marca.Ferrari, null, "TT268PN",10));
 
+        //Targa impossibile
+        assertThrowsExactly(IllegalArgumentException.class, () -> usata = new AutoUsata(Marca.Ferrari, "test", "ciao",10));
 
-        //Creazione auto usata valida
-        //Verifica di autoUsata già inserita
-        //Verifica autoUsata con campi non validi
+        //Targa già presente - NON ELIMINARE CARTELLA TT000NM CHE VIENE USATA COME TEST
+        assertThrowsExactly(IllegalArgumentException.class, () -> usata = new AutoUsata(Marca.Ferrari, "test", "TT000NM",10));
     }
 
 }

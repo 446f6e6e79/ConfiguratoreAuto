@@ -3,6 +3,7 @@ package org.example.configuratoreauto.Macchine;
 import java.io.File;
 import java.io.Serial;
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.regex.Pattern;
 
 public class AutoUsata extends Auto implements Serializable {
@@ -62,7 +63,7 @@ public class AutoUsata extends Auto implements Serializable {
      * @return TRUE se già presente, FALSE altrimenti
      */
     private static boolean targaAlreadyPresent(String targa) {
-        File directory = new File( "/src/main/resources/img/usedCarImages");
+        File directory = new File( "src/main/resources/img/usedCarImages");
         if (!directory.exists() || !directory.isDirectory()) {
             return false;
         }

@@ -51,7 +51,7 @@ public class AutoNuova extends Auto implements Serializable {
     }
 
 
-    //COSTRUTTORE DA DEMOLIRE NON APPENA FINITA FASE DI TESTING
+    /* COSTRUTTORE DA DEMOLIRE NON APPENA FINITA FASE DI TESTING
     public AutoNuova(int id, Marca marca, String modello, Dimensione dimensione, String descrizione, double costoBase, int[] scontoPerMese) {
         super(marca, modello);
         this.id = id;
@@ -62,6 +62,7 @@ public class AutoNuova extends Auto implements Serializable {
         this.motoriDisponibili = new ArrayList<>();
         this.optionalDisponibili = new ArrayList<>();
     }
+    */
 
     /**
      * Costruttore usato per generare un auto TEMPORANEA

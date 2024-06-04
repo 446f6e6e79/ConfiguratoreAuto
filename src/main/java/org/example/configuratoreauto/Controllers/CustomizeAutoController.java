@@ -291,7 +291,7 @@ public class CustomizeAutoController implements Initializable {
         TabPane tabPane = (TabPane) modelID.getScene().lookup("#mainPage");
         Tab logout = tabPane.getTabs().get(2);
         logout.setText("Logout");
-        logout.setStyle("-fx-background-color: ffcccc;");
+        logout.setStyle("-fx-background-color: ffcccc;");   
     }
 
     public void openUsataView() {

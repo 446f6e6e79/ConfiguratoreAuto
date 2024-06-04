@@ -71,7 +71,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
      */
     public void setUsata(AutoUsata usata){
         if(stato == StatoPreventivo.FINALIZZATO || this.usata != null){
-            throw new IllegalArgumentException("Auto usata già presente");
+            throw new IllegalArgumentException("Il preventivo ha già un auto usata");
         }
         this.usata = usata;
         if(usata == null){
@@ -223,18 +223,36 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     /**
      * Verifica se lo stato corrente risulta coerente con la modifica allo stato successivo
      * Se si effettua la modifica
-     * @param stato
+     * @param stato Nuovo stato da impostare
+     * @throws IllegalArgumentException se viene t
      */
     public void setStato(StatoPreventivo stato) {
-        if(stato == null){
+        if (stato == null) {
             throw new IllegalArgumentException("Stato nullo inserito");
         }
-        /*
-        if(this.stato.compareTo(stato) < 0 || (this.stato == StatoPreventivo.DISPONIBILE_AL_RITIRO && stato== StatoPreventivo.RITIRATO) || stato == StatoPreventivo.SCADUTO || stato == StatoPreventivo.FINALIZZATO){
-            this.stato = stato;
-        }else{
-            throw new RuntimeException();
-        }*/
+        //UN preventivo può essere segnalato SCADUTO solo se prima era FINALIZZATO
+        if(stato == StatoPreventivo.SCADUTO) {
+            if (this.stato != StatoPreventivo.FINALIZZATO){
+                throw new IllegalArgumentException("Nuovo stato non valido: SCADUTO può essere assegnato solo se lo stato precedente era FINALIZZATO");
+            }
+        }
+        //UN preventivo può essere segnalato RITIRATO solo se prima era DISPOBILE_AL_RITIRO
+        else if(stato == StatoPreventivo.RITIRATO){
+            if(this.stato != StatoPreventivo.DISPONIBILE_AL_RITIRO){
+                throw new IllegalArgumentException("Nuovo stato non valido: RITIRATO può essere assegnato solo se lo stato precedente era DISPONIBILE_AL_RITIRO");
+            }
+        }
+        else if(stato == StatoPreventivo.RICHIESTO){
+            if(this.stato != null) {
+                throw new IllegalArgumentException("Nuovo stato non valido: RICHIESTO può essere assegnato solo se lo stato precedente era null");
+            }
+        }
+        //Se non è nessuno dei casi precedenti, mi riconduco ad un caso base, verificabile attraverso il metodoOrdinal della Enumerazione
+        else{
+            if (stato.ordinal() != this.stato.ordinal() + 1) {
+                throw new IllegalArgumentException("Stato non valido: la transizione non è consentita");
+            }
+        }
         this.stato = stato;
     }
 
