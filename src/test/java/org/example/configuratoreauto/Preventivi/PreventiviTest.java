@@ -2,8 +2,6 @@ package org.example.configuratoreauto.Preventivi;
 
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Utenti.Cliente;
-import org.example.configuratoreauto.Utenti.Impiegato;
-import org.example.configuratoreauto.Utenti.Persona;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
@@ -55,11 +53,11 @@ class PreventiviTest{
 
         //Creo un preventivo senza optional
         assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, motore, null));
-        assertDoesNotThrow(() -> tester2.setUsata(null));
+        assertDoesNotThrow(() -> test.setUsata(null));
 
         //Preventivo con optional di costo zero
-        assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, motore, optionalsZero));
-        assertDoesNotThrow(() -> test.setUsata(null));
+        assertDoesNotThrow(() -> tester2 = new Preventivo(auto, sede, cliente, motore, optionalsZero));
+        assertDoesNotThrow(() -> tester2.setUsata(null));
 
         //Preventivo senza optional e con optional di costo zero devono avere stessa data di consegna
         assertEquals(test.getDataConsegnaAsString(), tester2.getDataConsegnaAsString());
@@ -133,6 +131,22 @@ class PreventiviTest{
 
         //Targa già presente - NON ELIMINARE CARTELLA TT000NM CHE VIENE USATA COME TEST
         assertThrowsExactly(IllegalArgumentException.class, () -> usata = new AutoUsata(Marca.Ferrari, "test", "TT000NM",10));
+    }
+
+    @Test
+    @DisplayName("testNewStato")
+    void testNewStato(){
+        AutoUsata usata = new AutoUsata(Marca.BMW, "TEST", "GG018VL", 10);
+        test = new Preventivo(auto, sede, cliente, motore, null);
+        assertThrowsExactly(IllegalArgumentException.class, () -> test.setStato(StatoPreventivo.SCADUTO));
+        assertThrowsExactly(IllegalArgumentException.class, () -> test.setStato(StatoPreventivo.PAGATO));
+
+        test.setUsata(usata);
+        assertThrowsExactly(IllegalArgumentException.class, () -> test.setStato(StatoPreventivo.RICHIESTO));
+        assertThrowsExactly(IllegalArgumentException.class, () -> test.setStato(StatoPreventivo.DISPONIBILE_AL_RITIRO));
+
+        test.setValutazione();
+
     }
 
 }

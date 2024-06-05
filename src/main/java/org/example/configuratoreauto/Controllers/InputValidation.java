@@ -20,6 +20,7 @@ public class InputValidation {
          */
         if (!character.matches("[0-9]")) {
             event.consume();
+            //Aggiungo un "consiglio"
         }
     }
 
