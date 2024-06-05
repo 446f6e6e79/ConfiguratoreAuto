@@ -22,9 +22,7 @@ import org.example.configuratoreauto.Macchine.TipoOptional;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 import org.example.configuratoreauto.Preventivi.StatoPreventivo;
-import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.Impiegato;
-import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
 
 public class PreventivoDetailsController {
@@ -244,7 +242,7 @@ public class PreventivoDetailsController {
                 contentStream.newLineAtOffset(0, -20);
 
                 // Engine Details
-                contentStream.showText("Motore: " + preventivo.getMotoreScelto().getNome());
+                contentStream.showText("Motore: " + preventivo.getMotoreScelto().getDescrizione());
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Alimentazione: " + preventivo.getMotoreScelto().getAlimentazione().toString());
                 contentStream.newLineAtOffset(0, -20);

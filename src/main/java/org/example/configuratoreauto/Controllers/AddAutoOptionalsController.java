@@ -195,7 +195,7 @@ public class AddAutoOptionalsController implements Initializable {
             motoreElement.setPrefWidth(container.getPrefWidth() - 10);
             motoreElement.setPrefHeight(70);
 
-            Text nomeMotore = new Text(m.getNome());
+            Text nomeMotore = new Text(m.getDescrizione());
             Text alimentazione = new Text(m.getAlimentazione().toString());
 
             ImageView binImg = new ImageView();

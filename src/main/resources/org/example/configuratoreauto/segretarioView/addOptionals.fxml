@@ -80,7 +80,7 @@
                                     </font>
                                  </Text>
                                  <ChoiceBox fx:id="alimentazioneType" prefHeight="40.0" prefWidth="300.0" />
-                                 <TextField fx:id="nomeMotore" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Nome">
+                                 <TextField fx:id="nomeMotore" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Descrizione">
                                     <font>
                                        <Font size="20.0" />
                                     </font></TextField>

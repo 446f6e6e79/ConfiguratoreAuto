@@ -3,12 +3,11 @@ package org.example.configuratoreauto;
 import java.io.*;
 import java.util.ArrayList;
 
-/*
+/**
  *   Classe GENERICA per un MODELLO. Sono implementati i metodi principali, condivisi da ogni Modello:
  *       - laodData -> lettura delle informazioni dal file di testo
  *       - uploadData -> scritture delle informazioni aggiornate nel file di testo
  *       - addData -> aggiunge un singolo oggetto T1 ai dati
- *       - printData -> stampa le informazioni contenute nel sistema
  *
  *   All'interno delle sottoclassi, sarà necessaria l'implementazione dei metodi:
  *       - getInstance -> metodo che implementa il pattern SIMPLETON, in modo da avere una singola istanza di ogni modello
@@ -21,7 +20,8 @@ public abstract class AbstractModel<T1> {
     //Metodo che ritorna la stringa contenente il percorso al file
     protected abstract String getPathToData();
 
-    /*Construttore per un modello generico:
+    /**
+        Construttore per un mODEL generico:
         - inizializza una nuova ArrayList vuota
         - carica i dati, leggendoli dal file
      */
@@ -30,12 +30,12 @@ public abstract class AbstractModel<T1> {
         loadData();
     }
 
-    /*
+    /**
      *   loadData: legge i dati dal file, aggiungendoli all'arrayList.
      *      - I dati sono salvati sfruttando la SERIALIZZAZIONE
      *      - Una volta letto l'oggetto, viene castato al Tipo variabile T1
      * */
-    private final void loadData(){
+    private void loadData(){
         try (ObjectInputStream objectInput = new ObjectInputStream(new FileInputStream(getPathToData()))){
             //Oggetto temporaneo, rappresenta il singolo oggetto, letto dal file
             Object tempObj;
@@ -52,7 +52,7 @@ public abstract class AbstractModel<T1> {
         }
     }
 
-    /*
+    /**
      *   Carica tutti i dati sul file, sfruttando la serializzazione
      * */
     protected void uploadData() {
@@ -66,7 +66,10 @@ public abstract class AbstractModel<T1> {
         }
     }
 
-    //Aggiunge alla lista l'oggetto passato come parametro, solamente nel caso in cui non era già presente
+    /**
+     *  Aggiunge alla lista l'oggetto passato come parametro, solamente nel caso
+     *  in cui non fosse già presente
+     */
     protected boolean addData(T1 newData){
         if(!data.contains(newData)){
             return data.add(newData);
@@ -74,12 +77,10 @@ public abstract class AbstractModel<T1> {
         return false;
     }
 
+    /**
+     * Restituisce tutti i dati contenuti all'interno del Modello
+     */
     public final ArrayList<T1> getAllData(){
         return data;
-    }
-    public void printData() {
-        for(T1 elem: data){
-            System.out.println(elem);
-        }
     }
 }

@@ -108,7 +108,7 @@ public class RegistroModel extends AbstractModel<Preventivo> {
      * Metodi che permette di filtrare i preventivi in base a dati specifici
      * @return
      */
-    public ArrayList<Preventivo> filterPreventiviByBrand(Marca brand, ArrayList<Preventivo> currentPreventivi){
+    public static ArrayList<Preventivo> filterPreventiviByBrand(Marca brand, ArrayList<Preventivo> currentPreventivi){
         if(brand == null){
             throw new IllegalArgumentException("Marca nulla inserito");
         }
@@ -117,7 +117,7 @@ public class RegistroModel extends AbstractModel<Preventivo> {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public ArrayList<Preventivo> filterPreventiviBySede(Sede sede, ArrayList<Preventivo> currentPreventivi){
+    public static ArrayList<Preventivo> filterPreventiviBySede(Sede sede, ArrayList<Preventivo> currentPreventivi){
         if(sede == null){
             throw new IllegalArgumentException("Sede nulla inserito");
         }
@@ -126,7 +126,7 @@ public class RegistroModel extends AbstractModel<Preventivo> {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public ArrayList<Preventivo> filterPreventiviByStato(StatoPreventivo stato, ArrayList<Preventivo> currentPreventivi){
+    public static ArrayList<Preventivo> filterPreventiviByStato(StatoPreventivo stato, ArrayList<Preventivo> currentPreventivi){
         if(stato == null){
             throw new IllegalArgumentException("Stato nullo inserito");
         }

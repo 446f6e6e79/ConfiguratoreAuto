@@ -70,6 +70,7 @@ public abstract class Auto implements Serializable{
     /**
      *  Rimuove un immagine dalla lista di immagini dell'auto.
      *  L'immagine non viene però rimossa dalla memoria.
+     *  Ciò verrà eseguito una volta riscritta la cartella immagini
      */
     public void removeImage(Immagine img){
         this.immagini.remove(img);

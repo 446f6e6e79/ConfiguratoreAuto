@@ -14,16 +14,17 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     @Serial
     private static final long serialVersionUID = 1L;
 
-    private Date data;
-    private Date consegna;
+    private final Date dataPreventivo;
+    private Date dataConsegna;
+    private Date dataScadenza;
     private StatoPreventivo stato;
     private AutoUsata usata;
     private AutoNuova acquisto;
-    private ArrayList<Optional> optionals = new ArrayList<>();
+    private ArrayList<Optional> optionalsSelezionati = new ArrayList<>();
     private Motore motoreScelto;
     private Sede sede;
     private Cliente cliente;
-    private Date scadenza;
+
     private double valutazione;
 
     /**
@@ -34,14 +35,14 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         if(acquisto == null || sede == null || motore == null || cliente == null){
             throw new IllegalArgumentException("Errore nella creazione del preventivo");
         }
-        this.data = d;
+        this.dataPreventivo = d;
         this.stato = StatoPreventivo.RICHIESTO;
         this.acquisto = acquisto;
         this.sede = sede;
         this.cliente = cliente;
         this.motoreScelto = motore;
         if(optionalScelti != null){
-            this.optionals.addAll(optionalScelti);
+            this.optionalsSelezionati.addAll(optionalScelti);
         }
     }
 
@@ -88,11 +89,11 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
      *
      */
     public double getScontoAuto() {
-        return acquisto.getSconto(data);
+        return acquisto.getSconto(dataPreventivo);
     }
 
     public String getScontoAutoFormatted(){
-        return getPriceAsString(acquisto.getCostoTotale(optionals, data) - acquisto.getPrezzoNoSconto(optionals));
+        return getPriceAsString(acquisto.getCostoTotale(optionalsSelezionati, dataPreventivo) - acquisto.getPrezzoNoSconto(optionalsSelezionati));
     }
     /**
     *  Calcola la data di consegna effettiva della macchina.
@@ -101,15 +102,15 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     * */
     private void setConsegna() {
         Calendar dataDiConsegna = Calendar.getInstance();
-        dataDiConsegna.setTime(data);
+        dataDiConsegna.setTime(dataPreventivo);
         dataDiConsegna.add(Calendar.MONTH, 1);
-        if(optionals != null){
-            long count = optionals.stream()
+        if(optionalsSelezionati != null){
+            long count = optionalsSelezionati.stream()
                     .filter(optional -> !(optional.getCosto() == 0 && optional.getCategoria() == TipoOptional.Colore))
                     .count();
             dataDiConsegna.add(Calendar.DAY_OF_MONTH, 10 * (int) count);
         }
-        this.consegna = dataDiConsegna.getTime();
+        this.dataConsegna = dataDiConsegna.getTime();
     }
 
     /**
@@ -122,9 +123,9 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
             throw new IllegalArgumentException("Scadenza nulla inserito");
         }
         Calendar scadenza = Calendar.getInstance();
-        scadenza.setTime(data);
+        scadenza.setTime(dataPreventivo);
         scadenza.add(Calendar.DAY_OF_MONTH, 20);
-        this.scadenza = scadenza.getTime();
+        this.dataScadenza = scadenza.getTime();
     }
 
     public void setMotoreScelto(Motore motoreScelto) {
@@ -142,7 +143,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         Verifica che il preventivo non sia scaduto. Un preventivo è considerato scaduto dopo 20 giorni dalla finalizzazione
     */
     private boolean isScaduto(){
-        return new Date().after(scadenza);
+        return new Date().after(dataScadenza);
     }
 
     /**
@@ -157,15 +158,15 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     }
 
     public String getDataPreventivoAsString(){
-        return getDataAsString(this.data);
+        return getDataAsString(this.dataPreventivo);
     }
 
     public String getDataConsegnaAsString(){
-        return getDataAsString(this.consegna);
+        return getDataAsString(this.dataConsegna);
     }
 
     public String getDataScadenzaAsString(){
-        return getDataAsString(this.scadenza);
+        return getDataAsString(this.dataScadenza);
     }
 
     public StatoPreventivo getStato() {
@@ -209,15 +210,15 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     }
 
     public ArrayList<Optional> getOptionalScelti() {
-        return optionals;
+        return optionalsSelezionati;
     }
 
     public Sede getSede() {
         return sede;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataPreventivo() {
+        return dataPreventivo;
     }
 
     /**
@@ -274,7 +275,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     *   - valutazione usato
     */
     public double getCostoTotale(){
-        double tot = this.acquisto.getCostoTotale(this.optionals, this.data);
+        double tot = this.acquisto.getCostoTotale(this.optionalsSelezionati, this.dataPreventivo);
         if(usata != null && stato != StatoPreventivo.RICHIESTO){
             tot -= valutazione;
         }
@@ -307,7 +308,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         return Objects.equals(acquisto, that.acquisto) &&
                 Objects.equals(usata, that.usata) &&
                 Objects.equals(cliente, that.cliente) &&
-                Objects.equals(optionals, that.optionals) &&
+                Objects.equals(optionalsSelezionati, that.optionalsSelezionati) &&
                 Objects.equals(sede, that.sede);
     }
 
@@ -324,6 +325,6 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         if(diff != 0){
             return diff;
         }
-        return this.data.compareTo(o.data);
+        return this.dataPreventivo.compareTo(o.dataPreventivo);
     }
 }

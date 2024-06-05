@@ -2,7 +2,6 @@ package org.example.configuratoreauto.Macchine;
 
 import java.io.Serial;
 import java.io.Serializable;
-import java.util.Objects;
 
 public class Motore implements Serializable {
     @Serial
@@ -12,17 +11,17 @@ public class Motore implements Serializable {
     private int potenzaKW;
     private int cilindrata;
     private double consumi;
-    private String nome;
+    private String descrizione;
 
     /**
      * Costruttore per la classe Motore.
      * @throws IllegalArgumentException se uno dei campi ha un valore non valido
      */
-    public Motore(String nome, Alimentazione alimentazione, int potenzaKW, int cilindrata, double consumi){
-        if(nome == null || nome.isEmpty()){
+    public Motore(String descrizione, Alimentazione alimentazione, int potenzaKW, int cilindrata, double consumi){
+        if(descrizione == null || descrizione.isEmpty()){
             throw new IllegalArgumentException("Nome non valido");
         }
-        this.nome = nome;
+        this.descrizione = descrizione;
 
         this.alimentazione = alimentazione;
         if(potenzaKW <= 0){
@@ -54,7 +53,7 @@ public class Motore implements Serializable {
     public int getCilindrata() {
         return cilindrata;
     }
-    public String getNome(){return nome;}
+    public String getDescrizione(){return descrizione;}
     public int getCavalli(){
         return (int)( potenzaKW * 1.36);
     };
@@ -73,7 +72,7 @@ public class Motore implements Serializable {
      */
     @Override
     public String toString() {
-        return nome + " - " + alimentazione;
+        return descrizione + " - " + alimentazione;
     }
 
     /**

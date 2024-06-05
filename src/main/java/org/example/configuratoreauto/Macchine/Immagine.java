@@ -73,7 +73,7 @@ public class Immagine implements Serializable{
     *  mantenere una directory pulita. Andando, con maggiore semplicità a gestire
     *  l'eliminazione di immagini, semplicemente sovrascrivedo la cartella target
     */
-    public void addAutoNuova(AutoNuova auto){
+    protected void addAutoNuova(AutoNuova auto){
         Path baseRoot = Paths.get("src", "main", "resources", "img", "carImages");
         Path target = tempImages.resolve(colore);
         Path source = Paths.get(this.path);
@@ -125,7 +125,7 @@ public class Immagine implements Serializable{
                    ...
                    -TARGA_N
     */
-    public void addAutoUsata(AutoUsata auto) {
+    protected void addAutoUsata(AutoUsata auto) {
         Path baseRoot = Paths.get("src", "main", "resources", "img", "usedCarImages");
         Path target = baseRoot.resolve(auto.getTarga());
         Path source = Paths.get(this.path);
