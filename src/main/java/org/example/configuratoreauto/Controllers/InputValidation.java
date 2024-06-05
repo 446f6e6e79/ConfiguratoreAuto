@@ -46,4 +46,43 @@ public class InputValidation {
             event.consume();
         }
     }
+
+    /**
+     * Verifica che il TextField, passato come parametro contenga una stringa valida.
+     * Una stringa è considerata valida se contiene:
+     *  - catatteri minuscoli o maiuscoli, dell'alfabeto
+     *  - numeri
+     * Sono di conseguenza vietati
+     * @param tf TextField che vogliamo controllare
+     * @return True se il texfield contiene una stringa valide, false altrimenti
+     */
+    public static boolean checkValidStringTextField(TextField tf) {
+        if(tf.getText().matches("[a-zA-Z0-9 ]+")){
+            return true;
+        }
+        tf.clear();
+        tf.requestFocus();
+        return false;
+    }
+
+    /**
+     * Verifica che il TextField, passato come parametro contenga double valido.
+     * Consideriamo valido un double
+     * @param tf TextField che vogliamo controllare
+     * @return True se il texfield contiene una stringa valide, false altrimenti
+     */
+    public static boolean isValidDoubleTextField(TextField tf ){
+        try {
+            double value = Double.parseDouble(tf.getText());
+            if(value < 0){
+                tf.clear();
+                tf.requestFocus();
+            }
+        } catch (NumberFormatException e) {
+            tf.clear();
+            tf.requestFocus();
+            return false;
+        }
+        return true;
+    }
 }

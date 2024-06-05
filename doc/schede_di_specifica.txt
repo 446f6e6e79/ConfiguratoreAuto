@@ -58,18 +58,10 @@ Passi:
 Postcondizioni: viene generata un preventivo in risposta al cliente
 
 -------------------------
-VISUALIZZA PREVENTIVO
-
-Attore: Segretario
-Precondizioni: devono essere presenti nel sistema dei preventivi
-Passi:
-    1.Il segretario consulta la lista dei preventivi per marca, cliente e per negozio di consegna richiesto
-
--------------------------
 INSERISCI MODELLO
 
 Attore: Segretario
-Precondizioni: devono essere presenti le vetture
+Precondizioni: il segretario ha fatto accesso al sistema
 Passi:
-    1.Il segretario deve inserire le informazioni sui modelli e optional di ogni marca all'interno del catalogo
+    1.Il segretario inserire le prime informazioni sul modello
 Postcondizioni: Vengono inseriti i modelli di auto nel sistema con le rispettive informazioni sui modelli e optional

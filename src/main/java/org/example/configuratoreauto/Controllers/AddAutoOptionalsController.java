@@ -21,6 +21,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import static org.example.configuratoreauto.Controllers.InputValidation.checkValidDouble;
+
 
 public class AddAutoOptionalsController implements Initializable {
     CatalogoModel catalogo = CatalogoModel.getInstance();
@@ -241,22 +243,4 @@ public class AddAutoOptionalsController implements Initializable {
         TabPane tabPane = (TabPane) consumi.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
         PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/catalogoView.fxml");
     }
-    private void checkValidDouble(KeyEvent event, TextField tf){
-        //Leggo il carattere che ha generato l'evento
-        String character = event.getCharacter();
-
-        /*
-            Blocco l'input di un qualsiasi tasto, diverso da:
-                - numero da 0 - 9
-                - punto
-         */
-        if (!character.matches("[0-9.]")) {
-            event.consume();
-        }
-        //Blocca la presenza di più punti
-        if (character.equals(".") && tf.getText().contains(".")) {
-            event.consume();
-        }
-    }
-
 }

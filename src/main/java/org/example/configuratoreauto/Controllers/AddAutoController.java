@@ -7,15 +7,13 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
-import javafx.scene.text.Text;
 import javafx.stage.StageStyle;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Mesi;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import static org.example.configuratoreauto.Controllers.InputValidation.checkValidDouble;
-import static org.example.configuratoreauto.Controllers.InputValidation.checkValidInt;
+import static org.example.configuratoreauto.Controllers.InputValidation.*;
 
 public class AddAutoController implements Initializable {
     @FXML
@@ -48,8 +46,6 @@ public class AddAutoController implements Initializable {
     private Button avantiButton;
     @FXML
     private Button addScontoButton;
-    @FXML
-    private Text message;
     @FXML
     private Button eliminaButton;
 
@@ -206,55 +202,32 @@ public class AddAutoController implements Initializable {
     }
     @FXML
     private void addModello() {
-        if (isValidModello(modello) && isValidDouble(lunghezza) && isValidDouble(altezza) && isValidDouble(larghezza)
-                && isValidDouble(peso) && isValidDouble(volume) && isValidDouble(costoBase)) {
-
-            //Setto i parametri inseriti all'auto temporanea
-            catalogo.getTempAuto().setMarca(brand.getValue());
-            catalogo.getTempAuto().setModello(modello.getText());
-            catalogo.getTempAuto().setDimensione(new Dimensione(
-                            Double.parseDouble(lunghezza.getText()),
-                            Double.parseDouble(altezza.getText()),
-                            Double.parseDouble(larghezza.getText()),
-                            Double.parseDouble(peso.getText()),
-                            Double.parseDouble(volume.getText())
-                    ));
-            catalogo.getTempAuto().setDescrizione(descrizione.getText());
-            catalogo.getTempAuto().setCostoBase(Double.parseDouble(costoBase.getText()));
-            catalogo.getTempAuto().setScontoPerMese(sconti);
-
-            //Carico la pagina successiva
-            loadAddImagesPage();
-        }
-        else{
-            message.setText("Errore nell'inserimento di alcuni campi");
-        }
-    }
-
-    private boolean isValidDouble(TextField tf ){
-        try {
-            double value = Double.parseDouble(tf.getText());
-            if(value < 0){
-                tf.clear();
-                tf.requestFocus();
+        if (checkValidStringTextField(modello) && isValidDoubleTextField(lunghezza) && isValidDoubleTextField(altezza) && isValidDoubleTextField(larghezza)
+                && isValidDoubleTextField(peso) && isValidDoubleTextField(volume) && isValidDoubleTextField(costoBase)) {
+            try {
+                //Setto i parametri inseriti all'auto temporanea
+                catalogo.getTempAuto().setMarca(brand.getValue());
+                catalogo.getTempAuto().setModello(modello.getText());
+                catalogo.getTempAuto().setDimensione(new Dimensione(
+                        Double.parseDouble(lunghezza.getText()),
+                        Double.parseDouble(altezza.getText()),
+                        Double.parseDouble(larghezza.getText()),
+                        Double.parseDouble(peso.getText()),
+                        Double.parseDouble(volume.getText())
+                ));
+                catalogo.getTempAuto().setDescrizione(descrizione.getText());
+                catalogo.getTempAuto().setCostoBase(Double.parseDouble(costoBase.getText()));
+                catalogo.getTempAuto().setScontoPerMese(sconti);
+                //Carico la pagina successiva
+                loadAddImagesPage();
+            } catch (Exception e) {
+                //TODO: genera popup
+                System.out.println("GENERA POPUP QUI");
             }
-        } catch (NumberFormatException e) {
-            tf.clear();
-            tf.requestFocus();
-            message.setText("Errore nell'inserimento di alcuni campi");
-            return false;
         }
-        return true;
     }
 
-    private boolean isValidModello(TextField tf) {
-        if(tf.getText().matches("[a-zA-Z0-9 ]+")){
-            return true;
-        }
-        tf.clear();
-        tf.requestFocus();
-        return false;
-    }
+
 
     //NAVIGATORI
     @FXML
