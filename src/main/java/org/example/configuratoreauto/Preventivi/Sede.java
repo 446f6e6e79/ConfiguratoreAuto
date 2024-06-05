@@ -32,4 +32,12 @@ public class Sede implements Serializable {
     public String toString() {
         return nome + " " + indirizzo;
     }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public String getIndirizzo() {
+        return indirizzo;
+    }
 }
