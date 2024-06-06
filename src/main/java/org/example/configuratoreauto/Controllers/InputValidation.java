@@ -52,7 +52,6 @@ public class InputValidation {
      * Una stringa è considerata valida se contiene:
      *  - catatteri minuscoli o maiuscoli, dell'alfabeto
      *  - numeri
-     * Sono di conseguenza vietati
      * @param tf TextField che vogliamo controllare
      * @return True se il texfield contiene una stringa valide, false altrimenti
      */

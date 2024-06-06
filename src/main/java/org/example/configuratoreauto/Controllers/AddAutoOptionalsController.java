@@ -198,27 +198,26 @@ public class AddAutoOptionalsController implements Initializable {
      * Aggiorna inoltre il DISPLAY della lista di motori
      */
     private void addMotore(){
-        if(isValidStringTextField(nomeMotore) &&
-            isValidDoubleTextField(false, potenzaMotore, consumi) &&
-                isValidDoubleTextField(true, cilindrata)
-        )
-        try {
-            tempAuto.addMotore(
-                    new Motore(
-                            nomeMotore.getText(),
-                            alimentazioneType.getValue(),
-                            Integer.parseInt(potenzaMotore.getText()),
-                            Integer.parseInt(cilindrata.getText()),
-                            Double.parseDouble(consumi.getText())
-                    )
-            );
-            updateMotoriList();
+        if(isValidDoubleTextField(false, potenzaMotore, consumi) &&
+            isValidDoubleTextField(true, cilindrata)
+        ){
+            try {
+                tempAuto.addMotore(
+                        new Motore(
+                                nomeMotore.getText(),
+                                alimentazioneType.getValue(),
+                                Integer.parseInt(potenzaMotore.getText()),
+                                Integer.parseInt(cilindrata.getText()),
+                                Double.parseDouble(consumi.getText())
+                        )
+                );
+                updateMotoriList();
 
-            //Pulisco i campi di input
-            cleanMotoreFields();
-        }
-        catch (Exception e){
-            PageLoader.showErrorPopup("Errore!", e.getMessage());
+                //Pulisco i campi di input
+                cleanMotoreFields();
+            } catch (Exception e) {
+                PageLoader.showErrorPopup("Errore!", e.getMessage());
+            }
         }
     }
 
