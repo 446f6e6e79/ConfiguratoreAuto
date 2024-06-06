@@ -54,9 +54,9 @@ public class AddAutoUsataController {
         //Blocco il bottone salva fino a che non sono stati compilati tutti i campi
         salvaButton.disableProperty().bind(
             marcaComboBox.getSelectionModel().selectedItemProperty().isNull()
-            .and(modelloTextField.textProperty().isEmpty())
-            .and(targaTextField.textProperty().isEmpty())
-            .and(kmTextField.textProperty().isEmpty())
+            .or(modelloTextField.textProperty().isEmpty())
+            .or(targaTextField.textProperty().isEmpty())
+            .or(kmTextField.textProperty().isEmpty())
         );
     }
 

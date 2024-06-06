@@ -19,13 +19,13 @@
     <children>
       <BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0">
          <left>
-              <VBox fx:id="left" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="732.0" prefWidth="765.0" BorderPane.alignment="CENTER">
+              <VBox fx:id="left" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="792.0" prefWidth="765.0" BorderPane.alignment="CENTER">
                   <children>
                         <VBox prefHeight="441.0" prefWidth="782.0" styleClass="container">
                            <children>
                                     <Text fx:id="modelID" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 40;" text="Modello" />
-                        <Label fx:id="descrizione" prefHeight="95.0" prefWidth="725.0" style="-fx-font-size: 13;" styleClass="section-content" text="Descrizione" />
-                              <StackPane prefHeight="295.0" prefWidth="699.0">
+                        <Label fx:id="descrizione" prefHeight="111.0" prefWidth="725.0" style="-fx-font-size: 13;" styleClass="section-content" text="Descrizione" wrapText="true" />
+                              <StackPane prefHeight="328.0" prefWidth="725.0">
                                  <children>
                                      <ImageView fx:id="images" fitHeight="330.0" fitWidth="560.0" pickOnBounds="true" preserveRatio="true">
                                             <image>
