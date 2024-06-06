@@ -7,6 +7,7 @@ import org.example.configuratoreauto.Preventivi.Sede;
 import org.example.configuratoreauto.Preventivi.SediModel;
 import org.example.configuratoreauto.Utenti.*;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 
@@ -16,7 +17,18 @@ public class MainTests {
         UserModel u1 = UserModel.getInstance();
         RegistroModel r = RegistroModel.getInstance();
         u1.validation("davide@gmail.com", "1234");
+        Sede s = SediModel.getInstance().data.get(0);
+        System.out.println(s);
+        AutoNuova a = CatalogoModel.getInstance().data.get(1);
 
+        Date date = new Date();
+        date.setMonth(date.getMonth()-1);
+
+        Preventivo p = new Preventivo(a, s, (Cliente) u1.getCurrentUser(), date, a.getMotoriDisponibili().get(0), new ArrayList());
+
+        p.setUsata(null);
+        r.addData(p);
+        r.uploadData();
         /*
         UserModel u1 = (UserModel) UserModel.getInstance();
         RegistroModel r = RegistroModel.getInstance();
