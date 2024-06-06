@@ -4,8 +4,10 @@ import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Macchine.Optional;
 import org.example.configuratoreauto.Utenti.Cliente;
 
+import java.io.File;
 import java.io.Serial;
 import java.io.Serializable;
+import java.nio.file.Path;
 import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -254,10 +256,40 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
      *   Aggiorna automaticamente lo stato del preventivo:
      *      -Se sono passati 20 giorni, e non è stato pagato il preventivo, viene assegnato lo stato SCADUTO
      *   Tale funzione sarà chiamata ogni qualvolta viene caricato il RegistroModel, tenendo aggiornati i dati
+     *   Nel caso il preventivo scaduto contenesse un'auto usata viene effettuata una pulizia della directory
      * */
     public void updateStatoAutomatico(){
         if(stato == StatoPreventivo.FINALIZZATO && isScaduto()){
             setStato(StatoPreventivo.SCADUTO);
+            if(getUsata() !=null){
+                Immagine.cleanDirectory(Path.of("src/main/resources/img/usedCarImages/"+getUsata().getTarga()));
+                setUsata(null);
+                setValutazione(0);
+           }
+        }
+    }
+
+    /**
+     * Metodo utile alla pulizia di un'auta usata nel caso essa fosse presente ed in un preventivo scaduto
+     * @param targa
+     */
+    private void eliminateTarga(String targa){
+        File directory = new File( "src/main/resources/img/usedCarImages");
+        System.out.println("HOLA 3");
+
+        if (!directory.exists() || !directory.isDirectory()) {
+            return;
+        }
+        System.out.println("HOLA");
+        //Creo una lista di tutte le sotto-directory  di usedCarImages esistenti
+        File[] files = directory.listFiles();
+        if (files != null) {
+            //Controllo, per ogni directory, se combacia con la targa inserita
+            for (File file : files) {
+                if (file.isDirectory() && file.getName().contains(targa)) {
+                    file.delete();
+                }
+            }
         }
     }
 
