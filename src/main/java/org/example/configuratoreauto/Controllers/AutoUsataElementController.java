@@ -3,6 +3,7 @@ package org.example.configuratoreauto.Controllers;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TabPane;
@@ -31,13 +32,13 @@ public class AutoUsataElementController {
     @FXML
     TextField valutazione;
     @FXML
-    private Label validation;
+    private ImageView images;
     @FXML
-    ImageView images;
+    private Button confirm;
+
     ArrayList<Immagine> listaImmagini;
 
     void setElement( Preventivo prev){
-        validation.setText("");
         this.preventivo = prev;
         AutoUsata auto = prev.getUsata();
         listaImmagini = auto.getImmagini();
@@ -49,6 +50,9 @@ public class AutoUsataElementController {
 
         //Permetto solamente input interi per il campo valutazione
         valutazione.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidDouble(event, valutazione));
+
+        //Disabilito il bottone di conferma finché non è stata inserita una valutazione
+        confirm.disableProperty().bind(valutazione.textProperty().isEmpty());
     }
     @FXML
     void conferma() {

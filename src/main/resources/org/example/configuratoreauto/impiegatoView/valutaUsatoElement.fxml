@@ -84,22 +84,15 @@
                   <font>
                      <Font size="20.0" />
                   </font></TextField>
-               <Button mnemonicParsing="false" onAction="#conferma" styleClass="greenButton" text="Conferma">
+               <Button fx:id="confirm" mnemonicParsing="false" onAction="#conferma" styleClass="greenButton" text="Conferma">
                   <font>
                      <Font size="20.0" />
                   </font></Button>
             </children>
          </HBox>
-         <Label fx:id="validation" styleClass="section-subTitle" text="ERROR">
-            <VBox.margin>
-               <Insets top="20.0" />
-            </VBox.margin>
-            <padding>
-               <Insets bottom="10.0" />
-            </padding></Label>
       </children>
       <padding>
-         <Insets bottom="5.0" />
+         <Insets bottom="20.0" />
       </padding>
    </VBox>
 </VBox>

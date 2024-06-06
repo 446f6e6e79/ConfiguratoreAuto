@@ -283,10 +283,16 @@ public class AddAutoOptionalsController implements Initializable {
 
     @FXML
     public void nextPage(){
-        //Salvo i dati memorizzati nell'auto temporanea, nel relativo oggetto auto
-        catalogo.saveTempData();
-        catalogo.setSelectedAuto(null);
-        TabPane tabPane = (TabPane) consumi.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
-        PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/catalogoView.fxml");
+        //Controllo che sia presente almeno un motore
+        if(!tempAuto.getMotoriDisponibili().isEmpty()) {
+            //Salvo i dati memorizzati nell'auto temporanea, nel relativo oggetto auto
+            catalogo.saveTempData();
+            catalogo.setSelectedAuto(null);
+            TabPane tabPane = (TabPane) consumi.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+            PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/catalogoView.fxml");
+        }
+        else{
+            PageLoader.showErrorPopup("Errore!", "Inserisci almeno un motore prima di continuare");
+        }
     }
 }

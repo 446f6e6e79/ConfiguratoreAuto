@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class ValutazioneController implements Initializable {
-
     @FXML
     private BorderPane mainComponent;
     @FXML

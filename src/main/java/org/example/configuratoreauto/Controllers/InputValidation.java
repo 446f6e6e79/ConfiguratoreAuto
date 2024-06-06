@@ -57,7 +57,6 @@ public class InputValidation {
      * @return True se il texfield contiene una stringa valide, false altrimenti
      */
     public static boolean isValidStringTextField(TextField tf) {
-        cleanTextFieldStyle(tf);
         if(tf.getText().matches("[a-zA-Z0-9 ]+")){
             return true;
         }
@@ -75,19 +74,16 @@ public class InputValidation {
      */
     public static boolean isValidDoubleTextField(boolean canBeZero, TextField... tfList){
         boolean result = true;
-        cleanTextFieldStyle(tfList);
         for(TextField tf: tfList) {
             try {
                 double value = Double.parseDouble(tf.getText());
                 if (value < 0 || (value == 0 && !canBeZero)) {
                     tf.clear();
-                    tf.setStyle("-fx-border-color: red;");
                     tf.requestFocus();
                     result = false;
                 }
             } catch (NumberFormatException e) {
                 tf.clear();
-                tf.setStyle("-fx-border-color: red;");
                 tf.requestFocus();
                 result = false;
             }
@@ -95,13 +91,4 @@ public class InputValidation {
         return result;
     }
 
-    /**
-     * Pulisce il colore che è stato assegnato ai campi non validi
-     * @param tfList lista di textField
-     */
-    private static void cleanTextFieldStyle(TextField... tfList){
-        for(TextField tf: tfList){
-            tf.setStyle("");
-        }
-    }
 }
