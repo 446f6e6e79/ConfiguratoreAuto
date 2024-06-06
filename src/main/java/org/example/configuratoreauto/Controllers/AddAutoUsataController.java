@@ -1,7 +1,5 @@
 package org.example.configuratoreauto.Controllers;
 
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.BooleanBinding;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -25,8 +23,6 @@ public class AddAutoUsataController {
     /** ArrayList osservabile, contenente le immagini inserite */
     private final ObservableList<Image> usedImages = FXCollections.observableArrayList();
 
-
-    private BooleanBinding formValid;
     @FXML
     private ComboBox<Marca> marcaComboBox;
     @FXML
@@ -36,9 +32,9 @@ public class AddAutoUsataController {
     @FXML
     private TextField kmTextField;
     @FXML
-    private Label saveLabel;
-    @FXML
     private HBox imageGrid;
+    @FXML
+    private Button salvaButton;
 
     @FXML
     private void initialize() {
@@ -55,16 +51,12 @@ public class AddAutoUsataController {
         //Impongo numeri interi
         kmTextField.addEventFilter(KeyEvent.KEY_TYPED, event -> InputValidation.checkValidInt(event, kmTextField));
 
-        formValid = Bindings.createBooleanBinding(() ->
-                        isValidTarga(targaTextField.getText()) &&
-                                !modelloTextField.getText().isEmpty() &&
-                                !targaTextField.getText().isEmpty() &&
-                                !kmTextField.getText().isEmpty() &&
-                                usedImages.size() == 4,
-                targaTextField.textProperty(),
-                modelloTextField.textProperty(),
-                kmTextField.textProperty(),
-                usedImages
+        //Blocco il bottone salva fino a che non sono stati compilati tutti i campi
+        salvaButton.disableProperty().bind(
+            marcaComboBox.getSelectionModel().selectedItemProperty().isNull()
+            .and(modelloTextField.textProperty().isEmpty())
+            .and(targaTextField.textProperty().isEmpty())
+            .and(kmTextField.textProperty().isEmpty())
         );
     }
 
@@ -98,8 +90,6 @@ public class AddAutoUsataController {
                 }
                 //Se non ho provato ad inserire la stessa immagine
                 if (!imageAlreadyUsed) {
-                    saveLabel.setText("Immagine inserita correttamente");
-                    // If the image is not already used, proceed with adding or updating
                     int index = usedImages.indexOf(image);
                     // Se l'immagine è nuova
                     if (index == -1) {
@@ -110,13 +100,15 @@ public class AddAutoUsataController {
                         usedImages.set(index, image);
                     }
                     clickedImageView.setImage(image);
-                } else {
-                    saveLabel.setText("Questa immagine è già stata inserita");
                 }
-            } catch (Exception e) {
+                //Ho inserito un immagine già presente
+                else {
+                    PageLoader.showErrorPopup("Errore immagine", "Quest'immagine è già stata inserita");
+                }
+            }
+            catch(Exception e) {
                 System.out.println(e.getMessage());
             }
-
         }
     }
 
@@ -126,7 +118,12 @@ public class AddAutoUsataController {
      */
     @FXML
     private void salvaButton() {
-        if (formValid.get()) {
+        //Controllo sui valori inseriti
+        if(isValidImageInput() &&
+            isValidTarga(targaTextField.getText()) &&
+            InputValidation.isValidDoubleTextField(true, kmTextField)
+        )
+        {
             // Se il form è valido, esegui le operazioni di salvataggio
             Marca marca = marcaComboBox.getValue();
             String modello = modelloTextField.getText();
@@ -142,13 +139,10 @@ public class AddAutoUsataController {
                 autoUsata.addImage(new Immagine("", img.getUrl().substring(5)));
             }
             autoUsata.addToLocalImages();
-
-            saveLabel.setText("Auto usata salvata con successo!");
             saveCurrentPreventivo();
         }
         else{
-            // Se il form non è valido, visualizza un messaggio di errore e evidenzia i campi non validi
-            highlightFields();
+
         }
     }
 
@@ -156,41 +150,15 @@ public class AddAutoUsataController {
      * Segnala i campi errati, con un messaggio di errore, in modo
      * da aiutare l'utente nell'inserimento
      */
-    private void highlightFields() {
-        marcaComboBox.setStyle("-fx-border-color: black;");
-        modelloTextField.setStyle("-fx-border-color: black;");
-        targaTextField.setStyle("-fx-border-color: black;");
-        kmTextField.setStyle("-fx-border-color: black;");
+    private boolean isValidImageInput() {
         imageGrid.setStyle("");
-
-        String errorMessage = "Completa tutti i campi!";
-
         if(usedImages.size() != 4){
             imageGrid.setStyle("-fx-border-color: red; -fx-border-width: 3");
-            errorMessage =  "Inserisci le immagini richieste!";
+            return false;
         }
-        if (!isValidTarga(targaTextField.getText())) {
-            targaTextField.setStyle("-fx-border-color: red;");
-            errorMessage = "Targa errata o già presente nel registro";
-        }
-        if (marcaComboBox.getValue() == null) {
-            marcaComboBox.setStyle("-fx-border-color: red;");
-            errorMessage = "Inserisci tutti i campi!";
-        }
-        if (modelloTextField.getText().isEmpty()) {
-            modelloTextField.setStyle("-fx-border-color: red;");
-            errorMessage = "Inserisci tutti i campi!";
-        }
-        if (targaTextField.getText().isEmpty()) {
-            targaTextField.setStyle("-fx-border-color: red;");
-            errorMessage = "Inserisci tutti i campi!";
-        }
-        if (kmTextField.getText().isEmpty()) {
-            kmTextField.setStyle("-fx-border-color: red;");
-            errorMessage = "Inserisci tutti i campi!";
-        }
-        saveLabel.setText(errorMessage);
+        return true;
     }
+
 
     /**
      * Non viene aggiunta alcuna auto usata. Viene impostato lo stato del preventivo e
@@ -207,6 +175,6 @@ public class AddAutoUsataController {
     private void saveCurrentPreventivo(){
         registro.getCurrentPreventivo().setUsata(null);
         registro.addData(registro.getCurrentPreventivo());
-        ((Stage) saveLabel.getScene().getWindow()).close();
+        ((Stage) kmTextField.getScene().getWindow()).close();
     }
 }
