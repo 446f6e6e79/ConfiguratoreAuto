@@ -13,12 +13,14 @@ import java.util.Date;
 public class MainTests {
 
     public static void main(String[] args) {
+        UserModel u1 = UserModel.getInstance();
+        RegistroModel r = RegistroModel.getInstance();
+        u1.validation("davide@gmail.com", "1234");
+
         /*
         UserModel u1 = (UserModel) UserModel.getInstance();
         RegistroModel r = RegistroModel.getInstance();
-        CatalogoModel catalogo = CatalogoModel.getInstance();
-
-        SediModel sedi = SediModel.getInstance();
+        RegistroModel r = RegistroModel.getInstance();
 
         // Popolare i dati utente
         u1.registraCliente(new Cliente("davide@gmail.com", "1234", "Davide", "Donà"));
