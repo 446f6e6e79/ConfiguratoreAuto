@@ -191,7 +191,7 @@ public class AddAutoImagesController implements Initializable {
     private void saveImages() {
         String selectedColor = coloreInput.getValue();
         if (selectedColor != null && !coloreInput.getItems().contains(selectedColor)) {
-            // Add the color only if it's not already in the ComboBox
+            //Aggiunge il colore 
             tempAuto.addOptional(
                     new Optional(
                             TipoOptional.Colore,

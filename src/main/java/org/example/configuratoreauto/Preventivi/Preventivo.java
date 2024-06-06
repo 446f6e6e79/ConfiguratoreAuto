@@ -128,13 +128,6 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         this.dataScadenza = scadenza.getTime();
     }
 
-    public void setMotoreScelto(Motore motoreScelto) {
-        if(motoreScelto == null){
-            throw new IllegalArgumentException("Motore nullo inserito");
-        }
-        this.motoreScelto = motoreScelto;
-    }
-
     public Motore getMotoreScelto() {
         return motoreScelto;
     }
