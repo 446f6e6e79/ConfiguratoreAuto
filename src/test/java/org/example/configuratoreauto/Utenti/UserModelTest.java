@@ -17,7 +17,7 @@ class UserModelTest {
         //Registro una mail non ancora presente
         assertTrue(u.registraCliente(new Cliente("aaa@gmail.com", "1234", "a", "b")));
 
-        // TODO: Registrazione con email non valide / nomi non validi;
+        //Registrazione con email non valide / nomi non validi;
         assertThrowsExactly(IllegalArgumentException.class, () -> new Cliente("@gmail.com", "1234", "a", "b"));
         assertThrowsExactly(IllegalArgumentException.class, () -> new Cliente("aaa@.com", "1234", "a", "b"));
         assertThrowsExactly(IllegalArgumentException.class, () -> new Cliente("aaa@gmail.com", "1234", "12adad12", "AA"));

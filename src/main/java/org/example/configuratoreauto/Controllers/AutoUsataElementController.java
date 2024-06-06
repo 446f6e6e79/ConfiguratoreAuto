@@ -14,8 +14,7 @@ import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 import java.util.ArrayList;
 
-import static org.example.configuratoreauto.Controllers.InputValidation.checkValidInt;
-
+import static org.example.configuratoreauto.Controllers.InputValidation.checkValidDouble;
 public class AutoUsataElementController {
 
     private final IntegerProperty currentImageIndex = new SimpleIntegerProperty(0);
@@ -49,7 +48,7 @@ public class AutoUsataElementController {
         km.setText(auto.getKm()+" km");
 
         //Permetto solamente input interi per il campo valutazione
-        valutazione.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidInt(event, valutazione));
+        valutazione.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidDouble(event, valutazione));
     }
     @FXML
     void conferma() {

@@ -15,6 +15,10 @@ import java.util.ResourceBundle;
 
 import static org.example.configuratoreauto.Controllers.InputValidation.*;
 
+/**
+ * Classe che funge da controller per la pagina addModel.fxml.
+ * Permette ad un segretario di aggiungere / modificare i dati di una macchina
+ */
 public class AddAutoController implements Initializable {
     @FXML
     private AnchorPane mainPane;
@@ -52,23 +56,24 @@ public class AddAutoController implements Initializable {
     CatalogoModel catalogo = CatalogoModel.getInstance();
     int[] sconti = new int[12];
 
+    /**
+     * Valorizza i campi all'interno della pagina, al suo caricamento
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
         mainBorderPane.prefWidthProperty().bind(mainPane.widthProperty());
         mainBorderPane.prefHeightProperty().bind(mainPane.heightProperty());
-        /*
-        *   Valorizzo i campi per le varie choiceBox
-        * */
-        brand.getItems().addAll(Marca.values());
 
-        avantiButton.setDisable(true);
+        //Valorizzo i campi per la choiceBox della marca
+        brand.getItems().addAll(Marca.values());
 
         /*
         *   Collego la proprietà disable del bottone AVANTI:
         *    - almeno un campo non è valorizzato -> Disable = TRUE
         *    - tutti i campi sono valorizzati -> Disable = FALSE
         * */
+        avantiButton.setDisable(true);
         avantiButton.disableProperty().bind(
                 modello.textProperty().isEmpty()
                 .or(descrizione.textProperty().isEmpty())
@@ -86,16 +91,15 @@ public class AddAutoController implements Initializable {
                 scontoInput.textProperty().isEmpty()
         );
 
-        /*
-        *   Blocco input NON validi sui campi numerici:
-        * */
+
+        //Blocco input NON validi sui campi numerici della pagina
         lunghezza.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidDouble(event, lunghezza));
         altezza.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidDouble(event, altezza));
         peso.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidDouble(event, peso));
         volume.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidDouble(event, volume));
         scontoInput.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidInt(event, scontoInput));
 
-
+        //Genero un auto TEMPORANEA, alla quale saranno applicate le modifiche
         AutoNuova tempAuto = catalogo.getTempAuto();
         eliminaButton.setVisible(false);
 
@@ -125,6 +129,9 @@ public class AddAutoController implements Initializable {
         }
     }
 
+    /**
+     * Aggiorna i valori nella tabella degli sconti, a seconda del contenuto del vettore scontiPerMese
+     */
     private void setScontiOutput(){
         for (int r = 0; r < 3; r++) {
             for (int c = 0; c < 4; c++) {
@@ -179,20 +186,20 @@ public class AddAutoController implements Initializable {
         setScontiOutput();
     }
 
+    /**
+     * Definisce il comportamento del bottone per l'eliminazione dell'auto.
+     */
     @FXML
     private void eliminaAuto(){
-        // Create a confirmation dialog
         Alert confirmation = new Alert(Alert.AlertType.WARNING);
         confirmation.initStyle(StageStyle.UTILITY);
         confirmation.setTitle("Elimina");
         confirmation.setHeaderText("Sei sicuro di voler eliminare quest'auto?");
 
-
-        // Customize the buttons in the dialog
         confirmation.getButtonTypes().clear();
         confirmation.getButtonTypes().addAll(ButtonType.YES, ButtonType.CANCEL);
 
-        // Show the dialog and wait for user response
+        //Mostro il popup e attendo che venga premuto
         confirmation.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
                 catalogo.getAllData().remove(catalogo.getSelectedAuto());
@@ -200,10 +207,17 @@ public class AddAutoController implements Initializable {
             }
         });
     }
+
+    /**
+     * Salva tutti i valori inseriti all'interno della pagina in tempAuto.
+     * Prima di fare ciò si assicura che tutti i campi abbiano un valore valido
+     */
     @FXML
     private void addModello() {
-        if (checkValidStringTextField(modello) && isValidDoubleTextField(lunghezza) && isValidDoubleTextField(altezza) && isValidDoubleTextField(larghezza)
-                && isValidDoubleTextField(peso) && isValidDoubleTextField(volume) && isValidDoubleTextField(costoBase)) {
+        if (checkValidStringTextField(modello) &&
+                isValidDoubleTextField(false, lunghezza, altezza, larghezza, peso, costoBase) &&
+                isValidDoubleTextField(true, volume))
+        {
             try {
                 //Setto i parametri inseriti all'auto temporanea
                 catalogo.getTempAuto().setMarca(brand.getValue());
@@ -221,8 +235,7 @@ public class AddAutoController implements Initializable {
                 //Carico la pagina successiva
                 loadAddImagesPage();
             } catch (Exception e) {
-                //TODO: genera popup
-                System.out.println("GENERA POPUP QUI");
+                PageLoader.showErrorPopup("Errore", e.getMessage());
             }
         }
     }
@@ -236,6 +249,10 @@ public class AddAutoController implements Initializable {
         PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/segretarioView/addImages.fxml" );
     }
 
+    /**
+     * Comportamento del tasto indietro. Viene mostrato un popUp avvisando l'utente
+     * che le modifiche effettuate saranno eliminate.
+     */
     @FXML
     public void goBack(){
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
@@ -245,6 +262,7 @@ public class AddAutoController implements Initializable {
         confirmation.getButtonTypes().clear();
         confirmation.getButtonTypes().addAll(ButtonType.YES, ButtonType.NO);
 
+        //Mostra il popup di conferma
         confirmation.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
                 //Resetto tempAuto a null, cancellando tutte le modifiche effettuate

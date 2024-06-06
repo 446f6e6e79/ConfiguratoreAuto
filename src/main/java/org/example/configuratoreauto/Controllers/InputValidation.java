@@ -2,6 +2,7 @@ package org.example.configuratoreauto.Controllers;
 
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import org.w3c.dom.Text;
 
 public class InputValidation {
 
@@ -67,21 +68,24 @@ public class InputValidation {
 
     /**
      * Verifica che il TextField, passato come parametro contenga double valido.
-     * Consideriamo valido un double
-     * @param tf TextField che vogliamo controllare
+     * @param tfList lista di TextField che vogliamo controllare
+     * @param canBeZero indica se il campo textField può o meno valere 0
      * @return True se il texfield contiene una stringa valide, false altrimenti
      */
-    public static boolean isValidDoubleTextField(TextField tf ){
-        try {
-            double value = Double.parseDouble(tf.getText());
-            if(value < 0){
+    public static boolean isValidDoubleTextField(boolean canBeZero, TextField... tfList){
+        for(TextField tf: tfList) {
+            try {
+                double value = Double.parseDouble(tf.getText());
+                if (value < 0 || (value == 0 && !canBeZero)) {
+                    tf.clear();
+                    tf.requestFocus();
+                    return false;
+                }
+            } catch (NumberFormatException e) {
                 tf.clear();
                 tf.requestFocus();
+                return false;
             }
-        } catch (NumberFormatException e) {
-            tf.clear();
-            tf.requestFocus();
-            return false;
         }
         return true;
     }

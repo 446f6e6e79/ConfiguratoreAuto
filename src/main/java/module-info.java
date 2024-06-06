@@ -7,8 +7,7 @@ module org.example.configuratoreauto {
 
     exports org.example.configuratoreauto;
     exports org.example.configuratoreauto.Utenti;
-    opens org.example.configuratoreauto.Utenti to com.google.gson;
-    opens org.example.configuratoreauto to com.google.gson, javafx.fxml;
+    opens org.example.configuratoreauto to javafx.fxml;
     exports org.example.configuratoreauto.Controllers;
-    opens org.example.configuratoreauto.Controllers to com.google.gson, javafx.fxml;
+    opens org.example.configuratoreauto.Controllers to javafx.fxml;
 }
