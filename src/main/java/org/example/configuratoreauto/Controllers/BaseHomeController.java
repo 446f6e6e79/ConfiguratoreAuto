@@ -7,6 +7,7 @@ import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import org.example.configuratoreauto.Macchine.CatalogoModel;
 import org.example.configuratoreauto.Utenti.UserModel;
 
 public abstract class BaseHomeController {
@@ -48,6 +49,10 @@ public abstract class BaseHomeController {
         confirmation.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
                 userModel.clearCurrentUser();
+                //Pulizia in caso si fosse in una modifica o creazione di un nuovo modello
+                CatalogoModel catalogoModel = CatalogoModel.getInstance();
+                catalogoModel.setSelectedAuto(null);
+                catalogoModel.setTempAuto(null);
                 loadLoginPage();
             }
         });
