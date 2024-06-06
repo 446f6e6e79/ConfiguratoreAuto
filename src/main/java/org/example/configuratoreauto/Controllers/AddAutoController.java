@@ -214,7 +214,7 @@ public class AddAutoController implements Initializable {
      */
     @FXML
     private void addModello() {
-        if (checkValidStringTextField(modello) &&
+        if (isValidStringTextField(modello) &&
                 isValidDoubleTextField(false, lunghezza, altezza, larghezza, peso, costoBase) &&
                 isValidDoubleTextField(true, volume))
         {

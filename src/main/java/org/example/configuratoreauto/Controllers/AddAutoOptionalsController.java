@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.ResourceBundle;
 
-import static org.example.configuratoreauto.Controllers.InputValidation.checkValidDouble;
+import static org.example.configuratoreauto.Controllers.InputValidation.*;
 
 
 public class AddAutoOptionalsController implements Initializable {
@@ -56,24 +56,32 @@ public class AddAutoOptionalsController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        //Aggiungo i tipi di optional alla choiceBox
         optionalType.getItems().addAll(
                 Arrays.stream(TipoOptional.values())
                         .filter(tipo -> tipo != TipoOptional.Colore)
                         .toList()
         );
-        optionalType.setOnAction(t-> updateOptionalList());
-        optionalType.setValue(TipoOptional.Cerchi);
 
+        //Aggiorno la lista di optional al cambiamento di tipo
+        optionalType.setOnAction(t -> updateOptionalList());
+        optionalType.setValue(TipoOptional.Interni);
+
+        //Blocco la possibilità di aggiungere un optional fino a che non sono stati valorizzati tutti i campi
         addOptional.disableProperty().bind(
                 descrizioneOptional.textProperty().isEmpty()
                         .or(costoOptional.textProperty().isEmpty())
         );
-        addOptional.setOnAction(t-> addOptional());
 
+        //Imposto il comportamento del bottone addOptional
+        addOptional.setOnAction(t -> addOptional());
+
+        //Limito l'input sul textField costoOptional, in modo che possano essere inseriti solamente numeri double
         costoOptional.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidDouble(event, costoOptional));
 
 
 
+        //Aggiungo alla choiceBox tutte le alimentazioni disponibili
         alimentazioneType.getItems().addAll(Alimentazione.values());
         updateMotoriList();
         alimentazioneType.setValue(Alimentazione.BENZINA);
@@ -92,7 +100,22 @@ public class AddAutoOptionalsController implements Initializable {
             }
         });
 
+        //Blocco la possibilità di aggiungere un motore fino a che non sono stati valorizzati tutti i campi
+        addMotore.disableProperty().bind(
+                nomeMotore.textProperty().isEmpty()
+                        .or(potenzaMotore.textProperty().isEmpty()
+                        .or(cilindrata.textProperty().isEmpty()
+                        .or(consumi.textProperty().isEmpty()))
+                        )
+        );
+
+        //Imposto il comportamento del tasto addMotore
         addMotore.setOnAction(t-> addMotore());
+
+        //Limito l'input sui campi motore, in modo che possano essere inseriti solo numeri double validi
+        potenzaMotore.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidInt(event, potenzaMotore));
+        cilindrata.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidInt(event, cilindrata));
+        consumi.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidInt(event, consumi));
     }
 
     /**
@@ -100,14 +123,23 @@ public class AddAutoOptionalsController implements Initializable {
      * Aggiorna inoltre il DISPLAY della lista di optional
      */
     private void addOptional() {
-        tempAuto.addOptional(
-                new Optional(
-                        optionalType.getValue(),
-                        descrizioneOptional.getText(),
-                        Double.parseDouble(costoOptional.getText())
-                ));
-        updateOptionalList();
-        cleanOptionalFields();
+        if(isValidStringTextField(descrizioneOptional) &&
+            isValidDoubleTextField(true, costoOptional))
+        {
+            try {
+                tempAuto.addOptional(
+                        new Optional(
+                                optionalType.getValue(),
+                                descrizioneOptional.getText(),
+                                Double.parseDouble(costoOptional.getText())
+                        ));
+                updateOptionalList();
+                cleanOptionalFields();
+            }
+            catch (Exception e){
+                PageLoader.showErrorPopup("Errore!", e.getMessage());
+            }
+        }
     }
 
     /**
@@ -166,21 +198,34 @@ public class AddAutoOptionalsController implements Initializable {
      * Aggiorna inoltre il DISPLAY della lista di motori
      */
     private void addMotore(){
-        tempAuto.addMotore(
-                new Motore(
-                        nomeMotore.getText(),
-                        alimentazioneType.getValue(),
-                        Integer.parseInt(potenzaMotore.getText()),
-                        Integer.parseInt(cilindrata.getText()),
-                        Integer.parseInt(consumi.getText())
-                )
-        );
-        updateMotoriList();
+        if(isValidStringTextField(nomeMotore) &&
+            isValidDoubleTextField(false, potenzaMotore, consumi) &&
+                isValidDoubleTextField(true, cilindrata)
+        )
+        try {
+            tempAuto.addMotore(
+                    new Motore(
+                            nomeMotore.getText(),
+                            alimentazioneType.getValue(),
+                            Integer.parseInt(potenzaMotore.getText()),
+                            Integer.parseInt(cilindrata.getText()),
+                            Integer.parseInt(consumi.getText())
+                    )
+            );
+            updateMotoriList();
 
-        //Pulisco i campi di input
-        cleanMotoreFields();
+            //Pulisco i campi di input
+            cleanMotoreFields();
+        }
+        catch (Exception e){
+            PageLoader.showErrorPopup("Errore!", e.getMessage());
+        }
     }
 
+    /**
+     * Aggiorna la lista di motori. Crea un elemento per ogni motore,
+     * dando la possibilità di eliminarlo
+     */
     private void updateMotoriList() {
         VBox container = new VBox();
         container.setPrefWidth(motoreScrollPane.getPrefWidth() - 4);
@@ -235,6 +280,7 @@ public class AddAutoOptionalsController implements Initializable {
         TabPane tabPane = (TabPane) consumi.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
         PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/segretarioView/addImages.fxml");
     }
+
     @FXML
     public void nextPage(){
         //Salvo i dati memorizzati nell'auto temporanea, nel relativo oggetto auto

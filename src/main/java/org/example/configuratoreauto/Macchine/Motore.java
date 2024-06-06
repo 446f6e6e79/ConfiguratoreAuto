@@ -19,7 +19,7 @@ public class Motore implements Serializable {
      */
     public Motore(String descrizione, Alimentazione alimentazione, int potenzaKW, int cilindrata, double consumi){
         if(descrizione == null || descrizione.isEmpty()){
-            throw new IllegalArgumentException("Nome non valido");
+            throw new IllegalArgumentException("Descrizione non valida");
         }
         this.descrizione = descrizione;
 
@@ -54,9 +54,6 @@ public class Motore implements Serializable {
         return cilindrata;
     }
     public String getDescrizione(){return descrizione;}
-    public int getCavalli(){
-        return (int)( potenzaKW * 1.36);
-    };
     public Alimentazione getAlimentazione() {
         return alimentazione;
     }

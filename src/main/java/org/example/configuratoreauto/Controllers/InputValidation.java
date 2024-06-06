@@ -2,7 +2,6 @@ package org.example.configuratoreauto.Controllers;
 
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
-import org.w3c.dom.Text;
 
 public class InputValidation {
 
@@ -57,13 +56,15 @@ public class InputValidation {
      * @param tf TextField che vogliamo controllare
      * @return True se il texfield contiene una stringa valide, false altrimenti
      */
-    public static boolean checkValidStringTextField(TextField tf) {
+    public static boolean isValidStringTextField(TextField tf) {
+        cleanTextFieldStyle(tf);
         if(tf.getText().matches("[a-zA-Z0-9 ]+")){
             return true;
         }
         tf.clear();
         tf.requestFocus();
         return false;
+
     }
 
     /**
@@ -73,20 +74,34 @@ public class InputValidation {
      * @return True se il texfield contiene una stringa valide, false altrimenti
      */
     public static boolean isValidDoubleTextField(boolean canBeZero, TextField... tfList){
+        boolean result = true;
+        cleanTextFieldStyle(tfList);
         for(TextField tf: tfList) {
             try {
                 double value = Double.parseDouble(tf.getText());
                 if (value < 0 || (value == 0 && !canBeZero)) {
                     tf.clear();
+                    tf.setStyle("-fx-border-color: red;");
                     tf.requestFocus();
-                    return false;
+                    result = false;
                 }
             } catch (NumberFormatException e) {
                 tf.clear();
+                tf.setStyle("-fx-border-color: red;");
                 tf.requestFocus();
-                return false;
+                result = false;
             }
         }
-        return true;
+        return result;
+    }
+
+    /**
+     * Pulisce il colore che è stato assegnato ai campi non validi
+     * @param tfList lista di textField
+     */
+    private static void cleanTextFieldStyle(TextField... tfList){
+        for(TextField tf: tfList){
+            tf.setStyle("");
+        }
     }
 }

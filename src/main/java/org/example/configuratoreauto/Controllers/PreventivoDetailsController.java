@@ -248,8 +248,6 @@ public class PreventivoDetailsController {
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Cilindrata: " + preventivo.getMotoreScelto().getCilindrata() + "cc");
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Cavalli: " + preventivo.getMotoreScelto().getCavalli() + "HP");
-                contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Potenza: " + preventivo.getMotoreScelto().getPotenzaKW() + "kW");
                 contentStream.newLineAtOffset(0, -20);
 
