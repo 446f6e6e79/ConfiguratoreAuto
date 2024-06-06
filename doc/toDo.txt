@@ -1,4 +1,6 @@
 Back-end:
+1)Eseguendo login con utenza SEGRETERIA, modificando un auto viene cambiato temp AUTO o selected auto e non viene pulito
+al logout / chiusura. Infatti, facendo login con utenza cliente a quel punto il programma termina
 2)Rimozione costruttori inutilizzati
 
 Front - end:
