@@ -115,7 +115,7 @@ public class AddAutoOptionalsController implements Initializable {
         //Limito l'input sui campi motore, in modo che possano essere inseriti solo numeri double validi
         potenzaMotore.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidInt(event, potenzaMotore));
         cilindrata.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidInt(event, cilindrata));
-        consumi.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidInt(event, consumi));
+        consumi.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidDouble(event, consumi));
     }
 
     /**
@@ -209,7 +209,7 @@ public class AddAutoOptionalsController implements Initializable {
                             alimentazioneType.getValue(),
                             Integer.parseInt(potenzaMotore.getText()),
                             Integer.parseInt(cilindrata.getText()),
-                            Integer.parseInt(consumi.getText())
+                            Double.parseDouble(consumi.getText())
                     )
             );
             updateMotoriList();

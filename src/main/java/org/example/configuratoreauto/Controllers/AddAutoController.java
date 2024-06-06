@@ -94,6 +94,7 @@ public class AddAutoController implements Initializable {
 
         //Blocco input NON validi sui campi numerici della pagina
         lunghezza.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidDouble(event, lunghezza));
+        larghezza.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidDouble(event, larghezza));
         altezza.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidDouble(event, altezza));
         peso.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidDouble(event, peso));
         volume.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidDouble(event, volume));
