@@ -160,7 +160,7 @@ public class Immagine implements Serializable{
      *  le sotto-cartelle
      * @param dir -Path alla directory che si intende eliminare
      */
-    private static void cleanDirectory(Path dir){
+    public static void cleanDirectory(Path dir){
         if (Files.exists(dir)) {
             try {
                 Files.walk(dir)
