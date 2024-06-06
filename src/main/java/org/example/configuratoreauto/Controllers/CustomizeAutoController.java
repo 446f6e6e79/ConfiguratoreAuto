@@ -42,7 +42,7 @@ public class CustomizeAutoController implements Initializable {
     @FXML
     private Text modelID;
     @FXML
-    private Text descrizione;
+    private Label descrizione;
     @FXML
     private ImageView images;
     @FXML
