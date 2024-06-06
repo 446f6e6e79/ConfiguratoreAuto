@@ -90,7 +90,7 @@ public class AddAutoUsataController {
                 }
                 //Se non ho provato ad inserire la stessa immagine
                 if (!imageAlreadyUsed) {
-                    int index = usedImages.indexOf(image);
+                    int index = usedImages.indexOf(clickedImageView.getImage());
                     // Se l'immagine è nuova
                     if (index == -1) {
                         usedImages.add(image);
