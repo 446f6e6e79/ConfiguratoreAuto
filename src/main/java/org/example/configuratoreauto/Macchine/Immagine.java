@@ -76,7 +76,7 @@ public class Immagine implements Serializable{
     protected void addAutoNuova(AutoNuova auto){
         Path baseRoot = Paths.get("src", "main", "resources", "img", "carImages");
         Path target = tempImages.resolve(colore);
-        Path source = Paths.get(this.path);
+        Path source = Paths.get(this.path.replace("\\", File.separator).replace("/", File.separator));
 
         //Creo la directory tempImages, se non già presente
         if(Files.notExists(tempImages)) {
