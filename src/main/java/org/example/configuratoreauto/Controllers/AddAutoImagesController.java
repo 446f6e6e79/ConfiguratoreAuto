@@ -205,7 +205,7 @@ public class AddAutoImagesController implements Initializable {
                 coloreInput.getItems().add(selectedColor);
             }
         }
-        
+
         coloreInput.setValue(null);
         colorPrice.clear();
         imagesCurrentColor.clear();
