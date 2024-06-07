@@ -7,7 +7,6 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import org.example.configuratoreauto.Macchine.AutoNuova;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
-import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
 
 public class AutoElementController {
@@ -21,8 +20,9 @@ public class AutoElementController {
     private Label Marca;
     @FXML
     private Label Prezzo;
-    UserModel utenti = UserModel.getInstance();
-    CatalogoModel catalogo = CatalogoModel.getInstance();
+
+    UserModel userModel = UserModel.getInstance();
+    CatalogoModel catalogoModel = CatalogoModel.getInstance();
     private AutoNuova auto;
 
     public void setAuto(AutoNuova auto) {
@@ -40,7 +40,7 @@ public class AutoElementController {
 
         }
 
-        String iconPath = (utenti.getCurrentUser() instanceof Segretario) ? "/img/icons/edit-icon.png" : "/img/icons/right-arrow.png";
+        String iconPath = (userModel.isSegretario()) ? "/img/icons/edit-icon.png" : "/img/icons/right-arrow.png";
         Image icon = new Image(getClass().getResourceAsStream(iconPath));
         dynamicIcon.setImage(icon);
 
@@ -49,10 +49,10 @@ public class AutoElementController {
     //Funzione che permette la gestione del click sulla componente
     @FXML
     public void handleHBoxClicked(){
-        catalogo.setSelectedAuto(auto);
+        catalogoModel.setSelectedAuto(auto);
         TabPane tabPane = (TabPane) autoImage.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
         //Controllo sul tipo di utente che ha cliccato
-        if(utenti.getCurrentUser() instanceof Segretario){
+        if(userModel.isSegretario()){
             //Pagina modifica auto impostata
             PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/segretarioView/addModel.fxml" );
         }

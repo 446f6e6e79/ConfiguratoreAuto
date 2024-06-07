@@ -9,13 +9,12 @@ import javafx.scene.control.TextField;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
-import org.example.configuratoreauto.Main;
 import org.example.configuratoreauto.Utenti.*;
 import static org.example.configuratoreauto.Main.setPage;
 
 public class LoginController {
     private final UserModel userModel = UserModel.getInstance();
-    private final CatalogoModel catalogo = CatalogoModel.getInstance();
+    private final CatalogoModel catalogoModel = CatalogoModel.getInstance();
     private final ReadOnlyBooleanWrapper isInputValid = new ReadOnlyBooleanWrapper(false);
     @FXML
     private Label responseText;
@@ -36,7 +35,7 @@ public class LoginController {
         password.textProperty().addListener((obs, oldVal, newVal) -> responseText.setText(""));
         email.setOnAction(event -> logIn());
         password.setOnAction(event -> logIn());
-        if(catalogo.getSelectedAuto() != null){
+        if(catalogoModel.getSelectedAuto() != null){
             guestButton.setDisable(true);
         }
     }
@@ -69,16 +68,15 @@ public class LoginController {
     }
 
     private void handleSuccessfulLogin(Persona before) {
-        Persona currentUser = userModel.getCurrentUser();
-        if (currentUser instanceof Cliente) {
+        if (userModel.isCliente()) {
             if (before != null) {
-                catalogo.setSelectedAuto(null);
+                catalogoModel.setSelectedAuto(null);
             }
             if(!guestButton.isDisabled())
                 setPage("clienteView/homepageCliente");
-        } else if (currentUser instanceof Impiegato) {
+        } else if (userModel.isImpiegato()) {
             setPage("impiegatoView/homepageImpiegato");
-        } else if (currentUser instanceof Segretario) {
+        } else if (userModel.isSegretario()) {
             setPage("segretarioView/homepageSegretario");
         }
         try {

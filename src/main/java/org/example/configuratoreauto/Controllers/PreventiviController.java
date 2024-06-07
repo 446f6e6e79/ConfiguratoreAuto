@@ -10,8 +10,6 @@ import javafx.scene.text.Font;
 import org.example.configuratoreauto.Macchine.Marca;
 import org.example.configuratoreauto.Preventivi.*;
 import org.example.configuratoreauto.Utenti.Cliente;
-import org.example.configuratoreauto.Utenti.Impiegato;
-import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,9 +18,9 @@ import java.util.stream.Collectors;
 
 public class PreventiviController {
 
-    private RegistroModel registro = RegistroModel.getInstance();
-    private SediModel sedi = SediModel.getInstance();
-    private UserModel utente = UserModel.getInstance();
+    private RegistroModel registroModel = RegistroModel.getInstance();
+    private SediModel sediModel = SediModel.getInstance();
+    private UserModel userModel = UserModel.getInstance();
 
     @FXML
     private Label titleMain;
@@ -40,14 +38,15 @@ public class PreventiviController {
     private ComboBox<Sede> choiceSede;
     @FXML
     private TextField clienteField;
+
     @FXML
     private void initialize() {
         initializeChoiceBoxes();
-        if (utente.getCurrentUser() instanceof Segretario) {
+        if (userModel.isSegretario()) {
             setupForSegretario();
-        } else if (utente.getCurrentUser() instanceof Cliente) {
+        } else if (userModel.isCliente()) {
             setupForCliente();
-        } else if (utente.getCurrentUser() instanceof Impiegato) {
+        } else if (userModel.isImpiegato()) {
             setupForImpiegato();
         } else{
             Hyperlink registratiLink = new Hyperlink("Accedi per vedere i tuoi preventivi!");
@@ -62,7 +61,7 @@ public class PreventiviController {
         clienteField.setVisible(true);
         sedeLabel.setVisible(true);
         clienteLabel.setVisible(true);
-        loadPrevs(registro.getAllData());
+        loadPrevs(registroModel.getAllData());
     }
 
     private void setupForCliente() {
@@ -70,7 +69,7 @@ public class PreventiviController {
         clienteField.setVisible(false);
         sedeLabel.setVisible(false);
         clienteLabel.setVisible(false);
-        loadPrevs(registro.getPreventiviByCliente((Cliente) utente.getCurrentUser()));
+        loadPrevs(registroModel.getPreventiviByCliente((Cliente) userModel.getCurrentUser()));
     }
 
     private void setupForImpiegato() {
@@ -80,7 +79,7 @@ public class PreventiviController {
         clienteLabel.setVisible(true);
         titleMain.setText("Gestione Preventivi");
         initializaImpiegatoChoiceBox();
-        loadPrevs(registro.getPreventiviByStato(StatoPreventivo.FINALIZZATO));
+        loadPrevs(registroModel.getPreventiviByStato(StatoPreventivo.FINALIZZATO));
     }
 
     private void initializaImpiegatoChoiceBox() {
@@ -88,7 +87,7 @@ public class PreventiviController {
         choiceStato.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 titleMain.setText("Gestione Preventivi");
-                loadPrevs(registro.getPreventiviByStato(newValue));
+                loadPrevs(registroModel.getPreventiviByStato(newValue));
             }
         });
         choiceStato.getSelectionModel().selectFirst();
@@ -97,7 +96,7 @@ public class PreventiviController {
     @FXML
     public void resetFilter() {
         // Reset the values of ChoiceBoxes and TextField
-        if(utente.getCurrentUser() instanceof Impiegato){
+        if(userModel.isImpiegato()){
             choiceStato.getSelectionModel().select(0);
         }
         else{
@@ -108,8 +107,8 @@ public class PreventiviController {
         clienteField.clear();
 
         filterPreventivi();
-        if(utente.getCurrentUser()instanceof Impiegato){
-            loadPrevs(registro.getPreventiviByStato(StatoPreventivo.FINALIZZATO));
+        if(userModel.isSegretario()){
+            loadPrevs(registroModel.getPreventiviByStato(StatoPreventivo.FINALIZZATO));
         }
         // Call filterPreventivi to refresh the list
 
@@ -125,7 +124,7 @@ public class PreventiviController {
         choiceMarca.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> filterPreventivi());
 
         // Popola choiceSede con valori di Sede
-        choiceSede.getItems().setAll(sedi.getAllData());
+        choiceSede.getItems().setAll(sediModel.getAllData());
         choiceSede.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> filterPreventivi());
 
         // Listener per il campo di ricerca cliente
@@ -140,11 +139,11 @@ public class PreventiviController {
     public void loadPrevs(ArrayList<Preventivo> registroArg) {
         // Resetto la lista presente in precedenza
         mainView.getChildren().clear();
-        if(registro.getCurrentPreventivo()!=null){
-            choiceStato.setValue(registro.getCurrentPreventivo().getStato());
-            registro.setCurrentPreventivo(null);
+        if(registroModel.getCurrentPreventivo()!=null){
+            choiceStato.setValue(registroModel.getCurrentPreventivo().getStato());
+            registroModel.setCurrentPreventivo(null);
         }
-        if (utente.getCurrentUser() != null) {
+        if (userModel.getCurrentUser() != null) {
             getPreventivi(registroArg);
         } else {
             Hyperlink registratiLink = new Hyperlink("Accedi per vedere i tuoi preventivi!");
@@ -199,11 +198,11 @@ public class PreventiviController {
      */
     private void filterPreventivi() {
         ArrayList<Preventivo> filteredList;
-        if(utente.isCliente()){
-            filteredList = registro.getPreventiviByCliente((Cliente) utente.getCurrentUser());
+        if(userModel.isCliente()){
+            filteredList = registroModel.getPreventiviByCliente((Cliente) userModel.getCurrentUser());
         }
         else{
-            filteredList = registro.getAllData();
+            filteredList = registroModel.getAllData();
         }
 
         StatoPreventivo selectedStato = choiceStato.getValue();
@@ -212,13 +211,13 @@ public class PreventiviController {
         String clienteQuery = clienteField.getText().toLowerCase();
 
         if (selectedStato != null) {
-            filteredList = registro.filterPreventiviByStato(selectedStato, filteredList);
+            filteredList = registroModel.filterPreventiviByStato(selectedStato, filteredList);
         }
         if (selectedMarca != null) {
-            filteredList = registro.filterPreventiviByBrand(selectedMarca,filteredList);
+            filteredList = registroModel.filterPreventiviByBrand(selectedMarca,filteredList);
         }
         if (selectedSede != null) {
-            filteredList = registro.filterPreventiviBySede(selectedSede, filteredList);
+            filteredList = registroModel.filterPreventiviBySede(selectedSede, filteredList);
         }
         if (!clienteQuery.isEmpty()) {
             filteredList = filteredList.stream()

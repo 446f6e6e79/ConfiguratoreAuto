@@ -19,7 +19,7 @@ public class ValutazioneController implements Initializable {
     @FXML
     private FlowPane list;
 
-    RegistroModel registro = RegistroModel.getInstance();
+    RegistroModel registroModel = RegistroModel.getInstance();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -38,7 +38,7 @@ public class ValutazioneController implements Initializable {
     private void load() {
         //Resetto la lista presente in precedenza
         ArrayList<Preventivo> filteredList;
-        filteredList = registro.getPreventiviByStato(StatoPreventivo.RICHIESTO);
+        filteredList = registroModel.getPreventiviByStato(StatoPreventivo.RICHIESTO);
         list.getChildren().clear();
         if(filteredList.isEmpty()){
             list.getChildren().add(new Text("Non è presente alcuna auto da valutare"));

@@ -53,7 +53,7 @@ public class AddAutoController implements Initializable {
     @FXML
     private Button eliminaButton;
 
-    CatalogoModel catalogo = CatalogoModel.getInstance();
+    CatalogoModel catalogoModel = CatalogoModel.getInstance();
     int[] sconti = new int[12];
 
     /**
@@ -101,19 +101,19 @@ public class AddAutoController implements Initializable {
         scontoInput.addEventFilter(KeyEvent.KEY_TYPED, event -> checkValidInt(event, scontoInput));
 
         //Genero un auto TEMPORANEA, alla quale saranno applicate le modifiche
-        AutoNuova tempAuto = catalogo.getTempAuto();
+        AutoNuova tempAuto = catalogoModel.getTempAuto();
         eliminaButton.setVisible(false);
 
         //Ottengo la copia dell'auto, solo se non già presente
         if(tempAuto == null){
-            catalogo.generateTempAuto(catalogo.getSelectedAuto());
-            tempAuto = catalogo.getTempAuto();
+            catalogoModel.generateTempAuto(catalogoModel.getSelectedAuto());
+            tempAuto = catalogoModel.getTempAuto();
         }
 
         /*
         *   In caso il segretario stia modificando un auto, carico i dati già presenti
         * */
-        if(catalogo.getSelectedAuto() != null || tempAuto.getModello() != null){
+        if(catalogoModel.getSelectedAuto() != null || tempAuto.getModello() != null){
             eliminaButton.setVisible(true);
             sconti = tempAuto.getScontoPerMese();
             setScontiOutput();
@@ -203,7 +203,7 @@ public class AddAutoController implements Initializable {
         //Mostro il popup e attendo che venga premuto
         confirmation.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
-                catalogo.getAllData().remove(catalogo.getSelectedAuto());
+                catalogoModel.getAllData().remove(catalogoModel.getSelectedAuto());
                 goBack();
             }
         });
@@ -221,18 +221,18 @@ public class AddAutoController implements Initializable {
         {
             try {
                 //Setto i parametri inseriti all'auto temporanea
-                catalogo.getTempAuto().setMarca(brand.getValue());
-                catalogo.getTempAuto().setModello(modello.getText());
-                catalogo.getTempAuto().setDimensione(new Dimensione(
+                catalogoModel.getTempAuto().setMarca(brand.getValue());
+                catalogoModel.getTempAuto().setModello(modello.getText());
+                catalogoModel.getTempAuto().setDimensione(new Dimensione(
                         Double.parseDouble(lunghezza.getText()),
                         Double.parseDouble(altezza.getText()),
                         Double.parseDouble(larghezza.getText()),
                         Double.parseDouble(peso.getText()),
                         Double.parseDouble(volume.getText())
                 ));
-                catalogo.getTempAuto().setDescrizione(descrizione.getText());
-                catalogo.getTempAuto().setCostoBase(Double.parseDouble(costoBase.getText()));
-                catalogo.getTempAuto().setScontoPerMese(sconti);
+                catalogoModel.getTempAuto().setDescrizione(descrizione.getText());
+                catalogoModel.getTempAuto().setCostoBase(Double.parseDouble(costoBase.getText()));
+                catalogoModel.getTempAuto().setScontoPerMese(sconti);
                 //Carico la pagina successiva
                 loadAddImagesPage();
             } catch (Exception e) {
@@ -267,7 +267,7 @@ public class AddAutoController implements Initializable {
         confirmation.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
                 //Resetto tempAuto a null, cancellando tutte le modifiche effettuate
-                catalogo.setTempAuto(null);
+                catalogoModel.setTempAuto(null);
                 TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
                 PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/catalogoView.fxml" );
             }

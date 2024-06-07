@@ -12,8 +12,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.StatoPreventivo;
-import org.example.configuratoreauto.Utenti.Impiegato;
-import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
 
 import java.io.IOException;
@@ -33,7 +31,8 @@ public class PreventivoElementController {
     private Label stato;
     @FXML
     private ImageView openIcon;
-    UserModel utenti = UserModel.getInstance();
+
+    UserModel userModel = UserModel.getInstance();
     private Preventivo preventivo;
 
     public void setPreventivo(Preventivo preventivo) {
@@ -54,7 +53,8 @@ public class PreventivoElementController {
             mainElement.getStyleClass().add("clickableElementGreen");
         }
 
-        if(utenti.getCurrentUser() instanceof Impiegato || utenti.getCurrentUser() instanceof Segretario){
+        //Se SEGRETARIO o IMPIEGATO
+        if(!userModel.isCliente()){
             cliente.setText(preventivo.getCliente().getName() + " " + preventivo.getCliente().getSurname());
         }
         String iconPath = "/img/icons/right-arrow.png";

@@ -17,7 +17,6 @@ import javafx.scene.layout.*;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.example.configuratoreauto.Macchine.*;
-import org.example.configuratoreauto.Utenti.Segretario;
 import org.example.configuratoreauto.Utenti.UserModel;
 
 import java.io.IOException;
@@ -47,8 +46,8 @@ public class CatalogoController implements Initializable {
     @FXML
     private ToggleButton orderDecrescente;
 
-    private CatalogoModel catalogo = CatalogoModel.getInstance();
-    private UserModel user = UserModel.getInstance();
+    private CatalogoModel catalogoModel = CatalogoModel.getInstance();
+    private UserModel userModel = UserModel.getInstance();
     private ArrayList<AutoNuova> currentFilteredList;
 
     @Override
@@ -57,7 +56,7 @@ public class CatalogoController implements Initializable {
         autoList.prefHeightProperty().bind(catalogoComponent.heightProperty());
 
         //Aggiungo i valori alle choiceBox usate per i filtri
-        brandList.getItems().addAll(catalogo.getUsedBrands());
+        brandList.getItems().addAll(catalogoModel.getUsedBrands());
         alimentazioneList.getItems().addAll(Alimentazione.values());
 
         //Listener per l'implementazione dei filtri
@@ -124,7 +123,7 @@ public class CatalogoController implements Initializable {
     }
 
     private void filterAndLoadCars() {
-        currentFilteredList = new ArrayList<>(catalogo.getAllData());
+        currentFilteredList = new ArrayList<>(catalogoModel.getAllData());
         if (brandList.getValue() != null) {
             currentFilteredList = CatalogoModel.filterAutoByBrand(brandList.getValue(), currentFilteredList);
         }
@@ -165,7 +164,7 @@ public class CatalogoController implements Initializable {
             autoList.getChildren().add(new Text("Non è presente alcuna auto che rispetta i seguenti filtri"));
         }
 
-        if (user.getCurrentUser() instanceof Segretario) {
+        if (userModel.isSegretario()) {
             addInsertAutoElement();
         }
 
@@ -190,7 +189,7 @@ public class CatalogoController implements Initializable {
         imageContainer.getStyleClass().add("clickableElement");
 
         imageContainer.setOnMouseClicked(event -> {
-                catalogo.setSelectedAuto(null);
+                catalogoModel.setSelectedAuto(null);
                 TabPane tabPane = (TabPane) autoList.getScene().lookup("#mainPage");
                 PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/segretarioView/addModel.fxml");
         });

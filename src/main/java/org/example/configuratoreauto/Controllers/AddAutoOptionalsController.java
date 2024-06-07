@@ -25,8 +25,8 @@ import static org.example.configuratoreauto.Controllers.InputValidation.*;
 
 
 public class AddAutoOptionalsController implements Initializable {
-    CatalogoModel catalogo = CatalogoModel.getInstance();
-    AutoNuova tempAuto = catalogo.getTempAuto();
+    CatalogoModel catalogoModel = CatalogoModel.getInstance();
+    AutoNuova tempAuto = catalogoModel.getTempAuto();
 
     @FXML
     private ChoiceBox<TipoOptional> optionalType;
@@ -285,8 +285,8 @@ public class AddAutoOptionalsController implements Initializable {
         //Controllo che sia presente almeno un motore
         if(!tempAuto.getMotoriDisponibili().isEmpty()) {
             //Salvo i dati memorizzati nell'auto temporanea, nel relativo oggetto auto
-            catalogo.saveTempData();
-            catalogo.setSelectedAuto(null);
+            catalogoModel.saveTempData();
+            catalogoModel.setSelectedAuto(null);
             TabPane tabPane = (TabPane) consumi.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
             PageLoader.updateTabContent(tabPane, 0, "/org/example/configuratoreauto/catalogoView.fxml");
         }

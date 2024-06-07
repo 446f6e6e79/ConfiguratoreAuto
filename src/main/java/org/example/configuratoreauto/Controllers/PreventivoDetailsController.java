@@ -22,7 +22,6 @@ import org.example.configuratoreauto.Macchine.TipoOptional;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.RegistroModel;
 import org.example.configuratoreauto.Preventivi.StatoPreventivo;
-import org.example.configuratoreauto.Utenti.Impiegato;
 import org.example.configuratoreauto.Utenti.UserModel;
 
 public class PreventivoDetailsController {
@@ -70,8 +69,8 @@ public class PreventivoDetailsController {
     @FXML
     private Button impiegatoButton;
 
-    private UserModel user = UserModel.getInstance();
-    private RegistroModel registro = RegistroModel.getInstance();
+    private UserModel userModel = UserModel.getInstance();
+    private RegistroModel registroModel = RegistroModel.getInstance();
 
     private Preventivo preventivo;
 
@@ -79,7 +78,7 @@ public class PreventivoDetailsController {
         impiegatoButton.setVisible(false);
 
         //Se l'utente è IMPIEGATO, allora imposto i comportamenti per il bottone
-        if(user.getCurrentUser() instanceof Impiegato){
+        if(userModel.isImpiegato()){
            impiegatoButton.setVisible(true);
 
            //Se il preventivo era finalizzato, può settarlo come PAGATO
@@ -216,7 +215,7 @@ public class PreventivoDetailsController {
 
     private void setNewStato(StatoPreventivo newStato){
        preventivo.setStato(newStato);
-       registro.updateData(preventivo);
+       registroModel.updateData(preventivo);
        goBack();
     }
     @FXML

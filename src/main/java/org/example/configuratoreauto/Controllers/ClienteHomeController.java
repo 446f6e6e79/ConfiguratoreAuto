@@ -12,7 +12,6 @@ public class ClienteHomeController extends AbstractHomeController {
     Cliente currentUser = (Cliente) userModel.getCurrentUser();
 
     BorderPane preventiviNode;
-
     @FXML
     private Tab preventiviTab;
 

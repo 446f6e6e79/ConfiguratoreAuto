@@ -19,7 +19,7 @@ import java.io.File;
 import static org.example.configuratoreauto.Macchine.AutoUsata.isValidTarga;
 
 public class AddAutoUsataController {
-    RegistroModel registro = RegistroModel.getInstance();
+    RegistroModel registroModel = RegistroModel.getInstance();
     /** ArrayList osservabile, contenente le immagini inserite */
     private final ObservableList<Image> usedImages = FXCollections.observableArrayList();
 
@@ -175,8 +175,8 @@ public class AddAutoUsataController {
      * Metodo che si occupa di salvare nel registro il preventivo attuale con apportate modifiche
      */
     private void saveCurrentPreventivo(AutoUsata autoUsata){
-        registro.getCurrentPreventivo().setUsata(autoUsata);
-        registro.addData(registro.getCurrentPreventivo());
+        registroModel.getCurrentPreventivo().setUsata(autoUsata);
+        registroModel.addData(registroModel.getCurrentPreventivo());
         ((Stage) kmTextField.getScene().getWindow()).close();
     }
 }

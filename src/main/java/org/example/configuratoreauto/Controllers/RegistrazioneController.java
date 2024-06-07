@@ -15,7 +15,7 @@ import org.example.configuratoreauto.Utenti.Persona;
 import org.example.configuratoreauto.Utenti.UserModel;
 
 public class RegistrazioneController {
-    private final UserModel u = UserModel.getInstance();
+    private final UserModel userModel = UserModel.getInstance();
     private final ReadOnlyBooleanWrapper isEmailValid = new ReadOnlyBooleanWrapper(false);
     private final ReadOnlyBooleanWrapper isInputValid = new ReadOnlyBooleanWrapper(false);
 
@@ -82,10 +82,10 @@ public class RegistrazioneController {
         if (isInputValid.get()) {
             if (passText.equals(passConfirmationText)) {
                 try{
-                    if (u.registraCliente(new Cliente(emailText, passText, nomeText, cognomeText))) {
+                    if (userModel.registraCliente(new Cliente(emailText, passText, nomeText, cognomeText))) {
                         responseText.setTextFill(Color.GREEN);
                         responseText.setText("Cliente registrato correttamente!");
-                        u.validation(emailText, passText);
+                        userModel.validation(emailText, passText);
                         onLogin();
                     } else {
                         showError("Email già in uso!");

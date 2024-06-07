@@ -15,7 +15,6 @@ import javafx.scene.control.TabPane;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
-import javafx.stage.Stage;
 import org.example.configuratoreauto.Macchine.*;
 import org.example.configuratoreauto.Macchine.Optional;
 import org.example.configuratoreauto.Preventivi.Preventivo;
@@ -28,11 +27,11 @@ import java.net.URL;
 import java.util.*;
 
 public class CustomizeAutoController implements Initializable {
-    CatalogoModel catalogo = CatalogoModel.getInstance();
+    CatalogoModel catalogoModel = CatalogoModel.getInstance();
     SediModel sediModel = SediModel.getInstance();
-    AutoNuova auto = catalogo.getSelectedAuto();
-    RegistroModel registro = RegistroModel.getInstance();
-    UserModel user = UserModel.getInstance();
+    AutoNuova auto = catalogoModel.getSelectedAuto();
+    RegistroModel registroModel = RegistroModel.getInstance();
+    UserModel userModel = UserModel.getInstance();
 
     private final IntegerProperty currentImageIndex = new SimpleIntegerProperty(-1);
     private final ObservableList<Immagine> imagesCurrentColor = FXCollections.observableArrayList();
@@ -148,7 +147,7 @@ public class CustomizeAutoController implements Initializable {
     private void updateImagesForColor(String color) {
         imagesCurrentColor.clear();
 
-        for (Immagine img : catalogo.getSelectedAuto().getImmagini()) {
+        for (Immagine img : catalogoModel.getSelectedAuto().getImmagini()) {
             System.out.println(img.getColor());
             if (img.getColor().equals(color)) {
                 imagesCurrentColor.add(img);
@@ -217,19 +216,19 @@ public class CustomizeAutoController implements Initializable {
 
         ArrayList<Optional> chosen = getChoseOptional();
         if(motori.getValue()!=null && sedi.getValue()!=null){
-            if(user.getCurrentUser() == null){
+            if(userModel.getCurrentUser() == null){
                 openRegistratiView();
-                if(user.getCurrentUser() == null){
+                if(userModel.getCurrentUser() == null){
                     return;
                 }
             }
             valido.setText("");
             //Creo una copia per scollegare il preventivo dall'auto
             AutoNuova copia = new AutoNuova(auto);
-            registro.setCurrentPreventivo(new Preventivo(copia, sedi.getValue(), (Cliente) user.getCurrentUser(), motori.getValue(), chosen));
+            registroModel.setCurrentPreventivo(new Preventivo(copia, sedi.getValue(), (Cliente) userModel.getCurrentUser(), motori.getValue(), chosen));
             openUsataView();
             System.out.println("FINIO");
-            catalogo.setSelectedAuto(null);
+            catalogoModel.setSelectedAuto(null);
             goBack();
         }else{
             PageLoader.showErrorPopup("Errore", "Non hai inserito i campi obbligatori");

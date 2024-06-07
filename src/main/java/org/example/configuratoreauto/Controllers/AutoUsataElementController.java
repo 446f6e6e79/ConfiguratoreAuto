@@ -19,7 +19,8 @@ import static org.example.configuratoreauto.Controllers.InputValidation.checkVal
 public class AutoUsataElementController {
 
     private final IntegerProperty currentImageIndex = new SimpleIntegerProperty(0);
-    RegistroModel registro = RegistroModel.getInstance();
+
+    RegistroModel registroModel = RegistroModel.getInstance();
     Preventivo preventivo;
     @FXML
     Label modello;
@@ -59,7 +60,7 @@ public class AutoUsataElementController {
         try {
             double valutazioneValue = Double.parseDouble(valutazione.getText());
             preventivo.setValutazione(valutazioneValue);
-            registro.updateData(preventivo);
+            registroModel.updateData(preventivo);
             TabPane tabPane = (TabPane) modello.getScene().lookup("#mainPage");
             PageLoader.updateTabContent(tabPane, 0,"/org/example/configuratoreauto/impiegatoView/valutazioniView.fxml");
             PageLoader.updateTabContent(tabPane, 1, "/org/example/configuratoreauto/preventiviView.fxml");
