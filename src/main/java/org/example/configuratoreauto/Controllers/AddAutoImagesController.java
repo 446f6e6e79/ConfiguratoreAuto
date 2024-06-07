@@ -190,8 +190,9 @@ public class AddAutoImagesController implements Initializable {
     @FXML
     private void saveImages() {
         String selectedColor = coloreInput.getValue();
-        if (selectedColor != null && !coloreInput.getItems().contains(selectedColor)) {
-            //Aggiunge il colore
+
+        //Aggiungo l'optional colore
+        if (selectedColor != null) {
             tempAuto.addOptional(
                     new Optional(
                             TipoOptional.Colore,
@@ -199,9 +200,12 @@ public class AddAutoImagesController implements Initializable {
                             Double.parseDouble(colorPrice.getText())
                     )
             );
-            coloreInput.getItems().add(selectedColor);
+            //Se ho aggiunto un nuovo colore, lo aggiungo alla comboBox
+            if(!coloreInput.getItems().contains(selectedColor)){
+                coloreInput.getItems().add(selectedColor);
+            }
         }
-
+        
         coloreInput.setValue(null);
         colorPrice.clear();
         imagesCurrentColor.clear();
