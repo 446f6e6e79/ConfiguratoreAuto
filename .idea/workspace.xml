@@ -6,38 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/1684372129/Giallo/g1-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/1684372129/Giallo/g2-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/1684372129/Giallo/g3-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/1684372129/Grigio Scuro/a2-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/1684372129/Grigio Scuro/a3-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/1684372129/Grigio Scuro/a4-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/1684372129/Viola/v1-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/1684372129/Viola/v2-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/1684372129/Viola/v3-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/432250368/Grigio/purosangue2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/432250368/Grigio/purosangue3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/432250368/Grigio/purosangue4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/432250368/Grigio/purosangueInterni.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/432250368/Rosso/purosangueInterni.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/432250368/Rosso/purosangue_rosso.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/432250368/Rosso/purosangue_rosso2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/432250368/Rosso/purosangue_rosso3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/432250368/Rosso/purosangue_rosso4.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/501228657/Grigio/image-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/501228657/Grigio/image__3_-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/501228657/Grigio/image__6_-removebg-preview.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Bianco/911Grigio2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Bianco/911Grigio3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Bianco/interni911.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Nero/911Nero2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Nero/911Nero3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Nero/interni911.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Rosso/911Rosso1.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Rosso/911Rosso2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Rosso/911Rosso3.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Rosso/interni911.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/MainTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/MainTests.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/data/registro.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/registro.ser" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
     <list id="8a41f733-5ca9-48cd-9745-66ebc7f3f2b0" name="Changes by donny" comment="" />
@@ -232,7 +202,8 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-19.0.2-azul-19.0.2-4caba194b151-4e80ab0a" />
+        <option value="bundled-jdk-9f38398b9061-39b83d9b5494-intellij.indexing.shared.core-IU-241.17011.79" />
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-IU-241.17011.79" />
       </set>
     </attachedChunks>
   </component>
@@ -381,7 +352,6 @@
       <workItem from="1717598478871" duration="386000" />
       <workItem from="1717611651372" duration="2753000" />
       <workItem from="1717708546137" duration="881000" />
-      <workItem from="1717751198991" duration="925000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />
