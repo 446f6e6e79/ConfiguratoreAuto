@@ -8,7 +8,7 @@ import org.example.configuratoreauto.Utenti.Cliente;
 
 import java.io.IOException;
 
-public class ClienteHomeController extends BaseHomeController {
+public class ClienteHomeController extends AbstractHomeController {
     Cliente currentUser = (Cliente) userModel.getCurrentUser();
 
     BorderPane preventiviNode;

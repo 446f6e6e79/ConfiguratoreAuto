@@ -8,6 +8,7 @@ import org.example.configuratoreauto.Preventivi.SediModel;
 import org.example.configuratoreauto.Utenti.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 
 
@@ -23,8 +24,10 @@ public class MainTests {
 
         Date date = new Date();
         date.setMonth(date.getMonth()-1);
-
-        Preventivo p = new Preventivo(a, s, (Cliente) u1.getCurrentUser(), date, a.getMotoriDisponibili().get(0), new ArrayList());
+        Optional optional = a.getDefaultColor();
+        ArrayList<Optional> opt = new ArrayList<>();
+        opt.add(optional);
+        Preventivo p = new Preventivo(a, s, (Cliente) u1.getCurrentUser(), date, a.getMotoriDisponibili().get(0), opt);
 
         p.setUsata(null);
         r.addData(p);

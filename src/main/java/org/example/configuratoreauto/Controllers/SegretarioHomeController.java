@@ -6,7 +6,7 @@ import javafx.scene.layout.BorderPane;
 
 import java.io.IOException;
 
-public class SegretarioHomeController extends BaseHomeController {
+public class SegretarioHomeController extends AbstractHomeController {
     BorderPane preventiviNode;
 
     @FXML

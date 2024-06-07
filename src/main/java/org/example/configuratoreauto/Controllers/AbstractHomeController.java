@@ -10,7 +10,7 @@ import javafx.stage.StageStyle;
 import org.example.configuratoreauto.Macchine.CatalogoModel;
 import org.example.configuratoreauto.Utenti.UserModel;
 
-public abstract class BaseHomeController {
+public abstract class AbstractHomeController {
 
     protected UserModel userModel = UserModel.getInstance();
 
