@@ -124,25 +124,27 @@ public class AddAutoUsataController {
             InputValidation.isValidDoubleTextField(true, kmTextField)
         )
         {
-            // Se il form è valido, esegui le operazioni di salvataggio
-            Marca marca = marcaComboBox.getValue();
-            String modello = modelloTextField.getText();
-            String targa = targaTextField.getText();
-            int km = Integer.parseInt(kmTextField.getText());
+            try {
+                // Se il form è valido, esegui le operazioni di salvataggio
+                Marca marca = marcaComboBox.getValue();
+                String modello = modelloTextField.getText();
+                String targa = targaTextField.getText();
+                int km = Integer.parseInt(kmTextField.getText());
 
-            /*
-            *   Aggiungo all'auto usata le immagini inserite
-            * */
-            AutoUsata autoUsata = new AutoUsata(marca, modello, targa, km);
-            for(Image img: usedImages){
-                System.out.println(img.getUrl().substring(5));
-                autoUsata.addImage(new Immagine("", img.getUrl().substring(5)));
+                /*
+                 *   Aggiungo all'auto usata le immagini inserite
+                 * */
+                AutoUsata autoUsata = new AutoUsata(marca, modello, targa, km);
+                for (Image img : usedImages) {
+                    System.out.println(img.getUrl().substring(5));
+                    autoUsata.addImage(new Immagine("", img.getUrl().substring(5)));
+                }
+                autoUsata.addToLocalImages();
+                saveCurrentPreventivo(autoUsata);
             }
-            autoUsata.addToLocalImages();
-            saveCurrentPreventivo();
-        }
-        else{
-
+            catch(Exception e) {
+                PageLoader.showErrorPopup("Errore", e.getMessage());
+            }
         }
     }
 
@@ -166,14 +168,14 @@ public class AddAutoUsataController {
      */
     @FXML
     private void saltaButton() {
-        saveCurrentPreventivo();
+        saveCurrentPreventivo(null);
     }
 
     /**
      * Metodo che si occupa di salvare nel registro il preventivo attuale con apportate modifiche
      */
-    private void saveCurrentPreventivo(){
-        registro.getCurrentPreventivo().setUsata(null);
+    private void saveCurrentPreventivo(AutoUsata autoUsata){
+        registro.getCurrentPreventivo().setUsata(autoUsata);
         registro.addData(registro.getCurrentPreventivo());
         ((Stage) kmTextField.getScene().getWindow()).close();
     }
