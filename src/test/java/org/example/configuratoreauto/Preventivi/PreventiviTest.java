@@ -144,7 +144,5 @@ class PreventiviTest{
         test.setUsata(usata);
         assertThrowsExactly(IllegalArgumentException.class, () -> test.setStato(StatoPreventivo.RICHIESTO));
         assertThrowsExactly(IllegalArgumentException.class, () -> test.setStato(StatoPreventivo.DISPONIBILE_AL_RITIRO));
-
     }
-
 }

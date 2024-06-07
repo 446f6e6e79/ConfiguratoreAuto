@@ -10,12 +10,12 @@ class UserModelTest {
     @Test
     @DisplayName("Registrazione utenti")
     void registraCliente(){
+        //Registro una mail non ancora presente
+        assertTrue(u.registraCliente(new Cliente("aaa@gmail.com", "1234", "a", "b")));
+
         //Registro una mail già presente
         assertFalse(u.registraCliente(new Cliente("davide@gmail.com", "1234", "A", "A")));
         assertFalse(u.registraCliente(new Cliente("DaViDe@GmAiL.cOm", "1234", "A", "A")));
-
-        //Registro una mail non ancora presente
-        assertTrue(u.registraCliente(new Cliente("aaa@gmail.com", "1234", "a", "b")));
 
         //Registrazione con email non valide / nomi non validi;
         assertThrowsExactly(IllegalArgumentException.class, () -> new Cliente("@gmail.com", "1234", "a", "b"));
@@ -44,12 +44,22 @@ class UserModelTest {
     @DisplayName("Current user check")
     void getCurrentUser() {
         assertTrue(u.validation("davide@gmail.com", "1234"));
-        assertInstanceOf(Cliente.class, u.getCurrentUser());
-        assertFalse(u.getCurrentUser() instanceof Impiegato);
+        assertTrue(u.isCliente());
+        assertFalse(u.isSegretario());
+        assertFalse(u.isImpiegato());
+
         u.validation("segretario@gmail.com", "1234");
-        assertInstanceOf(Segretario.class, u.getCurrentUser());
+        assertTrue(u.isSegretario());
+        assertFalse(u.isImpiegato());
+        assertFalse(u.isCliente());
+
+        u.validation("impiegato@gmail.com", "1234");
+        assertFalse(u.isSegretario());
+        assertTrue(u.isImpiegato());
+        assertFalse(u.isCliente());
 
     }
+
     @Test
     @DisplayName("validEmail")
     void checkValidEmail(){

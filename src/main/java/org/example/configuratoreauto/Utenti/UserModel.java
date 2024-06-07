@@ -91,5 +91,6 @@
         public boolean isSegretario(){
             return currentUser instanceof Segretario;
         }
+
         public void clearCurrentUser(){ currentUser=null; }
     }
