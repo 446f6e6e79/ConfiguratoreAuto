@@ -144,10 +144,10 @@ public class PreventivoDetailsController {
         //Se il preventivo è già stato finalizzato:
         if(preventivo.getStato()==StatoPreventivo.PAGATO) {
             consegna.setText(preventivo.getDataConsegnaAsString());
-            datePreventivo.getChildren().get(0).setVisible(false);
+            datePreventivo.getChildren().remove(0);
         }else if(preventivo.getStato()==StatoPreventivo.FINALIZZATO){
                 scadenza.setText(preventivo.getDataScadenzaAsString());
-                datePreventivo.getChildren().get(1).setVisible(false);
+                datePreventivo.getChildren().remove(1);
             }else{
                 datePreventivo.getChildren().clear();
                 Text text;

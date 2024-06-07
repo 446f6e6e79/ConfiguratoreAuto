@@ -247,7 +247,7 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
                 throw new IllegalArgumentException("Stato non valido: la transizione non è consentita");
             }
         }
-        if(this.stato == StatoPreventivo.PAGATO){
+        if(stato == StatoPreventivo.PAGATO){
             setConsegna();
         }
         this.stato = stato;
