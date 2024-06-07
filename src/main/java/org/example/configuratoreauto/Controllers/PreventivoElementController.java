@@ -40,7 +40,7 @@ public class PreventivoElementController {
         this.preventivo = preventivo;
         modello.setText(preventivo.getAcquisto().getModello());
         data.setText(preventivo.getDataPreventivoAsString());
-        if(preventivo.getStato() != StatoPreventivo.RICHIESTO ){
+        if(preventivo.getStato() == StatoPreventivo.PAGATO ){
             consegna.setText(preventivo.getDataConsegnaAsString());
         }else{
             consegna.setText("");

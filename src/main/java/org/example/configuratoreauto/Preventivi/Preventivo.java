@@ -81,7 +81,6 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
             //In caso non sia presente un auto usata, il preventivo è già finalizzato e posso impostare una scadenza
             this.stato = StatoPreventivo.FINALIZZATO;
             setScadenza(new Date());
-            setConsegna();
         }
     }
 
@@ -201,7 +200,6 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
         this.valutazione = valutazione;
         setStato(StatoPreventivo.FINALIZZATO);
         setScadenza(new Date());
-        setConsegna();
     }
 
     public ArrayList<Optional> getOptionalScelti() {
@@ -248,6 +246,9 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
             if (stato.ordinal() != this.stato.ordinal() + 1) {
                 throw new IllegalArgumentException("Stato non valido: la transizione non è consentita");
             }
+        }
+        if(this.stato == StatoPreventivo.PAGATO){
+            setConsegna();
         }
         this.stato = stato;
     }

@@ -141,19 +141,34 @@ public class PreventivoDetailsController {
         stato.setText(preventivo.getStato().toString());
         data.setText(preventivo.getDataPreventivoAsString());
         sede.setText(preventivo.getSede().toString());
-
         //Se il preventivo è già stato finalizzato:
-        if(preventivo.getStato()!=StatoPreventivo.RICHIESTO) {
+        if(preventivo.getStato()==StatoPreventivo.PAGATO) {
             consegna.setText(preventivo.getDataConsegnaAsString());
-            scadenza.setText(preventivo.getDataScadenzaAsString());
+            datePreventivo.getChildren().get(0).setVisible(false);
+        }else if(preventivo.getStato()==StatoPreventivo.FINALIZZATO){
+                scadenza.setText(preventivo.getDataScadenzaAsString());
+                datePreventivo.getChildren().get(1).setVisible(false);
+            }else{
+                datePreventivo.getChildren().clear();
+                Text text;
+                if(preventivo.getStato() == StatoPreventivo.RICHIESTO) {
+                    text = new Text("Attendi che l'usato venga valutato!");
+                    text.setStyle("-fx-font-size: 24; -fx-font-weight: bold;-fx-fill: #FFD700");
+                }else if(preventivo.getStato() == StatoPreventivo.SCADUTO){
+                    text = new Text("Il preventivo risulta scaduto");
+                    text.setStyle("-fx-font-size: 24; -fx-font-weight: bold;-fx-fill: #ff0000");
+                    datePreventivo.getChildren().add(text);
+                }else if(preventivo.getStato() == StatoPreventivo.DISPONIBILE_AL_RITIRO){
+                    text = new Text("L'auto è disponibile al ritiro");
+                    text.setStyle("-fx-font-size: 24; -fx-font-weight: bold;-fx-fill: #70ff79");
+                    datePreventivo.getChildren().add(text);
+                }else if(preventivo.getStato() == StatoPreventivo.RITIRATO){
+                    text = new Text("L'auto è già stata ritirata");
+                    text.setStyle("-fx-font-size: 24; -fx-font-weight: bold;-fx-fill: #7979ff");
+                    datePreventivo.getChildren().add(text);
+                }
+        }
 
-        }
-        else{
-            datePreventivo.getChildren().clear();
-            Text text = new Text("Attendi che l'usato venga valutato!");
-            text.setStyle("-fx-font-size: 24; -fx-font-weight: bold;-fx-fill: #FFD700");
-            datePreventivo.getChildren().add(text);
-        }
 
         /*
         *   Aggiungo le informazioni per l'auto ussata, se presenti
@@ -228,9 +243,9 @@ public class PreventivoDetailsController {
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Data Preventivo: " + preventivo.getDataPreventivoAsString());
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Data Consegna: " + (preventivo.getStato() != StatoPreventivo.RICHIESTO ? preventivo.getDataConsegnaAsString() : "da definire"));
+                contentStream.showText("Data Consegna: " + (preventivo.getStato() == StatoPreventivo.PAGATO ? preventivo.getDataConsegnaAsString() : "da definire"));
                 contentStream.newLineAtOffset(0, -20);
-                contentStream.showText("Scadenza: " + (preventivo.getStato() != StatoPreventivo.RICHIESTO ? preventivo.getDataScadenzaAsString() : "da definire"));
+                contentStream.showText("Scadenza: " + (preventivo.getStato() == StatoPreventivo.FINALIZZATO ? preventivo.getDataScadenzaAsString() : "da definire"));
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Stato: " + preventivo.getStato().toString());
                 contentStream.newLineAtOffset(0, -20);
