@@ -54,10 +54,12 @@ class PreventiviTest{
         //Creo un preventivo senza optional
         assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, motore, null));
         assertDoesNotThrow(() -> test.setUsata(null));
+        test.setStato(StatoPreventivo.PAGATO);
 
         //Preventivo con optional di costo zero
         assertDoesNotThrow(() -> tester2 = new Preventivo(auto, sede, cliente, motore, optionalsZero));
         assertDoesNotThrow(() -> tester2.setUsata(null));
+        tester2.setStato(StatoPreventivo.PAGATO);
 
         //Preventivo senza optional e con optional di costo zero devono avere stessa data di consegna
         assertEquals(test.getDataConsegnaAsString(), tester2.getDataConsegnaAsString());
@@ -65,6 +67,7 @@ class PreventiviTest{
         //Preventivi con optional con un costo
         assertDoesNotThrow(() -> test = new Preventivo(auto, sede, cliente, motore, optionalsCost));
         assertDoesNotThrow(() -> test.setUsata(null));
+        test.setStato(StatoPreventivo.PAGATO);
 
         //Il preventivo senza optional deve avere una data di consegna diversa rispetto al preventivo con optional di valore
         assertNotEquals(test.getDataConsegnaAsString(), tester2.getDataConsegnaAsString());
@@ -83,7 +86,7 @@ class PreventiviTest{
         //Verifichiamo che, una volta settata l'auto usata a null, il preventivo risulta finalizzato
         assertEquals(test.getStato(), StatoPreventivo.FINALIZZATO);
         assertNotNull(test.getDataScadenzaAsString());
-        assertNotNull(test.getDataConsegnaAsString());
+        assertThrowsExactly(IllegalArgumentException.class, ()-> test.getDataConsegnaAsString());
 
         //Aggiungiamo una macchina USATA AD UN PREVENTIVO GIA' FINALIZZATO
         assertThrowsExactly(IllegalArgumentException.class, () -> test.setUsata(usata));

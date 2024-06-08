@@ -58,11 +58,10 @@
          *  Viene verificato che email e password inserite siano
          *  presenti all'interno del modello.
          * <p>
-         *  Se presenti
+         *  Se presenti, imposta currentUser all'utente corretto
          */
         public boolean validation(String email, String password){
             if(email != null && password != null) {
-
                 Persona loginData = new Persona(email, password);
                 for (Persona p : data) {
                     if (p.controlloCredenziali(loginData)) {

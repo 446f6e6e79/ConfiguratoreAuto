@@ -262,35 +262,12 @@ public class Preventivo implements Serializable, Comparable<Preventivo>{
     public void updateStatoAutomatico(){
         if(stato == StatoPreventivo.FINALIZZATO && isScaduto()){
             setStato(StatoPreventivo.SCADUTO);
-            if(getUsata() !=null){
+            //Se il preventivo è scaduto ed era presente una macchina usata, rimuoviamo le foto
+            if(getUsata() != null){
                 Immagine.cleanDirectory(Path.of("src/main/resources/img/usedCarImages/"+getUsata().getTarga()));
                 setUsata(null);
                 setValutazione(0);
            }
-        }
-    }
-
-    /**
-     * Metodo utile alla pulizia di un'auta usata nel caso essa fosse presente ed in un preventivo scaduto
-     * @param targa
-     */
-    private void eliminateTarga(String targa){
-        File directory = new File( "src/main/resources/img/usedCarImages");
-        System.out.println("HOLA 3");
-
-        if (!directory.exists() || !directory.isDirectory()) {
-            return;
-        }
-        System.out.println("HOLA");
-        //Creo una lista di tutte le sotto-directory  di usedCarImages esistenti
-        File[] files = directory.listFiles();
-        if (files != null) {
-            //Controllo, per ogni directory, se combacia con la targa inserita
-            for (File file : files) {
-                if (file.isDirectory() && file.getName().contains(targa)) {
-                    file.delete();
-                }
-            }
         }
     }
 

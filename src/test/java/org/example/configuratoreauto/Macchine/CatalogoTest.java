@@ -12,20 +12,18 @@ class CatalogoTest{
     AutoNuova test = new AutoNuova();
     @Test
     @DisplayName("Unique ID generator")
+
+    //Verifica che non vengano generati idDoppi
     void getUniqueID(){
         HashSet<Integer> test = new HashSet<>();
-        int nTests = 10000;
+        int nTests = 100000;
         for(int i = 0; i < nTests; i++){
             int id = c.getUniqueId();
             c.addData(new AutoNuova(id));
             test.add(c.getUniqueId());
         }
         assertEquals(nTests, test.size());
-    }
 
-    @Test
-    @DisplayName("Check Existing id")
-    void checkID(){
         AutoNuova a = c.getAllData().get(0);
         assertFalse(c.checkId(a.getId()));
     }
@@ -34,6 +32,7 @@ class CatalogoTest{
     @DisplayName("New auto construtor")
     void createNewAuto(){
         assertDoesNotThrow(() -> test = new AutoNuova(c.getUniqueId()));
+        //Creazione di un auto con id già presente
         assertThrowsExactly(IllegalArgumentException.class, () -> new AutoNuova(c.getAllData().get(0).getId()));
     }
 
@@ -49,6 +48,9 @@ class CatalogoTest{
     @DisplayName("Creazione dimensione")
     void setDimensione(){
         assertDoesNotThrow(() -> test.setDimensione(new Dimensione(10, 10, 10, 10, 10)));
+        assertDoesNotThrow(() -> test.setDimensione(new Dimensione(10, 10, 10, 10, 0)));
+
+        assertThrowsExactly(IllegalArgumentException.class, () -> test.setDimensione(null));
         assertThrowsExactly(IllegalArgumentException.class, () -> new Dimensione(-1, 10, 10,10,0));
         assertThrowsExactly(IllegalArgumentException.class, () -> new Dimensione(1, 0, 10,10,0));
         assertThrowsExactly(IllegalArgumentException.class, () -> new Dimensione(1, 10, 0,10,0));
@@ -84,11 +86,11 @@ class CatalogoTest{
     @Test
     @DisplayName("Set Motori")
     void setMotoriDisponibili(){
-        assertThrowsExactly(IllegalArgumentException.class, () -> test.addMotore(new Motore("", Alimentazione.ELETTRICA, 10, 10, 10)));
+        assertThrowsExactly(IllegalArgumentException.class, () -> test.addMotore(new Motore("", Alimentazione.ELETTRICA, 10, 0, 10)));
         assertThrowsExactly(IllegalArgumentException.class, () -> test.addMotore(new Motore("TEST", Alimentazione.ELETTRICA, 10, 10, 10)));
         assertThrowsExactly(IllegalArgumentException.class, () -> test.addMotore(new Motore("TEST", Alimentazione.ELETTRICA, -10, 0, 10)));
         assertThrowsExactly(IllegalArgumentException.class, () -> test.addMotore(new Motore("TEST", Alimentazione.ELETTRICA, 10, 0, -10)));
-        assertThrowsExactly(IllegalArgumentException.class, () -> test.addMotore(new Motore("TEST", Alimentazione.BENZINA, 10, -20, -10)));
+        assertThrowsExactly(IllegalArgumentException.class, () -> test.addMotore(new Motore("TEST", Alimentazione.BENZINA, 10, -20, 10)));
         assertDoesNotThrow(() -> test.addMotore(new Motore("TEST", Alimentazione.ELETTRICA, 10, 0, 10)));
     }
 
