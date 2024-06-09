@@ -123,20 +123,9 @@ public class CatalogoController implements Initializable {
     }
 
     private void filterAndLoadCars() {
-        currentFilteredList = new ArrayList<>(catalogoModel.getAllData());
-        if (brandList.getValue() != null) {
-            currentFilteredList = CatalogoModel.filterAutoByBrand(brandList.getValue(), currentFilteredList);
-        }
-
-        if (alimentazioneList.getValue() != null) {
-            currentFilteredList = CatalogoModel.filterAutoByAlimentazione(alimentazioneList.getValue(), currentFilteredList);
-        }
-
-        if (!minPrice.getText().isEmpty() || !maxPrice.getText().isEmpty()) {
-            currentFilteredList = CatalogoModel.filterAutoByPrice(minPrice.getText(), maxPrice.getText(), currentFilteredList);
-        }
-
-        //Se ho selezionato un'ordinamento, ordi
+        //Filtro la lista di auto
+        currentFilteredList =  catalogoModel.filterAuto(brandList.getValue(), alimentazioneList.getValue(), minPrice.getText(), maxPrice.getText());
+        //Se ho selezionato un'ordinamento, ordino la lista filtrata
         if (orderCrescente.isSelected()) {
             sortAndLoadCars(true);
         } else if (orderDecrescente.isSelected()) {

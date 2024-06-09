@@ -6,17 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/catalogo.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/data/registro.ser" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/data/registro.ser" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Bianco/911Grigio1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Bianco/911Grigio1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Bianco/911Grigio2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Bianco/911Grigio2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Bianco/911Grigio3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Bianco/911Grigio3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Nero/911Nero1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Nero/911Nero1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Nero/911Nero2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Nero/911Nero2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Nero/911Nero3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Nero/911Nero3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Rosso/911Rosso1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Rosso/911Rosso1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Rosso/911Rosso2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Rosso/911Rosso2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Rosso/911Rosso3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/img/carImages/595566442/Rosso/911Rosso3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/CatalogoController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/CatalogoController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/CatalogoModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Macchine/CatalogoModel.java" afterDir="false" />
     </list>
     <list id="88173a0d-926a-40f0-8975-873f0d7a7f0d" name="Changes by blushi" comment="" />
     <list id="8a41f733-5ca9-48cd-9745-66ebc7f3f2b0" name="Changes by donny" comment="" />
@@ -366,6 +357,7 @@
       <workItem from="1717832618100" duration="4212000" />
       <workItem from="1717857826208" duration="297000" />
       <workItem from="1717871983669" duration="440000" />
+      <workItem from="1717933199410" duration="1418000" />
     </task>
     <task id="LOCAL-00001" summary="Created repository of the project">
       <option name="closed" value="true" />

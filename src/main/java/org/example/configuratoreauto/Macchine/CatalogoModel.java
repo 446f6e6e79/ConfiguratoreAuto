@@ -88,45 +88,21 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
     }
 
     /**
-    *   Passatogli come parametro una ArrayList di auto, restituisce un ArrayList contenente solamente le auto
-    *   del brand passato come parametro
-    * */
-    public static ArrayList<AutoNuova> filterAutoByBrand(Marca brand, ArrayList<AutoNuova> data){
-        return data.stream()
-                .filter(t -> t.getMarca() == brand)
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    public static ArrayList<AutoNuova> filterAutoByAlimentazione(Alimentazione alimentazione, ArrayList<AutoNuova> data) {
-        return data.stream()
-                .filter(auto -> auto.getMotoriDisponibili().stream().anyMatch(motore -> motore.getAlimentazione() == alimentazione))
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    /**
-     *
-     * @param min Prezzo MASSIMO
-     * @param max Prezzo MASSIMO
-     * @param data Lista di auto, da FILTRARE
-     * @return  Restituisce una lista di auto, ordinate in base al prezzo
+     * Permette di filtrare la lista di auto, secondo la combinazione di parametri selezionati.
+     * Un qualsiasi parametro può essere valorizzato a NULL se non si vuole filtrare per tale valore
+     * @param brand Sono selezionato solamente le auto di quel brand
+     * @param alimentazione ...
+     * @param min
+     * @param max
      */
-    public static ArrayList<AutoNuova> filterAutoByPrice(String min, String max, ArrayList<AutoNuova> data) {
-        //Ritorno tutte le auto con prezzo minore di maxPrice
-        if(min.isEmpty()){
-            return data.stream()
-                    .filter(t ->  t.getCostoBase() < Integer.parseInt(max))
-                    .collect(Collectors.toCollection(ArrayList::new));
-        }
-        //Ritorno le auto con prezzo maggiore di minPrice
-        else if(max.isEmpty()){
-            return data.stream()
-                    .filter(t -> t.getCostoBase() > Integer.parseInt(min) )
-                    .collect(Collectors.toCollection(ArrayList::new));
-        }
+    public ArrayList<AutoNuova> filterAuto(Marca brand, Alimentazione alimentazione, String min, String max) {
+        int minPrice = (min == null || min.isEmpty()) ? Integer.MIN_VALUE : Integer.parseInt(min);
+        int maxPrice = (max == null || max.isEmpty()) ? Integer.MAX_VALUE : Integer.parseInt(max);
 
-        //Entrambi i campi sono valorizzati
-        return data.stream()
-                .filter(t -> t.getCostoBase() > Integer.parseInt(min) && t.getCostoBase() < Integer.parseInt(max))
+        return this.data.stream()
+                .filter(t -> (t.getMarca() == brand || brand == null) &&
+                        (t.getMotoriDisponibili().stream().anyMatch(motore -> motore.getAlimentazione() == alimentazione) || alimentazione == null) &&
+                        (t.getCostoBase() > minPrice && t.getCostoBase() < maxPrice))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
