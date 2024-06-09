@@ -7,11 +7,9 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
+import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.text.Text;
@@ -63,6 +61,8 @@ public class CustomizeAutoController implements Initializable {
     @FXML
     private ChoiceBox<Optional> cerchi;
     @FXML
+    private ComboBox<Optional> addOns;
+    @FXML
     private Text motoreInfo;
     @FXML
     private Text dimensioni;
@@ -95,12 +95,18 @@ public class CustomizeAutoController implements Initializable {
         motori.setValue(motori.getItems().get(0));
 
 
-        //Creo una lista delle choiceBox per gli optional
+        //Creo una lista delle choiceBox per gli optional, aggiungo una choiceBox solo se è presente almeno un optional per quella categoria
         List<ChoiceBox> choiceBoxes = Arrays.asList(colori, interni, vetri, cerchi);
         int addedOptional = 1;
 
         ArrayList<Optional> optionalByType;
-        for(TipoOptional tO: TipoOptional.values()) {
+
+        //Creo una lista contenente gli optional UNIVOCI
+        List<TipoOptional> tipoOptionals = new ArrayList<>(Arrays.asList(TipoOptional.values()));
+        tipoOptionals.remove(tipoOptionals.size() - 1);
+
+        //Itero su tale lista
+        for (TipoOptional tO : tipoOptionals) {
             //Recupero tutti gli optional per quella data categoria
             optionalByType = auto.getOptionalByCategory(tO);
 
@@ -119,11 +125,14 @@ public class CustomizeAutoController implements Initializable {
             }
         }
 
-        /*
-        * TODO: una volta aggiunti i colori ad ogni auto, l'if può essere rimosso
-        * */
-        if (!colori.getItems().isEmpty()) {
-            colori.setValue(colori.getItems().get(0));
+        //TODO: implementare optional multipli
+        ArrayList<Optional> options = auto.getOptionalByCategory(TipoOptional.Aggiunte);
+        if(!options.isEmpty()){
+           //Aggiungere gli optional alla lista
+        }
+        else{
+            //Elimino la HBox contenente la comboBox per le aggiunte
+            optionalList.getChildren().remove(optionalList.getChildren().size() - 2);
         }
 
         /*
@@ -141,6 +150,7 @@ public class CustomizeAutoController implements Initializable {
         colori.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> updateImagesForColor(newValue.getDescrizione()));
         if(colori.getValue()!=null)
             updateImagesForColor(colori.getValue().getDescrizione());
+        colori.setValue(auto.getDefaultColor());
     }
 
 
@@ -203,7 +213,7 @@ public class CustomizeAutoController implements Initializable {
      * Resetta tutte le ChoiceBox presenti nella pagina
      */
     public void resetChoices(){
-        colori.setValue(colori.getItems().get(0));
+        colori.setValue(auto.getDefaultColor());
         currentImageIndex.set(0);
         interni.setValue(null);
         vetri.setValue(null);
