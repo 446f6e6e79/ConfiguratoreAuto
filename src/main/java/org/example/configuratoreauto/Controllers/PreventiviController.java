@@ -79,7 +79,7 @@ public class PreventiviController {
         clienteLabel.setVisible(true);
         titleMain.setText("Gestione Preventivi");
         initializaImpiegatoChoiceBox();
-        loadPrevs(registroModel.getPreventiviByStato(StatoPreventivo.FINALIZZATO));
+        loadPrevs(registroModel.filterPreventivi(StatoPreventivo.FINALIZZATO, null, null, null));
     }
 
     private void initializaImpiegatoChoiceBox() {
@@ -87,7 +87,7 @@ public class PreventiviController {
         choiceStato.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 titleMain.setText("Gestione Preventivi");
-                loadPrevs(registroModel.getPreventiviByStato(newValue));
+                loadPrevs(registroModel.filterPreventivi(newValue, null, null, null));
             }
         });
         choiceStato.getSelectionModel().selectFirst();
@@ -108,7 +108,7 @@ public class PreventiviController {
 
         filterPreventivi();
         if(userModel.isSegretario()){
-            loadPrevs(registroModel.getPreventiviByStato(StatoPreventivo.FINALIZZATO));
+            loadPrevs(registroModel.filterPreventivi(StatoPreventivo.FINALIZZATO, null, null, null));
         }
         // Call filterPreventivi to refresh the list
 
@@ -197,36 +197,12 @@ public class PreventiviController {
      * Filtra la lista di preventivi, a seconda dei filtri selezionati
      */
     private void filterPreventivi() {
-        ArrayList<Preventivo> filteredList;
-        if(userModel.isCliente()){
-            filteredList = registroModel.getPreventiviByCliente((Cliente) userModel.getCurrentUser());
-        }
-        else{
-            filteredList = registroModel.getAllData();
-        }
-
         StatoPreventivo selectedStato = choiceStato.getValue();
         Marca selectedMarca = choiceMarca.getValue();
         Sede selectedSede = choiceSede.getValue();
         String clienteQuery = clienteField.getText().toLowerCase();
 
-        if (selectedStato != null) {
-            filteredList = registroModel.filterPreventiviByStato(selectedStato, filteredList);
-        }
-        if (selectedMarca != null) {
-            filteredList = registroModel.filterPreventiviByBrand(selectedMarca,filteredList);
-        }
-        if (selectedSede != null) {
-            filteredList = registroModel.filterPreventiviBySede(selectedSede, filteredList);
-        }
-        if (!clienteQuery.isEmpty()) {
-            filteredList = filteredList.stream()
-                    .filter(preventivo -> {
-                        String fullName = preventivo.getCliente().getName().toLowerCase() + " " + preventivo.getCliente().getSurname().toLowerCase();
-                        return fullName.contains(clienteQuery);
-                    })
-                    .collect(Collectors.toCollection(ArrayList::new));
-        }
+        ArrayList<Preventivo> filteredList = registroModel.filterPreventivi(selectedStato, selectedMarca, selectedSede, clienteQuery);
         loadPrevs(filteredList);
     }
 }

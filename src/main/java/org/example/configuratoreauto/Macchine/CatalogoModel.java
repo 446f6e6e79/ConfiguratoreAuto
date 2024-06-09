@@ -90,10 +90,10 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
     /**
      * Permette di filtrare la lista di auto, secondo la combinazione di parametri selezionati.
      * Un qualsiasi parametro può essere valorizzato a NULL se non si vuole filtrare per tale valore
-     * @param brand Sono selezionato solamente le auto di quel brand
-     * @param alimentazione ...
-     * @param min
-     * @param max
+     * @param brand Sono selezionate solamente le auto di quel brand
+     * @param alimentazione Vengono selezionate solamente le auto con un specifico tipo di alimentazione
+     * @param min Vengono selezionate le auto al di sopra di tale prezzo
+     * @param max Vengono selezionate le auto al di sotto di tale prezzo
      */
     public ArrayList<AutoNuova> filterAuto(Marca brand, Alimentazione alimentazione, String min, String max) {
         int minPrice = (min == null || min.isEmpty()) ? Integer.MIN_VALUE : Integer.parseInt(min);

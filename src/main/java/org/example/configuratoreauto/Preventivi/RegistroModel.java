@@ -97,41 +97,23 @@ public class RegistroModel extends AbstractModel<Preventivo> {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    /**
-     * Restituisce la lista di preventivi il quale stato combacia con quello passato come parametro
-     */
-    public ArrayList<Preventivo> getPreventiviByStato(StatoPreventivo s){
-        return (filterPreventiviByStato(s, super.data));
-    }
 
     /**
-     * Metodi che permette di filtrare i preventivi in base a dati specifici
+     * Metodo che permette di filtrare i preventivi per i quattro parametri definiti
+     * @param stato vengono selezionato per lo stato
+     * @param brand vengono selezionati per la marca dell'auto acquistata
+     * @param sede vengono selezionati per la sede del preventivo
+     * @param cliente vengono selezionati per il cliente che ha richiesto il preventivp
      * @return
      */
-    public static ArrayList<Preventivo> filterPreventiviByBrand(Marca brand, ArrayList<Preventivo> currentPreventivi){
-        if(brand == null){
-            throw new IllegalArgumentException("Marca nulla inserito");
-        }
-        return currentPreventivi.stream()
-                .filter(t -> t.getAcquisto().getMarca() == brand)
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
 
-    public static ArrayList<Preventivo> filterPreventiviBySede(Sede sede, ArrayList<Preventivo> currentPreventivi){
-        if(sede == null){
-            throw new IllegalArgumentException("Sede nulla inserito");
-        }
-        return currentPreventivi.stream()
-                .filter(t -> t.getSede().equals(sede))
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    public static ArrayList<Preventivo> filterPreventiviByStato(StatoPreventivo stato, ArrayList<Preventivo> currentPreventivi){
-        if(stato == null){
-            throw new IllegalArgumentException("Stato nullo inserito");
-        }
-        return currentPreventivi.stream()
-                .filter(t -> t.getStato() == stato)
+    public ArrayList<Preventivo> filterPreventivi(StatoPreventivo stato, Marca brand, Sede sede, String cliente) {
+        return super.data.stream()
+                .filter(t -> (stato == null || t.getStato() == stato))
+                .filter(t -> (brand == null || t.getAcquisto().getMarca() == brand))
+                .filter(t -> (sede == null || t.getSede().equals(sede)))
+                .filter(t -> (cliente == null || cliente.isEmpty() ||
+                        (t.getCliente().getName().toLowerCase() + " " + t.getCliente().getSurname().toLowerCase()).contains(cliente)))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 }

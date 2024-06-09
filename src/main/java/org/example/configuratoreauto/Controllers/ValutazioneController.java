@@ -38,7 +38,7 @@ public class ValutazioneController implements Initializable {
     private void load() {
         //Resetto la lista presente in precedenza
         ArrayList<Preventivo> filteredList;
-        filteredList = registroModel.getPreventiviByStato(StatoPreventivo.RICHIESTO);
+        filteredList = registroModel.filterPreventivi(StatoPreventivo.RICHIESTO, null, null, null);
         list.getChildren().clear();
         if(filteredList.isEmpty()){
             list.getChildren().add(new Text("Non è presente alcuna auto da valutare"));
