@@ -15,6 +15,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import org.example.configuratoreauto.Macchine.*;
+import org.example.configuratoreauto.Preventivi.Preventivo;
+
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -162,7 +164,7 @@ public class AddAutoOptionalsController implements Initializable {
             optionalElement.setPrefHeight(70);
 
             Text descriptionText = new Text(o.getDescrizione());
-            Text costText = new Text(String.valueOf(o.getCosto()));
+            Text costText = new Text(Preventivo.getPriceAsString(o.getCosto()));
 
             ImageView binImg = new ImageView();
             binImg.setFitHeight(50);
