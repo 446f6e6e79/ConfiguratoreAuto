@@ -64,44 +64,45 @@
                               <Insets top="20.0" />
                            </VBox.margin>
                         </VBox>
-                      <VBox fx:id="priceDetails" prefHeight="86.0" prefWidth="760.0" styleClass="tableVBox">
-                          <children>
-                              <HBox prefHeight="40.0" prefWidth="835.0" styleClass="tableRow">
-                                  <children>
-                                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="382.0" styleClass="titleRow" text="Descrizione" textAlignment="CENTER">
-                                          <font>
-                                              <Font size="20.0" />
-                                          </font>
-                                      </Label>
-                                      <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="415.0" styleClass="titleRow" text="Prezzo" textAlignment="CENTER">
-                                          <font>
-                                              <Font size="20.0" />
-                                          </font>
-                                      </Label>
-                                  </children>
-                                  <VBox.margin>
-                                      <Insets />
-                                  </VBox.margin>
-                              </HBox>
-                              <HBox prefHeight="37.0" prefWidth="200.0" styleClass="tableRow">
-                                  <children>
-                                      <Label fx:id="modello" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="415.0" styleClass="tableRowLabel" textAlignment="CENTER">
-                                          <font>
-                                              <Font size="20.0" />
-                                          </font>
-                                      </Label>
-                                      <Label fx:id="prezzoBase" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="415.0" styleClass="tableRowLabel" text="Prezzo" textAlignment="CENTER">
-                                          <font>
-                                              <Font size="20.0" />
-                                          </font>
-                                      </Label>
-                                  </children>
-                              </HBox>
-                          </children>
-                          <VBox.margin>
-                              <Insets left="5.0" top="20.0" />
-                          </VBox.margin>
-                      </VBox>
+                  <ScrollPane hbarPolicy="NEVER" prefHeight="307.0" prefWidth="765.0">
+                     <content>
+                            <VBox fx:id="priceDetails" prefHeight="86.0" prefWidth="760.0" styleClass="tableVBox">
+                                <children>
+                                    <HBox prefHeight="40.0" prefWidth="835.0" styleClass="tableRow">
+                                        <children>
+                                            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="382.0" styleClass="titleRow" text="Descrizione" textAlignment="CENTER">
+                                                <font>
+                                                    <Font size="20.0" />
+                                                </font>
+                                            </Label>
+                                            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="415.0" styleClass="titleRow" text="Prezzo" textAlignment="CENTER">
+                                                <font>
+                                                    <Font size="20.0" />
+                                                </font>
+                                            </Label>
+                                        </children>
+                                        <VBox.margin>
+                                            <Insets />
+                                        </VBox.margin>
+                                    </HBox>
+                                    <HBox prefHeight="37.0" prefWidth="200.0" styleClass="tableRow">
+                                        <children>
+                                            <Label fx:id="modello" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="415.0" styleClass="tableRowLabel" textAlignment="CENTER">
+                                                <font>
+                                                    <Font size="20.0" />
+                                                </font>
+                                            </Label>
+                                            <Label fx:id="prezzoBase" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="415.0" styleClass="tableRowLabel" text="Prezzo" textAlignment="CENTER">
+                                                <font>
+                                                    <Font size="20.0" />
+                                                </font>
+                                            </Label>
+                                        </children>
+                                    </HBox>
+                                </children>
+                            </VBox>
+                     </content>
+                  </ScrollPane>
                   </children>
               </VBox>
          </left>
@@ -152,10 +153,14 @@
                               <Insets />
                            </VBox.margin>
                            <children>
-                              <ScrollPane fx:id="addOns" hbarPolicy="NEVER" prefHeight="105.0" prefWidth="522.0">
-                                <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="200.0" prefWidth="200.0" />
-                                </content>
+                              <ScrollPane fx:id="addOnsPane" hbarPolicy="NEVER" prefHeight="105.0" prefWidth="522.0">
+                                 <content>
+                                    <VBox fx:id="addOns" alignment="TOP_CENTER" prefHeight="109.0" prefWidth="500.0" spacing="10.0">
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </content>
                               </ScrollPane>
                            </children>
                         </HBox>
@@ -175,10 +180,17 @@
                   </VBox>
                   <HBox prefHeight="195.0" prefWidth="539.0" spacing="10.0">
                      <children>
-                        <VBox prefHeight="149.0" prefWidth="183.0" styleClass="section">
+                        <VBox prefHeight="189.0" prefWidth="246.0" styleClass="section">
                            <children>
-                              <Text styleClass="section-subTitle" text="Dimensioni" />
-                              <Text fx:id="dimensioni" styleClass="section-content" text="Label" wrappingWidth="184.354248046875" />
+                              <Text styleClass="section-subTitle" text="Dimensioni" wrappingWidth="103.8720703125" />
+                              <Label fx:id="dimensioni" alignment="TOP_LEFT" prefHeight="145.0" prefWidth="175.0" style="-fx-font-size: 15;" styleClass="section-content" text="Label">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </Label>
                            </children>
                         </VBox>
                             <HBox alignment="CENTER_LEFT" prefHeight="149.0" prefWidth="357.0">
@@ -187,19 +199,19 @@
                                  <children>
                                     <HBox alignment="CENTER" prefHeight="38.0" prefWidth="355.0">
                                        <children>
-                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section-subTitle" text="Motore">
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section-subTitle" text="Motore" wrappingWidth="74.3583984375">
                                              <HBox.margin>
-                                                <Insets right="10.0" />
+                                                <Insets left="-10.0" right="10.0" />
                                              </HBox.margin>
                                           </Text>
-                                                <ChoiceBox fx:id="motori" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" />
+                                                <ChoiceBox fx:id="motori" minHeight="-Infinity" prefHeight="29.0" prefWidth="200.0" />
                                        </children>
                                     </HBox>
-                                          <Text fx:id="motoreInfo" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section-content" text="Info motore" wrappingWidth="124.8798828125">
+                                    <Label fx:id="motoreInfo" alignment="TOP_LEFT" prefHeight="136.0" prefWidth="281.0" style="-fx-font-size: 15;" styleClass="section-content" text="Label">
                                        <VBox.margin>
-                                          <Insets left="30.0" />
+                                          <Insets left="15.0" top="5.0" />
                                        </VBox.margin>
-                                    </Text>
+                                    </Label>
                                  </children>
                               </VBox>
                                 </children>

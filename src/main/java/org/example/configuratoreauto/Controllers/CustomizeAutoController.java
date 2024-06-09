@@ -32,7 +32,8 @@ public class CustomizeAutoController implements Initializable {
 
     private final IntegerProperty currentImageIndex = new SimpleIntegerProperty(-1);
     private final ObservableList<Immagine> imagesCurrentColor = FXCollections.observableArrayList();
-
+    private ArrayList<Optional> selectedAddOns = new ArrayList<>();
+    private ArrayList<CheckBox> addOnsCheckBox = new ArrayList<>();
     @FXML
     private AnchorPane main;
     @FXML
@@ -60,17 +61,15 @@ public class CustomizeAutoController implements Initializable {
     @FXML
     private ChoiceBox<Optional> cerchi;
     @FXML
-    private ScrollPane addOns;
+    private VBox addOns;
     @FXML
-    private Text motoreInfo;
+    private Label motoreInfo;
     @FXML
-    private Text dimensioni;
+    private Label dimensioni;
     @FXML
     private Text valido;
     @FXML
     private ChoiceBox<Sede> sedi;
-
-    private ArrayList<Optional> selectedAddOns = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -125,16 +124,12 @@ public class CustomizeAutoController implements Initializable {
             }
         }
 
-        //TODO: implementare optional multipli
         ArrayList<Optional> aggiunte = auto.getOptionalByCategory(TipoOptional.Aggiunte);
         if(!aggiunte.isEmpty()){
-            VBox optionalContainer = new VBox();
-
             //Creo una checkBox per ogni optional selezionato
             for (Optional opt : aggiunte) {
-                System.out.println("AAA");
                 CheckBox checkBox = new CheckBox(opt.getDescrizione());
-
+                addOnsCheckBox.add(checkBox);
                 //Ogni volta che SELEZIONO / DESELEZIONO un optional, aggiorno il prezzo e la lista preventivi
                 checkBox.setOnAction(event -> {
                     if (checkBox.isSelected()) {
@@ -148,9 +143,8 @@ public class CustomizeAutoController implements Initializable {
                     //Aggiorno la tabella dei prezzi
                     updatePriceTableInfo();
                 });
-                optionalContainer.getChildren().add(checkBox);
+                addOns.getChildren().add(checkBox);
             }
-            addOns.setContent(optionalContainer);
         }
 
         else{
@@ -237,6 +231,13 @@ public class CustomizeAutoController implements Initializable {
      */
     public void resetChoices(){
         colori.setValue(auto.getDefaultColor());
+
+        //Resetto il valore delle checkBox
+        for(CheckBox c: addOnsCheckBox){
+            c.setSelected(false);
+        }
+        selectedAddOns.clear();
+
         currentImageIndex.set(0);
         interni.setValue(null);
         vetri.setValue(null);
@@ -287,6 +288,7 @@ public class CustomizeAutoController implements Initializable {
      *  Aggiorna la tabella dei prezzi attuali, generando dinamicamente il prezzo
      */
     private void updatePriceTableInfo() {
+        System.out.println();
         //Recupero gli optional selezionati
         ArrayList<Optional> chosen = getChosenOptional();
 
