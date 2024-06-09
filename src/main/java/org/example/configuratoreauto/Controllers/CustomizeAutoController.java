@@ -7,7 +7,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
@@ -61,7 +60,7 @@ public class CustomizeAutoController implements Initializable {
     @FXML
     private ChoiceBox<Optional> cerchi;
     @FXML
-    private ComboBox<Optional> addOns;
+    private ScrollPane addOns;
     @FXML
     private Text motoreInfo;
     @FXML
@@ -71,6 +70,7 @@ public class CustomizeAutoController implements Initializable {
     @FXML
     private ChoiceBox<Sede> sedi;
 
+    private ArrayList<Optional> selectedAddOns = new ArrayList<>();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -126,10 +126,33 @@ public class CustomizeAutoController implements Initializable {
         }
 
         //TODO: implementare optional multipli
-        ArrayList<Optional> options = auto.getOptionalByCategory(TipoOptional.Aggiunte);
-        if(!options.isEmpty()){
-           //Aggiungere gli optional alla lista
+        ArrayList<Optional> aggiunte = auto.getOptionalByCategory(TipoOptional.Aggiunte);
+        if(!aggiunte.isEmpty()){
+            VBox optionalContainer = new VBox();
+
+            //Creo una checkBox per ogni optional selezionato
+            for (Optional opt : aggiunte) {
+                System.out.println("AAA");
+                CheckBox checkBox = new CheckBox(opt.getDescrizione());
+
+                //Ogni volta che SELEZIONO / DESELEZIONO un optional, aggiorno il prezzo e la lista preventivi
+                checkBox.setOnAction(event -> {
+                    if (checkBox.isSelected()) {
+                        //Se selezionato, aggiungo l'optional alla lista di quelli selezionati
+                        selectedAddOns.add(opt);
+                    }
+                    else {
+                        //Se deselezionato, rimuovo l'optional alla lista di quelli selezionati
+                        selectedAddOns.remove(opt);
+                    }
+                    //Aggiorno la tabella dei prezzi
+                    updatePriceTableInfo();
+                });
+                optionalContainer.getChildren().add(checkBox);
+            }
+            addOns.setContent(optionalContainer);
         }
+
         else{
             //Elimino la HBox contenente la comboBox per le aggiunte
             optionalList.getChildren().remove(optionalList.getChildren().size() - 2);
@@ -224,7 +247,7 @@ public class CustomizeAutoController implements Initializable {
 
     public void createPreventivo() {
 
-        ArrayList<Optional> chosen = getChoseOptional();
+        ArrayList<Optional> chosen = getChosenOptional();
         if(motori.getValue()!=null && sedi.getValue()!=null){
             if(userModel.getCurrentUser() == null){
                 openRegistratiView();
@@ -245,7 +268,7 @@ public class CustomizeAutoController implements Initializable {
         }
     }
 
-    private ArrayList<Optional> getChoseOptional() {
+    private ArrayList<Optional> getChosenOptional() {
         ArrayList<Optional> chosen = new ArrayList<>();
         if(colori.getValue()!=null)
             chosen.add(colori.getValue());
@@ -255,6 +278,8 @@ public class CustomizeAutoController implements Initializable {
             chosen.add(vetri.getValue());
         if(cerchi.getValue()!=null)
             chosen.add(cerchi.getValue());
+        //Aggiungo alla lista di optionalSelezionati gli addOn
+        chosen.addAll(selectedAddOns);
         return chosen;
     }
 
@@ -263,7 +288,7 @@ public class CustomizeAutoController implements Initializable {
      */
     private void updatePriceTableInfo() {
         //Recupero gli optional selezionati
-        ArrayList<Optional> chosen = getChoseOptional();
+        ArrayList<Optional> chosen = getChosenOptional();
 
         //Rimuovo gli optional precedenti
         if (priceDetails.getChildren().size() > 2) {
@@ -276,6 +301,8 @@ public class CustomizeAutoController implements Initializable {
                 addTableRow(o.getDescrizione(), Preventivo.getPriceAsString(o.getCosto()));
             }
         }
+
+        //TODO: Genero la riga per le aggiunte
 
         int sconto = auto.getSconto(new Date());
         double prezzoTotale = auto.getCostoTotale(chosen, new Date());
