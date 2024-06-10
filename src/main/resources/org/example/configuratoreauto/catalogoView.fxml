@@ -41,26 +41,20 @@
                <children>
                   <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="335.0">
                      <children>
-                        <Label prefHeight="24.0" prefWidth="66.0" styleClass="section-content" text="Marca:">
+                        <Label prefHeight="24.0" prefWidth="125.0" styleClass="section-content" text="Marca:">
                            <font>
                               <Font size="19.0" />
                            </font>
-                           <HBox.margin>
-                              <Insets right="76.0" />
-                           </HBox.margin>
                         </Label>
                         <ChoiceBox fx:id="brandList" minWidth="-Infinity" prefHeight="30.0" prefWidth="150.0" />
                      </children>
                   </HBox>
                   <HBox alignment="CENTER_LEFT" prefHeight="59.0" prefWidth="335.0">
                      <children>
-                        <Label styleClass="section-content" text="Alimentazione:">
+                        <Label prefHeight="24.0" prefWidth="125.0" styleClass="section-content" text="Alimentazione:">
                            <font>
                               <Font size="19.0" />
                            </font>
-                           <HBox.margin>
-                              <Insets right="13.0" />
-                           </HBox.margin>
                         </Label>
                         <ChoiceBox fx:id="alimentazioneList" prefHeight="30.0" prefWidth="150.0" />
                      </children>
