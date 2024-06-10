@@ -118,7 +118,7 @@
       </HBox>
    </top>
    <center>
-      <ScrollPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <ScrollPane styleClass="scrollPaneBorder" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <content>
             <VBox fx:id="mainView" alignment="TOP_CENTER" prefHeight="842.0" prefWidth="1118.0" spacing="10.0" styleClass="scrollPaneBorder">
                <padding>

@@ -353,6 +353,91 @@
     -fx-opacity: 0.5; /* Reduce opacity when disabled */
 }
 
+/* Removes the gray background of the ScrollPane */
+#addOnsPane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+#addOnsPane .viewport {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+
+/* Custom ScrollBar */
+#addOnsPane .scroll-bar:vertical,
+.scrollPaneBorder .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-padding: 5px;
+}
+
+#addOnsPane .scroll-bar:vertical .increment-button,
+#addOnsPane .scroll-bar:vertical .decrement-button,
+.scrollPaneBorder .scroll-bar:vertical .increment-button,
+.scrollPaneBorder .scroll-bar:vertical .decrement-button {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+}
+
+#addOnsPane .scroll-bar:vertical .increment-arrow,
+#addOnsPane .scroll-bar:vertical .decrement-arrow,
+.scrollPaneBorder .scroll-bar:vertical .increment-arrow,
+.scrollPaneBorder .scroll-bar:vertical .decrement-arrow {
+    -fx-background-color: transparent;
+    -fx-shape: "M 0 0 L 10 5 L 0 10 Z"; /* Triangle shape */
+    -fx-background-insets: 0, 0, 1;
+    -fx-background-radius: 0;
+}
+
+#addOnsPane .scroll-bar:vertical .thumb,
+.scrollPaneBorder .scroll-bar:vertical .thumb {
+    -fx-background-color: #4CAF50;
+    -fx-background-insets: 0;
+    -fx-background-radius: 5px;
+}
+
+#addOnsPane .scroll-bar:vertical .track,
+.scrollPaneBorder .scroll-bar:vertical .track {
+    -fx-background-color: #d0d0d0;
+    -fx-background-insets: 0;
+    -fx-background-radius: 5px;
+}
+/*Style for the addOn optional checkbox*/
+#addOns .check-box {
+    -fx-font-size: 14px;
+    -fx-padding: 10px;
+    -fx-text-fill: #333;
+}
+
+#addOns .check-box .box {
+    -fx-background-color: #fff;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 4px;
+    -fx-border-width: 2px;
+}
+
+#addOns .check-box .box:hover {
+    -fx-border-color: #888;
+}
+
+#addOns .check-box:selected .box {
+    -fx-background-color: #4CAF50;
+}
+
+#addOns .check-box:selected .box .mark {
+    -fx-background-color: #4CAF50;
+}
+
+#addOns .check-box .box .mark {
+    -fx-background-color: transparent;
+    -fx-stroke: white;
+    -fx-stroke-width: 2px;
+}
+#addOns .check-box .text {
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 0 10px;
+}
+
 
 
 

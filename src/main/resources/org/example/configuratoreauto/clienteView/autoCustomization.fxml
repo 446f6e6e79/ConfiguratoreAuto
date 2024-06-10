@@ -153,7 +153,7 @@
                               <Insets />
                            </VBox.margin>
                            <children>
-                              <ScrollPane fx:id="addOnsPane" hbarPolicy="NEVER" prefHeight="105.0" prefWidth="522.0">
+                              <ScrollPane fx:id="addOnsPane" styleClass="scrollPane" hbarPolicy="NEVER" prefHeight="105.0" prefWidth="522.0">
                                  <content>
                                     <VBox fx:id="addOns" alignment="TOP_CENTER" prefHeight="109.0" prefWidth="500.0" spacing="10.0">
                                        <padding>
