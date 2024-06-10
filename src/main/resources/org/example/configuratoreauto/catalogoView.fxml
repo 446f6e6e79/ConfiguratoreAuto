@@ -78,6 +78,9 @@
                                  <font>
                                     <Font size="17.0" />
                                  </font>
+                                 <HBox.margin>
+                                    <Insets top="5.0" />
+                                 </HBox.margin>
                               </ToggleButton>
                            </children>
                         </HBox>
