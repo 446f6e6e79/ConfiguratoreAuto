@@ -84,11 +84,11 @@ public class Dimensione implements Serializable {
      */
     public String toString() {
         return
-                "\nLarghezza:" + larghezza +
-                "m\nAltezza:" + altezza +
-                "m\nLunghezza:" + lunghezza +
-                "m\nPeso:" + peso +
-                "kg\nVolume del Bagagliaglio:" + volumeBagagliaglio +"l";
+                "\nLarghezza: " + larghezza +
+                "m\nAltezza: " + altezza +
+                "m\nLunghezza: " + lunghezza +
+                "m\nPeso: " + peso +
+                "kg\nBagagliaglio: " + volumeBagagliaglio +"l";
     }
 
     /**
