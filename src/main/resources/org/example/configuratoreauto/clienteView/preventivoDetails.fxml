@@ -58,6 +58,9 @@
                   <VBox.margin>
                      <Insets top="10.0" />
                   </VBox.margin>
+                   <VBox.margin>
+                      <Insets bottom="10.0" />
+                   </VBox.margin>
                   <font>
                      <Font name="System Bold" size="24.0" />
                   </font>
@@ -331,7 +334,7 @@
                <Insets />
             </VBox.margin>
          </VBox>
-         <ScrollPane hbarPolicy="NEVER" prefHeight="265.0" prefWidth="759.0">
+         <ScrollPane styleClass="scrollPaneBorder" hbarPolicy="NEVER" prefHeight="265.0" prefWidth="759.0">
             <content>
                <VBox fx:id="priceDetails" prefHeight="119.0" prefWidth="757.0" styleClass="tableVBox">
                   <children>
