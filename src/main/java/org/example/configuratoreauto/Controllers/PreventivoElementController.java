@@ -39,9 +39,13 @@ public class PreventivoElementController {
         this.preventivo = preventivo;
         modello.setText(preventivo.getAcquisto().getModello());
         data.setText(preventivo.getDataPreventivoAsString());
+
+        //Se il preventivo è stato pagato, mostro la data di consegna
         if(preventivo.getStato() == StatoPreventivo.PAGATO ){
             consegna.setText(preventivo.getDataConsegnaAsString());
-        }else{
+        }
+        //Negli altri stati, la data di consegna non è disponibile
+        else{
             consegna.setText("");
         }
         stato.setText(preventivo.getStato().toString());
@@ -66,14 +70,13 @@ public class PreventivoElementController {
     @FXML
     public void handlerClick(){
         try {
-                TabPane tabPane = (TabPane) consegna.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
-                Tab preventivoTab = tabPane.getTabs().get(1); // Ottieni il riferimento al tab "Catalogo"
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventivoDetails.fxml"));
-                BorderPane preventivoNode = loader.load();
-                PreventivoDetailsController controller = loader.getController();
-                controller.setPreventivo(preventivo);
-                preventivoTab.setContent(preventivoNode); // Imposta il nuovo contenuto del tab "Catalogo"
-
+            TabPane tabPane = (TabPane) consegna.getScene().lookup("#mainPage"); // Ottieni il riferimento al TabPane
+            Tab preventivoTab = tabPane.getTabs().get(1); // Ottieni il riferimento al tab "Catalogo"
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/example/configuratoreauto/clienteView/preventivoDetails.fxml"));
+            BorderPane preventivoNode = loader.load();
+            PreventivoDetailsController controller = loader.getController();
+            controller.setPreventivo(preventivo);
+            preventivoTab.setContent(preventivoNode); // Imposta il nuovo contenuto del tab "Catalogo"
         }catch (IOException e){
                 e.printStackTrace();
         }
@@ -87,7 +90,6 @@ public class PreventivoElementController {
                 break;
             case RITIRATO:
             case DISPONIBILE_AL_RITIRO:
-                stato.setTextFill(Color.BLACK);
                 break;
             case RICHIESTO:
                 stato.setTextFill(Color.web("#FFD700"));

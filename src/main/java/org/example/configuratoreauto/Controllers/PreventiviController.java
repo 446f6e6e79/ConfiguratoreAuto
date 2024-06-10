@@ -95,7 +95,7 @@ public class PreventiviController {
 
     @FXML
     public void resetFilter() {
-        // Reset the values of ChoiceBoxes and TextField
+        //Resetto i valori per le choiceBox dei filtri
         if(userModel.isImpiegato()){
             choiceStato.getSelectionModel().select(0);
         }
@@ -106,12 +106,8 @@ public class PreventiviController {
         choiceSede.getSelectionModel().clearSelection();
         clienteField.clear();
 
+        //Aggiorno la lista dei preventivi
         filterPreventivi();
-        if(userModel.isSegretario()){
-            loadPrevs(registroModel.filterPreventivi(StatoPreventivo.FINALIZZATO, null, null, null));
-        }
-        // Call filterPreventivi to refresh the list
-
     }
 
     private void initializeChoiceBoxes() {

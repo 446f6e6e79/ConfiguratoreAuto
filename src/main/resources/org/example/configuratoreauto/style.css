@@ -95,6 +95,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.5, 0.2, 1); /* Change shadow on hover */
     -fx-border-color: DARKGREY; /* Change border color on hover */
 }
+
 .clickableElementGreen {
     -fx-background-color: #008000; /* Green background color */
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.2, 1);
@@ -102,12 +103,16 @@
     -fx-border-width: 2;
     -fx-border-radius: 10;
     -fx-background-radius: 10;
+    -fx-text-fill: white;
 }
+
 .clickableElementGreen:hover {
     -fx-background-color: #00A000; /* Lighter green background color on hover */
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.5, 0.2, 1); /* Change shadow on hover */
     -fx-border-color: #004B23; /* Darker green border color on hover */
+    -fx-text-fill: white; /* White text color on hover */
 }
+
 /*============== Choice Box ================*/
 .choice-box {
     -fx-background-color: #ffffff;
