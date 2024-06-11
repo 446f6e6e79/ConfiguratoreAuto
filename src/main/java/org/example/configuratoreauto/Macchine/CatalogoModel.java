@@ -2,7 +2,6 @@ package org.example.configuratoreauto.Macchine;
 
 import org.example.configuratoreauto.AbstractModel;
 
-import java.io.IOException;
 import java.io.Serial;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -95,10 +94,7 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
      * @param min Vengono selezionate le auto al di sopra di tale prezzo
      * @param max Vengono selezionate le auto al di sotto di tale prezzo
      */
-    public ArrayList<AutoNuova> filterAuto(Marca brand, Alimentazione alimentazione, String min, String max) {
-        int minPrice = (min == null || min.isEmpty()) ? Integer.MIN_VALUE : Integer.parseInt(min);
-        int maxPrice = (max == null || max.isEmpty()) ? Integer.MAX_VALUE : Integer.parseInt(max);
-
+    public ArrayList<AutoNuova> filterAuto(Marca brand, Alimentazione alimentazione, double minPrice, double maxPrice) {
         return this.data.stream()
                 .filter(t -> (t.getMarca() == brand || brand == null) &&
                         (t.getMotoriDisponibili().stream().anyMatch(motore -> motore.getAlimentazione() == alimentazione) || alimentazione == null) &&
@@ -121,6 +117,14 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
     }
     public void setSelectedAuto(AutoNuova auto){
         this.selectedAuto = auto;
+    }
+
+    //Metodi GET e SET per tempAuto
+    public void setTempAuto(AutoNuova tempAuto) {
+        this.tempAuto = tempAuto;
+    }
+    public AutoNuova getTempAuto(){
+        return tempAuto;
     }
 
     /**
@@ -167,13 +171,5 @@ public class CatalogoModel extends AbstractModel<AutoNuova> {
 
         //Resetto tempAuto per le successive aggiunte
         setTempAuto(null);
-    }
-
-    //Metodi GET e SET per tempAuto
-    public void setTempAuto(AutoNuova tempAuto) {
-        this.tempAuto = tempAuto;
-    }
-    public AutoNuova getTempAuto(){
-        return tempAuto;
     }
 }
