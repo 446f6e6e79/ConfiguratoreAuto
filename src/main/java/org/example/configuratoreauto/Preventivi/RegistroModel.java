@@ -108,12 +108,23 @@ public class RegistroModel extends AbstractModel<Preventivo> {
      */
 
     public ArrayList<Preventivo> filterPreventivi(StatoPreventivo stato, Marca brand, Sede sede, String cliente) {
-        return super.data.stream()
-                .filter(t -> (stato == null || t.getStato() == stato))
-                .filter(t -> (brand == null || t.getAcquisto().getMarca() == brand))
-                .filter(t -> (sede == null || t.getSede().equals(sede)))
+        ArrayList<Preventivo> data;
+        UserModel userModel = UserModel.getInstance();
+        if (userModel.isCliente()) {
+            // Se l'utente è un cliente, ottieni i preventivi associati a quel cliente
+            data = getPreventiviByCliente((Cliente) userModel.getCurrentUser());
+        } else {
+            // Altrimenti, usa la lista di preventivi generale
+            data = super.data;
+        }
+        return data.stream()
+                .filter(t -> (stato == null || t.getStato() == stato)) // Filtro per stato
+                .filter(t -> (brand == null || t.getAcquisto().getMarca() == brand)) // Filtro per marca
+                .filter(t -> (sede == null || t.getSede().equals(sede))) // Filtro per sede
                 .filter(t -> (cliente == null || cliente.isEmpty() ||
-                        (t.getCliente().getName().toLowerCase() + " " + t.getCliente().getSurname().toLowerCase()).contains(cliente)))
+                        // Filtro per cliente (controlla nome e cognome)
+                        (t.getCliente().getName() + " " + t.getCliente().getSurname())
+                                .toLowerCase().contains(cliente.toLowerCase())))
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 }

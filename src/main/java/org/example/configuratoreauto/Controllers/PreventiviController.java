@@ -61,7 +61,6 @@ public class PreventiviController {
         clienteField.setVisible(true);
         sedeLabel.setVisible(true);
         clienteLabel.setVisible(true);
-        loadPrevs(registroModel.getAllData());
     }
 
     private void setupForCliente() {
@@ -69,7 +68,6 @@ public class PreventiviController {
         clienteField.setVisible(false);
         sedeLabel.setVisible(false);
         clienteLabel.setVisible(false);
-        loadPrevs(registroModel.getPreventiviByCliente((Cliente) userModel.getCurrentUser()));
     }
 
     private void setupForImpiegato() {
@@ -79,7 +77,6 @@ public class PreventiviController {
         clienteLabel.setVisible(true);
         titleMain.setText("Gestione Preventivi");
         initializaImpiegatoChoiceBox();
-        loadPrevs(registroModel.filterPreventivi(StatoPreventivo.FINALIZZATO, null, null, null));
     }
 
     private void initializaImpiegatoChoiceBox() {
@@ -129,7 +126,6 @@ public class PreventiviController {
 
     /**
      * Metodo che si occupa di caricare la lista dei preventivi caricandone la singola componente FXML
-     *
      * @param registroArg lista di preventivi di riferimento
      */
     public void loadPrevs(ArrayList<Preventivo> registroArg) {
@@ -197,8 +193,10 @@ public class PreventiviController {
         Marca selectedMarca = choiceMarca.getValue();
         Sede selectedSede = choiceSede.getValue();
         String clienteQuery = clienteField.getText().toLowerCase();
-
         ArrayList<Preventivo> filteredList = registroModel.filterPreventivi(selectedStato, selectedMarca, selectedSede, clienteQuery);
+
+        //Carico i preventivi
         loadPrevs(filteredList);
+
     }
 }
