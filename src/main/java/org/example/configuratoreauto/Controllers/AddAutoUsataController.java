@@ -136,7 +136,6 @@ public class AddAutoUsataController {
                  * */
                 AutoUsata autoUsata = new AutoUsata(marca, modello, targa, km);
                 for (Image img : usedImages) {
-                    System.out.println(img.getUrl().substring(5));
                     autoUsata.addImage(new Immagine("", img.getUrl().substring(5)));
                 }
                 autoUsata.addToLocalImages();

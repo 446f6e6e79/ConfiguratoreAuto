@@ -174,18 +174,13 @@ public class CustomizeAutoController implements Initializable {
     private void updateImagesForColor(String color) {
         imagesCurrentColor.clear();
 
-        for (Immagine img : catalogoModel.getSelectedAuto().getImmagini()) {
-            System.out.println(img.getColor());
+        for(Immagine img : catalogoModel.getSelectedAuto().getImmagini()) {
             if (img.getColor().equals(color)) {
                 imagesCurrentColor.add(img);
             }
         }
-        if (!imagesCurrentColor.isEmpty()) {
-            currentImageIndex.setValue(0);
-            updateImage();
-        } else {
-            System.out.println("No images available for the selected color: " + color);
-        }
+        currentImageIndex.setValue(0);
+        updateImage();
     }
 
     /**
@@ -203,7 +198,6 @@ public class CustomizeAutoController implements Initializable {
      *  - altrimenti viene decrementato di 1
      */
     public void prevImage() {
-        System.out.println(modelID.getStyle());
         if (currentImageIndex.get() > 0) {
             currentImageIndex.set(currentImageIndex.get() - 1);
         } else {
@@ -261,7 +255,6 @@ public class CustomizeAutoController implements Initializable {
             AutoNuova copia = new AutoNuova(auto);
             registroModel.setCurrentPreventivo(new Preventivo(copia, sedi.getValue(), (Cliente) userModel.getCurrentUser(), motori.getValue(), chosen));
             openUsataView();
-            System.out.println("FINIO");
             catalogoModel.setSelectedAuto(null);
             goBack();
         }else{
@@ -288,7 +281,6 @@ public class CustomizeAutoController implements Initializable {
      *  Aggiorna la tabella dei prezzi attuali, generando dinamicamente il prezzo
      */
     private void updatePriceTableInfo() {
-        System.out.println();
         //Recupero gli optional selezionati
         ArrayList<Optional> chosen = getChosenOptional();
 

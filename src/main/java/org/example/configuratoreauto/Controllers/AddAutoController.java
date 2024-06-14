@@ -178,7 +178,9 @@ public class AddAutoController implements Initializable {
                 }
             }
 
-        } else {
+        }
+        //Altrimenti lo segnalo all'utente
+        else {
             scontoInput.clear();
             scontoInput.setStyle("-fx-border-color: red;");
             scontoInput.setAccessibleHelp("Inserire un valore tra 0 e 100");

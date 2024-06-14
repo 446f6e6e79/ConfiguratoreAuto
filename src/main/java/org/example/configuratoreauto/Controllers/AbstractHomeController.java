@@ -33,12 +33,19 @@ public abstract class AbstractHomeController {
         customizeLogoutTab();
     }
 
+    /**
+     * Definisce il comportamento per il bottone di logout/login
+     * <p>- se nessun utente è connesso, viene caricata la pagina di login
+     * <p>- Altrimenti, viene mostrato un ALERT per la disconnessione
+     */
     @FXML
     protected void logout() {
         if(userModel.getCurrentUser() == null){
             loadLoginPage();
             return;
         }
+
+        //Genera alert per conferma di logout
         Alert confirmation = new Alert(Alert.AlertType.CONFIRMATION);
         confirmation.initStyle(StageStyle.UTILITY);
         confirmation.setTitle("Logout");
@@ -46,6 +53,7 @@ public abstract class AbstractHomeController {
         confirmation.getButtonTypes().clear();
         confirmation.getButtonTypes().addAll(ButtonType.YES, ButtonType.CANCEL);
 
+        //Attendo la risposta all'alert
         confirmation.showAndWait().ifPresent(response -> {
             if (response == ButtonType.YES) {
                 userModel.clearCurrentUser();

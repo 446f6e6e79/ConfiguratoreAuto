@@ -29,6 +29,7 @@ public class LoginController {
 
     @FXML
     private void initialize() {
+        //Bind tra gli input ed i bottoni per bloccare azioni indesiderate
         isInputValid.bind(email.textProperty().isNotEmpty().and(password.textProperty().isNotEmpty()));
         login.disableProperty().bind(isInputValid.not());
         email.textProperty().addListener((obs, oldVal, newVal) -> responseText.setText(""));
@@ -55,9 +56,12 @@ public class LoginController {
         if (isInputValid.get()) {
             String emailText = email.getText();
             String passText = password.getText();
+
+            //pulisco i campi di input
             email.clear();
             password.clear();
             Persona before = userModel.getCurrentUser();
+
             //Effettua una validazione sui dati ricevuti
             if (userModel.validation(emailText, passText)) {
                 handleSuccessfulLogin(before);
