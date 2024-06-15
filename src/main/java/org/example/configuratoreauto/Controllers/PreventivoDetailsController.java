@@ -302,7 +302,7 @@ public class PreventivoDetailsController {
                 contentStream.showText(String.format("%-30s %10s", "Descrizione", "Costo (€)"));
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.setFont(PDType1Font.HELVETICA, 12);
-                contentStream.showText(String.format("%-30s %10.2f", "Costo Base", preventivo.getAcquisto().getCostoBase()));
+                contentStream.showText(String.format("%-30s %10s", "Costo Base", Preventivo.getPriceAsString(preventivo.getAcquisto().getCostoBase())));
                 contentStream.newLineAtOffset(0, -20);
                 if (preventivo.getScontoAuto() != 0) {
                     contentStream.showText(String.format("%-30s %10.2f", "Sconto Applicato(%)", preventivo.getScontoAuto()));
@@ -315,7 +315,7 @@ public class PreventivoDetailsController {
                 for (Optional opt : preventivo.getOptionalScelti()) {
                     if (opt != null) {
                         c++;
-                        contentStream.showText(String.format("%-30s %10.2f", opt.getDescrizione(), opt.getCosto()));
+                        contentStream.showText(String.format("%-30s %10s", opt.getDescrizione(), Preventivo.getPriceAsString(opt.getCosto())));
                         contentStream.newLineAtOffset(0, -20);
                     }
                 }
@@ -324,12 +324,12 @@ public class PreventivoDetailsController {
                     contentStream.newLineAtOffset(0, -20);
                 }
                 if (preventivo.getStato() != StatoPreventivo.RICHIESTO && preventivo.getUsata() != null) {
-                    contentStream.showText(String.format("%-30s %10.2f", "Valutazione dell'usato", preventivo.getValutazione()));
+                    contentStream.showText(String.format("%-30s %10s", "Valutazione dell'usato", Preventivo.getPriceAsString(preventivo.getValutazione())));
                     contentStream.newLineAtOffset(0, -20);
                 }
 
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
-                contentStream.showText(String.format("%-30s %10.2f", "Costo totale", preventivo.getCostoTotale()));
+                contentStream.showText(String.format("%-30s %10s", "Costo totale", Preventivo.getPriceAsString(preventivo.getCostoTotale())));
                 contentStream.endText();
             }
 
@@ -345,5 +345,6 @@ public class PreventivoDetailsController {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 }
