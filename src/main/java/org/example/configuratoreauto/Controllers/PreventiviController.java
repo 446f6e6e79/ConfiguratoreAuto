@@ -9,12 +9,10 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import org.example.configuratoreauto.Macchine.Marca;
 import org.example.configuratoreauto.Preventivi.*;
-import org.example.configuratoreauto.Utenti.Cliente;
 import org.example.configuratoreauto.Utenti.UserModel;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.stream.Collectors;
 
 public class PreventiviController {
 
@@ -53,7 +51,7 @@ public class PreventiviController {
             registratiLink.setOnAction(event -> openRegistratiView());
             mainView.getChildren().add(registratiLink);
         }
-        resetFilter();
+        filterPreventivi();
     }
 
     private void setupForSegretario() {
@@ -102,9 +100,6 @@ public class PreventiviController {
         choiceMarca.getSelectionModel().clearSelection();
         choiceSede.getSelectionModel().clearSelection();
         clienteField.clear();
-
-        //Aggiorno la lista dei preventivi
-        filterPreventivi();
     }
 
     private void initializeChoiceBoxes() {
@@ -132,7 +127,7 @@ public class PreventiviController {
         // Resetto la lista presente in precedenza
         mainView.getChildren().clear();
         if(registroModel.getCurrentPreventivo()!=null){
-            choiceStato.setValue(registroModel.getCurrentPreventivo().getStato());
+            //choiceStato.setValue(registroModel.getCurrentPreventivo().getStato());
             registroModel.setCurrentPreventivo(null);
         }
         if (userModel.getCurrentUser() != null) {

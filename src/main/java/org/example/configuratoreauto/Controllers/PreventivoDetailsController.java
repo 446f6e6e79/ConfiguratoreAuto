@@ -111,7 +111,6 @@ public class PreventivoDetailsController {
         //Per ogni optional scelto, aggiungo una riga nella tabella, nel caso fosse il colore aggiorno l'immagine di default
         for(Optional o : preventivo.getOptionalScelti()){
             if(o.getCategoria() == TipoOptional.Colore){
-                System.out.println(o.getDescrizione());
                 image.setImage(preventivo.getAcquisto().getDefaultImage(o.getDescrizione()));
             }
             addTableRow(o.getDescrizione(), Preventivo.getPriceAsString(o.getCosto()));

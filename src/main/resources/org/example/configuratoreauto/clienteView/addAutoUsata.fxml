@@ -60,7 +60,7 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <VBox alignment="CENTER" prefHeight="276.0" prefWidth="271.0" styleClass="clickableElement">
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="276.0" prefWidth="271.0" styleClass="clickableElement">
                      <children>
                         <ImageView fitHeight="236.0" fitWidth="225.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -69,7 +69,7 @@
                         </ImageView>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="clickableElement" GridPane.columnIndex="1">
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="251.0" prefWidth="265.0" styleClass="clickableElement" GridPane.columnIndex="1">
                      <children>
                          <ImageView fitHeight="206.0" fitWidth="225.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -78,7 +78,7 @@
                         </ImageView>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="252.0" prefWidth="261.0" styleClass="clickableElement" GridPane.rowIndex="1">
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="251.0" prefWidth="265.0" styleClass="clickableElement" GridPane.rowIndex="1">
                      <children>
                         <ImageView fitHeight="215.0" fitWidth="307.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -87,7 +87,7 @@
                         </ImageView>
                      </children>
                   </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="clickableElement" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="251.0" prefWidth="265.0" styleClass="clickableElement" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <children>
                         <ImageView fitHeight="217.0" fitWidth="453.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true">
                            <image>
