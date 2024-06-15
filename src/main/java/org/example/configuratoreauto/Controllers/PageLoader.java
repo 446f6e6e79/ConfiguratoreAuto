@@ -14,6 +14,12 @@ import java.io.IOException;
 
 public class PageLoader {
 
+    /**Metodo che ha lo scopo di caricare un fxml sovrascrivendo la pagina attuale
+     *
+     * @param fxmlPath path della view da caricare
+     * @param title titolo della scena
+     * @param stage riferimento della pagina da modificare
+     */
     public static void loadPage(String fxmlPath, String title, Stage stage) {
         try {
             FXMLLoader loader = new FXMLLoader(PageLoader.class.getResource(fxmlPath));
@@ -27,6 +33,12 @@ public class PageLoader {
         }
     }
 
+    /**Aggiorna il contenuto di un tab di una data TabPane, utile per aggiornare catalogo e preventivi
+     *
+     * @param tabPane TabPane di riferimento
+     * @param tabIndex Indice del tab che si desidera modificare
+     * @param fxmlPath  View da caricare
+     */
     public static void updateTabContent(TabPane tabPane, int tabIndex, String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(PageLoader.class.getResource(fxmlPath));
@@ -38,6 +50,11 @@ public class PageLoader {
         }
     }
 
+    /**
+     * Genera un pop-up che segnala un qualsiasi errore
+     * @param title
+     * @param message
+     */
     public static void showErrorPopup(String title, String message) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.initStyle(StageStyle.UTILITY);
@@ -46,24 +63,27 @@ public class PageLoader {
         alert.setContentText(message);
         alert.showAndWait();
     }
+
+    /**
+     * Genere una schermata popup con una desiderata view caricata al suo interno
+     * @param fxmlPath view da caricare
+     * @param title titolo della pagina
+     * @param parentContainer riferimento della schermata che lo deve generare
+     */
     public static void openDialog(String fxmlPath, String title, Parent parentContainer) {
         try {
             FXMLLoader loader = new FXMLLoader(PageLoader.class.getResource(fxmlPath));
             Parent dialogPane = loader.load();
-
-            // Create a new Stage for the dialog
+            // Crea un nuovo stage
             Stage dialogStage = new Stage();
             dialogStage.setTitle(title);
-
-            // Set the scene with the loaded FXML
+            //Imposta la view sulla scena
             Scene scene = new Scene(dialogPane);
             dialogStage.setScene(scene);
-
-            // Make the dialog modal and set its owner to the parent window
+            //Imposta la window che dovrebbe generare la dialog come owner del popup
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(parentContainer.getScene().getWindow());
-
-            // Show the dialog and wait until it is closed
+            //Mosta la dialog e aspetta la sua chiusura
             dialogStage.showAndWait();
         } catch (IOException e) {
             e.printStackTrace();

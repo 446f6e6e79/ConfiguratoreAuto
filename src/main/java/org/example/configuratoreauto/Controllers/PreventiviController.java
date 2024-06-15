@@ -126,10 +126,11 @@ public class PreventiviController {
     public void loadPrevs(ArrayList<Preventivo> registroArg) {
         // Resetto la lista presente in precedenza
         mainView.getChildren().clear();
+        //Se è presente un preventivo selezionato lo pulisco
         if(registroModel.getCurrentPreventivo()!=null){
-            //choiceStato.setValue(registroModel.getCurrentPreventivo().getStato());
             registroModel.setCurrentPreventivo(null);
         }
+        //Se non sono un ospite allora carico i preventivi
         if (userModel.getCurrentUser() != null) {
             getPreventivi(registroArg);
         } else {

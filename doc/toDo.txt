@@ -1,7 +1,4 @@
 Back-end:
-FIX COMMENTI PageLoader e login controller
-
-Riga 130 di preventivi controller da controllare
 
 Front - end:
 
