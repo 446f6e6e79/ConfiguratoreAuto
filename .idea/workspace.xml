@@ -5,7 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="64212ea7-4dba-458d-912e-a2c9965aa8b9" name="Changes" comment="Creata struttura base per Auto e connessi">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/doc/AddAutoSeq.drawio" beforeDir="false" afterPath="$PROJECT_DIR$/doc/AddAutoSeq.drawio" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/PreventivoDetailsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/org/example/configuratoreauto/Controllers/PreventivoDetailsController.java" afterDir="false" />
     </list>
