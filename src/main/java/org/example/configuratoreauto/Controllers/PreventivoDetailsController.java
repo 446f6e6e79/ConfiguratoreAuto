@@ -219,14 +219,12 @@ public class PreventivoDetailsController {
     }
     @FXML
     private void onPdf() {
-        // Create a new PDF document
+        // Crea un nuovo pdf
         try (PDDocument document = new PDDocument()) {
             PDPage page = new PDPage();
             document.addPage(page);
-
-            // Create content for the PDF page
             try (PDPageContentStream contentStream = new PDPageContentStream(document, page)) {
-                // Header
+                // Intestazione
                 contentStream.beginText();
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 18);
                 contentStream.newLineAtOffset(100, 750);
@@ -234,7 +232,7 @@ public class PreventivoDetailsController {
                 contentStream.setFont(PDType1Font.HELVETICA, 12);
                 contentStream.newLineAtOffset(0, -40);
 
-                // Customer Details
+                // Dettagli clienti
                 contentStream.showText("Cliente: " + preventivo.getCliente());
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Sede: " + preventivo.getSede().getNome() + " " + preventivo.getSede().getIndirizzo());
@@ -248,13 +246,12 @@ public class PreventivoDetailsController {
                 contentStream.showText("Stato: " + preventivo.getStato().toString());
                 contentStream.newLineAtOffset(0, -20);
 
-                // Car Details
+                // Dettagli auto
                 contentStream.showText("Modello: " + preventivo.getAcquisto().getModello());
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Marchio: " + preventivo.getAcquisto().getMarca().toString());
                 contentStream.newLineAtOffset(0, -20);
-
-                // Engine Details
+                // Dettagli motore
                 contentStream.showText("Motore: " + preventivo.getMotoreScelto().getDescrizione());
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Alimentazione: " + preventivo.getMotoreScelto().getAlimentazione().toString());
@@ -263,8 +260,7 @@ public class PreventivoDetailsController {
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Potenza: " + preventivo.getMotoreScelto().getPotenzaKW() + "kW");
                 contentStream.newLineAtOffset(0, -20);
-
-                // Dimension Details
+                // Dettagli dimensione
                 contentStream.showText("Dimensioni:");
                 contentStream.newLineAtOffset(20, -20);
                 contentStream.showText("Altezza: " + preventivo.getAcquisto().getDimensione().getAltezza() + "m");
@@ -277,8 +273,6 @@ public class PreventivoDetailsController {
                 contentStream.newLineAtOffset(0, -20);
                 contentStream.showText("Volume del Bagagliaio: " + preventivo.getAcquisto().getDimensione().getVolumeBagagliaglio() + "l");
                 contentStream.newLineAtOffset(-20, -20);
-
-                // Used Car Details
                 if (preventivo.getUsata() != null) {
                     AutoUsata usata = preventivo.getUsata();
                     contentStream.showText("Auto usata:");
@@ -290,14 +284,10 @@ public class PreventivoDetailsController {
                     contentStream.showText("Km: " + usata.getKm());
                     contentStream.newLineAtOffset(-20, -20);
                 }
-
-                // Cost Details Table Header
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 15);
                 contentStream.showText("COSTO DETTAGLIATO");
                 contentStream.setFont(PDType1Font.HELVETICA, 12);
                 contentStream.newLineAtOffset(0, -20);
-
-                // Cost Details Table
                 contentStream.setFont(PDType1Font.HELVETICA_BOLD, 12);
                 contentStream.showText(String.format("%-30s %10s", "Descrizione", "Costo (€)"));
                 contentStream.newLineAtOffset(0, -20);
@@ -332,8 +322,6 @@ public class PreventivoDetailsController {
                 contentStream.showText(String.format("%-30s %10s", "Costo totale", Preventivo.getPriceAsString(preventivo.getCostoTotale())));
                 contentStream.endText();
             }
-
-            // Save the PDF document to disk
             FileChooser fileChooser = new FileChooser();
             fileChooser.setTitle("Salva PDF");
             fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PDF files", "*.pdf"));
