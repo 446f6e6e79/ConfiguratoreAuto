@@ -151,7 +151,7 @@
             <children>
                <VBox fx:id="usatoVbox" styleClass="section">
                   <children>
-                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section-title" text="Il tuo usato:" wrappingWidth="124.775390625">
+                     <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section-title" text="Il tuo usato:" wrappingWidth="255.775390625">
                         <font>
                            <Font name="System Bold" size="11.0" />
                         </font>
@@ -167,6 +167,9 @@
                                     <font>
                                        <Font size="22.0" />
                                     </font>
+                                    <HBox.margin>
+                                       <Insets right="15.0" />
+                                    </HBox.margin>
                                  </Label>
                                  <Label fx:id="usatoModello" text="Modello">
                                     <padding>
@@ -188,7 +191,7 @@
                      </VBox>
                      <HBox alignment="CENTER_LEFT" prefHeight="73.0" prefWidth="438.0">
                         <children>
-                           <HBox alignment="CENTER_LEFT" prefHeight="100.0" prefWidth="200.0">
+                           <HBox alignment="CENTER_LEFT" prefHeight="54.0" prefWidth="254.0">
                               <children>
                                  <Label fx:id="targaLabel" styleClass="boldText" text="Targa:">
                                     <font>
@@ -207,7 +210,7 @@
                            </HBox>
                            <HBox alignment="CENTER_LEFT" minHeight="-Infinity" prefHeight="30.0" prefWidth="315.0">
                               <children>
-                                 <Label fx:id="kmLabel" prefHeight="28.0" styleClass="boldText" text="Kilometraggio:">
+                                 <Label fx:id="kmLabel" prefHeight="28.0" prefWidth="176.0" styleClass="boldText" text="Kilometraggio:">
                                     <font>
                                        <Font name="System Bold" size="20.0" />
                                     </font>
@@ -334,7 +337,7 @@
                <Insets />
             </VBox.margin>
          </VBox>
-         <ScrollPane styleClass="scrollPaneBorder" hbarPolicy="NEVER" prefHeight="265.0" prefWidth="759.0">
+         <ScrollPane hbarPolicy="NEVER" prefHeight="265.0" prefWidth="759.0" styleClass="scrollPaneBorder">
             <content>
                <VBox fx:id="priceDetails" prefHeight="119.0" prefWidth="757.0" styleClass="tableVBox">
                   <children>
