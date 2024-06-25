@@ -55,11 +55,11 @@
             </HBox>
          </left>
          <center>
-            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="451.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER_RIGHT" prefHeight="100.0" prefWidth="434.0" BorderPane.alignment="CENTER">
                <children>
-                  <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="155.0">
+                  <VBox alignment="TOP_CENTER" prefHeight="100.0" prefWidth="153.0">
                      <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Data consegna:">
+                        <Text fx:id="consegnaDescription" strokeType="OUTSIDE" strokeWidth="0.0" text="Data consegna:">
                            <font>
                               <Font size="14.0" />
                            </font>
@@ -74,7 +74,7 @@
                         </Label>
                      </children>
                   </VBox>
-                  <Label fx:id="stato" alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="200.0" text="Disponibile al ritiro">
+                  <Label fx:id="stato" alignment="CENTER_RIGHT" prefHeight="31.0" prefWidth="283.0" text="Disponibile al ritiro">
                      <padding>
                         <Insets left="10.0" />
                      </padding>

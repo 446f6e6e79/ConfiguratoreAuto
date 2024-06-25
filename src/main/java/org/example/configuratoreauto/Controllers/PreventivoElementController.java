@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 import org.example.configuratoreauto.Preventivi.Preventivo;
 import org.example.configuratoreauto.Preventivi.StatoPreventivo;
 import org.example.configuratoreauto.Utenti.UserModel;
@@ -25,6 +26,8 @@ public class PreventivoElementController {
     private Label cliente;
     @FXML
     private Label data;
+    @FXML
+    private Text consegnaDescription;
     @FXML
     private Label consegna;
     @FXML
@@ -44,8 +47,14 @@ public class PreventivoElementController {
         if(preventivo.getStato() == StatoPreventivo.PAGATO ){
             consegna.setText(preventivo.getDataConsegnaAsString());
         }
+        //Se lo stato è FINALIZZATO, mostro la data di scadenza
+        else if(preventivo.getStato() == StatoPreventivo.FINALIZZATO){
+            consegnaDescription.setText("Data scadenza:");
+            consegna.setText(preventivo.getDataScadenzaAsString());
+        }
         //Negli altri stati, la data di consegna non è disponibile
         else{
+            consegnaDescription.setText("");
             consegna.setText("");
         }
         stato.setText(preventivo.getStato().toString());
