@@ -42,3 +42,7 @@ build/
 *.drawio
 pom.xml
 mvnw.*
+.idea/workspace.xml
+.mvn/wrapper/maven-wrapper.jar
+.mvn/wrapper/maven-wrapper.properties
+mvnw
