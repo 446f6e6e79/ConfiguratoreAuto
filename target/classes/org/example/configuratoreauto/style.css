@@ -1,0 +1,379 @@
+/*Font su tutto il progetto*/
+.root{
+    -fx-font-family: "Arial";
+}
+.pageTitle{
+    -fx-font-size: 24;
+    -fx-font-weight: bold;
+}
+.boldText{
+    -fx-font-size: 20;
+    -fx-font-weight: bold;
+}
+
+#clickableText {
+    -fx-underline: true;
+    -fx-cursor: hand; /* Cambia il cursore, segnalando il testo cliccabile*/
+}
+
+/* ========= ButtoneVerde =============*/
+.greenButton {
+    -fx-background-color: #4CAF50;
+    -fx-font-weight: bold;
+    -fx-font-size: 30;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.2, 1);
+}
+.greenButton:hover {
+    -fx-background-color: #45a049;
+}
+.greenButton:pressed {
+    -fx-background-color: #388e3c;
+}
+.greenButton:disabled {
+    -fx-opacity: 0.5;
+    -fx-background-color: #ccc;
+    -fx-text-fill: #666;
+    -fx-cursor: default;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
+}
+
+/*================= Buttone Rosso ========*/
+.resetButton {
+    -fx-background-color: #f44336;
+    -fx-text-fill: white;
+    -fx-padding: 10px 20px;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.2, 1);
+}
+.resetButton:hover {
+    -fx-background-color: #e53935;
+}
+.resetButton:pressed {
+    -fx-background-color: #d32f2f;
+}
+.resetButton:disabled {
+    -fx-opacity: 0.5;
+    -fx-background-color: #ccc;
+    -fx-text-fill: #666;
+    -fx-cursor: default;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
+}
+
+/*================= TAB_PANE =============*/
+.tab-pane {
+    -fx-tab-min-width: 100px;
+}
+.tab-pane .tab {
+    -fx-background-color: #f0f0f0;
+    -fx-padding: 10px 15px;
+    -fx-closable: false;
+    -fx-focus-color: transparent;
+}
+.tab-pane .tab:hover {
+    -fx-background-color: #e0e0e0;
+}
+.tab-pane .tab:selected {
+    -fx-background-color: #fff;
+    -fx-focus-color: transparent;
+}
+.tab-content {
+    -fx-padding: 20px;
+}
+
+/*================ ELEMENTO CLICCABILE ===========*/
+.clickableElement {
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.2, 1);
+    -fx-border-color: GREY;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+}
+.clickableElement:hover {
+    -fx-background-color: #E0E0E0;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.5, 0.2, 1);
+    -fx-border-color: DARKGREY;
+}
+
+.clickableElementGreen {
+    -fx-background-color: #008000;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.2, 1);
+    -fx-border-color: #006400;
+    -fx-border-width: 2;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-text-fill: white;
+}
+
+.clickableElementGreen:hover {
+    -fx-background-color: #00A000;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 15, 0.5, 0.2, 1);
+    -fx-border-color: #004B23;
+    -fx-text-fill: white;
+}
+
+/*============== Choice Box ================*/
+.choice-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+.choice-box .list-cell {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+}
+.choice-box .list-cell:hover {
+    -fx-background-color: #f0f0f0;
+}
+.choice-box .list-cell:selected {
+    -fx-background-color: #4a90e2;
+    -fx-text-fill: #ffffff;
+}
+.choice-box .arrow {
+    -fx-background-color: transparent;
+    -fx-shape: "M 0,0 L 4,4 L 8,0 Z";
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-fill: #333333;
+}
+.choice-box:focused .arrow {
+    -fx-fill: #4a90e2;
+}
+.choice-box:focused {
+    -fx-border-color: #4a90e2;
+}
+
+/*============== ComboBox ================*/
+.combo-box {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #cccccc;
+    -fx-border-width: 1;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+}
+.combo-box .list-cell {
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #333333;
+}
+.combo-box .list-cell:hover {
+    -fx-background-color: #f0f0f0;
+}
+
+.combo-box .arrow {
+    -fx-background-color: transparent;
+    -fx-shape: "M 0,0 L 4,4 L 8,0 Z";
+    -fx-scale-x: 1.2;
+    -fx-scale-y: 1.2;
+    -fx-fill: #333333;
+}
+/*======================= Bordo SOPRA + SOTTO ==============*/
+.borderTopBottom {
+    -fx-border-color: #B0BEC5 transparent #B0BEC5 transparent;
+    -fx-border-width: 2px 0 2px 0;
+    -fx-background-color: #FAFAFA;
+    -fx-text-fill: #333;
+}
+
+/*================ TABELLA ================*/
+.tableVBox {
+    -fx-spacing: 5;
+    -fx-padding: 10;
+    -fx-background-color: #F8F8F8;
+    -fx-border-color: #CCCCCC;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+}
+
+.tableRow {
+    -fx-spacing: 10;
+    -fx-padding: 5;
+    -fx-background-color: #FFFFFF;
+    -fx-border-color: #DDDDDD;
+    -fx-border-width: 1;
+    -fx-border-radius: 5;
+}
+
+.tableRowLabel {
+    -fx-font-size: 20;
+    -fx-text-fill: #333333;
+}
+.titleRow{
+    -fx-font-size: 26;
+    -fx-text-fill: #222222;
+    -fx-font-weight: bold;
+}
+
+.tableRow:hover {
+    -fx-background-color: #E0E0E0;
+    -fx-border-color: #BBBBBB;
+}
+
+/*==== LOGOUT TAB =============*/
+.logout-tab {
+    -fx-background-color: #ff0000;
+    -fx-text-fill: white;
+}
+
+/*============ SEZIONI ======*/
+.section {
+    -fx-border-color: #CCCCCC;
+    -fx-background-color: #F8F8F8;
+    -fx-padding: 10px;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+    -fx-border-style: solid;
+    -fx-margin: 10px;
+}
+
+.section-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #333333;
+}
+.section-subTitle {
+    -fx-font-size: 21px;
+    -fx-text-fill: #333333;
+}
+
+.section-content {
+    -fx-font-size: 18;
+    -fx-text-fill: #666666;
+}
+
+/*========= BORDO SOPRA ======*/
+.topBorder {
+    -fx-border-color: #cccccc transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+    -fx-padding: 10 0 0 0;
+}
+
+/*======== TEXT AREA =========*/
+.text-field:focused .text-input {
+    -fx-background-color: transparent;
+}
+.text-field:disabled .text-input {
+    -fx-background-color: transparent;
+}
+.text-area {
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-font-size: 13px;
+    -fx-padding: 8px;
+    -fx-prompt-text-fill: #999999;
+}
+.text-area:hover,
+.text-area:focused {
+    -fx-background-color: #e6e6e6;
+}
+.text-area:disabled {
+    -fx-opacity: 0.5;
+}
+.text-area .prompt-text {
+    -fx-fill: #999999;
+}
+.text-area .content {
+    -fx-fill: #333333;
+}
+.text-area .text-input {
+    -fx-background-color: transparent;
+}
+.text-area:hover .text-input {
+    -fx-background-color: transparent;
+}
+.text-area:focused .text-input {
+    -fx-background-color: transparent;
+}
+.text-area:disabled .text-input {
+    -fx-background-color: transparent;
+}
+/*========== SCONTO per MESE ========*/
+#selectedMesi {
+    -fx-background-color: #f2f2f2;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+    -fx-padding: 6;
+}
+
+/* ToggleButton */
+#selectedMesi ToggleButton {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 5px;
+}
+
+#selectedMesi ToggleButton:hover {
+    -fx-background-color: #e6e6e6;
+}
+
+#selectedMesi ToggleButton:selected {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+#selectedMesi ToggleButton:disabled {
+    -fx-opacity: 0.5;
+}
+
+/* SCROLL PANE */
+#addOnsPane {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+#addOnsPane .viewport {
+    -fx-background: transparent;
+    -fx-background-color: transparent;
+}
+#addOnsPane .scroll-bar:vertical,
+.scrollPaneBorder .scroll-bar:vertical {
+    -fx-background-color: transparent;
+    -fx-padding: 5px;
+}
+#addOnsPane .scroll-bar:vertical .thumb,
+.scrollPaneBorder .scroll-bar:vertical .thumb {
+    -fx-background-color: #4CAF50;
+    -fx-background-insets: 0;
+    -fx-background-radius: 5px;
+}
+#addOnsPane .scroll-bar:vertical .track,
+.scrollPaneBorder .scroll-bar:vertical .track {
+    -fx-background-color: #d0d0d0;
+    -fx-background-insets: 0;
+    -fx-background-radius: 5px;
+}
+
+/*======== ADD ONS OPTIONAL==============*/
+#addOns .check-box {
+    -fx-font-size: 14px;
+    -fx-padding: 3px;
+    -fx-text-fill: #333;
+}
+#addOns .check-box .box {
+    -fx-background-color: #fff;
+    -fx-border-color: #ccc;
+    -fx-border-radius: 4px;
+    -fx-border-width: 2px;
+}
+#addOns .check-box .box:hover {
+    -fx-border-color: #888;
+}
+#addOns .check-box:selected .box {
+    -fx-background-color: #4CAF50;
+}
+#addOns .check-box:selected .box .mark {
+    -fx-background-color: #4CAF50;
+}
+#addOns .check-box .box .mark {
+    -fx-background-color: transparent;
+    -fx-stroke: white;
+    -fx-stroke-width: 2px;
+}
+#addOns .check-box .text {
+    -fx-alignment: center-left;
+    -fx-padding: 0 0 0 10px;
+}

@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="mainComponent" prefHeight="337.0" prefWidth="614.0" styleClass="clickableElement" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AutoUsataElementController">
+
+   <HBox maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="294.0" prefWidth="650.0">
+      <children>
+         <StackPane prefHeight="297.0" prefWidth="471.0">
+            <children>
+               <ImageView fx:id="images" fitHeight="230.0" fitWidth="378.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image fx:id="singleimage" url="@../../../../img/no_data.png" />
+                  </image>
+               </ImageView>
+               <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="234.0" prefWidth="472.0">
+                  <right>
+                     <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#nextImage" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                        <Image url="@../../../../img/icons/right-arrow.png">
+                        </Image>
+                        <BorderPane.margin>
+                           <Insets right="5.0" />
+                        </BorderPane.margin>
+                     </ImageView>
+                  </right>
+                  <left>
+                     <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#prevImage" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
+                        <Image url="@../../../../img/icons/right-arrow.png" />
+                        <BorderPane.margin>
+                           <Insets left="5.0" />
+                        </BorderPane.margin>
+                     </ImageView>
+                  </left>
+               </BorderPane>
+            </children>
+         </StackPane>
+         <VBox minHeight="-Infinity" minWidth="-Infinity" prefHeight="329.0" prefWidth="179.0">
+            <children>
+               <Label fx:id="modello" styleClass="section-title" text="Modello">
+                  <font>
+                     <Font name="SansSerif Regular" size="23.0" />
+                  </font>
+                  <VBox.margin>
+                     <Insets bottom="10.0" />
+                  </VBox.margin></Label>
+               <Label fx:id="marca" styleClass="section-subTitle" text="Marca">
+                  <font>
+                     <Font name="SansSerif Regular" size="19.0" />
+                  </font></Label>
+               <Label fx:id="targa" styleClass="section-content" text="Targa">
+                  <VBox.margin>
+                     <Insets top="10.0" />
+                  </VBox.margin>
+               </Label>
+               <Label fx:id="km" alignment="BOTTOM_RIGHT" prefHeight="49.0" prefWidth="171.0" styleClass="section-content" text="Km">
+                  <font>
+                     <Font size="19.0" />
+                  </font>
+                  <padding>
+                     <Insets bottom="2.0" right="20.0" />
+                  </padding></Label>
+            </children>
+            <padding>
+               <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+            </padding>
+         </VBox>
+      </children>
+   </HBox>
+   <VBox alignment="CENTER" prefHeight="43.0" prefWidth="700.0" styleClass="topBorder">
+      <children>
+         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <children>
+               <TextField fx:id="valutazione" promptText="Inserisci valutazione:">
+                  <font>
+                     <Font size="20.0" />
+                  </font></TextField>
+               <Button fx:id="confirm" mnemonicParsing="false" onAction="#conferma" styleClass="greenButton" text="Conferma">
+                  <font>
+                     <Font size="20.0" />
+                  </font></Button>
+            </children>
+         </HBox>
+      </children>
+      <padding>
+         <Insets bottom="20.0" />
+      </padding>
+   </VBox>
+</VBox>

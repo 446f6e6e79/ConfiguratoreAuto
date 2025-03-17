@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane fx:id="main" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.CustomizeAutoController">
+    <children>
+      <BorderPane fx:id="borderPane" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0">
+         <left>
+              <VBox fx:id="left" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="792.0" prefWidth="765.0" BorderPane.alignment="CENTER">
+                  <children>
+                        <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="765.0" styleClass="container">
+                           <children>
+                                    <Text fx:id="modelID" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-font-weight: bold; -fx-font-size: 40;" text="Modello">
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin></Text>
+                        <Label fx:id="descrizione" prefHeight="111.0" prefWidth="725.0" style="-fx-font-size: 13;" styleClass="section-content" text="Descrizione" wrapText="true" />
+                              <StackPane prefHeight="328.0" prefWidth="725.0">
+                                 <children>
+                                     <ImageView fx:id="images" fitHeight="330.0" fitWidth="560.0" pickOnBounds="true" preserveRatio="true">
+                                            <image>
+                                                <Image fx:id="singleimage" url="@../../../../img/no_data.png" />
+                                            </image>
+                                        </ImageView>
+                                    <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="315.0" prefWidth="583.0">
+                                       <right>
+                                          <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#nextImage" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                              <Image url="@../../../../img/icons/right-arrow.png" />
+                                              <BorderPane.margin>
+                                                    <Insets right="5.0" />
+                                             </BorderPane.margin>
+                                          </ImageView>
+                                       </right>
+                                       <left>
+                                           <ImageView fitHeight="40.0" fitWidth="40.0" onMouseClicked="#prevImage" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
+                                               <Image url="@../../../../img/icons/right-arrow.png" />
+                                             <BorderPane.margin>
+                                                <Insets left="5.0" />
+                                             </BorderPane.margin>
+                                           </ImageView>
+                                       </left>
+                                    </BorderPane>
+                                 </children>
+                              </StackPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+                           </padding>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </VBox>
+                  <ScrollPane styleClass="scrollPaneBorder" hbarPolicy="NEVER" prefHeight="307.0" prefWidth="765.0">
+                     <content>
+                            <VBox fx:id="priceDetails" prefHeight="86.0" prefWidth="760.0" styleClass="tableVBox">
+                                <children>
+                                    <HBox prefHeight="40.0" prefWidth="835.0" styleClass="tableRow">
+                                        <children>
+                                            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="382.0" styleClass="titleRow" text="Descrizione" textAlignment="CENTER">
+                                                <font>
+                                                    <Font size="20.0" />
+                                                </font>
+                                            </Label>
+                                            <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="415.0" styleClass="titleRow" text="Prezzo" textAlignment="CENTER">
+                                                <font>
+                                                    <Font size="20.0" />
+                                                </font>
+                                            </Label>
+                                        </children>
+                                        <VBox.margin>
+                                            <Insets />
+                                        </VBox.margin>
+                                    </HBox>
+                                    <HBox prefHeight="37.0" prefWidth="200.0" styleClass="tableRow">
+                                        <children>
+                                            <Label fx:id="modello" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="415.0" styleClass="tableRowLabel" textAlignment="CENTER">
+                                                <font>
+                                                    <Font size="20.0" />
+                                                </font>
+                                            </Label>
+                                            <Label fx:id="prezzoBase" alignment="CENTER" contentDisplay="CENTER" prefHeight="45.0" prefWidth="415.0" styleClass="tableRowLabel" text="Prezzo" textAlignment="CENTER">
+                                                <font>
+                                                    <Font size="20.0" />
+                                                </font>
+                                            </Label>
+                                        </children>
+                                    </HBox>
+                                </children>
+                            </VBox>
+                     </content>
+                  </ScrollPane>
+                  </children>
+              </VBox>
+         </left>
+         <right>
+              <VBox fx:id="right" alignment="TOP_CENTER" prefHeight="800.0" prefWidth="579.0" spacing="10.0" BorderPane.alignment="CENTER">
+                  <children>
+                  <VBox fx:id="optionalList" alignment="CENTER" prefHeight="468.0" prefWidth="539.0" spacing="10.0" styleClass="section">
+                     <children>
+                            <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section-title" text="Personalizzazione" />
+                              <HBox alignment="CENTER" prefHeight="38.0" prefWidth="515.0">
+                                  <children>
+                                      <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section-content" text="Colore">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin></Text>
+                                      <ChoiceBox fx:id="colori" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" />
+                                  </children>
+                           <padding>
+                              <Insets left="4.0" />
+                           </padding>
+                              </HBox>
+                            <HBox alignment="CENTER" prefHeight="19.0" prefWidth="515.0" spacing="10.0">
+                                <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section-content" text="Interni" wrappingWidth="57.484130859375" />
+                              <ChoiceBox fx:id="interni" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" />
+                                </children>
+                            </HBox>
+                        <HBox alignment="CENTER" prefHeight="20.0" prefWidth="515.0" spacing="10.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section-content" text="Vetri">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin></Text>
+                              <ChoiceBox fx:id="vetri" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" />
+                           </children>
+                           <padding>
+                              <Insets left="20.0" />
+                           </padding>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="35.0" prefWidth="515.0" spacing="10.0">
+                           <children>
+                              <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section-content" text="Cerchi" />
+                              <ChoiceBox fx:id="cerchi" minHeight="-Infinity" prefHeight="40.0" prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="107.0" prefWidth="515.0" spacing="10.0">
+                           <VBox.margin>
+                              <Insets />
+                           </VBox.margin>
+                           <children>
+                              <ScrollPane fx:id="addOnsPane" hbarPolicy="NEVER" prefHeight="105.0" prefWidth="522.0" styleClass="scrollPane">
+                                 <content>
+                                    <VBox fx:id="addOns" alignment="TOP_CENTER" prefHeight="109.0" prefWidth="500.0" spacing="10.0">
+                                       <padding>
+                                          <Insets top="5.0" />
+                                       </padding>
+                                    </VBox>
+                                 </content>
+                              </ScrollPane>
+                           </children>
+                        </HBox>
+                        <Button mnemonicParsing="false" onAction="#resetChoices" stylesheets="@../style.css" text="Reset">
+                           <styleClass>
+                              <String fx:value="resetButton" />
+                              <String fx:value="boldText" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets top="20.0" />
+                     </padding>
+                  </VBox>
+                  <HBox prefHeight="195.0" prefWidth="539.0" spacing="10.0">
+                     <children>
+                        <VBox prefHeight="189.0" prefWidth="246.0" styleClass="section">
+                           <children>
+                              <Text styleClass="section-subTitle" text="Dimensioni" wrappingWidth="103.8720703125" />
+                              <Label fx:id="dimensioni" alignment="TOP_LEFT" prefHeight="145.0" prefWidth="175.0" style="-fx-font-size: 15;" styleClass="section-content" text="Label">
+                                 <VBox.margin>
+                                    <Insets left="10.0" />
+                                 </VBox.margin>
+                                 <padding>
+                                    <Insets top="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                            <HBox alignment="CENTER_LEFT" prefHeight="149.0" prefWidth="357.0">
+                                <children>
+                              <VBox prefHeight="179.0" prefWidth="320.0" styleClass="section">
+                                 <children>
+                                    <HBox alignment="CENTER" prefHeight="38.0" prefWidth="355.0">
+                                       <children>
+                                                <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section-subTitle" text="Motore" wrappingWidth="74.3583984375">
+                                             <HBox.margin>
+                                                <Insets left="-10.0" right="10.0" />
+                                             </HBox.margin>
+                                          </Text>
+                                                <ChoiceBox fx:id="motori" minHeight="-Infinity" prefHeight="29.0" prefWidth="200.0" />
+                                       </children>
+                                    </HBox>
+                                    <Label fx:id="motoreInfo" alignment="TOP_LEFT" prefHeight="136.0" prefWidth="281.0" style="-fx-font-size: 15;" styleClass="section-content" text="Label">
+                                       <VBox.margin>
+                                          <Insets left="15.0" top="5.0" />
+                                       </VBox.margin>
+                                    </Label>
+                                 </children>
+                              </VBox>
+                                </children>
+                            </HBox>
+                     </children>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </HBox>
+                  <HBox alignment="CENTER_RIGHT" prefHeight="98.0" prefWidth="539.0">
+                     <children>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <VBox alignment="CENTER" prefHeight="178.0" prefWidth="333.0">
+                                 <children>
+                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section-content" text="Seleziona la sede per il ritiro!" wrappingWidth="248.23431396484375" />
+                                          <ChoiceBox fx:id="sedi" prefHeight="40.0" prefWidth="261.0" />
+                                 </children>
+                                 <padding>
+                                    <Insets right="50.0" />
+                                 </padding>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <Text fx:id="valido" />
+                        <Button mnemonicParsing="false" onAction="#createPreventivo" prefHeight="79.0" prefWidth="238.0" style="-fx-font-size: 18;" styleClass="greenButton" text="Richiedi preventivo">
+                           <font>
+                              <Font size="19.0" />
+                           </font>
+                        </Button>
+                     </children>
+                     <padding>
+                        <Insets right="20.0" />
+                     </padding>
+                  </HBox>
+                  </children>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+              </VBox>
+         </right>
+          <top>
+              <HBox maxWidth="-Infinity" onMouseClicked="#goBack" prefHeight="41.0" prefWidth="660.0" BorderPane.alignment="TOP_LEFT">
+                  <children>
+                      <ImageView fitHeight="38.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                          <Image url="@../../../../img/icons/back-icon.png" />
+                      </ImageView>
+                      <Text strokeType="OUTSIDE" strokeWidth="0.0" text="INDIETRO" wrappingWidth="85.0718002319336">
+                          <HBox.margin>
+                              <Insets left="-5.0" top="9.0" />
+                          </HBox.margin>
+                          <font>
+                              <Font size="18.0" />
+                          </font>
+                      </Text>
+                  </children>
+                  <BorderPane.margin>
+                      <Insets top="10.0" />
+                  </BorderPane.margin></HBox>
+          </top>
+      </BorderPane>
+    </children>
+</AnchorPane>

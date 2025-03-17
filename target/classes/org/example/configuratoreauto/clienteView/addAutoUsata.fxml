@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane prefHeight="750.0" prefWidth="1000.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AddAutoUsataController">
+    <top>
+        <Label fx:id="maintitle" styleClass="section-title" text="Inserisci la tua auto usata" BorderPane.alignment="CENTER">
+         <font>
+            <Font size="18.0" />
+         </font>
+         <BorderPane.margin>
+            <Insets bottom="20.0" />
+         </BorderPane.margin></Label>
+    </top>
+   <center>
+        <VBox alignment="CENTER" prefHeight="499.0" prefWidth="391.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <HBox alignment="CENTER" spacing="10.0">
+                <ComboBox fx:id="marcaComboBox" prefHeight="50.0" prefWidth="250.0" promptText="Marca" />
+            </HBox>
+            <HBox alignment="CENTER" spacing="10.0">
+                <TextField fx:id="modelloTextField" prefHeight="50.0" prefWidth="250.0" promptText="Modello" />
+            </HBox>
+            <HBox alignment="CENTER" spacing="10.0">
+                <TextField fx:id="targaTextField" prefHeight="50.0" prefWidth="250.0" promptText="Targa" />
+            </HBox>
+            <HBox alignment="CENTER" spacing="10.0">
+                <TextField fx:id="kmTextField" prefHeight="50.0" prefWidth="250.0" promptText="Kilometri" />
+            </HBox>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets left="20.0" />
+         </BorderPane.margin>
+        </VBox>
+   </center>
+   <right>
+      <HBox fx:id="imageGrid" prefHeight="598.0" prefWidth="569.0" styleClass="section" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane alignment="CENTER" hgap="10.0" prefHeight="472.0" prefWidth="541.0" vgap="10.0">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="276.0" prefWidth="271.0" styleClass="clickableElement">
+                     <children>
+                        <ImageView fitHeight="236.0" fitWidth="225.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../img/icons/left-car.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="251.0" prefWidth="265.0" styleClass="clickableElement" GridPane.columnIndex="1">
+                     <children>
+                         <ImageView fitHeight="206.0" fitWidth="225.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../img/icons/front-car.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="251.0" prefWidth="265.0" styleClass="clickableElement" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="215.0" fitWidth="307.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../img/icons/right-car.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="251.0" prefWidth="265.0" styleClass="clickableElement" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <ImageView fitHeight="217.0" fitWidth="453.0" onMouseClicked="#imageFileInput" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../img/icons/back-car.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+               </children>
+            </GridPane>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="30.0" right="-10.0" top="20.0" />
+         </padding>
+         <BorderPane.margin>
+            <Insets right="20.0" />
+         </BorderPane.margin>
+      </HBox>
+   </right>
+   <bottom>
+      <VBox alignment="CENTER" prefHeight="164.0" prefWidth="1000.0" BorderPane.alignment="CENTER">
+         <children>
+               <Label fx:id="saveLabel" styleClass="section-subTitle" />
+              <HBox alignment="BOTTOM_RIGHT" prefHeight="100.0" prefWidth="1000.0" spacing="30.0">
+                  <Button onAction="#saltaButton" prefHeight="80.0" prefWidth="200.0" styleClass="resetButton" text="Salta">
+                  <font>
+                     <Font name="System Bold" size="30.0" />
+                  </font>
+               </Button>
+                  <Button fx:id="salvaButton" onAction="#salvaButton" prefHeight="80.0" prefWidth="200.0" styleClass="greenButton" text="Salva" />
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets right="20.0" />
+               </padding>
+              </HBox>
+         </children>
+      </VBox>
+   </bottom>
+</BorderPane>

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.AddAutoImagesController">
+   <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1400.0">
+      <top>
+         <HBox maxWidth="-Infinity" onMouseClicked="#goBack" prefHeight="58.0" prefWidth="113.0" BorderPane.alignment="TOP_LEFT">
+            <children>
+               <ImageView fitHeight="38.0" fitWidth="46.0" pickOnBounds="true" preserveRatio="true">
+                  <Image url="@../../../../img/icons/back-icon.png" />
+               </ImageView>
+               <Text strokeType="OUTSIDE" strokeWidth="0.0" text="INDIETRO" wrappingWidth="85.0718002319336">
+                  <HBox.margin>
+                     <Insets left="-5.0" top="9.0" />
+                  </HBox.margin>
+                  <font>
+                     <Font size="18.0" />
+                  </font>
+               </Text>
+            </children>
+            <BorderPane.margin>
+               <Insets top="10.0" />
+            </BorderPane.margin></HBox>
+      </top>
+      <center>
+         <VBox maxWidth="-Infinity" minWidth="-Infinity" prefHeight="636.0" prefWidth="963.0" BorderPane.alignment="CENTER">
+            <children>
+               <HBox alignment="CENTER" prefHeight="57.0" prefWidth="900.0" spacing="20.0">
+                  <VBox.margin>
+                     <Insets />
+                  </VBox.margin>
+                  <children>
+                     <ComboBox fx:id="coloreInput" editable="true" maxHeight="-Infinity" prefHeight="60.0" prefWidth="330.0" promptText="Colore" />
+                     <TextField fx:id="colorPrice" prefHeight="57.0" prefWidth="300.0" promptText="Costo" />
+                  </children>
+               </HBox>
+               <VBox alignment="CENTER" maxHeight="-Infinity" prefHeight="513.0" prefWidth="1050.0">
+                  <children>
+                     <StackPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="526.0" prefWidth="912.0">
+                        <VBox.margin>
+                           <Insets top="20.0" />
+                        </VBox.margin>
+                        <children>
+                           <ImageView fx:id="addedImagesView" fitHeight="400.0" fitWidth="700.0" pickOnBounds="true" preserveRatio="true">
+                              <image>
+                                 <Image url="@../../../../img/icons/addImage.png" />
+                              </image>
+                           </ImageView>
+                           <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="455.0" prefWidth="791.0">
+                              <left>
+                                 <ImageView fx:id="photoLeft" fitHeight="40.0" fitWidth="40.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" rotate="180.0" BorderPane.alignment="CENTER">
+                                    <image>
+                                       <Image url="@../../../../img/icons/right-arrow.png" />
+                                    </image>
+                                 </ImageView>
+                              </left>
+                              <right>
+                                 <ImageView fx:id="photoRight" fitHeight="40.0" fitWidth="40.0" opacity="0.7" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
+                                    <image>
+                                       <Image url="@../../../../img/icons/right-arrow.png" />
+                                    </image>
+                                 </ImageView>
+                              </right>
+                              <top>
+                                 <ImageView fx:id="deletePhoto" fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="TOP_RIGHT">
+                                    <BorderPane.margin>
+                                       <Insets right="30.0" top="10.0" />
+                                    </BorderPane.margin>
+                                    <image>
+                                       <Image url="@../../../../img/icons/cancel.png" />
+                                    </image>
+                                 </ImageView>
+                              </top>
+                           </BorderPane>
+                        </children>
+                     </StackPane>
+                  </children>
+               </VBox>
+               <ButtonBar prefHeight="69.0" prefWidth="963.0">
+                 <buttons>
+                   <Button fx:id="addImageButton" mnemonicParsing="false" onAction="#imageFileInput" prefHeight="60.0" prefWidth="710.0" text="Aggiungi Immagine">
+                        <font>
+                           <Font size="22.0" />
+                        </font>
+                     </Button>
+                     <Button fx:id="saveImageButton" maxHeight="-Infinity" maxWidth="-Infinity" mnemonicParsing="false" onAction="#saveImages" prefHeight="60.0" prefWidth="300.0" text="Aggiungi colore">
+                        <font>
+                           <Font size="22.0" />
+                        </font>
+                     </Button>
+                 </buttons>
+                  <VBox.margin>
+                     <Insets left="100.0" right="100.0" />
+                  </VBox.margin>
+               </ButtonBar>
+            </children>
+            <padding>
+               <Insets bottom="10.0" />
+            </padding>
+         </VBox>
+      </center>
+      <bottom>
+         <HBox alignment="BASELINE_RIGHT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="84.0" prefWidth="1224.0" BorderPane.alignment="CENTER">
+            <children>
+               <Button fx:id="avantiButton" mnemonicParsing="false" onAction="#nextPage" prefHeight="80.0" prefWidth="200.0" styleClass="greenButton" text="Continua" textAlignment="CENTER">
+                  <font>
+                     <Font size="30.0" />
+                  </font>
+                  <HBox.margin>
+                     <Insets />
+                  </HBox.margin>
+               </Button>
+            </children>
+            <BorderPane.margin>
+               <Insets bottom="-20.0" />
+            </BorderPane.margin></HBox>
+      </bottom>
+   </BorderPane>
+</AnchorPane>

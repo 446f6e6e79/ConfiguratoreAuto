@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.FlowPane?>
+
+<BorderPane fx:id="mainComponent" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.ValutazioneController">
+   <center>
+      <ScrollPane fitToHeight="true" fitToWidth="true" layoutX="0.0" layoutY="0.0">
+         <content>
+            <FlowPane fx:id="list" columnHalignment="CENTER" hgap="20.0" prefHeight="400.0" prefWidth="200.0" vgap="20.0" />
+         </content>
+         <padding>
+            <Insets bottom="10.0" left="15.0" right="10.0" top="10.0" />
+         </padding>
+      </ScrollPane>
+   </center>
+</BorderPane>

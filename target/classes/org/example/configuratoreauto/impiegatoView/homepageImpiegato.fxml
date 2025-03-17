@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+
+<TabPane fx:id="mainPage" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="540.0" prefWidth="960" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.configuratoreauto.Controllers.ImpiegatoHomeController">
+
+    <tabs>
+        <Tab fx:id="valutazioniTab" text="Valutazioni">
+            <content>
+                <fx:include source="valutazioniView.fxml" />
+            </content>
+        </Tab>
+        <Tab fx:id="pagamentiTab" text="Gestione Preventivi">
+            <content>
+                <fx:include source="../preventiviView.fxml" />
+            </content>
+        </Tab>
+
+    </tabs>
+    <Tab fx:id="logout" onSelectionChanged="#logout" text="Logout" >
+        <graphic>
+            <ImageView fitHeight="20" fitWidth="20">
+                <Image url="@../../../../img/icons/right-arrow.png" />
+            </ImageView>
+        </graphic>
+        <style>
+            <![CDATA[
+            /* Define your CSS styles here */
+            -fx-background-color: #FFCCCC; /* Example background color */
+
+        ]]>
+        </style>
+    </Tab>
+
+
+
+</TabPane>
